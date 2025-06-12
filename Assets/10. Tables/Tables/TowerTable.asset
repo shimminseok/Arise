@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3682ea8388a6444e8cb8799b76387a6c, type: 3}
+  m_Name: TowerTable
+  m_EditorClassIdentifier: 
+  dataList:
+  - {fileID: 11400000, guid: 8690e41a97205dd4d86377692bcef919, type: 2}
+  - {fileID: 11400000, guid: ee92003cd4fa6e342b6dace0aca82926, type: 2}
+  - {fileID: 11400000, guid: 4ce0d3fe98f220146a3bd96aa34dcd91, type: 2}
+  - {fileID: 11400000, guid: fd80b2bdb0bb8f34eb22e404f221c2e9, type: 2}
+  - {fileID: 11400000, guid: 21500ddebd6b1654f988059af6774c72, type: 2}
+  - {fileID: 11400000, guid: c2482bc145053334f92b46eefd19e1b9, type: 2}
+  - {fileID: 11400000, guid: 1ef1ee23a3462494e93bcf8cac92ad9a, type: 2}
+  - {fileID: 11400000, guid: 5256f563dc8d3ee4f87084fbe1343703, type: 2}
+  - {fileID: 11400000, guid: e7cc0a171fe446445b186c9a7837928f, type: 2}
+  - {fileID: 11400000, guid: 3e80d8a20828a6544a16f5c28fdecb27, type: 2}
+  - {fileID: 11400000, guid: ded118c7c5315cb4e94aa3ad9d27b15c, type: 2}
+  - {fileID: 11400000, guid: c314dd9ee66c62b488b4cd178f95efa5, type: 2}
+  - {fileID: 11400000, guid: 1576876dcc3f1e84e947fc78e2646361, type: 2}
+  - {fileID: 11400000, guid: 96bfeaa3655c32140aaf2e12c29c5195, type: 2}
+  - {fileID: 11400000, guid: 8add732c459dd554fb30dba0354d0652, type: 2}
+  - {fileID: 11400000, guid: dea915742b8da3347b50f6a22ee90d3b, type: 2}
