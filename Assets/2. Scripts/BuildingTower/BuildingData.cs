@@ -5,9 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(BuildingGhost))]
 public class BuildingData : MonoBehaviour, IPoolObject
 {
+    [SerializeField] private string poolId;
+    [SerializeField] private int poolSize;
     public GameObject GameObject => gameObject;
-    public string     PoolID     => "ArrowTower";
-    public int        PoolSize   => 10;
+    public string     PoolID     => poolId;
+    public int        PoolSize   => poolSize;
 
     public BuildingGhost BuildingGhost { get; private set; }
     public Vector2Int Size;

@@ -7,12 +7,12 @@ public class BuildingPlacer : MonoBehaviour
 {
     public GridManager gridManager;
     public List<GameObject> buildingPrefab;
-    public BuildingGhost buildingGhost;
     private BuildingData buildingData;
     private Camera mainCamera;
 
 
     private bool selectedBuildData;
+    private BuildingGhost buildingGhost;
     private GameObject selectedTowerPrefab;
     private GameObject ghostObj;
 
@@ -67,7 +67,7 @@ public class BuildingPlacer : MonoBehaviour
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 0), buttonWidth, buttonHeight), $"Build_Tower1"))
         {
             selectedBuildData = true;
-            selectedTowerPrefab = Instantiate(buildingPrefab[0]);
+            selectedTowerPrefab = ObjectPoolManager.Instance.GetObject(buildingPrefab[0].name);
             buildingData = selectedTowerPrefab.GetComponent<BuildingData>();
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost.SetValid(false);
