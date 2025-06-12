@@ -9,18 +9,18 @@ public class StatManager : MonoBehaviour
     public Dictionary<StatType, StatBase> Stats { get; private set; } = new Dictionary<StatType, StatBase>();
 
 
-    // /// <summary>
-    // /// 플레이어의 스탯을 초기화 시켜주는 메서드
-    // /// </summary>
-    // /// <param name="player"></param>
-    // public void Initialize(PlayerSO player)
-    // {
-    //     foreach (var stat in player.PlayerStats)
-    //     {
-    //         Stats[stat.StatType] = BaseStatFactory(stat.StatType, stat.Value);
-    //     }
-    // }
-    //
+    /// <summary>
+    /// 플레이어의 스탯을 초기화 시켜주는 메서드
+    /// </summary>
+    /// <param name="player"></param>
+    public void Initialize(PlayerSO player)
+    {
+        foreach (var stat in player.PlayerStats)
+        {
+            Stats[stat.StatType] = BaseStatFactory(stat.StatType, stat.Value);
+        }
+    }
+    
     // /// <summary>
     // /// 몬스터의 스탯을 초기화 시켜주는 메서드
     // /// </summary>
