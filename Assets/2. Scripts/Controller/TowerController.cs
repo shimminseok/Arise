@@ -9,13 +9,21 @@ public enum TowerState
     Attack
 }
 
-public class TowerController : BaseController<TowerController, TowerState>
+[RequireComponent(typeof(BuildingData))]
+public class TowerController : BaseController<TowerController, TowerState>, IPoolObject
 {
-    // Start is called before the first frame update
+    [SerializeField] private string poolId;
+    [SerializeField] private int poolSize;
+    public GameObject GameObject => gameObject;
+    public string     PoolID     => poolId;
+    public int        PoolSize   => poolSize;
+
+    public BuildingData BuildingData { get; private set; }
 
     protected override void Awake()
     {
         base.Awake();
+        BuildingData = GetComponent<BuildingData>();
     }
 
     protected override void Start()
@@ -44,6 +52,10 @@ public class TowerController : BaseController<TowerController, TowerState>
     }
 
     public override void Movement()
+    {
+    }
+
+    public void InitFromPool()
     {
     }
 }
