@@ -67,7 +67,7 @@ public class BuildingPlacer : MonoBehaviour
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 0), buttonWidth, buttonHeight), $"Build_Tower1"))
         {
             selectedBuildData = true;
-            selectedTowerPrefab = ObjectPoolManager.Instance.GetObject(buildingPrefab[0].name);
+            selectedTowerPrefab = ObjectPoolManager.Instance.GetObject("ArcherTower_Lv1");
             buildingData = selectedTowerPrefab.GetComponent<BuildingData>();
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost.SetValid(false);
@@ -76,7 +76,7 @@ public class BuildingPlacer : MonoBehaviour
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 1), buttonWidth, buttonHeight), $"Build_Tower2"))
         {
             selectedBuildData = true;
-            selectedTowerPrefab = Instantiate(buildingPrefab[1]);
+            selectedTowerPrefab = ObjectPoolManager.Instance.GetObject("BallistaTower_LV1");
             buildingData = selectedTowerPrefab.GetComponent<BuildingData>();
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost.SetValid(false);
@@ -85,7 +85,7 @@ public class BuildingPlacer : MonoBehaviour
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 2), buttonWidth, buttonHeight), $"Build_Tower3"))
         {
             selectedBuildData = true;
-            selectedTowerPrefab = Instantiate(buildingPrefab[2]);
+            selectedTowerPrefab = ObjectPoolManager.Instance.GetObject("CanonTower_Lv1");
             buildingData = selectedTowerPrefab.GetComponent<BuildingData>();
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost.SetValid(false);
@@ -94,7 +94,7 @@ public class BuildingPlacer : MonoBehaviour
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 3), buttonWidth, buttonHeight), $"Build_Tower4"))
         {
             selectedBuildData = true;
-            selectedTowerPrefab = Instantiate(buildingPrefab[3]);
+            selectedTowerPrefab = ObjectPoolManager.Instance.GetObject("PoisonTower_Lv1");
             buildingData = selectedTowerPrefab.GetComponent<BuildingData>();
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost.SetValid(false);

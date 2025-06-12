@@ -10,15 +10,19 @@ public enum TowerState
 }
 
 [RequireComponent(typeof(BuildingData))]
-public class TowerController : BaseController<TowerController, TowerState>, IPoolObject
+public class TowerController : BaseController<TowerController, TowerState>, IPoolObject, IAttackable
 {
     [SerializeField] private string poolId;
     [SerializeField] private int poolSize;
+
+
+    public StatBase     AttackStat   { get; private set; }
+    public IDamageable  Target       { get; private set; }
+    public BuildingData BuildingData { get; private set; }
+
     public GameObject GameObject => gameObject;
     public string     PoolID     => poolId;
     public int        PoolSize   => poolSize;
-
-    public BuildingData BuildingData { get; private set; }
 
     protected override void Awake()
     {
@@ -29,6 +33,7 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     protected override void Start()
     {
         base.Start();
+        AttackStat = StatManager.GetStat<CalculatedStat>(StatType.AttackPow);
     }
 
     // Update is called once per frame
@@ -56,6 +61,11 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     }
 
     public void InitFromPool()
+    {
+    }
+
+
+    public void Attack()
     {
     }
 }

@@ -148,7 +148,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 640456147929166247}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 3.2092466
   m_Speed: 3.5
@@ -175,5 +175,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d4b7a0dbcf4224c8d72ec63eef86fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolId: PosionTower_Lv1
+  poolId: PoisonTower_Lv1
   poolSize: 10

@@ -21,17 +21,17 @@ public class StatManager : MonoBehaviour
         }
     }
     
-    // /// <summary>
-    // /// 몬스터의 스탯을 초기화 시켜주는 메서드
-    // /// </summary>
-    // /// <param name="monster"></param>
-    // public void Initialize(MonsterSO monster)
-    // {
-    //     foreach (StatData monsterStat in monster.Stats)
-    //     {
-    //         Stats[monsterStat.StatType] = BaseStatFactory(monsterStat.StatType, monsterStat.Value);
-    //     }
-    // }
+    /// <summary>
+    /// 몬스터의 스탯을 초기화 시켜주는 메서드
+    /// </summary>
+    /// <param name="monster"></param>
+    public void Initialize(MonsterSO monster)
+    {
+        foreach (StatData monsterStat in monster.Stats)
+        {
+            Stats[monsterStat.StatType] = BaseStatFactory(monsterStat.StatType, monsterStat.Value);
+        }
+    }
 
     /// <summary>
     /// Stat을 생성해주는 팩토리
