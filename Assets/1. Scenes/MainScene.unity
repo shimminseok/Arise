@@ -413,6 +413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolObjectList:
+  - {fileID: 6987377360658992160, guid: 0874e1a80fa32484f9d1d62ae84c45e2, type: 3}
   - {fileID: 1504845415743356842, guid: f936422e9888f654883e92df490ff441, type: 3}
   - {fileID: 2087031537045581506, guid: 03a0fb31647600344b0bf5ffb38256ab, type: 3}
   - {fileID: 32647221335430736, guid: c69d686c8e3b74a4aa670a7ff530b3ec, type: 3}

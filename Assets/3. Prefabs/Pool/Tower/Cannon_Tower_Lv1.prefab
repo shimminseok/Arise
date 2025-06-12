@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3913738513965477629
+--- !u!1 &4453798793692347556
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,29 +8,29 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6461952689271488528}
-  - component: {fileID: 5921885381247337822}
-  - component: {fileID: 5183965260939039966}
-  - component: {fileID: -3006996566463279713}
-  - component: {fileID: 8735706730231182163}
-  - component: {fileID: 8293335194493376272}
-  - component: {fileID: 6139251691116848591}
-  - component: {fileID: -7434535970635556535}
-  - component: {fileID: -6250514157917190799}
+  - component: {fileID: 6027465667694123541}
+  - component: {fileID: 5142033256613778707}
+  - component: {fileID: 3354528709233105952}
+  - component: {fileID: 8438348553383152837}
+  - component: {fileID: 5791192698133851478}
+  - component: {fileID: -3808906636304752086}
+  - component: {fileID: -7086295884156003050}
+  - component: {fileID: -1461437971758633889}
+  - component: {fileID: -1793273948875982335}
   m_Layer: 0
-  m_Name: Cannon_Tower_Lv2
+  m_Name: Cannon_Tower_Lv1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6461952689271488528
+--- !u!4 &6027465667694123541
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3913738513965477629}
+  m_GameObject: {fileID: 4453798793692347556}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
@@ -39,21 +39,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5921885381247337822
+--- !u!33 &5142033256613778707
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3913738513965477629}
-  m_Mesh: {fileID: -60681041635175221, guid: 5cafcfcbafec4c14dbc66d4b8dd777e9, type: 3}
---- !u!23 &5183965260939039966
+  m_GameObject: {fileID: 4453798793692347556}
+  m_Mesh: {fileID: -2536733481753887828, guid: 0cec880f44eb5b54ba2b18666b92ff3b, type: 3}
+--- !u!23 &3354528709233105952
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3913738513965477629}
+  m_GameObject: {fileID: 4453798793692347556}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -89,26 +89,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-3006996566463279713
+--- !u!114 &8438348553383152837
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3913738513965477629}
+  m_GameObject: {fileID: 4453798793692347556}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f52d54a29372f9040a56cf9a9f55884e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Size: {x: 4, y: 4}
---- !u!114 &8735706730231182163
+--- !u!114 &5791192698133851478
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3913738513965477629}
+  m_GameObject: {fileID: 4453798793692347556}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa329bc6dd901e041bdc5d9fd4233834, type: 3}
@@ -117,37 +117,37 @@ MonoBehaviour:
   meshRenderers: []
   validMaterial: {fileID: 2100000, guid: 8f7ec23884f1fce448264424d77e4ba5, type: 2}
   invalidMaterial: {fileID: 2100000, guid: f97ce8e665fa67347961b65e85693ba5, type: 2}
---- !u!114 &8293335194493376272
+--- !u!114 &-3808906636304752086
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3913738513965477629}
+  m_GameObject: {fileID: 4453798793692347556}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a6908756338ae2439f1521746fad212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6139251691116848591
+--- !u!114 &-7086295884156003050
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3913738513965477629}
+  m_GameObject: {fileID: 4453798793692347556}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b6f1928fe527c543b673c802595267b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!195 &-7434535970635556535
+--- !u!195 &-1461437971758633889
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3913738513965477629}
+  m_GameObject: {fileID: 4453798793692347556}
   m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 3.0164907
@@ -163,17 +163,18 @@ NavMeshAgent:
   m_BaseOffset: 14.830455
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &-6250514157917190799
+--- !u!114 &-1793273948875982335
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3913738513965477629}
+  m_GameObject: {fileID: 4453798793692347556}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32d4b7a0dbcf4224c8d72ec63eef86fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolId: CanonTower_Lv2
+  poolId: CanonTower_Lv1
   poolSize: 10
+  towerSO: {fileID: 11400000, guid: e7cc0a171fe446445b186c9a7837928f, type: 2}

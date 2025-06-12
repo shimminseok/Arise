@@ -6,7 +6,6 @@ using UnityEngine;
 public class BuildingPlacer : MonoBehaviour
 {
     public GridManager gridManager;
-    public List<GameObject> buildingPrefab;
     private BuildingData buildingData;
     private Camera mainCamera;
 
@@ -68,7 +67,9 @@ public class BuildingPlacer : MonoBehaviour
         {
             selectedBuildData = true;
             selectedTowerPrefab = ObjectPoolManager.Instance.GetObject("ArcherTower_Lv1");
-            buildingData = selectedTowerPrefab.GetComponent<BuildingData>();
+            TowerController controller = selectedTowerPrefab.GetComponent<TowerController>();
+            controller.InitFromPool();
+            buildingData = controller.BuildingData;
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost.SetValid(false);
         }
@@ -77,7 +78,9 @@ public class BuildingPlacer : MonoBehaviour
         {
             selectedBuildData = true;
             selectedTowerPrefab = ObjectPoolManager.Instance.GetObject("BallistaTower_LV1");
-            buildingData = selectedTowerPrefab.GetComponent<BuildingData>();
+            TowerController controller = selectedTowerPrefab.GetComponent<TowerController>();
+            controller.InitFromPool();
+            buildingData = controller.BuildingData;
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost.SetValid(false);
         }
@@ -86,7 +89,9 @@ public class BuildingPlacer : MonoBehaviour
         {
             selectedBuildData = true;
             selectedTowerPrefab = ObjectPoolManager.Instance.GetObject("CanonTower_Lv1");
-            buildingData = selectedTowerPrefab.GetComponent<BuildingData>();
+            TowerController controller = selectedTowerPrefab.GetComponent<TowerController>();
+            controller.InitFromPool();
+            buildingData = controller.BuildingData;
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost.SetValid(false);
         }
@@ -95,7 +100,9 @@ public class BuildingPlacer : MonoBehaviour
         {
             selectedBuildData = true;
             selectedTowerPrefab = ObjectPoolManager.Instance.GetObject("PoisonTower_Lv1");
-            buildingData = selectedTowerPrefab.GetComponent<BuildingData>();
+            TowerController controller = selectedTowerPrefab.GetComponent<TowerController>();
+            controller.InitFromPool();
+            buildingData = controller.BuildingData;
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost.SetValid(false);
         }

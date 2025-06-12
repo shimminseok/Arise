@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &32647221335430736
+--- !u!1 &2111355078768322255
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,52 +8,52 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8750606331018389711}
-  - component: {fileID: 8551493151475081637}
-  - component: {fileID: 5972144743750663235}
-  - component: {fileID: 6651507292266161247}
-  - component: {fileID: 50029111309222873}
-  - component: {fileID: -6569759061348313374}
-  - component: {fileID: -5484952221780485842}
-  - component: {fileID: 6688538974336249179}
-  - component: {fileID: 5074550100521473241}
+  - component: {fileID: 8303329786205762787}
+  - component: {fileID: 7087816260456475724}
+  - component: {fileID: 3206508247075665603}
+  - component: {fileID: -1926797951690440754}
+  - component: {fileID: -5078468048819017922}
+  - component: {fileID: -9151350457963076045}
+  - component: {fileID: 7381305291700806960}
+  - component: {fileID: -6695046068367072188}
+  - component: {fileID: 5160910858496427565}
   m_Layer: 0
-  m_Name: Arrow_Tower_Lv3
+  m_Name: Poison_Tower_Lv4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8750606331018389711
+--- !u!4 &8303329786205762787
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 32647221335430736}
+  m_GameObject: {fileID: 2111355078768322255}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00000007177671, y: 0.00000016128644, z: 0.0000001697144}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8551493151475081637
+--- !u!33 &7087816260456475724
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 32647221335430736}
-  m_Mesh: {fileID: 4464026288458601995, guid: 84f0167d4071cc249b86dc830c6fe1ed, type: 3}
---- !u!23 &5972144743750663235
+  m_GameObject: {fileID: 2111355078768322255}
+  m_Mesh: {fileID: -3608066374413052192, guid: 2c63f768aaa85024498e19c5d4123a21, type: 3}
+--- !u!23 &3206508247075665603
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 32647221335430736}
+  m_GameObject: {fileID: 2111355078768322255}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -89,26 +89,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6651507292266161247
+--- !u!114 &-1926797951690440754
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 32647221335430736}
+  m_GameObject: {fileID: 2111355078768322255}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f52d54a29372f9040a56cf9a9f55884e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Size: {x: 4, y: 4}
---- !u!114 &50029111309222873
+--- !u!114 &-5078468048819017922
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 32647221335430736}
+  m_GameObject: {fileID: 2111355078768322255}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa329bc6dd901e041bdc5d9fd4233834, type: 3}
@@ -117,40 +117,40 @@ MonoBehaviour:
   meshRenderers: []
   validMaterial: {fileID: 2100000, guid: 8f7ec23884f1fce448264424d77e4ba5, type: 2}
   invalidMaterial: {fileID: 2100000, guid: f97ce8e665fa67347961b65e85693ba5, type: 2}
---- !u!114 &-6569759061348313374
+--- !u!114 &-9151350457963076045
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 32647221335430736}
+  m_GameObject: {fileID: 2111355078768322255}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a6908756338ae2439f1521746fad212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-5484952221780485842
+--- !u!114 &7381305291700806960
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 32647221335430736}
+  m_GameObject: {fileID: 2111355078768322255}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b6f1928fe527c543b673c802595267b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!195 &6688538974336249179
+--- !u!195 &-6695046068367072188
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 32647221335430736}
+  m_GameObject: {fileID: 2111355078768322255}
   m_Enabled: 0
   m_AgentTypeID: 0
-  m_Radius: 3.1933975
+  m_Radius: 3.4220567
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -159,21 +159,22 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 30.090658
-  m_BaseOffset: 15.045329
+  m_Height: 30.503517
+  m_BaseOffset: 15.251759
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &5074550100521473241
+--- !u!114 &5160910858496427565
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 32647221335430736}
+  m_GameObject: {fileID: 2111355078768322255}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32d4b7a0dbcf4224c8d72ec63eef86fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolId: ArcherTower_Lv3
+  poolId: PoisonTower_Lv4
   poolSize: 10
+  towerSO: {fileID: 11400000, guid: dea915742b8da3347b50f6a22ee90d3b, type: 2}

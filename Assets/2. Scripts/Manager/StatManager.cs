@@ -20,7 +20,7 @@ public class StatManager : MonoBehaviour
             Stats[stat.StatType] = BaseStatFactory(stat.StatType, stat.Value);
         }
     }
-    
+
     /// <summary>
     /// 몬스터의 스탯을 초기화 시켜주는 메서드
     /// </summary>
@@ -30,6 +30,18 @@ public class StatManager : MonoBehaviour
         foreach (StatData monsterStat in monster.Stats)
         {
             Stats[monsterStat.StatType] = BaseStatFactory(monsterStat.StatType, monsterStat.Value);
+        }
+    }
+
+    /// <summary>
+    /// 타워의 스탯을 초기화 시켜주는 메서드
+    /// </summary>
+    /// <param name="tower"></param>
+    public void Initialize(TowerSO tower)
+    {
+        foreach (StatData towerStat in tower.Stats)
+        {
+            Stats[towerStat.StatType] = BaseStatFactory(towerStat.StatType, towerStat.Value);
         }
     }
 

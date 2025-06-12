@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6991854275923391210
+--- !u!1 &3007401005470559389
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,29 +8,29 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4830915864113051797}
-  - component: {fileID: 3826888845080727947}
-  - component: {fileID: 7497696903448224607}
-  - component: {fileID: 1694451691703921794}
-  - component: {fileID: -2371812534811385857}
-  - component: {fileID: 4675315241384312504}
-  - component: {fileID: -8541451601187958892}
-  - component: {fileID: 1977432347987574913}
-  - component: {fileID: -526392270925445335}
+  - component: {fileID: 3621011813993846962}
+  - component: {fileID: 2167360829783021866}
+  - component: {fileID: 3925189289129034153}
+  - component: {fileID: 8566622369554480669}
+  - component: {fileID: -8274924058247317639}
+  - component: {fileID: -4935247880963785540}
+  - component: {fileID: -6465456052645637378}
+  - component: {fileID: 8969463505677675341}
+  - component: {fileID: -3267190065302051344}
   m_Layer: 0
-  m_Name: Arrow_Tower_LV4
+  m_Name: Poison_Tower_Lv3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4830915864113051797
+--- !u!4 &3621011813993846962
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6991854275923391210}
+  m_GameObject: {fileID: 3007401005470559389}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
@@ -39,21 +39,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3826888845080727947
+--- !u!33 &2167360829783021866
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6991854275923391210}
-  m_Mesh: {fileID: -3841557973756163201, guid: 5a34841ce85e53f49b51fc9b3ca462cf, type: 3}
---- !u!23 &7497696903448224607
+  m_GameObject: {fileID: 3007401005470559389}
+  m_Mesh: {fileID: 8014741273905800412, guid: c63ffd4e200f3a34a8259619041b70a8, type: 3}
+--- !u!23 &3925189289129034153
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6991854275923391210}
+  m_GameObject: {fileID: 3007401005470559389}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -89,26 +89,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1694451691703921794
+--- !u!114 &8566622369554480669
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6991854275923391210}
+  m_GameObject: {fileID: 3007401005470559389}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f52d54a29372f9040a56cf9a9f55884e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Size: {x: 4, y: 4}
---- !u!114 &-2371812534811385857
+--- !u!114 &-8274924058247317639
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6991854275923391210}
+  m_GameObject: {fileID: 3007401005470559389}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa329bc6dd901e041bdc5d9fd4233834, type: 3}
@@ -117,40 +117,40 @@ MonoBehaviour:
   meshRenderers: []
   validMaterial: {fileID: 2100000, guid: 8f7ec23884f1fce448264424d77e4ba5, type: 2}
   invalidMaterial: {fileID: 2100000, guid: f97ce8e665fa67347961b65e85693ba5, type: 2}
---- !u!114 &4675315241384312504
+--- !u!114 &-4935247880963785540
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6991854275923391210}
+  m_GameObject: {fileID: 3007401005470559389}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a6908756338ae2439f1521746fad212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-8541451601187958892
+--- !u!114 &-6465456052645637378
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6991854275923391210}
+  m_GameObject: {fileID: 3007401005470559389}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b6f1928fe527c543b673c802595267b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!195 &1977432347987574913
+--- !u!195 &8969463505677675341
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6991854275923391210}
+  m_GameObject: {fileID: 3007401005470559389}
   m_Enabled: 0
   m_AgentTypeID: 0
-  m_Radius: 3.193401
+  m_Radius: 3.2092466
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -159,21 +159,22 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 30.795584
-  m_BaseOffset: 15.397792
+  m_Height: 30.503517
+  m_BaseOffset: 15.251759
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &-526392270925445335
+--- !u!114 &-3267190065302051344
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6991854275923391210}
+  m_GameObject: {fileID: 3007401005470559389}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32d4b7a0dbcf4224c8d72ec63eef86fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolId: ArcherTower_Lv4
+  poolId: PoisonTower_Lv3
   poolSize: 10
+  towerSO: {fileID: 11400000, guid: 8add732c459dd554fb30dba0354d0652, type: 2}

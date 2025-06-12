@@ -14,7 +14,7 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
 {
     [SerializeField] private string poolId;
     [SerializeField] private int poolSize;
-
+    [SerializeField] private TowerSO towerSO;
 
     public StatBase     AttackStat   { get; private set; }
     public IDamageable  Target       { get; private set; }
@@ -56,12 +56,10 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     {
     }
 
-    public override void Movement()
-    {
-    }
 
     public void InitFromPool()
     {
+        StatManager.Initialize(towerSO);
     }
 
 
