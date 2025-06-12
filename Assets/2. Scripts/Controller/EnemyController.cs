@@ -112,5 +112,6 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         StatusEffectManager.RemoveAllEffects();
         EnemyManager.Instance.MonsterDead(this);
         ChangeState(EnemyState.Idle);
+        QuestManager.Instance.UpdateProgress(QuestType.KillEnemies, 1);
     }
 }
