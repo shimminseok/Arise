@@ -8,12 +8,7 @@ public enum PlayerState
     Attack
 }
 
-public enum EnemyState
-{
-    Idle,
-    Move,
-    Die
-}
+
 
 public interface IState<TOwner, TState> where TOwner : MonoBehaviour where TState : Enum
 {
