@@ -9,12 +9,16 @@ public enum StatType
 
     AttackPow,
     AttackSpd,
+    AttackRange,
 
     MoveSpeed,
     Defense,
 
     MaxMp,
     CurMp,
+    
+    RunMultiplier,
+    LookSensitivity,
 }
 
 public enum StatModifierType

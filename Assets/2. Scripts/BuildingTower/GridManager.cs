@@ -64,8 +64,7 @@ public class GridManager : MonoBehaviour
 
     public void PlaceBuilding(GameObject prefab, Vector3Int baseCellPos, Vector2Int size)
     {
-        Vector3 worldPos = baseCellPos + new Vector3(size.x / 2f - 2f, cellHeightOffset, size.y / 2f - 2f);
-        // GameObject go       = Instantiate(prefab, worldPos, Quaternion.identity);
+        Vector3 worldPos = baseCellPos + new Vector3(size.x / 2f - 1f, cellHeightOffset, size.y / 2f - 1f);
         prefab.transform.position = worldPos;
         for (int x = 0; x < size.x; x++)
         {
