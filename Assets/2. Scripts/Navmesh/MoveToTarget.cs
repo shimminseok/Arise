@@ -23,6 +23,7 @@ public class MoveToTarget : MonoBehaviour
         // 목표 지점이 설정되어 있고 아직 도달하지 않았다면 계속 이동
         if (target != null && agent.remainingDistance > agent.stoppingDistance)
         {
+            Debug.Log($"{target}+이동중");
             agent.SetDestination(target.position);
         }
     }
