@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5179214148936579681}
   - component: {fileID: 7044934713952850543}
   - component: {fileID: -3015839311268757600}
-  - component: {fileID: 1043514126148287391}
   - component: {fileID: 8503166741400270575}
   m_Layer: 0
   m_Name: _Wizard_tower_LVL_1
@@ -99,19 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Size: {x: 4, y: 4}
---- !u!114 &1043514126148287391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7036203129003147257}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f52d54a29372f9040a56cf9a9f55884e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Size: {x: 0, y: 0}
 --- !u!114 &8503166741400270575
 MonoBehaviour:
   m_ObjectHideFlags: 0

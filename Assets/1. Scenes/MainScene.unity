@@ -407,7 +407,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dcd8773a7e10d94dbba9f5b68fade5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tableList: []
+  tableList:
+  - {fileID: 11400000, guid: b01cee55146ba374792665e8942449b5, type: 2}
+  - {fileID: 11400000, guid: a0843ee72340ab144833fe367585345f, type: 2}
+  - {fileID: 11400000, guid: 73ecddec5d55c124cadce51c4993341a, type: 2}
 --- !u!4 &1373279388
 Transform:
   m_ObjectHideFlags: 0

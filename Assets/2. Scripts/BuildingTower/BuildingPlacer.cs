@@ -21,30 +21,28 @@ public class BuildingPlacer : MonoBehaviour
         mainCamera = Camera.main;
     }
 
-    void Update()
+    private void Update()
     {
-        if (selectedTowerPrefab != null)
+        if (selectedTowerPrefab == null)
+            return;
+
+        var mousePos = GetMouseWorldPosition();
+        buildingGhost.SetPosition(mousePos);
+        Vector3    mouseWorld    = mousePos;
+        Vector3Int cell          = Vector3Int.FloorToInt(mouseWorld);
+        bool       isCanBuilding = gridManager.CanPlaceBuilding(cell, buildingData.Size);
+        buildingGhost.SetMaterialColor(isCanBuilding);
+        if (Input.GetMouseButtonDown(0) && isCanBuilding)
         {
-            buildingGhost.SetPosition(GetMouseWorldPosition());
-            Vector3    mouseWorld    = GetMouseWorldPosition();
-            Vector3Int cell          = Vector3Int.FloorToInt(mouseWorld);
-            bool       isCanBuilding = gridManager.CanPlaceBuilding(cell, buildingData.Size);
-            buildingGhost.SetMaterialColor(isCanBuilding);
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (isCanBuilding)
-                {
-                    gridManager.PlaceBuilding(selectedTowerPrefab, cell, buildingData.Size);
-                    selectedBuildData = false;
-                    buildingGhost.SetValid(true);
-                    selectedTowerPrefab = null;
-                    buildingGhost = null;
-                }
-            }
+            gridManager.PlaceBuilding(selectedTowerPrefab, cell, buildingData.Size);
+            selectedBuildData = false;
+            buildingGhost.SetValid(true);
+            selectedTowerPrefab = null;
+            buildingGhost = null;
         }
     }
 
-    Vector3 GetMouseWorldPosition()
+    private Vector3 GetMouseWorldPosition()
     {
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Cell")))
@@ -71,32 +69,35 @@ public class BuildingPlacer : MonoBehaviour
             selectedBuildData = true;
             selectedTowerPrefab = Instantiate(buildingPrefab[0]);
             buildingData = selectedTowerPrefab.GetComponent<BuildingData>();
-            buildingGhost = selectedTowerPrefab.GetComponent<BuildingGhost>();
+            buildingGhost = buildingData.BuildingGhost;
             buildingGhost.SetValid(false);
         }
 
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 1), buttonWidth, buttonHeight), $"Build_Tower2"))
         {
             selectedBuildData = true;
-            selectedTowerPrefab = buildingPrefab[1];
+            selectedTowerPrefab = Instantiate(buildingPrefab[1]);
             buildingData = selectedTowerPrefab.GetComponent<BuildingData>();
-            buildingGhost = selectedTowerPrefab.GetComponent<BuildingGhost>();
+            buildingGhost = buildingData.BuildingGhost;
+            buildingGhost.SetValid(false);
         }
 
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 2), buttonWidth, buttonHeight), $"Build_Tower3"))
         {
             selectedBuildData = true;
-            selectedTowerPrefab = buildingPrefab[2];
+            selectedTowerPrefab = Instantiate(buildingPrefab[2]);
             buildingData = selectedTowerPrefab.GetComponent<BuildingData>();
-            buildingGhost = selectedTowerPrefab.GetComponent<BuildingGhost>();
+            buildingGhost = buildingData.BuildingGhost;
+            buildingGhost.SetValid(false);
         }
 
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 3), buttonWidth, buttonHeight), $"Build_Tower4"))
         {
             selectedBuildData = true;
-            selectedTowerPrefab = buildingPrefab[3];
+            selectedTowerPrefab = Instantiate(buildingPrefab[3]);
             buildingData = selectedTowerPrefab.GetComponent<BuildingData>();
-            buildingGhost = selectedTowerPrefab.GetComponent<BuildingGhost>();
+            buildingGhost = buildingData.BuildingGhost;
+            buildingGhost.SetValid(false);
         }
     }
 }

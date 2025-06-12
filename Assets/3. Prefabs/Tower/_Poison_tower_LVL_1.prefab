@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1423159934050196221}
   - component: {fileID: 731580369738191199}
   - component: {fileID: 8331317223975165341}
-  - component: {fileID: -3388288578331339280}
   - component: {fileID: 133902639965185209}
   m_Layer: 0
   m_Name: _Poison_tower_LVL_1
@@ -30,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 640456147929166247}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 11.368217, y: 0.5, z: 0.042349815}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -99,19 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Size: {x: 4, y: 4}
---- !u!114 &-3388288578331339280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 640456147929166247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f52d54a29372f9040a56cf9a9f55884e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Size: {x: 0, y: 0}
 --- !u!114 &133902639965185209
 MonoBehaviour:
   m_ObjectHideFlags: 0

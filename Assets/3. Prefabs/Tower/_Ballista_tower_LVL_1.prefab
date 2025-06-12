@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7045749158268518367}
   - component: {fileID: 3472988208916984669}
   - component: {fileID: -4778903923402091328}
-  - component: {fileID: 7489683380926438900}
   - component: {fileID: 6447857272307964989}
   m_Layer: 0
   m_Name: _Ballista_tower_LVL_1
@@ -99,19 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Size: {x: 4, y: 4}
---- !u!114 &7489683380926438900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 732190966717123443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f52d54a29372f9040a56cf9a9f55884e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Size: {x: 0, y: 0}
 --- !u!114 &6447857272307964989
 MonoBehaviour:
   m_ObjectHideFlags: 0
