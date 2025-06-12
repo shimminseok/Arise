@@ -1,0 +1,17 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+public class UISceneButton : MonoBehaviour
+{
+    private SceneLoadEventChannelSO _sceneLoadEvent;
+    private string _sceneToLoad;
+    private Button _button;
+
+    public void SetData(SceneLoadEventChannelSO sceneLoadEvent, string sceneToLoad)
+    {
+        _sceneLoadEvent = sceneLoadEvent;
+        _sceneToLoad = sceneToLoad;
+        _button = GetComponent<Button>();
+        _button.onClick.AddListener(() => _sceneLoadEvent.Raise(_sceneToLoad));
+    }
+}
