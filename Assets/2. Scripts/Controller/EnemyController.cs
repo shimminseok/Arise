@@ -61,12 +61,13 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         InitFromPool();
     }
 
+
     public void InitFromPool()
     {
         Target = null;
         IsDead = false;
         StatManager.Initialize(m_MonsterSo);
-        Agent.ResetPath();
+        // Agent.ResetPath();
     }
 
     public override void FindTarget()

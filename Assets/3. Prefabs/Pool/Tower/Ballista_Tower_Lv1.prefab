@@ -177,3 +177,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolId: BallistaTower_LV1
   poolSize: 10
+  towerSO: {fileID: 11400000, guid: 21500ddebd6b1654f988059af6774c72, type: 2}

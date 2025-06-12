@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1253676370598342433
+--- !u!1 &6991854275923391210
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,29 +8,29 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3120062429435575381}
-  - component: {fileID: 1294706229881844940}
-  - component: {fileID: 1626972274419585594}
-  - component: {fileID: 3108177138150273919}
-  - component: {fileID: 8010713763433430943}
-  - component: {fileID: 712269197717899307}
-  - component: {fileID: 1200957075156123552}
-  - component: {fileID: 1368804116252806600}
-  - component: {fileID: 8642565261940015620}
+  - component: {fileID: 4830915864113051797}
+  - component: {fileID: 3826888845080727947}
+  - component: {fileID: 7497696903448224607}
+  - component: {fileID: 1694451691703921794}
+  - component: {fileID: -2371812534811385857}
+  - component: {fileID: 4675315241384312504}
+  - component: {fileID: -8541451601187958892}
+  - component: {fileID: 1977432347987574913}
+  - component: {fileID: -526392270925445335}
   m_Layer: 0
-  m_Name: Ballista_Tower_Lv3
+  m_Name: Arrow_Tower_LV4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3120062429435575381
+--- !u!4 &4830915864113051797
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253676370598342433}
+  m_GameObject: {fileID: 6991854275923391210}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
@@ -39,21 +39,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1294706229881844940
+--- !u!33 &3826888845080727947
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253676370598342433}
-  m_Mesh: {fileID: 7571731053518580281, guid: 3b67b98260576a44a9867a624c309dde, type: 3}
---- !u!23 &1626972274419585594
+  m_GameObject: {fileID: 6991854275923391210}
+  m_Mesh: {fileID: -3841557973756163201, guid: 5a34841ce85e53f49b51fc9b3ca462cf, type: 3}
+--- !u!23 &7497696903448224607
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253676370598342433}
+  m_GameObject: {fileID: 6991854275923391210}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -89,26 +89,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3108177138150273919
+--- !u!114 &1694451691703921794
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253676370598342433}
+  m_GameObject: {fileID: 6991854275923391210}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f52d54a29372f9040a56cf9a9f55884e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Size: {x: 4, y: 4}
---- !u!114 &8010713763433430943
+--- !u!114 &-2371812534811385857
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253676370598342433}
+  m_GameObject: {fileID: 6991854275923391210}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa329bc6dd901e041bdc5d9fd4233834, type: 3}
@@ -117,40 +117,40 @@ MonoBehaviour:
   meshRenderers: []
   validMaterial: {fileID: 2100000, guid: 8f7ec23884f1fce448264424d77e4ba5, type: 2}
   invalidMaterial: {fileID: 2100000, guid: f97ce8e665fa67347961b65e85693ba5, type: 2}
---- !u!114 &712269197717899307
+--- !u!114 &4675315241384312504
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253676370598342433}
+  m_GameObject: {fileID: 6991854275923391210}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a6908756338ae2439f1521746fad212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1200957075156123552
+--- !u!114 &-8541451601187958892
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253676370598342433}
+  m_GameObject: {fileID: 6991854275923391210}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b6f1928fe527c543b673c802595267b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!195 &1368804116252806600
+--- !u!195 &1977432347987574913
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253676370598342433}
+  m_GameObject: {fileID: 6991854275923391210}
   m_Enabled: 0
   m_AgentTypeID: 0
-  m_Radius: 3.3112807
+  m_Radius: 3.193401
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -159,21 +159,22 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 28.095694
-  m_BaseOffset: 14.047847
+  m_Height: 30.795584
+  m_BaseOffset: 15.397792
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8642565261940015620
+--- !u!114 &-526392270925445335
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253676370598342433}
+  m_GameObject: {fileID: 6991854275923391210}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32d4b7a0dbcf4224c8d72ec63eef86fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolId: BallistaTower_LV3
+  poolId: ArcherTower_Lv4
   poolSize: 10
+  towerSO: {fileID: 11400000, guid: fd80b2bdb0bb8f34eb22e404f221c2e9, type: 2}

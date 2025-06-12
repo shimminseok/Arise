@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ballista_Tower_Lv2
   m_EditorClassIdentifier: 
   ID: 202
-  Tower:
+  Stats:
   - StatType: 2
     ModifierType: 0
     Value: 100
