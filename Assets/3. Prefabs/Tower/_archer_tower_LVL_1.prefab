@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6150446908202995534}
   - component: {fileID: 677918246015506528}
   - component: {fileID: -7417893752458702889}
+  - component: {fileID: 4882278704980990434}
   m_Layer: 0
   m_Name: _archer_tower_LVL_1
   m_TagString: Untagged
@@ -41,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1504845415743356842}
-  m_Mesh: {fileID: 1698562412383665031, guid: 26eba7e61d5708a44bfc677727142683, type: 3}
+  m_Mesh: {fileID: 1698562412383665031, guid: 6b675f9b77e8fa84ca93f9b03344d0ae, type: 3}
 --- !u!23 &677918246015506528
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -62,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -5682177726514902387, guid: 26eba7e61d5708a44bfc677727142683, type: 3}
+  - {fileID: 2100000, guid: 8f7ec23884f1fce448264424d77e4ba5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,3 +98,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Size: {x: 4, y: 4}
+--- !u!114 &4882278704980990434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504845415743356842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa329bc6dd901e041bdc5d9fd4233834, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderers:
+  - {fileID: 677918246015506528}
+  validMaterial: {fileID: 2100000, guid: 8f7ec23884f1fce448264424d77e4ba5, type: 2}
+  invalidMaterial: {fileID: 2100000, guid: f97ce8e665fa67347961b65e85693ba5, type: 2}

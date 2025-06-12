@@ -64,15 +64,15 @@ public class GridManager : MonoBehaviour
 
     public void PlaceBuilding(GameObject prefab, Vector3Int baseCellPos, Vector2Int size)
     {
-        Vector3    worldPos = baseCellPos + new Vector3(size.x / 2f - 0.5f, cellHeightOffset, size.y / 2f - 0.5f);
-        GameObject go       = Instantiate(prefab, worldPos, Quaternion.identity);
-
+        Vector3 worldPos = baseCellPos + new Vector3(size.x / 2f - 2f, cellHeightOffset, size.y / 2f - 2f);
+        // GameObject go       = Instantiate(prefab, worldPos, Quaternion.identity);
+        prefab.transform.position = worldPos;
         for (int x = 0; x < size.x; x++)
         {
             for (int z = 0; z < size.y; z++)
             {
                 Vector3Int pos = baseCellPos + new Vector3Int(x, 0, z);
-                _cells[pos].OccupiedObject = go;
+                _cells[pos].OccupiedObject = prefab;
             }
         }
     }
@@ -87,18 +87,6 @@ public class GridManager : MonoBehaviour
         return false;
     }
 
-    private void OnGUI()
-    {
-        float buttonWidth  = 150f;
-        float buttonHeight = 80f;
-        float spacing      = 5f;
-
-        float x = 10f;
-        float y = Screen.height - buttonHeight - 50f;
-        if (GUI.Button(new Rect(x, y, buttonWidth, buttonHeight), "Build"))
-        {
-        }
-    }
 
     private void OnDrawGizmosSelected()
     {
