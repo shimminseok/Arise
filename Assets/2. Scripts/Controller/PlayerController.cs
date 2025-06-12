@@ -34,7 +34,13 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
         PlayerTable playerTable = TableManager.Instance.GetTable<PlayerTable>();
         PlayerSO playerData  = playerTable.GetDataByID(0);
         StatManager.Initialize(playerData);
+    }
 
+    protected override void Start()
+    {
+        base.Start();
+        LockCursor();
+        
         var action = _inputController.PlayerActions;
         action.Move.performed += context => _moveInput = context.ReadValue<Vector2>();
         action.Move.canceled += context => _moveInput = Vector2.zero;
@@ -42,12 +48,6 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
         action.Attack.performed += context => _attackTriggered = true;
         action.Run.performed += context => _isRunning = true;
         action.Run.canceled += context => _isRunning = false;
-    }
-
-    protected override void Start()
-    {
-        base.Start();
-        LockCursor();
     }
 
     protected override void Update()
