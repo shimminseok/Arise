@@ -85,7 +85,7 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
         }
 
         float speed = StatManager.GetValue(StatType.MoveSpeed) * (_isRunning ? StatManager.GetValue(StatType.RunMultiplier) : 1f);
-        Vector3 direction = (transform.right * _moveInput.x + transform.forward * _moveInput.y).normalized;
+        Vector3 direction = (Vector3.right * _moveInput.x + Vector3.forward * _moveInput.y).normalized;
 
         Agent.isStopped = false;
         Agent.Move(direction * speed * Time.deltaTime);
