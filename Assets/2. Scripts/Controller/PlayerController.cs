@@ -8,6 +8,8 @@ using UnityEngine;
 [RequireComponent(typeof(InputController))]
 public class PlayerController : BaseController<PlayerController, PlayerState>, IAttackable, IDamageable
 {
+    [SerializeField] public LayerMask groundMask;
+    
     private InputController _inputController;
     
     private Vector2 _moveInput;
@@ -39,7 +41,7 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
     protected override void Start()
     {
         base.Start();
-        LockCursor();
+        // LockCursor();
         
         var action = _inputController.PlayerActions;
         action.Move.performed += context => _moveInput = context.ReadValue<Vector2>();
@@ -83,7 +85,7 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
         }
 
         float speed = StatManager.GetValue(StatType.MoveSpeed) * (_isRunning ? StatManager.GetValue(StatType.RunMultiplier) : 1f);
-        Vector3 direction = (transform.right * _moveInput.x + transform.forward * _moveInput.y).normalized;
+        Vector3 direction = (Vector3.right * _moveInput.x + Vector3.forward * _moveInput.y).normalized;
 
         Agent.isStopped = false;
         Agent.Move(direction * speed * Time.deltaTime);
@@ -91,9 +93,20 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
 
     public void Rotate()
     {
-        transform.Rotate(Vector3.up, _lookInput.x * StatManager.GetValue(StatType.LookSensitivity) * Time.deltaTime);
-    }
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f, groundMask))
+        {
+            Vector3 direction = hit.point - transform.position;
+            direction.y = 0f;
+
+            if (direction.sqrMagnitude > 0.01f)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
+            }
+        }
+    }
     public void Attack()
     {
         Debug.Log("공격!");
