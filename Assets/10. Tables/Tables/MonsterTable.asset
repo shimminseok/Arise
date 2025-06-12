@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a204d83ba95a34894f4bf66013d97b, type: 3}
   m_Name: MonsterTable
   m_EditorClassIdentifier: 
-  dataList: []
+  dataList:
+  - {fileID: 11400000, guid: df82848493579cb42bdb4827442b14dc, type: 2}
+  - {fileID: 11400000, guid: 4af59788f174e5146942946bb36565f2, type: 2}
+  - {fileID: 11400000, guid: f2cbca999a4fcf948835f8c7be5f0472, type: 2}
+  - {fileID: 11400000, guid: dffa2d6c0b370a94687f88d501b8a1cf, type: 2}
+  - {fileID: 11400000, guid: f242cdc7fabf770408a633e9a1e92175, type: 2}
+  - {fileID: 11400000, guid: 1489cc14429b4f54fa27bc5560a65ed0, type: 2}
