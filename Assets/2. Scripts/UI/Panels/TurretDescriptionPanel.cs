@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UITurretPanel : MonoBehaviour
+public class TurretDescriptionPanel : MonoBehaviour
 {
     [Header("설명 패널들")]
     [SerializeField] private List<GameObject> turretDescriptionPanels;

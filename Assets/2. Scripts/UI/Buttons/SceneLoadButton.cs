@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UISceneButton : MonoBehaviour
+public class SceneLoadButton : MonoBehaviour
 {
     private SceneLoadEventChannelSO _sceneLoadEvent;
     private string _sceneToLoad;

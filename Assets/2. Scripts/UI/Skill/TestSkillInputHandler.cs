@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class SkillTestInput : MonoBehaviour
+public class TestSkillInputHandler : MonoBehaviour
 {
-    [SerializeField] private SkillCooldownUI skill1UI; // Alpha Skill
-    [SerializeField] private SkillCooldownUI skill2UI; // Beta Skill
+    [SerializeField] private SkillCooldownIndicator skill1UI; // Alpha Skill
+    [SerializeField] private SkillCooldownIndicator skill2UI; // Beta Skill
 
     void Update()
     {

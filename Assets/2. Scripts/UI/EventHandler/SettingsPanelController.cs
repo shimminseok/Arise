@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class UISettingsListener : MonoBehaviour
+public class SettingsPanelController : MonoBehaviour
 {
     [SerializeField] private VoidEventChannelSO openSettingsEvent;
     [SerializeField] private VoidEventChannelSO closeSettingsEvent;

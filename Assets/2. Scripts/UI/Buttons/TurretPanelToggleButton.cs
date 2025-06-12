@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UITurretPanelToggle : MonoBehaviour
+public class TurretPanelToggleButton : MonoBehaviour
 {
     [SerializeField] private RectTransform turretPanel;
     [SerializeField] private Button toggleButton;

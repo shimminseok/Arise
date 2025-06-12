@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class MainMenuUI : MonoBehaviour
+public class MainMenuController : MonoBehaviour
 {
-    [SerializeField] private UISceneButton startButton;
+    [SerializeField] private SceneLoadButton startButton;
     [SerializeField] private SceneLoadEventChannelSO sceneLoadEvent;
 
     private void Start()

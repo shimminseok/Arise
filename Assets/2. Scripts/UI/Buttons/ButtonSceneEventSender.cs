@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIButtonSceneEventSender : MonoBehaviour
+public class SceneEventSenderButton : MonoBehaviour
 {
     [SerializeField] private SceneLoadEventChannelSO sceneLoadEvent;
     [SerializeField] private string sceneToLoad;

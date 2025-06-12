@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class SkillCooldownUI : MonoBehaviour
+public class SkillCooldownIndicator : MonoBehaviour
 {
     [SerializeField] private Image cooldownOverlay;
     [SerializeField] private float cooldownDuration = 3f;

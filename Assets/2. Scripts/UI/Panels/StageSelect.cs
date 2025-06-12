@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIStageSelect : MonoBehaviour
+public class StageSelectPanel : MonoBehaviour
 {
     [SerializeField] private Transform contentParent;
     [SerializeField] private GameObject stageSlotPrefab;
@@ -26,12 +26,12 @@ public class UIStageSelect : MonoBehaviour
     {
         GameObject go = Instantiate(stageSlotPrefab, contentParent);
         
-        UIStageSlot slot = go.GetComponent<UIStageSlot>();
+        StageSelectSlot slot = go.GetComponent<StageSelectSlot>();
         slot.SetData(sceneName, isUnlocked);
 
         if (isUnlocked)
         {
-            UISceneButton sceneButton = go.GetComponent<UISceneButton>();
+            SceneLoadButton sceneButton = go.GetComponent<SceneLoadButton>();
             sceneButton.SetData(sceneLoadEvent, sceneName);
         }
     }

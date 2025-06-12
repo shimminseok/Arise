@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UITurretSlot : MonoBehaviour
+public class TurretSelectSlot : MonoBehaviour
 {
     [SerializeField] private GameObject turretDescriptionPanel;
-    [SerializeField] private UITurretPanel turretPanel;
+    [SerializeField] private TurretDescriptionPanel turretPanel;
 
     private void Start()
     {

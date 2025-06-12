@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIStageSlot : MonoBehaviour
+public class StageSelectSlot : MonoBehaviour
 {
     [SerializeField] private Button stageButton;
     [SerializeField] private TMP_Text stageNameText;

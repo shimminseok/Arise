@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TurretInstaller : MonoBehaviour
+public class TurretInstallListener : MonoBehaviour
 {
     [SerializeField] private VoidEventChannelSO installEvent;
     [SerializeField] private VoidEventChannelSO cancelEvent;

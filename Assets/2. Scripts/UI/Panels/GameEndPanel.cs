@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class UIGameEndPanel : MonoBehaviour
+public class GameEndPanel : MonoBehaviour
 {
     [SerializeField] private StringEventChannelSO sceneLoadEvent;
 

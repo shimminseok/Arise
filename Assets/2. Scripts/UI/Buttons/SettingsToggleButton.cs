@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UISettingsToggleButton : MonoBehaviour
+public class SettingsToggleButton : MonoBehaviour
 {
     [SerializeField] private VoidEventChannelSO eventToRaise;
     [SerializeField] private Button button;
