@@ -2,6 +2,14 @@
 
 namespace EnemyStates
 {
+    public enum EnemyState
+    {
+        Idle,
+        Move,
+        Attack,
+        Die
+    }
+    
     public class IdleState : IState<EnemyController, EnemyState>
     {
         public void OnEnter(EnemyController owner)
@@ -10,7 +18,6 @@ namespace EnemyStates
 
         public void OnUpdate(EnemyController owner)
         {
-            owner.FindTarget();
         }
 
         public void OnFixedUpdate(EnemyController owner)
@@ -36,7 +43,6 @@ namespace EnemyStates
 
         public void OnUpdate(EnemyController owner)
         {
-            owner.Movement();
         }
 
         public void OnFixedUpdate(EnemyController owner)
@@ -55,15 +61,6 @@ namespace EnemyStates
 
     public class AttackState : IState<EnemyController, EnemyState>
     {
-        private float attackTimer;
-        private readonly float attackDelay;
-        private readonly float attackRange;
-
-        public AttackState(float atkSpd, float atkRange)
-        {
-            attackDelay = atkSpd;
-            attackRange = atkRange;
-        }
 
         public void OnEnter(EnemyController owner)
         {
@@ -71,12 +68,7 @@ namespace EnemyStates
 
         public void OnUpdate(EnemyController owner)
         {
-            attackTimer += Time.deltaTime;
-            if (attackTimer >= attackDelay)
-            {
-                attackTimer = 0f;
-                owner.Attack();
-            }
+
         }
 
         public void OnFixedUpdate(EnemyController owner)
@@ -85,13 +77,12 @@ namespace EnemyStates
 
         public void OnExit(EnemyController entity)
         {
-            attackTimer = 0f;
         }
 
         public EnemyState CheckTransition(EnemyController owner)
         {
             
-            return EnemyState.Idle;
+            return EnemyState.Attack;
         }
     }
 

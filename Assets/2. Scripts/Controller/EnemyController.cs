@@ -5,12 +5,13 @@ using EnemyStates;
 using UnityEngine;
 
 
-public class EnemyController : BaseController<EnemyController, EnemyState>, IPoolObject
+public class EnemyController : BaseController<EnemyController, EnemyState>, IPoolObject, IAttackable, IDamageable
 {
     [SerializeField] private string poolID;
     [SerializeField] private int poolSize;
 
     public StatBase    AttackStat { get; private set; }
+    public IDamageable Target     { get; private set; }
     public bool        IsDead     { get; private set; }
     public Transform   Transform  => transform;
     public GameObject  GameObject => gameObject;
@@ -27,6 +28,7 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
     protected override void Start()
     {
         base.Start();
+        AttackStat = StatManager.GetStat<CalculatedStat>(StatType.AttackPow);
     }
 
     protected override void Update()
@@ -44,11 +46,11 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
     {
         return state switch
         {
-            // EnemyState.Idle   => new IdleState(),
-            // EnemyState.Move   => new MoveState(),
-            // EnemyState.Attack => new AttackState(StatManager.GetValue(StatType.AttackSpd), StatManager.GetValue(StatType.AttackRange)),
-            // EnemyState.Die    => new DeadState(),
-            // _                 => null
+            EnemyState.Idle   => new IdleState(),
+            EnemyState.Move   => new MoveState(),
+            EnemyState.Attack => new AttackState(),
+            EnemyState.Die    => new DeadState(),
+            _                 => null
         };
     }
 
@@ -59,57 +61,57 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         InitFromPool();
     }
 
+
     public void InitFromPool()
     {
-        // Target = null;
-        // IsDead = false;
-        // StatManager.Initialize(m_MonsterSo);
+        Target = null;
+        IsDead = false;
+        StatManager.Initialize(m_MonsterSo);
         // Agent.ResetPath();
     }
 
     public override void FindTarget()
     {
-        // if (Target != null && Target.IsDead)
-        //     return;
-        //
-        // Target = GameManager.Instance.PlayerController;
+        if (Target != null && Target.IsDead)
+            return;
     }
 
     public override void Movement()
     {
-        // if (Target != null && Agent.isOnNavMesh)
-        // {
-        //     Agent.speed = StatManager.GetValue(StatType.MoveSpeed);
-        //     Agent.SetDestination(Target.Transform.position);
-        // }
+        if (Target != null && Agent.isOnNavMesh)
+        {
+            Agent.speed = StatManager.GetValue(StatType.MoveSpeed);
+            Agent.SetDestination(Target.Transform.position);
+        }
     }
 
 
     public void Attack()
     {
-        // Target?.TakeDamage(this);
+        Target?.TakeDamage(this);
     }
 
     public void TakeDamage(IAttackable attacker)
     {
-        // if (Target == null)
-        //     Target = attacker as IDamageable;
-        //
-        // StatManager.Consume(StatType.CurHp, attacker.AttackStat.Value);
-        //
-        // float curHp = StatManager.GetValue(StatType.CurHp);
-        // if (curHp <= 0)
-        // {
-        //     Daed();
-        // }
+        if (Target == null)
+            Target = attacker as IDamageable;
+
+        StatManager.Consume(StatType.CurHp, attacker.AttackStat.Value);
+
+        float curHp = StatManager.GetValue(StatType.CurHp);
+        if (curHp <= 0)
+        {
+            Daed();
+        }
     }
 
     public void Daed()
     {
-        // IsDead = true;
-        // Target = null;
-        // StatusEffectManager.RemoveAllEffects();
-        // EnemyManager.Instance.MonsterDead(this);
-        // ChangeState(EnemyState.Idle);
+        IsDead = true;
+        Target = null;
+        StatusEffectManager.RemoveAllEffects();
+        EnemyManager.Instance.MonsterDead(this);
+        ChangeState(EnemyState.Idle);
+        QuestManager.Instance.UpdateProgress(QuestType.KillEnemies, 1);
     }
 }
