@@ -12,6 +12,7 @@ public enum StatusEffectType
     PeriodicDamageDebuff,
     Recover,
     RecoverOverTime,
+    Damege,
 }
 
 

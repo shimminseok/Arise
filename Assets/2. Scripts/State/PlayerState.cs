@@ -24,13 +24,14 @@ namespace PlayerStates
 
         public PlayerState CheckTransition(PlayerController owner)
         {
-            if (owner.AttackTriggered)
-                return PlayerState.Attack;
+            // if (owner.AttackTriggered)
 
             if (owner.MoveInput.sqrMagnitude > 0.01f)
             {
                 return owner.IsRunning ? PlayerState.Run : PlayerState.Move;
             }
+
+            return PlayerState.Attack;
 
             return PlayerState.Idle;
         }

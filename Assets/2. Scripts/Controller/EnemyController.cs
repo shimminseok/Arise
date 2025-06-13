@@ -145,8 +145,9 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
             StatManager.GetStat<ResourceStat>(StatType.CurHp).OnValueChanged += _healthBarUI.UpdateHealthBarWrapper;
         }
 
-
-        StatManager.Consume(StatType.CurHp, attacker.AttackStat.Value);
+        //TODO 방어력 계산
+        float finalDam = attacker.AttackStat.Value;
+        StatManager.Consume(StatType.CurHp, finalDam);
 
         float curHp = StatManager.GetValue(StatType.CurHp);
         if (curHp <= 0)
