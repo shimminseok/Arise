@@ -8,6 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(InputController))]
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(ForceReceiver))]
+[RequireComponent(typeof(PlayerAnimation))]
 public class PlayerController : BaseController<PlayerController, PlayerState>, IAttackable, IDamageable
 {
     [SerializeField] public LayerMask groundMask;
@@ -31,6 +32,8 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
         get => _attackTriggered;
         set => _attackTriggered = value;
     }
+    public PlayerAnimation PlayerAnimation;
+
     
     public StatBase         AttackStat       { get; private set; }
     public IDamageable      Target           { get; private set; }
@@ -45,6 +48,8 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
         _inputController = GetComponent<InputController>();
         _characterController = GetComponent<CharacterController>();
         _forceReceiver = GetComponent<ForceReceiver>();
+        
+        PlayerAnimation = GetComponent<PlayerAnimation>();
         
         PlayerTable playerTable = TableManager.Instance.GetTable<PlayerTable>();
         PlayerSO playerData  = playerTable.GetDataByID(0);
@@ -68,6 +73,7 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
     protected override void Update()
     {
         base.Update();
+        
         Rotate();
         _lookInput = _inputController.PlayerActions.Look.ReadValue<Vector2>();
         FindTarget();
