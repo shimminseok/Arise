@@ -415,6 +415,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolObjectList:
   - {fileID: 6987377360658992160, guid: 0874e1a80fa32484f9d1d62ae84c45e2, type: 3}
+  - {fileID: 7349670301093728596, guid: 705f34f937b1acf47ade615e007fd752, type: 3}
+  - {fileID: 3417396172482619182, guid: 6f6f19b210ebc6246ac7e093c751a999, type: 3}
+  - {fileID: 7322435405920248672, guid: 0a3dd092c3f4235478edda626a9600e5, type: 3}
+  - {fileID: 3571705007751619478, guid: 8eb3b8a4ffc7238489d45370f24bff56, type: 3}
+  - {fileID: 1554202464098941161, guid: ecc9d292464f2524a94f88c1e981875c, type: 3}
+  - {fileID: 5431096634722366071, guid: a0aa861daef8a424aa575e6e9d9c6507, type: 3}
+  - {fileID: 7081395219335101551, guid: 14495dc47babc4b4eb1da22cacf2ea06, type: 3}
+  - {fileID: 6451960036873909487, guid: 02f8dbc6c59507f40ac760ecad268fdb, type: 3}
   - {fileID: 1504845415743356842, guid: f936422e9888f654883e92df490ff441, type: 3}
   - {fileID: 2087031537045581506, guid: 03a0fb31647600344b0bf5ffb38256ab, type: 3}
   - {fileID: 32647221335430736, guid: c69d686c8e3b74a4aa670a7ff530b3ec, type: 3}
@@ -435,6 +443,7 @@ MonoBehaviour:
   - {fileID: 721683284702499188, guid: 8b664785a8d9dcd49b625193b8db1474, type: 3}
   - {fileID: 2847873687554210706, guid: f5856f5efb5a73f4f99ffd8f4ce1bac5, type: 3}
   - {fileID: 2488854151207131200, guid: 9a69b33592aa34e4cbed29fb48096162, type: 3}
+  - {fileID: 7531993055659480014, guid: 85091e28934ab1b45832c9ffaed314dc, type: 3}
 --- !u!4 &1762764027
 Transform:
   m_ObjectHideFlags: 0

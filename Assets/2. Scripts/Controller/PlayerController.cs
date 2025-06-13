@@ -4,37 +4,53 @@ using System.Collections.Generic;
 using System.Linq;
 using PlayerStates;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(InputController))]
-public class PlayerController : BaseController<PlayerController, PlayerState>, IAttackable, IDamageable
+[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(ForceReceiver))]
+[RequireComponent(typeof(PlayerAnimation))]
+public class PlayerController : BaseController<PlayerController, PlayerState>, IAttackable
 {
-    [SerializeField] public LayerMask groundMask;
-    
+    [SerializeField] private WeaponController weaponController;
     private InputController _inputController;
-    
+    private CharacterController _characterController;
+    private ForceReceiver _forceReceiver;
+
     private Vector2 _moveInput;
-    private Vector2 _lookInput;
     private bool _isRunning;
     private bool _attackTriggered;
 
+    private List<IDamageable> _targets = new List<IDamageable>();
+
     public Vector2 MoveInput => _moveInput;
-    public Vector2 LookInput => _lookInput;
-    public bool IsRunning => _isRunning;
-    public bool AttackTriggered { get; set; }
-    
-    public StatBase         AttackStat       { get; private set; }
-    public IDamageable      Target           { get; private set; }
-    public bool             IsDead           { get; private set; }
-    public Transform        Transform        => transform;
+    public bool    IsRunning => _isRunning;
+
+    public bool AttackTriggered
+    {
+        get => _attackTriggered;
+        set => _attackTriggered = value;
+    }
+
+    public PlayerAnimation PlayerAnimation;
+
+
+    public StatBase    AttackStat { get; private set; }
+    public IDamageable Target     { get; private set; }
+    public Transform   Transform  => transform;
 
 
     protected override void Awake()
     {
         base.Awake();
         _inputController = GetComponent<InputController>();
-        
+        _characterController = GetComponent<CharacterController>();
+        _forceReceiver = GetComponent<ForceReceiver>();
+
+        PlayerAnimation = GetComponent<PlayerAnimation>();
+
         PlayerTable playerTable = TableManager.Instance.GetTable<PlayerTable>();
-        PlayerSO playerData  = playerTable.GetDataByID(0);
+        PlayerSO    playerData  = playerTable.GetDataByID(0);
         StatManager.Initialize(playerData);
     }
 
@@ -42,21 +58,23 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
     {
         base.Start();
         // LockCursor();
-        
+
         var action = _inputController.PlayerActions;
         action.Move.performed += context => _moveInput = context.ReadValue<Vector2>();
         action.Move.canceled += context => _moveInput = Vector2.zero;
-        action.Look.performed += context => _lookInput = context.ReadValue<Vector2>();
         action.Attack.performed += context => _attackTriggered = true;
         action.Run.performed += context => _isRunning = true;
         action.Run.canceled += context => _isRunning = false;
+
+        AttackStat = weaponController.StatManager.GetStat<CalculatedStat>(StatType.AttackPow);
     }
 
     protected override void Update()
     {
         base.Update();
+
         Rotate();
-        _lookInput = _inputController.PlayerActions.Look.ReadValue<Vector2>();
+        FindTarget();
     }
 
     /// <summary>
@@ -70,7 +88,7 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
         {
             PlayerState.Idle   => new IdleState(),
             PlayerState.Move   => new MoveState(),
-            PlayerState.Attack => new AttackState(StatManager.GetValue(StatType.AttackSpd), StatManager.GetValue(StatType.AttackRange)),
+            PlayerState.Attack => new AttackState(weaponController.StatManager.GetValue(StatType.AttackSpd), weaponController.StatManager.GetValue(StatType.AttackRange)),
             PlayerState.Run    => new RunState(),
             _                  => null
         };
@@ -80,67 +98,100 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
     {
         if (_moveInput.sqrMagnitude < 0.01f)
         {
-            Agent.isStopped = true;
+            _characterController.Move(_forceReceiver.Movement * Time.deltaTime);
             return;
         }
 
-        float speed = StatManager.GetValue(StatType.MoveSpeed) * (_isRunning ? StatManager.GetValue(StatType.RunMultiplier) : 1f);
-        Vector3 direction = (Vector3.right * _moveInput.x + Vector3.forward * _moveInput.y).normalized;
+        float   speed = StatManager.GetValue(StatType.MoveSpeed) * (_isRunning ? StatManager.GetValue(StatType.RunMultiplier) : 1f);
+        Vector3 move  = (Vector3.right * _moveInput.x + Vector3.forward * _moveInput.y).normalized;
 
-        Agent.isStopped = false;
-        Agent.Move(direction * speed * Time.deltaTime);
+        Vector3 totalMovement = move * speed + _forceReceiver.Movement;
+
+        _characterController.Move(totalMovement * Time.deltaTime);
     }
 
     public void Rotate()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Vector3 moveDirection = new Vector3(_moveInput.x, 0f, _moveInput.y);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f, groundMask))
+        if (moveDirection.sqrMagnitude > 0.01f)
         {
-            Vector3 direction = hit.point - transform.position;
-            direction.y = 0f;
-
-            if (direction.sqrMagnitude > 0.01f)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
-            }
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
         }
     }
+
     public void Attack()
     {
         Debug.Log("공격!");
         Target?.TakeDamage(this);
     }
 
+    public void AttackAllTargets()
+    {
+        if (_targets.Count == 0) return;
+
+        foreach (var damageable in _targets)
+        {
+            Target = damageable;
+            Attack();
+        }
+
+        Target = null;
+    }
+
     public override void FindTarget()
     {
+        Target = null;
+        _targets.Clear();
 
+        Collider[] hits = Physics.OverlapSphere(transform.position, weaponController.StatManager.GetValue(StatType.AttackRange));
+
+        foreach (var hit in hits)
+        {
+            if (hit.TryGetComponent<IDamageable>(out var damageable))
+            {
+                if (damageable == this) continue;
+
+                Vector3 toTarget = (hit.transform.position - transform.position).normalized;
+                float   angle    = Vector3.Angle(transform.forward, toTarget);
+
+                if (angle < 60f)
+                {
+                    _targets.Add(damageable);
+                }
+            }
+        }
     }
 
     public void TakeDamage(IAttackable attacker)
     {
         if (Target == null)
             Target = attacker as IDamageable;
-        
+
         StatManager.Consume(StatType.CurHp, attacker.AttackStat.Value);
 
         float curHp = StatManager.GetValue(StatType.CurHp);
         if (curHp <= 0)
         {
-            Daed();
+            Dead();
         }
     }
 
-    public void Daed()
+    public void Dead()
     {
-        IsDead = true;
         print($"플레이어 사망");
     }
-    
+
     private void LockCursor()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, weaponController.StatManager?.GetValue(StatType.AttackRange) ?? 1f);
     }
 }

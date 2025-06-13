@@ -17,15 +17,9 @@ MonoBehaviour:
   - StatType: 5
     ModifierType: 0
     Value: 10
-  - StatType: 3
-    ModifierType: 0
-    Value: 5
-  - StatType: 4
-    ModifierType: 0
-    Value: 5
   - StatType: 9
     ModifierType: 0
-    Value: 3
+    Value: 1.5
   - StatType: 10
     ModifierType: 0
     Value: 10

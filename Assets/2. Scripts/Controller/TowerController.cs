@@ -15,10 +15,13 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     [SerializeField] private string poolId;
     [SerializeField] private int poolSize;
     [SerializeField] private TowerSO towerSO;
+    [SerializeField] private string ProjectilePoolId;
+    [SerializeField] private Transform fireTransform;
 
     public StatBase     AttackStat   { get; private set; }
     public IDamageable  Target       { get; private set; }
     public BuildingData BuildingData { get; private set; }
+    public bool         IsPlaced     { get; private set; }
 
     public GameObject GameObject => gameObject;
     public string     PoolID     => poolId;
@@ -56,10 +59,18 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     {
         if (Target != null && !Target.IsDead)
         {
-            return Vector3.Distance(transform.position, Target.Transform.position);
+            float distance = (transform.position - Target.Transform.position).sqrMagnitude;
+            return distance;
         }
 
         return Mathf.Infinity;
+    }
+
+    public bool IsTargetInAttackRange()
+    {
+        float attackRange    = StatManager.GetValue(StatType.AttackRange);
+        float sqrAttackRange = attackRange * attackRange;
+        return GetTargetDistance() <= sqrAttackRange;
     }
 
     public override void FindTarget()
@@ -70,8 +81,6 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
         {
             if (results[i].TryGetComponent<IDamageable>(out var damageable))
             {
-                //어택 타입에 따라서 다르게 가져오기
-                //test
                 Target = damageable;
                 break;
             }
@@ -81,6 +90,7 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
 
     public void OnSpawnFromPool()
     {
+        IsPlaced = false;
         StatManager.Initialize(towerSO);
     }
 
@@ -88,10 +98,19 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     {
     }
 
+    public void OnBuildComplete()
+    {
+        IsPlaced = true;
+    }
+
 
     public void Attack()
     {
-        Debug.Log("Tower Attack");
-        Target.TakeDamage(this);
+        GameObject projectile = ObjectPoolManager.Instance.GetObject(ProjectilePoolId);
+        if (projectile.TryGetComponent<ProjectileController>(out var projectileController))
+        {
+            projectileController.transform.position = fireTransform.position;
+            projectileController.SetTarget(this, Target);
+        }
     }
 }

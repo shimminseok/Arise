@@ -8,9 +8,6 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
     [SerializeField] private Transform _endPoint;
     public List<EnemyController> Enemies { get; private set; } = new List<EnemyController>();
 
-    public Vector3 Endpoint => _endPoint.position;
-    public Vector3 StartPoint => _startPoint.position;
-
     protected override void Awake()
     {
         base.Awake();
@@ -28,6 +25,7 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
         {
             GameObject monsterObj  = ObjectPoolManager.Instance.GetObject(monsterSo.name);
             var        monsterCtrl = monsterObj.GetComponent<EnemyController>();
+            monsterCtrl.Initialized(_startPoint.position, _endPoint.position);
             Enemies.Add(monsterCtrl);
         }
     }

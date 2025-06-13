@@ -1,9 +1,14 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "Tower", menuName = "ScriptableObject/Tower", order = 0)]
-public class TowerSO : ScriptableObject
+public class TowerSO : ScriptableObject, IStatProvider
 {
     public int ID;
-    public List<StatData> Stats;
+
+    [FormerlySerializedAs("Stats")]
+    public List<StatData> TowerStats;
+
+    public List<StatData> Stats => TowerStats;
 }
