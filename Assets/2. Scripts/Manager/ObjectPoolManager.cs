@@ -8,7 +8,7 @@ public class ObjectPoolManager : SceneOnlySingleton<ObjectPoolManager>
 {
     [SerializeField] private List<GameObject> poolObjectList = new List<GameObject>();
     private List<IPoolObject> pools = new List<IPoolObject>();
-    private Dictionary<string, Queue<GameObject>> poolObjects = new Dictionary<string, Queue<GameObject>>();
+    private Dictionary<string, Queue<IPoolObject>> poolObjects = new Dictionary<string, Queue<IPoolObject>>();
     private Dictionary<string, GameObject> registeredObj = new Dictionary<string, GameObject>();
     private Dictionary<string, Transform> parentCache = new Dictionary<string, Transform>();
 
@@ -72,8 +72,8 @@ public class ObjectPoolManager : SceneOnlySingleton<ObjectPoolManager>
         string     poolname   = iPoolObject.PoolID;
         GameObject poolObject = iPoolObject.GameObject;
 
-        Queue<GameObject> newPool   = new Queue<GameObject>();
-        GameObject        parentObj = new GameObject(poolname) { transform = { parent = transform } };
+        Queue<IPoolObject> newPool   = new Queue<IPoolObject>();
+        GameObject         parentObj = new GameObject(poolname) { transform = { parent = transform } };
         parentCache[poolname] = parentObj.transform;
 
         for (int i = 0; i < poolSize; i++)
@@ -81,7 +81,7 @@ public class ObjectPoolManager : SceneOnlySingleton<ObjectPoolManager>
             GameObject obj = Instantiate(poolObject, parentObj.transform);
             obj.name = poolname;
             obj.SetActive(false);
-            newPool.Enqueue(obj);
+            newPool.Enqueue(obj.GetComponent<IPoolObject>());
         }
 
         poolObjects[poolname] = newPool;
@@ -96,7 +96,7 @@ public class ObjectPoolManager : SceneOnlySingleton<ObjectPoolManager>
     public GameObject GetObject(string poolId)
     {
         string poolName = poolId.ToString();
-        if (!poolObjects.TryGetValue(poolId, out Queue<GameObject> pool))
+        if (!poolObjects.TryGetValue(poolId, out Queue<IPoolObject> pool))
         {
             Debug.LogWarning($"등록된 풀이 없습니다. : {poolId}");
             return null;
@@ -104,16 +104,17 @@ public class ObjectPoolManager : SceneOnlySingleton<ObjectPoolManager>
 
         if (pool.Count > 0)
         {
-            GameObject go = pool.Dequeue();
+            var getPool = pool.Dequeue();
+            GameObject go = getPool.GameObject;
+            getPool.OnSpawnFromPool();
             go.SetActive(true);
             return go;
         }
         else
         {
             GameObject prefab = registeredObj[poolId];
-            GameObject newObj = Instantiate(prefab);
+            GameObject newObj = Instantiate(prefab, parentCache[poolId]);
             newObj.name = poolName;
-            newObj.transform.SetParent(parentCache[poolId]);
             newObj.SetActive(true);
             return newObj;
         }
@@ -146,10 +147,11 @@ public class ObjectPoolManager : SceneOnlySingleton<ObjectPoolManager>
 
         if (returnTime > 0)
             yield return new WaitForSeconds(returnTime);
+        iPoolObject.OnReturnToPool();
         obj.SetActive(false);
         obj.transform.position = Vector3.zero;
         action?.Invoke();
-        poolObjects[iPoolObject.PoolID].Enqueue(obj);
+        poolObjects[iPoolObject.PoolID].Enqueue(iPoolObject);
         obj.transform.SetParent(parentCache[iPoolObject.PoolID]);
     }
 

@@ -9,6 +9,7 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
 {
     [SerializeField] private string poolID;
     [SerializeField] private int poolSize;
+    [SerializeField] private MonsterSO m_MonsterSo;
 
     public StatBase    AttackStat { get; private set; }
     public IDamageable Target     { get; private set; }
@@ -18,7 +19,6 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
     public string      PoolID     => poolID;
     public int         PoolSize   => poolSize;
 
-    private MonsterSO m_MonsterSo;
 
     protected override void Awake()
     {
@@ -54,19 +54,18 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         };
     }
 
-    public void SpawnMonster(MonsterSO monster, Vector3 spawnPos)
-    {
-        m_MonsterSo = monster;
-        Agent.Warp(spawnPos);
-        InitFromPool();
-    }
-
-    public void InitFromPool()
+    public void OnSpawnFromPool()
     {
         Target = null;
         IsDead = false;
+        Agent.Warp(EnemyManager.Instance.StartPoint);
         StatManager.Initialize(m_MonsterSo);
+    }
+
+    public void OnReturnToPool()
+    {
         Agent.ResetPath();
+        transform.position = Vector3.zero;
     }
 
     public override void FindTarget()
@@ -79,9 +78,11 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
     {
         if (Target != null && Agent.isOnNavMesh)
         {
-            Agent.speed = StatManager.GetValue(StatType.MoveSpeed);
-            Agent.SetDestination(Target.Transform.position);
         }
+
+        Agent.speed = StatManager.GetValue(StatType.MoveSpeed);
+        // Agent.SetDestination(Target.Transform.position);
+        Agent.SetDestination(EnemyManager.Instance.Endpoint);
     }
 
 
@@ -111,5 +112,6 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         StatusEffectManager.RemoveAllEffects();
         EnemyManager.Instance.MonsterDead(this);
         ChangeState(EnemyState.Idle);
+        QuestManager.Instance.UpdateProgress(QuestType.KillEnemies, 1);
     }
 }

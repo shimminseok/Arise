@@ -77,5 +77,8 @@ public abstract class BaseController<TController, TState> : MonoBehaviour where 
     protected abstract IState<TController, TState> GetState(TState state);
 
     public abstract void FindTarget();
-    public abstract void Movement();
+
+    public virtual void Movement()
+    {
+    }
 }

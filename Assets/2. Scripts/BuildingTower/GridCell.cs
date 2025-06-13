@@ -12,7 +12,7 @@ public class GridCell : MonoBehaviour
     public void Initialize(Vector3Int pos)
     {
         CellPosition = pos;
-        IsBuildable = true;
+        // IsBuildable = true;
         OccupiedObject = null;
     }
 
