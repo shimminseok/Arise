@@ -60,6 +60,18 @@ public class StatManager : MonoBehaviour
             Stats[stat.StatType] = BaseStatFactory(stat.StatType, stat.Value);
         }
     }
+    
+    /// <summary>
+    /// 무기의 스탯을 초기화 시켜주는 메서드
+    /// </summary>
+    /// <param name="weapon"></param>
+    public void Initialize(WeaponSO weapon)
+    {
+        foreach (StatData weaponStat in weapon.Stats)
+        {
+            Stats[weaponStat.StatType] = BaseStatFactory(weaponStat.StatType, weaponStat.Value);
+        }
+    }
 
     /// <summary>
     /// Stat을 생성해주는 팩토리
