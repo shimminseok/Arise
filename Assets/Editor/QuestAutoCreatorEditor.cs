@@ -60,6 +60,6 @@ public class QuestAutoCreatorEditor : EditorWindow
         EditorUtility.FocusProjectWindow();
         Selection.activeObject = quest;
 
-        Debug.Log($"✅ 퀘스트 생성 완료: {assetPath}");
+        Debug.Log($" 퀘스트 생성 완료: {assetPath}");
     }
 }
