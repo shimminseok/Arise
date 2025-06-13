@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -8541451601187958892}
   - component: {fileID: 1977432347987574913}
   - component: {fileID: -526392270925445335}
+  - component: {fileID: 1854852932341437642}
   m_Layer: 0
   m_Name: Arrow_Tower_LV4
   m_TagString: Untagged
@@ -151,18 +152,18 @@ NavMeshAgent:
   m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 3.193401
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 0
+  m_Acceleration: 0
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 0
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 30.795584
-  m_BaseOffset: 15.397792
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!114 &-526392270925445335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,3 +179,28 @@ MonoBehaviour:
   poolId: ArcherTower_Lv4
   poolSize: 10
   towerSO: {fileID: 11400000, guid: fd80b2bdb0bb8f34eb22e404f221c2e9, type: 2}
+  ProjectilePoolId: 
+  fireTransform: {fileID: 0}
+--- !u!136 &1854852932341437642
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6991854275923391210}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
