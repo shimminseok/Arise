@@ -51,8 +51,8 @@ public class ProjectileController : MonoBehaviour, IPoolObject
     {
         while (true)
         {
-            transform.position = Vector3.MoveTowards(transform.position, Target.Transform.position, _projectileSpeed * Time.deltaTime);
-            transform.LookAt(Target.Transform);
+            transform.position = Vector3.MoveTowards(transform.position, Target.Collider.transform.position, _projectileSpeed * Time.deltaTime);
+            transform.LookAt(Target.Collider.transform);
             yield return null;
 
             if (Target == null || Target.IsDead)
