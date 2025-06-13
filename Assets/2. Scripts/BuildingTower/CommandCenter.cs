@@ -3,29 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(StatManager))]
-public class CommandCenter : MonoBehaviour, IDamageable
+public class CommandCenter : SceneOnlySingleton<CommandCenter>, IDamageable
 {
-    public bool      IsDead    { get; private set; }
-    public Transform Transform => transform;
-
+    [SerializeField] private List<AttackPoint> attackPoints;
+    [SerializeField] private CommandCenterSO commandCenterSo;
+    [SerializeField] private BoxCollider m_Collider;
+    public bool        IsDead      { get; private set; }
     public StatManager StatManager { get; private set; }
+    public Collider    Collider    => m_Collider;
 
-    public void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         StatManager = GetComponent<StatManager>();
-    }
-
-    void Start()
-    {
-    }
-
-    void Update()
-    {
+        m_Collider = GetComponent<BoxCollider>();
+        StatManager.Initialize(commandCenterSo);
     }
 
     public void TakeDamage(IAttackable attacker)
     {
-        //방어력 계산
+        //TODO 방어력 계산
         float finalDam = attacker.AttackStat.Value;
 
         StatManager.Consume(StatType.CurHp, finalDam);
@@ -36,8 +33,26 @@ public class CommandCenter : MonoBehaviour, IDamageable
         }
     }
 
+    public AttackPoint GetAvailablePoint()
+    {
+        foreach (AttackPoint point in attackPoints)
+        {
+            if (point.TryReserve())
+            {
+                return point;
+            }
+        }
+
+        return null;
+    }
+
     public void Dead()
     {
         IsDead = true;
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
     }
 }

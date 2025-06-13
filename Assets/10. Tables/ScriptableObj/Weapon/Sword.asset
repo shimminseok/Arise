@@ -17,7 +17,7 @@ MonoBehaviour:
   WeaponStat:
   - StatType: 2
     ModifierType: 0
-    Value: 30
+    Value: 100
   - StatType: 3
     ModifierType: 0
     Value: 2

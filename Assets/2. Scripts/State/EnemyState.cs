@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 namespace EnemyStates
 {
@@ -30,7 +31,10 @@ namespace EnemyStates
 
         public EnemyState CheckTransition(EnemyController owner)
         {
-            return EnemyState.Move;
+            if (!owner.Target.IsDead)
+                return EnemyState.Move;
+
+            return EnemyState.Idle;
         }
     }
 
@@ -38,6 +42,7 @@ namespace EnemyStates
     {
         public void OnEnter(EnemyController owner)
         {
+            owner.Agent.isStopped = false;
         }
 
         public void OnUpdate(EnemyController owner)
@@ -55,18 +60,45 @@ namespace EnemyStates
 
         public EnemyState CheckTransition(EnemyController owner)
         {
-            return EnemyState.Move;
+            if (owner.Target != null && !owner.Target.IsDead)
+            {
+                return owner.IsTargetInAttackRange() ? EnemyState.Attack : EnemyState.Move;
+            }
+
+            return EnemyState.Idle;
         }
     }
 
     public class AttackState : IState<EnemyController, EnemyState>
     {
+        private float attackTimer = 0;
+        private readonly float attackSpd;
+        private readonly float attackRange;
+
+        public AttackState(float attackSpd, float attackRange)
+        {
+            attackTimer = attackSpd;
+            this.attackSpd = attackSpd;
+            this.attackRange = attackRange;
+        }
+
         public void OnEnter(EnemyController owner)
         {
+            owner.Agent.ResetPath();
+            owner.Agent.isStopped = true;
+            owner.Agent.velocity = Vector3.zero;
+            int order = EnemyManager.Instance.GetArrivalOrder();
+            owner.Agent.avoidancePriority = Mathf.Clamp(order, 0, 99);
         }
 
         public void OnUpdate(EnemyController owner)
         {
+            attackTimer += Time.deltaTime;
+            if (attackTimer >= attackSpd)
+            {
+                owner.Attack();
+                attackTimer = 0;
+            }
         }
 
         public void OnFixedUpdate(EnemyController owner)
@@ -79,7 +111,12 @@ namespace EnemyStates
 
         public EnemyState CheckTransition(EnemyController owner)
         {
-            return EnemyState.Attack;
+            if (owner.Target == null || owner.Target.IsDead)
+            {
+                return EnemyState.Idle;
+            }
+
+            return owner.IsTargetInAttackRange() ? EnemyState.Attack : EnemyState.Move;
         }
     }
 
@@ -103,7 +140,7 @@ namespace EnemyStates
 
         public EnemyState CheckTransition(EnemyController owner)
         {
-            return EnemyState.Idle;
+            return EnemyState.Die;
         }
     }
 }

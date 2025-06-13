@@ -3,8 +3,8 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    public bool      IsDead    { get; }
-    public Transform Transform { get; }
-    public void      TakeDamage(IAttackable attacker);
-    public void      Dead();
+    public bool     IsDead   { get; }
+    public Collider Collider { get; }
+    public void     TakeDamage(IAttackable attacker);
+    public void     Dead();
 }

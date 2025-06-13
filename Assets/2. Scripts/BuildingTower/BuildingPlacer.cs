@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class BuildingPlacer : MonoBehaviour
@@ -8,7 +9,7 @@ public class BuildingPlacer : MonoBehaviour
     public GridManager gridManager;
     private BuildingData buildingData;
     private Camera mainCamera;
-
+    [SerializeField] private CinemachineVirtualCamera topViewCam;
 
     private bool selectedBuildData;
     private BuildingGhost buildingGhost;
@@ -39,6 +40,7 @@ public class BuildingPlacer : MonoBehaviour
             buildingGhost.SetValid(true);
             selectedTower = null;
             buildingGhost = null;
+            topViewCam.gameObject.SetActive(false);
         }
     }
 
@@ -74,12 +76,14 @@ public class BuildingPlacer : MonoBehaviour
             buildingData = selectedTower.BuildingData;
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost.SetValid(false);
+            topViewCam.gameObject.SetActive(true);
         }
 
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 1), buttonWidth, buttonHeight), $"Build_Tower2"))
         {
+            topViewCam.gameObject.SetActive(true);
             selectedBuildData = true;
-            selectedTower = ObjectPoolManager.Instance.GetObject("BallistaTower_LV1").GetComponent<TowerController>();
+            selectedTower = ObjectPoolManager.Instance.GetObject("BallistaTower_LV4").GetComponent<TowerController>();
             selectedTower.OnSpawnFromPool();
             buildingData = selectedTower.BuildingData;
             buildingGhost = buildingData.BuildingGhost;
@@ -89,6 +93,7 @@ public class BuildingPlacer : MonoBehaviour
 
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 2), buttonWidth, buttonHeight), $"Build_Tower3"))
         {
+            topViewCam.gameObject.SetActive(true);
             selectedBuildData = true;
             selectedTower = ObjectPoolManager.Instance.GetObject("CanonTower_Lv1").GetComponent<TowerController>();
             selectedTower.OnSpawnFromPool();
@@ -100,6 +105,7 @@ public class BuildingPlacer : MonoBehaviour
 
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 3), buttonWidth, buttonHeight), $"Build_Tower4"))
         {
+            topViewCam.gameObject.SetActive(true);
             selectedBuildData = true;
             selectedTower = ObjectPoolManager.Instance.GetObject("PoisonTower_Lv1").GetComponent<TowerController>();
             selectedTower.OnSpawnFromPool();
@@ -107,6 +113,11 @@ public class BuildingPlacer : MonoBehaviour
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost.SetValid(false);
+        }
+
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 4), buttonWidth, buttonHeight), $"x4"))
+        {
+            Time.timeScale *= 2f;
         }
     }
 }
