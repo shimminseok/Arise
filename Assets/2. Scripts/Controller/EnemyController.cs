@@ -11,14 +11,16 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
     [SerializeField] private int poolSize;
     [SerializeField] private MonsterSO m_MonsterSo;
 
-    public StatBase    AttackStat { get; private set; }
-    public IDamageable Target     { get; private set; }
-    public bool        IsDead     { get; private set; }
-    public Transform   Transform  => transform;
-    public GameObject  GameObject => gameObject;
-    public string      PoolID     => poolID;
-    public int         PoolSize   => poolSize;
+    public StatBase    AttackStat     { get; private set; }
+    public IDamageable Target         { get; private set; }
+    public bool        IsDead         { get; private set; }
+    public Vector3     TargetPosition { get; private set; }
+    public Transform   Transform      => transform;
+    public GameObject  GameObject     => gameObject;
+    public string      PoolID         => poolID;
+    public int         PoolSize       => poolSize;
 
+    private HPBarUI healthBarUI;
 
     protected override void Awake()
     {
@@ -54,11 +56,17 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         };
     }
 
+    public void Initialized(Vector3 startPos, Vector3 targetPos)
+    {
+        Agent.Warp(startPos);
+        TargetPosition = targetPos;
+        OnSpawnFromPool();
+    }
+
     public void OnSpawnFromPool()
     {
         Target = null;
         IsDead = false;
-        Agent.Warp(EnemyManager.Instance.StartPoint);
         StatManager.Initialize(m_MonsterSo);
     }
 
@@ -81,8 +89,16 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         }
 
         Agent.speed = StatManager.GetValue(StatType.MoveSpeed);
-        // Agent.SetDestination(Target.Transform.position);
-        Agent.SetDestination(EnemyManager.Instance.Endpoint);
+        Agent.SetDestination(TargetPosition);
+    }
+
+    public void SetTargetPosition(Vector3 position)
+    {
+        TargetPosition = position;
+    }
+
+    public void Movement(Vector3 direction)
+    {
     }
 
 
@@ -93,19 +109,23 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
 
     public void TakeDamage(IAttackable attacker)
     {
-        if (Target == null)
-            Target = attacker as IDamageable;
+        if (healthBarUI == null)
+        {
+            healthBarUI = HealthBarManager.Instance.SpawnHealthBar(this);
+            StatManager.GetStat<ResourceStat>(StatType.CurHp).OnValueChanged += healthBarUI.UpdateHealthBarWrapper;
+        }
+
 
         StatManager.Consume(StatType.CurHp, attacker.AttackStat.Value);
 
         float curHp = StatManager.GetValue(StatType.CurHp);
         if (curHp <= 0)
         {
-            Daed();
+            Dead();
         }
     }
 
-    public void Daed()
+    public void Dead()
     {
         IsDead = true;
         Target = null;
@@ -113,5 +133,8 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         EnemyManager.Instance.MonsterDead(this);
         ChangeState(EnemyState.Idle);
         QuestManager.Instance.UpdateProgress(QuestType.KillEnemies, 1);
+        healthBarUI.UnLink();
+        StatManager.GetStat<ResourceStat>(StatType.CurHp).OnValueChanged -= healthBarUI.UpdateHealthBarWrapper;
+        healthBarUI = null;
     }
 }
