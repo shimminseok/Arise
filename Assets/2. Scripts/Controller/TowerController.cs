@@ -15,6 +15,8 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     [SerializeField] private string poolId;
     [SerializeField] private int poolSize;
     [SerializeField] private TowerSO towerSO;
+    [SerializeField] private string ProjectilePoolId;
+    [SerializeField] private Transform fireTransform;
 
     public StatBase     AttackStat   { get; private set; }
     public IDamageable  Target       { get; private set; }
@@ -104,7 +106,11 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
 
     public void Attack()
     {
-        Debug.Log("Tower Attack");
-        Target.TakeDamage(this);
+        GameObject projectile = ObjectPoolManager.Instance.GetObject(ProjectilePoolId);
+        if (projectile.TryGetComponent<ProjectileController>(out var projectileController))
+        {
+            projectileController.transform.position = fireTransform.position;
+            projectileController.SetTarget(this, Target);
+        }
     }
 }

@@ -70,6 +70,7 @@ public class BuildingPlacer : MonoBehaviour
         {
             selectedBuildData = true;
             selectedTower = ObjectPoolManager.Instance.GetObject("ArcherTower_Lv1").GetComponent<TowerController>();
+            selectedTower.OnSpawnFromPool();
             buildingData = selectedTower.BuildingData;
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost.SetValid(false);
@@ -79,6 +80,7 @@ public class BuildingPlacer : MonoBehaviour
         {
             selectedBuildData = true;
             selectedTower = ObjectPoolManager.Instance.GetObject("BallistaTower_LV1").GetComponent<TowerController>();
+            selectedTower.OnSpawnFromPool();
             buildingData = selectedTower.BuildingData;
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost = buildingData.BuildingGhost;
@@ -89,6 +91,7 @@ public class BuildingPlacer : MonoBehaviour
         {
             selectedBuildData = true;
             selectedTower = ObjectPoolManager.Instance.GetObject("CanonTower_Lv1").GetComponent<TowerController>();
+            selectedTower.OnSpawnFromPool();
             buildingData = selectedTower.BuildingData;
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost = buildingData.BuildingGhost;
@@ -99,6 +102,7 @@ public class BuildingPlacer : MonoBehaviour
         {
             selectedBuildData = true;
             selectedTower = ObjectPoolManager.Instance.GetObject("PoisonTower_Lv1").GetComponent<TowerController>();
+            selectedTower.OnSpawnFromPool();
             buildingData = selectedTower.BuildingData;
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost = buildingData.BuildingGhost;

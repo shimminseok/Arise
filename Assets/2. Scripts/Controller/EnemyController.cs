@@ -56,12 +56,17 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         };
     }
 
+    public void Initialized(Vector3 startPos, Vector3 targetPos)
+    {
+        Agent.Warp(startPos);
+        TargetPosition = targetPos;
+        OnSpawnFromPool();
+    }
+
     public void OnSpawnFromPool()
     {
         Target = null;
         IsDead = false;
-        Agent.Warp(EnemyManager.Instance.StartPoint);
-        TargetPosition = EnemyManager.Instance.Endpoint;
         StatManager.Initialize(m_MonsterSo);
     }
 
@@ -116,11 +121,11 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         float curHp = StatManager.GetValue(StatType.CurHp);
         if (curHp <= 0)
         {
-            Daed();
+            Dead();
         }
     }
 
-    public void Daed()
+    public void Dead()
     {
         IsDead = true;
         Target = null;

@@ -104,9 +104,8 @@ public class ObjectPoolManager : SceneOnlySingleton<ObjectPoolManager>
 
         if (pool.Count > 0)
         {
-            var getPool = pool.Dequeue();
-            GameObject go = getPool.GameObject;
-            getPool.OnSpawnFromPool();
+            var        getPool = pool.Dequeue();
+            GameObject go      = getPool.GameObject;
             go.SetActive(true);
             return go;
         }
@@ -117,13 +116,11 @@ public class ObjectPoolManager : SceneOnlySingleton<ObjectPoolManager>
             if (newObj.TryGetComponent<IPoolObject>(out var poolObject))
             {
                 newObj.name = poolName;
-                poolObject.OnSpawnFromPool();
                 newObj.SetActive(true);
                 return newObj;
             }
 
             return null;
-
         }
     }
 

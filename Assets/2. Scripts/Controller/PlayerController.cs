@@ -128,11 +128,11 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
         float curHp = StatManager.GetValue(StatType.CurHp);
         if (curHp <= 0)
         {
-            Daed();
+            Dead();
         }
     }
 
-    public void Daed()
+    public void Dead()
     {
         IsDead = true;
         print($"플레이어 사망");

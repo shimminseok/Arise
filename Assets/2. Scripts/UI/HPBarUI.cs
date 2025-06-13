@@ -28,8 +28,7 @@ public class HPBarUI : MonoBehaviour, IPoolObject
     public void Initialize(BaseController<EnemyController, EnemyState> owner)
     {
         target = owner;
-        targetTrans = target.transform;
-        transform.SetParent(HealthBarManager.Instance.hpBarCanvas.transform);
+        OnSpawnFromPool();
     }
 
     public void UpdatePosion()
@@ -55,6 +54,8 @@ public class HPBarUI : MonoBehaviour, IPoolObject
 
     public void OnSpawnFromPool()
     {
+        targetTrans = target.transform;
+        transform.SetParent(HealthBarManager.Instance.hpBarCanvas.transform);
     }
 
     public void OnReturnToPool()
