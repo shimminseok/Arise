@@ -8,7 +8,6 @@ namespace PlayerStates
     {
         public void OnEnter(PlayerController owner)
         {
-            owner.Agent.isStopped = true;
         }
 
         public void OnUpdate(PlayerController owner)
@@ -41,7 +40,6 @@ namespace PlayerStates
     {
         public void OnEnter(PlayerController owner)
         {
-            owner.Agent.isStopped = false;
             owner.PlayerAnimation.Animator.SetBool(owner.PlayerAnimation.AnimationData.WalkParameterHash, true);
         }
 
@@ -100,9 +98,13 @@ namespace PlayerStates
             _attackDone = true;
         }
 
-        public void OnUpdate(PlayerController owner) { }
+        public void OnUpdate(PlayerController owner)
+        {
+        }
 
-        public void OnFixedUpdate(PlayerController owner) { }
+        public void OnFixedUpdate(PlayerController owner)
+        {
+        }
 
         public void OnExit(PlayerController owner)
         {
@@ -123,7 +125,6 @@ namespace PlayerStates
     {
         public void OnEnter(PlayerController owner)
         {
-            owner.Agent.isStopped = false;
             owner.PlayerAnimation.Animator.SetBool(owner.PlayerAnimation.AnimationData.WalkParameterHash, true);
             owner.PlayerAnimation.Animator.SetBool(owner.PlayerAnimation.AnimationData.RunParameterHash, true);
         }
@@ -133,7 +134,9 @@ namespace PlayerStates
             owner.Movement();
         }
 
-        public void OnFixedUpdate(PlayerController owner) { }
+        public void OnFixedUpdate(PlayerController owner)
+        {
+        }
 
         public void OnExit(PlayerController owner)
         {
