@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cinemachine;
+using UnityEngine;
 
 namespace TowerStates
 {
@@ -53,6 +54,13 @@ namespace TowerStates
 
         public void OnUpdate(TowerController owner)
         {
+            if (owner.FireTransformRoot != null)
+            {
+                Vector3 targetPos = owner.Target.Collider.transform.position;
+                targetPos.y = owner.FireTransformRoot.position.y;
+                owner.FireTransformRoot.LookAt(targetPos);
+            }
+
             attackTimer += Time.deltaTime;
             if (attackTimer >= attackSpd)
             {

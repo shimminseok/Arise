@@ -79,7 +79,7 @@ public class BuildingPlacer : MonoBehaviour
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 1), buttonWidth, buttonHeight), $"Build_Tower2"))
         {
             selectedBuildData = true;
-            selectedTower = ObjectPoolManager.Instance.GetObject("BallistaTower_LV1").GetComponent<TowerController>();
+            selectedTower = ObjectPoolManager.Instance.GetObject("BallistaTower_LV4").GetComponent<TowerController>();
             selectedTower.OnSpawnFromPool();
             buildingData = selectedTower.BuildingData;
             buildingGhost = buildingData.BuildingGhost;
@@ -107,6 +107,11 @@ public class BuildingPlacer : MonoBehaviour
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost.SetValid(false);
+        }
+
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 4), buttonWidth, buttonHeight), $"x4"))
+        {
+            Time.timeScale *= 2f;
         }
     }
 }
