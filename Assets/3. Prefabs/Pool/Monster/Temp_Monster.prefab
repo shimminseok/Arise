@@ -611,7 +611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolID: TempMonster
-  poolSize: 50
+  poolSize: 10
   m_MonsterSo: {fileID: 11400000, guid: 1489cc14429b4f54fa27bc5560a65ed0, type: 2}
 --- !u!136 &-28091565810385768
 CapsuleCollider:

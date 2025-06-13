@@ -114,9 +114,16 @@ public class ObjectPoolManager : SceneOnlySingleton<ObjectPoolManager>
         {
             GameObject prefab = registeredObj[poolId];
             GameObject newObj = Instantiate(prefab, parentCache[poolId]);
-            newObj.name = poolName;
-            newObj.SetActive(true);
-            return newObj;
+            if (newObj.TryGetComponent<IPoolObject>(out var poolObject))
+            {
+                newObj.name = poolName;
+                poolObject.OnSpawnFromPool();
+                newObj.SetActive(true);
+                return newObj;
+            }
+
+            return null;
+
         }
     }
 
