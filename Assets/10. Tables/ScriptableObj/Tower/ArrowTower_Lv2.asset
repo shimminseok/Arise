@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ArrowTower_Lv2
   m_EditorClassIdentifier: 
   ID: 102
-  Tower:
+  Stats:
   - StatType: 2
     ModifierType: 0
     Value: 100
