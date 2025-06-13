@@ -1,4 +1,6 @@
-﻿namespace TowerStates
+﻿using UnityEngine;
+
+namespace TowerStates
 {
     public class IdleState : IState<TowerController, TowerState>
     {
@@ -8,6 +10,7 @@
 
         public void OnUpdate(TowerController owner)
         {
+            owner.FindTarget();
         }
 
         public void OnFixedUpdate(TowerController owner)
@@ -20,18 +23,45 @@
 
         public TowerState CheckTransition(TowerController owner)
         {
+            if (owner.Target == null || owner.Target.IsDead)
+                return TowerState.Idle;
+
+
+            if (owner.StatManager.GetValue(StatType.AttackRange) * 10 >= owner.GetTargetDistance())
+            {
+                return TowerState.Attack;
+            }
+
+
             return TowerState.Idle;
         }
     }
 
     public class AttackState : IState<TowerController, TowerState>
     {
+        private float attackTimer = 0;
+        private readonly float attackSpd;
+        private readonly float attackRange;
+
+        public AttackState(float attackSpd, float attackRange)
+        {
+            attackTimer = attackSpd;
+            this.attackSpd = attackSpd;
+            this.attackRange = attackRange;
+        }
+
         public void OnEnter(TowerController owner)
         {
         }
 
         public void OnUpdate(TowerController owner)
         {
+            attackTimer += Time.deltaTime;
+            if (attackTimer >= attackSpd)
+            {
+                owner.Attack();
+                attackTimer = 0;
+            }
         }
 
         public void OnFixedUpdate(TowerController owner)
@@ -44,6 +74,9 @@
 
         public TowerState CheckTransition(TowerController owner)
         {
+            if (owner.Target == null || owner.Target.IsDead)
+                return TowerState.Idle;
+
             return TowerState.Attack;
         }
     }
