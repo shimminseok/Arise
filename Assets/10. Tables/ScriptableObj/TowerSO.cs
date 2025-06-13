@@ -5,5 +5,5 @@ using UnityEngine;
 public class TowerSO : ScriptableObject
 {
     public int ID;
-    public List<StatData> Tower;
+    public List<StatData> Stats;
 }

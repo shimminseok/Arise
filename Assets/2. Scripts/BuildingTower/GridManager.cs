@@ -24,9 +24,7 @@ public class GridManager : MonoBehaviour
                 Vector3Int pos    = new Vector3Int(x, 0, z);
                 GameObject cellGo = Instantiate(cellPrefab, pos, Quaternion.identity, transform);
                 var        cell   = cellGo.GetComponent<GridCell>();
-                cell.Initialize(pos);
-
-                if (IsCellOverBuildableGround(pos))
+                if (IsCellOverBuildableGround(pos, out Vector3Int hitPos))
                 {
                     cell.IsBuildable = true;
                 }
@@ -35,7 +33,10 @@ public class GridManager : MonoBehaviour
                     cell.IsBuildable = false;
                 }
 
-                _cells[pos] = cell;
+                cellGo.transform.localPosition = hitPos;
+                cell.Initialize(hitPos);
+
+                _cells[hitPos] = cell;
             }
         }
     }
@@ -54,7 +55,7 @@ public class GridManager : MonoBehaviour
             for (int z = 0; z < size.y; z++)
             {
                 Vector3Int checkPos = pos + new Vector3Int(x, 0, z);
-                if (!_cells.TryGetValue(checkPos, out var cell) || !cell.CanBuild())
+                if (!_cells.TryGetValue(checkPos, out GridCell cell) || !cell.CanBuild())
                     return false;
             }
         }
@@ -64,7 +65,7 @@ public class GridManager : MonoBehaviour
 
     public void PlaceBuilding(GameObject prefab, Vector3Int baseCellPos, Vector2Int size)
     {
-        Vector3 worldPos = baseCellPos + new Vector3(size.x / 2f - 1f, cellHeightOffset, size.y / 2f - 1f);
+        Vector3 worldPos = baseCellPos + new Vector3(size.x / 2f - 0.5f, cellHeightOffset, size.y / 2f - 0.5f);
         prefab.transform.position = worldPos;
         for (int x = 0; x < size.x; x++)
         {
@@ -76,13 +77,16 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    public bool IsCellOverBuildableGround(Vector3 cellCenter)
+    public bool IsCellOverBuildableGround(Vector3 cellCenter, out Vector3Int hitPos)
     {
-        if (Physics.Raycast(cellCenter + Vector3.up * 5f, Vector3.down, out var hit, 10f, LayerMask.GetMask("Ground")))
+        if (Physics.Raycast(cellCenter + Vector3.up * 50f, Vector3.down, out RaycastHit hit, 60f, LayerMask.GetMask("Ground")))
         {
+            hitPos = Vector3Int.RoundToInt(hit.point);
             return true;
         }
 
+
+        hitPos = Vector3Int.RoundToInt(cellCenter);
         return false;
     }
 

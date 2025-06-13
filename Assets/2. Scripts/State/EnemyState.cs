@@ -9,7 +9,7 @@ namespace EnemyStates
         Attack,
         Die
     }
-    
+
     public class IdleState : IState<EnemyController, EnemyState>
     {
         public void OnEnter(EnemyController owner)
@@ -30,7 +30,7 @@ namespace EnemyStates
 
         public EnemyState CheckTransition(EnemyController owner)
         {
-            return EnemyState.Idle;
+            return EnemyState.Move;
         }
     }
 
@@ -38,11 +38,11 @@ namespace EnemyStates
     {
         public void OnEnter(EnemyController owner)
         {
-            
         }
 
         public void OnUpdate(EnemyController owner)
         {
+            owner.Movement();
         }
 
         public void OnFixedUpdate(EnemyController owner)
@@ -61,14 +61,12 @@ namespace EnemyStates
 
     public class AttackState : IState<EnemyController, EnemyState>
     {
-
         public void OnEnter(EnemyController owner)
         {
         }
 
         public void OnUpdate(EnemyController owner)
         {
-
         }
 
         public void OnFixedUpdate(EnemyController owner)
@@ -81,7 +79,6 @@ namespace EnemyStates
 
         public EnemyState CheckTransition(EnemyController owner)
         {
-            
             return EnemyState.Attack;
         }
     }

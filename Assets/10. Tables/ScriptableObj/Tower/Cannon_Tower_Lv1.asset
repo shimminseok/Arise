@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cannon_Tower_Lv1
   m_EditorClassIdentifier: 
   ID: 301
-  Tower:
+  Stats:
   - StatType: 2
     ModifierType: 0
     Value: 100

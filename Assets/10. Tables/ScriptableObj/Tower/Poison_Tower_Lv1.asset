@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Poison_Tower_Lv1
   m_EditorClassIdentifier: 
   ID: 401
-  Tower:
+  Stats:
   - StatType: 2
     ModifierType: 0
     Value: 100

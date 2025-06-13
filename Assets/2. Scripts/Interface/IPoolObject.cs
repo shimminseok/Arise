@@ -8,5 +8,6 @@ public interface IPoolObject
     public string     PoolID     { get; }
     public int        PoolSize   { get; }
 
-    public void InitFromPool();
+    public void OnSpawnFromPool();
+    public void OnReturnToPool();
 }
