@@ -103,6 +103,11 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         }
     }
 
+    public void SetTargetPosition(Vector3 dis)
+    {
+        TargetPosition = dis;
+    }
+
     public float GetTargetDistance()
     {
         if (Target != null && !Target.IsDead)
