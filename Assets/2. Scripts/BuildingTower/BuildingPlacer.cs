@@ -12,7 +12,7 @@ public class BuildingPlacer : MonoBehaviour
 
     private bool selectedBuildData;
     private BuildingGhost buildingGhost;
-    private GameObject selectedTowerPrefab;
+    private TowerController selectedTower;
     private GameObject ghostObj;
 
     private void Start()
@@ -22,7 +22,7 @@ public class BuildingPlacer : MonoBehaviour
 
     private void Update()
     {
-        if (selectedTowerPrefab == null)
+        if (selectedTower == null)
             return;
 
         var mousePos = GetMouseWorldPosition();
@@ -33,10 +33,11 @@ public class BuildingPlacer : MonoBehaviour
         buildingGhost.SetMaterialColor(isCanBuilding);
         if (Input.GetMouseButtonDown(0) && isCanBuilding)
         {
-            gridManager.PlaceBuilding(selectedTowerPrefab, cell, buildingData.Size);
+            gridManager.PlaceBuilding(selectedTower.GameObject, cell, buildingData.Size);
+            selectedTower.OnBuildComplete();
             selectedBuildData = false;
             buildingGhost.SetValid(true);
-            selectedTowerPrefab = null;
+            selectedTower = null;
             buildingGhost = null;
         }
     }
@@ -68,10 +69,8 @@ public class BuildingPlacer : MonoBehaviour
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 0), buttonWidth, buttonHeight), $"Build_Tower1"))
         {
             selectedBuildData = true;
-            selectedTowerPrefab = ObjectPoolManager.Instance.GetObject("ArcherTower_Lv1");
-            TowerController controller = selectedTowerPrefab.GetComponent<TowerController>();
-            controller.OnSpawnFromPool();
-            buildingData = controller.BuildingData;
+            selectedTower = ObjectPoolManager.Instance.GetObject("ArcherTower_Lv1").GetComponent<TowerController>();
+            buildingData = selectedTower.BuildingData;
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost.SetValid(false);
         }
@@ -79,10 +78,9 @@ public class BuildingPlacer : MonoBehaviour
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 1), buttonWidth, buttonHeight), $"Build_Tower2"))
         {
             selectedBuildData = true;
-            selectedTowerPrefab = ObjectPoolManager.Instance.GetObject("BallistaTower_LV1");
-            TowerController controller = selectedTowerPrefab.GetComponent<TowerController>();
-            controller.OnSpawnFromPool();
-            buildingData = controller.BuildingData;
+            selectedTower = ObjectPoolManager.Instance.GetObject("BallistaTower_LV1").GetComponent<TowerController>();
+            buildingData = selectedTower.BuildingData;
+            buildingGhost = buildingData.BuildingGhost;
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost.SetValid(false);
         }
@@ -90,10 +88,9 @@ public class BuildingPlacer : MonoBehaviour
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 2), buttonWidth, buttonHeight), $"Build_Tower3"))
         {
             selectedBuildData = true;
-            selectedTowerPrefab = ObjectPoolManager.Instance.GetObject("CanonTower_Lv1");
-            TowerController controller = selectedTowerPrefab.GetComponent<TowerController>();
-            controller.OnSpawnFromPool();
-            buildingData = controller.BuildingData;
+            selectedTower = ObjectPoolManager.Instance.GetObject("CanonTower_Lv1").GetComponent<TowerController>();
+            buildingData = selectedTower.BuildingData;
+            buildingGhost = buildingData.BuildingGhost;
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost.SetValid(false);
         }
@@ -101,10 +98,9 @@ public class BuildingPlacer : MonoBehaviour
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 3), buttonWidth, buttonHeight), $"Build_Tower4"))
         {
             selectedBuildData = true;
-            selectedTowerPrefab = ObjectPoolManager.Instance.GetObject("PoisonTower_Lv1");
-            TowerController controller = selectedTowerPrefab.GetComponent<TowerController>();
-            controller.OnSpawnFromPool();
-            buildingData = controller.BuildingData;
+            selectedTower = ObjectPoolManager.Instance.GetObject("PoisonTower_Lv1").GetComponent<TowerController>();
+            buildingData = selectedTower.BuildingData;
+            buildingGhost = buildingData.BuildingGhost;
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost.SetValid(false);
         }
