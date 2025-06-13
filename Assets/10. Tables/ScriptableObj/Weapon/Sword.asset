@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 0
   Prefab: {fileID: 4849226758443342401, guid: ec3e5cd1efd328241aa63f931f35b15c, type: 3}
-  Stats:
+  WeaponStat:
   - StatType: 2
     ModifierType: 0
     Value: 30
+  - StatType: 3
+    ModifierType: 0
+    Value: 2
   - StatType: 4
     ModifierType: 0
     Value: 4
-  - StatType: 3
-    ModifierType: 0
-    Value: 3
