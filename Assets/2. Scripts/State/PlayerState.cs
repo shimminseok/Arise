@@ -13,7 +13,6 @@ namespace PlayerStates
 
         public void OnUpdate(PlayerController owner)
         {
-            owner.FindTarget();
         }
 
         public void OnFixedUpdate(PlayerController owner)
@@ -94,7 +93,7 @@ namespace PlayerStates
         private IEnumerator DoAttack(PlayerController owner)
         {
             yield return new WaitForSeconds(1f / _atkSpd);
-            owner.Attack();
+            owner.AttackAllTargets();
             _attackDone = true;
         }
 
@@ -111,9 +110,6 @@ namespace PlayerStates
         {
             if (!_attackDone)
                 return PlayerState.Attack;
-
-            if (owner.MoveInput.sqrMagnitude > 0.01f)
-                return owner.IsRunning ? PlayerState.Run : PlayerState.Move;
 
             return PlayerState.Idle;
         }
