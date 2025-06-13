@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9fea9f2f4b3e30468a9b3a20c2ffc27, type: 3}
-  m_Name: NewQuest
+  m_Name: quest_kill_500
   m_EditorClassIdentifier: 
-  QuestId: Quest_kill_10
-  Title: "10\uB9C8\uB9AC \uCC98\uCE58\uD558\uAE30"
-  Description: "\uBAAC\uC2A4\uD130\uB97C 10\uB9C8\uB9AC \uCC98\uCE58\uD558\uC138\uC694."
+  QuestId: quest_kill_500
+  Title: "500\uB9C8\uB9AC \uCC98\uCE58\uD558\uAE30"
+  Description: "\uC801\uC744 100\uB9C8\uB9AC \uCC98\uCE58\uD558\uC138\uC694."
   Condition:
     Type: 0
-    TargetValue: 10
-  RewardGold: 100
+    TargetValue: 500
+  RewardGold: 500
