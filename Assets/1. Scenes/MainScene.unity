@@ -415,7 +415,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolObjectList:
-  - {fileID: 6987377360658992160, guid: 0874e1a80fa32484f9d1d62ae84c45e2, type: 3}
+  - {fileID: 8633950227409755659, guid: c6fee38ddf9cb5a4abe2583e80cd796d, type: 3}
+  - {fileID: 6679644637447044905, guid: af4ec1ab8cffde34b86dcafa0352425f, type: 3}
+  - {fileID: 1648831473136490765, guid: 10a96be0f88bb2b45ac4b1ffa7db2a3f, type: 3}
+  - {fileID: 2275898282774941211, guid: dd9b75e52220ccb4d92acac4ede36e81, type: 3}
   - {fileID: 7349670301093728596, guid: 705f34f937b1acf47ade615e007fd752, type: 3}
   - {fileID: 3417396172482619182, guid: 6f6f19b210ebc6246ac7e093c751a999, type: 3}
   - {fileID: 7322435405920248672, guid: 0a3dd092c3f4235478edda626a9600e5, type: 3}

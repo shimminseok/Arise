@@ -118,4 +118,10 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
             projectileController.SetTarget(this, Target);
         }
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, StatManager.GetValue(StatType.AttackRange));
+    }
 }

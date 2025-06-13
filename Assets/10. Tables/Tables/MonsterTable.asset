@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: MonsterTable
   m_EditorClassIdentifier: 
   dataList:
-  - {fileID: 11400000, guid: 1489cc14429b4f54fa27bc5560a65ed0, type: 2}
+  - {fileID: 11400000, guid: e8611efc7b771434ea8946d9f0a2638f, type: 2}
+  - {fileID: 11400000, guid: ec72dd5813c8a6947ae9397a1237cf0d, type: 2}
+  - {fileID: 11400000, guid: d25995e1699a9774e8f86fa77c4dbdea, type: 2}
+  - {fileID: 11400000, guid: fbb3605b5d37e9f4c8d3b9481337cd7d, type: 2}

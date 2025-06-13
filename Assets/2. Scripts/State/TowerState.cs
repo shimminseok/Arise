@@ -25,7 +25,7 @@ namespace TowerStates
 
         public TowerState CheckTransition(TowerController owner)
         {
-            bool canAttack =
+            var canAttack =
                 owner.IsPlaced &&
                 owner.Target != null &&
                 !owner.Target.IsDead &&
@@ -56,7 +56,7 @@ namespace TowerStates
         {
             if (owner.FireTransformRoot != null)
             {
-                Vector3 targetPos = owner.Target.Collider.transform.position;
+                var targetPos = owner.Target.Collider.transform.position;
                 targetPos.y = owner.FireTransformRoot.position.y;
                 owner.FireTransformRoot.LookAt(targetPos);
             }
