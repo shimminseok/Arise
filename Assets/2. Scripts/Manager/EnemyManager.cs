@@ -8,6 +8,8 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
     [SerializeField] private Transform _endPoint;
     public List<EnemyController> Enemies { get; private set; } = new List<EnemyController>();
 
+    private int _arrivalOrder = 0;
+
     protected override void Awake()
     {
         base.Awake();
@@ -33,10 +35,12 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
 
     public IEnumerator StartMonsterSpawn()
     {
-        while (true)
+        int count = 50;
+        while (count > 0)
         {
             yield return new WaitForSeconds(1f);
             SpawnMonster();
+            count--;
         }
 
         yield return null;
@@ -46,6 +50,16 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
     {
         ObjectPoolManager.Instance.ReturnObject(monster.GameObject);
         Enemies.Remove(monster);
+    }
+
+    public int GetArrivalOrder()
+    {
+        return _arrivalOrder++;
+    }
+
+    public void ResetArrivalOrder()
+    {
+        _arrivalOrder = 0;
     }
 
     protected override void OnDestroy()
