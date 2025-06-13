@@ -1,27 +1,28 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class QuestManager : SceneOnlySingleton<QuestManager>
 {
-    [SerializeField] private List<QuestData> _questDatabase = new();
-
     private Dictionary<string, QuestData> _questLookup = new();
     private Dictionary<string, QuestProgress> _progressLookup = new();
 
     protected override void Awake()
     {
         base.Awake();
-        Initialize();
+        // 아무 것도 하지 않음. 초기화는 Start에서.
     }
 
-    private void Initialize()
+    private IEnumerator Start()
     {
-        LoadFromTable();
-    }
+        //  1프레임 딜레이 → TableManager 등록을 기다림
+        yield return null;
 
-    private void LoadFromTable()
-    {
-        QuestTable questTable = TableManager.Instance.GetTable<QuestTable>();
+        // TableManager에서 안전하게 QuestTable 요청
+        var questTable = TableManager.Instance.GetTable<QuestTable>();
+        Debug.Log("QuestTable 불러오기 성공");
+
+        // 등록된 퀘스트들 초기화
         foreach (var pair in questTable.DataDic)
         {
             _questLookup[pair.Key] = pair.Value;
@@ -38,6 +39,8 @@ public class QuestManager : SceneOnlySingleton<QuestManager>
                 _progressLookup[pair.Key] = progress;
             }
         }
+
+        Debug.Log($" 총 퀘스트 수: {_questLookup.Count}");
     }
 
     public void UpdateProgress(QuestType type, int amount = 1)
@@ -51,7 +54,6 @@ public class QuestManager : SceneOnlySingleton<QuestManager>
                 continue;
 
             progress.CurrentValue += amount;
-
             if (progress.CurrentValue >= data.Condition.TargetValue)
             {
                 progress.CurrentValue = data.Condition.TargetValue;
@@ -66,13 +68,14 @@ public class QuestManager : SceneOnlySingleton<QuestManager>
         if (!_questLookup.ContainsKey(questId) || !_progressLookup.ContainsKey(questId))
             return;
 
-        QuestProgress progress = _progressLookup[questId];
+        var progress = _progressLookup[questId];
         if (!progress.IsCompleted || progress.RewardClaimed) return;
 
         progress.RewardClaimed = true;
-        int reward = _questLookup[questId].RewardGold;
+        var data = _questLookup[questId];
 
-        Debug.Log($"보상 수령 완료: {reward} 골드 지급");
+        Debug.Log($"보상 수령: {data.RewardGold} 골드 지급");
+        // 골드 지급 로직은 외부 시스템에서 처리할 수 있도록 설계
     }
 
     public IEnumerable<(QuestData Data, QuestProgress Progress)> GetAllProgress()
