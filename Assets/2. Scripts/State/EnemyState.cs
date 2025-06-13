@@ -62,7 +62,7 @@ namespace EnemyStates
         {
             if (owner.Target != null && !owner.Target.IsDead)
             {
-                return owner.IsTargetInAttackRange() && owner.Agent.remainingDistance < 0.5f ? EnemyState.Attack : EnemyState.Move;
+                return owner.IsTargetInAttackRange() ? EnemyState.Attack : EnemyState.Move;
             }
 
             return EnemyState.Idle;
