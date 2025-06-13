@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using PlayerStates;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(InputController))]
 [RequireComponent(typeof(CharacterController))]
@@ -11,8 +12,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerAnimation))]
 public class PlayerController : BaseController<PlayerController, PlayerState>, IAttackable, IDamageable
 {
-    [SerializeField] public LayerMask groundMask;
-    
+    [SerializeField] private WeaponController weaponController;
     private InputController _inputController;
     private CharacterController _characterController;
     private ForceReceiver _forceReceiver;
@@ -37,6 +37,7 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
     public IDamageable      Target           { get; private set; }
     public bool             IsDead           { get; private set; }
     public Transform        Transform        => transform;
+
 
 
 
@@ -65,6 +66,8 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
         action.Attack.performed += context => _attackTriggered = true;
         action.Run.performed += context => _isRunning = true;
         action.Run.canceled += context => _isRunning = false;
+        
+        AttackStat = weaponController.StatManager.GetStat<CalculatedStat>(StatType.AttackPow);
     }
 
     protected override void Update()
@@ -86,7 +89,7 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
         {
             PlayerState.Idle   => new IdleState(),
             PlayerState.Move   => new MoveState(),
-            PlayerState.Attack => new AttackState(StatManager.GetValue(StatType.AttackSpd), StatManager.GetValue(StatType.AttackRange)),
+            PlayerState.Attack => new AttackState(weaponController.StatManager.GetValue(StatType.AttackSpd), weaponController.StatManager.GetValue(StatType.AttackRange)),
             PlayerState.Run    => new RunState(),
             _                  => null
         };
@@ -143,7 +146,7 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
         Target = null;
         _targets.Clear();
         
-        Collider[] hits = Physics.OverlapSphere(transform.position, StatManager.GetValue(StatType.AttackRange));
+        Collider[] hits = Physics.OverlapSphere(transform.position, weaponController.StatManager.GetValue(StatType.AttackRange));
         
         foreach (var hit in hits)
         {
@@ -191,6 +194,6 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, StatManager?.GetValue(StatType.AttackRange) ?? 1f);
+        Gizmos.DrawWireSphere(transform.position, weaponController.StatManager?.GetValue(StatType.AttackRange) ?? 1f);
     }
 }

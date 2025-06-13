@@ -9,17 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e2caa18a63725c439eb26857139c485, type: 3}
-  m_Name: PlayerData
+  m_Script: {fileID: 11500000, guid: b803e47b6ae62e74db8b0172dc3d0497, type: 3}
+  m_Name: Sword
   m_EditorClassIdentifier: 
   ID: 0
-  PlayerStats:
-  - StatType: 5
+  Prefab: {fileID: 4849226758443342401, guid: ec3e5cd1efd328241aa63f931f35b15c, type: 3}
+  Stats:
+  - StatType: 2
     ModifierType: 0
-    Value: 10
-  - StatType: 9
+    Value: 30
+  - StatType: 4
     ModifierType: 0
-    Value: 1.5
-  - StatType: 10
+    Value: 4
+  - StatType: 3
     ModifierType: 0
-    Value: 10
+    Value: 3
