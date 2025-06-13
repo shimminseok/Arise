@@ -18,14 +18,12 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
     private ForceReceiver _forceReceiver;
     
     private Vector2 _moveInput;
-    private Vector2 _lookInput;
     private bool _isRunning;
     private bool _attackTriggered;
     
     private List<IDamageable> _targets = new List<IDamageable>();
 
     public Vector2 MoveInput => _moveInput;
-    public Vector2 LookInput => _lookInput;
     public bool IsRunning => _isRunning;
     public bool AttackTriggered
     {
@@ -64,7 +62,6 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
         var action = _inputController.PlayerActions;
         action.Move.performed += context => _moveInput = context.ReadValue<Vector2>();
         action.Move.canceled += context => _moveInput = Vector2.zero;
-        action.Look.performed += context => _lookInput = context.ReadValue<Vector2>();
         action.Attack.performed += context => _attackTriggered = true;
         action.Run.performed += context => _isRunning = true;
         action.Run.canceled += context => _isRunning = false;
@@ -75,7 +72,6 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
         base.Update();
         
         Rotate();
-        _lookInput = _inputController.PlayerActions.Look.ReadValue<Vector2>();
         FindTarget();
     }
 
@@ -114,18 +110,12 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
 
     public void Rotate()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Vector3 moveDirection = new Vector3(_moveInput.x, 0f, _moveInput.y);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f, groundMask))
+        if (moveDirection.sqrMagnitude > 0.01f)
         {
-            Vector3 direction = hit.point - transform.position;
-            direction.y = 0f;
-
-            if (direction.sqrMagnitude > 0.01f)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
-            }
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
         }
     }
     
