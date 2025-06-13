@@ -3,22 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using EnemyStates;
 using UnityEngine;
+using UnityEngine.AI;
 
 
 [RequireComponent(typeof(CapsuleCollider))]
+[RequireComponent(typeof(NavMeshAgent))]
 public class EnemyController : BaseController<EnemyController, EnemyState>, IPoolObject, IAttackable, IDamageable
 {
     [SerializeField] private string poolID;
     [SerializeField] private int poolSize;
     [SerializeField] private MonsterSO m_MonsterSo;
-    public StatBase    AttackStat     { get; private set; }
-    public IDamageable Target         { get; private set; }
-    public bool        IsDead         { get; private set; }
-    public Collider    Collider       { get; private set; }
-    public Vector3     TargetPosition { get; private set; }
-    public GameObject  GameObject     => gameObject;
-    public string      PoolID         => poolID;
-    public int         PoolSize       => poolSize;
+    public StatBase     AttackStat     { get; private set; }
+    public IDamageable  Target         { get; private set; }
+    public bool         IsDead         { get; private set; }
+    public Collider     Collider       { get; private set; }
+    public Vector3      TargetPosition { get; private set; }
+    public NavMeshAgent Agent          { get; private set; }
+
+    public GameObject GameObject => gameObject;
+    public string     PoolID     => poolID;
+    public int        PoolSize   => poolSize;
 
     private HPBarUI _healthBarUI;
     private AttackPoint _assignedPoint;
@@ -26,6 +30,7 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
     protected override void Awake()
     {
         base.Awake();
+        Agent = GetComponent<NavMeshAgent>();
     }
 
     protected override void Start()
