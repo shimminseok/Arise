@@ -8,12 +8,10 @@ namespace PlayerStates
     {
         public void OnEnter(PlayerController owner)
         {
-            owner.Agent.isStopped = true;
         }
 
         public void OnUpdate(PlayerController owner)
         {
-            owner.FindTarget();
         }
 
         public void OnFixedUpdate(PlayerController owner)
@@ -26,13 +24,14 @@ namespace PlayerStates
 
         public PlayerState CheckTransition(PlayerController owner)
         {
-            if (owner.AttackTriggered)
-                return PlayerState.Attack;
+            // if (owner.AttackTriggered)
 
             if (owner.MoveInput.sqrMagnitude > 0.01f)
             {
                 return owner.IsRunning ? PlayerState.Run : PlayerState.Move;
             }
+
+            return PlayerState.Attack;
 
             return PlayerState.Idle;
         }
@@ -42,7 +41,7 @@ namespace PlayerStates
     {
         public void OnEnter(PlayerController owner)
         {
-            owner.Agent.isStopped = false;
+            owner.PlayerAnimation.Animator.SetBool(owner.PlayerAnimation.AnimationData.WalkParameterHash, true);
         }
 
         public void OnUpdate(PlayerController owner)
@@ -54,8 +53,9 @@ namespace PlayerStates
         {
         }
 
-        public void OnExit(PlayerController entity)
+        public void OnExit(PlayerController owner)
         {
+            owner.PlayerAnimation.Animator.SetBool(owner.PlayerAnimation.AnimationData.WalkParameterHash, false);
         }
 
         public PlayerState CheckTransition(PlayerController owner)
@@ -88,32 +88,35 @@ namespace PlayerStates
         public void OnEnter(PlayerController owner)
         {
             _attackDone = false;
+            owner.PlayerAnimation.Animator.SetBool(owner.PlayerAnimation.AnimationData.AttackParameterHash, true);
             owner.StartCoroutine(DoAttack(owner));
         }
 
         private IEnumerator DoAttack(PlayerController owner)
         {
             yield return new WaitForSeconds(1f / _atkSpd);
-            owner.Attack();
+            owner.AttackAllTargets();
             _attackDone = true;
         }
 
-        public void OnUpdate(PlayerController owner) { }
+        public void OnUpdate(PlayerController owner)
+        {
+        }
 
-        public void OnFixedUpdate(PlayerController owner) { }
+        public void OnFixedUpdate(PlayerController owner)
+        {
+        }
 
         public void OnExit(PlayerController owner)
         {
             owner.AttackTriggered = false;
+            owner.PlayerAnimation.Animator.SetBool(owner.PlayerAnimation.AnimationData.AttackParameterHash, false);
         }
 
         public PlayerState CheckTransition(PlayerController owner)
         {
             if (!_attackDone)
                 return PlayerState.Attack;
-
-            if (owner.MoveInput.sqrMagnitude > 0.01f)
-                return owner.IsRunning ? PlayerState.Run : PlayerState.Move;
 
             return PlayerState.Idle;
         }
@@ -123,7 +126,8 @@ namespace PlayerStates
     {
         public void OnEnter(PlayerController owner)
         {
-            owner.Agent.isStopped = false;
+            owner.PlayerAnimation.Animator.SetBool(owner.PlayerAnimation.AnimationData.WalkParameterHash, true);
+            owner.PlayerAnimation.Animator.SetBool(owner.PlayerAnimation.AnimationData.RunParameterHash, true);
         }
 
         public void OnUpdate(PlayerController owner)
@@ -131,10 +135,13 @@ namespace PlayerStates
             owner.Movement();
         }
 
-        public void OnFixedUpdate(PlayerController owner) { }
+        public void OnFixedUpdate(PlayerController owner)
+        {
+        }
 
         public void OnExit(PlayerController owner)
         {
+            owner.PlayerAnimation.Animator.SetBool(owner.PlayerAnimation.AnimationData.RunParameterHash, false);
         }
 
         public PlayerState CheckTransition(PlayerController owner)

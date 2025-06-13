@@ -8,8 +8,7 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
     [SerializeField] private Transform _endPoint;
     public List<EnemyController> Enemies { get; private set; } = new List<EnemyController>();
 
-    public Vector3 Endpoint => _endPoint.position;
-    public Vector3 StartPoint => _startPoint.position;
+    private int _arrivalOrder = 0;
 
     protected override void Awake()
     {
@@ -28,6 +27,7 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
         {
             GameObject monsterObj  = ObjectPoolManager.Instance.GetObject(monsterSo.name);
             var        monsterCtrl = monsterObj.GetComponent<EnemyController>();
+            monsterCtrl.Initialized(_startPoint.position, _endPoint.position);
             Enemies.Add(monsterCtrl);
         }
     }
@@ -35,10 +35,13 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
 
     public IEnumerator StartMonsterSpawn()
     {
+        int count = 50;
+        // while (count > 0)
         while (true)
         {
             yield return new WaitForSeconds(1f);
             SpawnMonster();
+            count--;
         }
 
         yield return null;
@@ -48,6 +51,16 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
     {
         ObjectPoolManager.Instance.ReturnObject(monster.GameObject);
         Enemies.Remove(monster);
+    }
+
+    public int GetArrivalOrder()
+    {
+        return _arrivalOrder++;
+    }
+
+    public void ResetArrivalOrder()
+    {
+        _arrivalOrder = 0;
     }
 
     protected override void OnDestroy()

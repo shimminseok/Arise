@@ -33,6 +33,8 @@ public class TableManager : Singleton<TableManager>
         return tableDic[typeof(T)] as T;
     }
 
+   
+
 #if UNITY_EDITOR
     public void AutoAssignTables()
     {

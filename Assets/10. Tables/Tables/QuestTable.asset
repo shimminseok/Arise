@@ -12,4 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7243f3b01d0e00a4588d7c277ef34798, type: 3}
   m_Name: QuestTable
   m_EditorClassIdentifier: 
-  dataList: []
+  dataList:
+  - {fileID: 11400000, guid: e6710c48c4435ac4cb858f41f2175425, type: 2}
+  - {fileID: 11400000, guid: 0344822ce922483449d22b369665d77b, type: 2}
+  - {fileID: 11400000, guid: f97bb776184855545a318d6166477c5d, type: 2}
+  - {fileID: 11400000, guid: dea6cbed0f23b814288147b0301a15ab, type: 2}
+  - {fileID: 11400000, guid: ecd333edf79c7e845b207fc761e493e8, type: 2}
+  - {fileID: 11400000, guid: 448d466a847ce4c41bc04e3391883f18, type: 2}
+  - {fileID: 11400000, guid: bdfc295de98cf8f4b8fcbce8180fb73e, type: 2}
+  - {fileID: 11400000, guid: f66d0efd5768374418a7e1b44bb4d196, type: 2}
+  - {fileID: 11400000, guid: a279fa3929a7b2247911bb25394ba6f0, type: 2}

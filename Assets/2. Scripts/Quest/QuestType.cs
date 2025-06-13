@@ -3,5 +3,7 @@ public enum QuestType
     KillEnemies,
     ReachWave,
     UseSkill,
-    UpgradeWeapon
+    UpgradeWeapon,
+    TimeLimitClear,
+    CollectGold
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cinemachine;
+using UnityEngine;
 
 namespace TowerStates
 {
@@ -10,7 +11,8 @@ namespace TowerStates
 
         public void OnUpdate(TowerController owner)
         {
-            owner.FindTarget();
+            if (owner.IsPlaced)
+                owner.FindTarget();
         }
 
         public void OnFixedUpdate(TowerController owner)
@@ -23,17 +25,13 @@ namespace TowerStates
 
         public TowerState CheckTransition(TowerController owner)
         {
-            if (owner.Target == null || owner.Target.IsDead)
-                return TowerState.Idle;
+            bool canAttack =
+                owner.IsPlaced &&
+                owner.Target != null &&
+                !owner.Target.IsDead &&
+                owner.IsTargetInAttackRange();
 
-
-            if (owner.StatManager.GetValue(StatType.AttackRange) * 10 >= owner.GetTargetDistance())
-            {
-                return TowerState.Attack;
-            }
-
-
-            return TowerState.Idle;
+            return canAttack ? TowerState.Attack : TowerState.Idle;
         }
     }
 
@@ -56,6 +54,13 @@ namespace TowerStates
 
         public void OnUpdate(TowerController owner)
         {
+            if (owner.FireTransformRoot != null)
+            {
+                Vector3 targetPos = owner.Target.Collider.transform.position;
+                targetPos.y = owner.FireTransformRoot.position.y;
+                owner.FireTransformRoot.LookAt(targetPos);
+            }
+
             attackTimer += Time.deltaTime;
             if (attackTimer >= attackSpd)
             {
@@ -74,7 +79,7 @@ namespace TowerStates
 
         public TowerState CheckTransition(TowerController owner)
         {
-            if (owner.Target == null || owner.Target.IsDead)
+            if (owner.Target == null || owner.Target.IsDead || !owner.IsTargetInAttackRange())
                 return TowerState.Idle;
 
             return TowerState.Attack;
