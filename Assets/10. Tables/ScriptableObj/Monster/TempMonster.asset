@@ -18,13 +18,13 @@ MonoBehaviour:
   Stats:
   - StatType: 0
     ModifierType: 0
-    Value: 1000
+    Value: 200
   - StatType: 1
     ModifierType: 0
-    Value: 1000
+    Value: 200
   - StatType: 2
     ModifierType: 0
-    Value: 100
+    Value: 1
   - StatType: 3
     ModifierType: 0
     Value: 1

@@ -45,10 +45,12 @@ public class BuildingPlacer : MonoBehaviour
     {
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Cell")))
+        {
             return hit.point;
+        }
 
         Vector3 screenPosition = Input.mousePosition;
-        screenPosition.z = 25f;
+        screenPosition.z = 50f;
 
         return mainCamera.ScreenToWorldPoint(screenPosition);
     }
@@ -68,7 +70,7 @@ public class BuildingPlacer : MonoBehaviour
             selectedBuildData = true;
             selectedTowerPrefab = ObjectPoolManager.Instance.GetObject("ArcherTower_Lv1");
             TowerController controller = selectedTowerPrefab.GetComponent<TowerController>();
-            controller.InitFromPool();
+            controller.OnSpawnFromPool();
             buildingData = controller.BuildingData;
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost.SetValid(false);
@@ -79,7 +81,7 @@ public class BuildingPlacer : MonoBehaviour
             selectedBuildData = true;
             selectedTowerPrefab = ObjectPoolManager.Instance.GetObject("BallistaTower_LV1");
             TowerController controller = selectedTowerPrefab.GetComponent<TowerController>();
-            controller.InitFromPool();
+            controller.OnSpawnFromPool();
             buildingData = controller.BuildingData;
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost.SetValid(false);
@@ -90,7 +92,7 @@ public class BuildingPlacer : MonoBehaviour
             selectedBuildData = true;
             selectedTowerPrefab = ObjectPoolManager.Instance.GetObject("CanonTower_Lv1");
             TowerController controller = selectedTowerPrefab.GetComponent<TowerController>();
-            controller.InitFromPool();
+            controller.OnSpawnFromPool();
             buildingData = controller.BuildingData;
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost.SetValid(false);
@@ -101,7 +103,7 @@ public class BuildingPlacer : MonoBehaviour
             selectedBuildData = true;
             selectedTowerPrefab = ObjectPoolManager.Instance.GetObject("PoisonTower_Lv1");
             TowerController controller = selectedTowerPrefab.GetComponent<TowerController>();
-            controller.InitFromPool();
+            controller.OnSpawnFromPool();
             buildingData = controller.BuildingData;
             buildingGhost = buildingData.BuildingGhost;
             buildingGhost.SetValid(false);
