@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 0cdefd137975fa844929c04b06747885, type: 2}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,6 +367,7 @@ MonoBehaviour:
   tableList:
   - {fileID: 11400000, guid: b01cee55146ba374792665e8942449b5, type: 2}
   - {fileID: 11400000, guid: a0843ee72340ab144833fe367585345f, type: 2}
+  - {fileID: 11400000, guid: 8d6059e8c26361f419ec62ae1a9e0948, type: 2}
   - {fileID: 11400000, guid: 73ecddec5d55c124cadce51c4993341a, type: 2}
 --- !u!4 &1373279388
 Transform:
@@ -461,6 +462,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: QuestManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688132345411769606, guid: e5ffbbd8bcd7fee49a9264ef0e03402b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7829062966448502875, guid: e5ffbbd8bcd7fee49a9264ef0e03402b,
         type: 3}
