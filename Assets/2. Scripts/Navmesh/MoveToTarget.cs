@@ -6,9 +6,10 @@ public class MoveToTarget : MonoBehaviour
     public Transform target;           // 이동 목표 지점
     private NavMeshAgent agent;        // 내 NavMeshAgent
 
-    void Start()
+
+    void OnEnable()
     {
-        // 내 NavMeshAgent 가져오기
+                // 내 NavMeshAgent 가져오기
         agent = GetComponent<NavMeshAgent>();
 
         // 목표 지점으로 이동 명령
@@ -16,6 +17,10 @@ public class MoveToTarget : MonoBehaviour
         {
             agent.SetDestination(target.position);
         }
+    }
+    void Start()
+    {
+
     }
 
     void Update()
