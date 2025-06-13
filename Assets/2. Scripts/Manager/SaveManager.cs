@@ -7,7 +7,6 @@ using System;
 public class GameSaveData
 {
     public List<QuestProgress> Quests = new();
-    public List<string> Achievements = new();
     public List<string> UnlockedSkills = new();
     public List<BuildingSaveData> Buildings = new();
 
@@ -48,83 +47,72 @@ public class SaveManager : SceneOnlySingleton<SaveManager>
 
         string json = File.ReadAllText(SavePath);
         GameSaveData data = JsonUtility.FromJson<GameSaveData>(json);
-        Debug.Log(" 게임 불러오기 완료");
+        Debug.Log("게임 불러오기 완료");
         return data;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            Debug.Log(" 저장 요청됨");
-            var data = CollectSaveDataFromGame();
-            SaveGame(data);
-        }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.S))
+    //    {
+    //        Debug.Log("저장 요청됨");
+    //        var data = CollectSaveDataFromGame();
+    //        SaveGame(data);
+    //    }
 
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Debug.Log("불러오기 요청됨");
-            var data = LoadGame();
-            if (data != null) ApplySaveDataToGame(data);
-        }
-    }
+    //    if (Input.GetKeyDown(KeyCode.L))
+    //    {
+    //        Debug.Log("불러오기 요청됨");
+    //        var data = LoadGame();
+    //        if (data != null) ApplySaveDataToGame(data);
+    //    }
+    //}
 
-    private GameSaveData CollectSaveDataFromGame()
-    {
-        GameSaveData data = new();
+    //private GameSaveData CollectSaveDataFromGame()
+    //{
+    //    GameSaveData data = new();
 
-        if (QuestManager.Instance != null)
-        {
-            foreach (var (quest, progress) in QuestManager.Instance.GetAllProgress())
-                data.Quests.Add(progress);
-        }
+    //    if (QuestManager.Instance != null)
+    //    {
+    //        foreach (var (quest, progress) in QuestManager.Instance.GetAllProgress())
+    //            data.Quests.Add(progress);
+    //    }
 
-        // 예시: 업적 시스템에서 완료된 ID 목록 가져오기
-        data.Achievements = AchievementManager.Instance?.GetUnlockedIds() ?? new();
+    //    data.UnlockedSkills = SkillManager.Instance?.GetUnlockedSkillIds() ?? new();
 
-        // 예시: 스킬 시스템에서 해금된 ID 목록 가져오기
-        data.UnlockedSkills = SkillManager.Instance?.GetUnlockedSkillIds() ?? new();
+    //    var player = GameObject.FindWithTag("Player");
+    //    if (player != null && player.TryGetComponent<PlayerController>(out var pc))
+    //    {
+    //         data.PlayerPosition = player.transform.position;
+    //    }
 
-        // 플레이어 상태
-        var player = GameObject.FindWithTag("Player");
-        if (player != null && player.TryGetComponent<PlayerController>(out var pc))
-        {
-            data.PlayerLevel = pc.Level;
-            data.PlayerHP = pc.CurrentHP;
-            data.PlayerPosition = player.transform.position;
-        }
+    //    data.Gold = ResourceManager.Instance?.Gold ?? 0;
+    //    data.MaxClearedStage = StageManager.Instance?.MaxStage ?? 0;
 
-        data.Gold = ResourceManager.Instance?.Gold ?? 0;
-        data.MaxClearedStage = StageManager.Instance?.MaxStage ?? 0;
+    //    data.Buildings = BuildingManager.Instance?.GetAllBuildingData() ?? new();
 
-        // 건축물 저장 예시
-        data.Buildings = BuildingManager.Instance?.GetAllBuildingData() ?? new();
+    //    return data;
+    //}
 
-        return data;
-    }
+    //private void ApplySaveDataToGame(GameSaveData data)
+    //{
+    //    QuestManager.Instance?.ApplyLoadedProgress(data.Quests);
+    //    SkillManager.Instance?.ApplyUnlockedSkillIds(data.UnlockedSkills);
 
-    private void ApplySaveDataToGame(GameSaveData data)
-    {
-        QuestManager.Instance?.ApplyLoadedProgress(data.Quests);
-        AchievementManager.Instance?.ApplyUnlockedIds(data.Achievements);
-        SkillManager.Instance?.ApplyUnlockedSkillIds(data.UnlockedSkills);
+    //    var player = GameObject.FindWithTag("Player");
+    //    if (player != null && player.TryGetComponent<PlayerController>(out var pc))
+    //    {
+    //         player.transform.position = data.PlayerPosition;
+    //    }
 
-        var player = GameObject.FindWithTag("Player");
-        if (player != null && player.TryGetComponent<PlayerController>(out var pc))
-        {
-            pc.Level = data.PlayerLevel;
-            pc.CurrentHP = data.PlayerHP;
-            player.transform.position = data.PlayerPosition;
-        }
+    //    if (ResourceManager.Instance != null)
+    //        ResourceManager.Instance.Gold = data.Gold;
 
-        if (ResourceManager.Instance != null)
-            ResourceManager.Instance.Gold = data.Gold;
+    //    if (StageManager.Instance != null)
+    //        StageManager.Instance.MaxStage = data.MaxClearedStage;
 
-        if (StageManager.Instance != null)
-            StageManager.Instance.MaxStage = data.MaxClearedStage;
+    //    BuildingManager.Instance?.RebuildFromData(data.Buildings);
 
-        BuildingManager.Instance?.RebuildFromData(data.Buildings);
-
-        Debug.Log("게임 불러오기 완료 및 적용됨");
-    }
+    //    Debug.Log("게임 불러오기 완료 및 적용됨");
+    //}
 }
