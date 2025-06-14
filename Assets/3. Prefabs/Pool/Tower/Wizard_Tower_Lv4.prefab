@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -3890760653683909816}
   - component: {fileID: -5406734600837877981}
   - component: {fileID: 9016807988749845000}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wizard_Tower_Lv4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolId: WizardTower_Lv4
   poolSize: 10
-  towerSO: {fileID: 0}
+  towerSO: {fileID: 11400000, guid: c7b4622c1ed868042aa837feb664ecc3, type: 2}
   ProjectilePoolId: 
   fireTransform: {fileID: 0}
   fireWeaponTransform: {fileID: 0}
@@ -178,7 +178,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 2
+  m_Height: 15
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 7.5, z: 0}

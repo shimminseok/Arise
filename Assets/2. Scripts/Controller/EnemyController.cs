@@ -104,6 +104,16 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         }
     }
 
+    public void StopMovement()
+    {
+        if (Agent.enabled)
+        {
+            Agent.ResetPath();
+            Agent.isStopped = true;
+            Agent.velocity = Vector3.zero;
+        }
+    }
+
     public void AssignAttackPoint()
     {
         _assignedPoint = CommandCenter.Instance.GetAvailablePoint();
@@ -141,7 +151,9 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
     public void Attack()
     {
         Target?.TakeDamage(this);
+        Target?.TakeDamage(this);
     }
+
 
     public void TakeDamage(IAttackable attacker)
     {

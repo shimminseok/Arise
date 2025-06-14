@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1183050111588591998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1058142554003859781}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1058142554003859781
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183050111588591998}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 13.450001, z: 1.47}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3120062429435575381}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1253676370598342433
 GameObject:
   m_ObjectHideFlags: 0
@@ -17,7 +48,7 @@ GameObject:
   - component: {fileID: 1200957075156123552}
   - component: {fileID: 8642565261940015620}
   - component: {fileID: 8029268368463161200}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ballista_Tower_Lv3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +67,8 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1058142554003859781}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1294706229881844940
@@ -156,8 +188,8 @@ MonoBehaviour:
   poolId: BallistaTower_LV3
   poolSize: 10
   towerSO: {fileID: 11400000, guid: 1ef1ee23a3462494e93bcf8cac92ad9a, type: 2}
-  ProjectilePoolId: 
-  fireTransform: {fileID: 0}
+  ProjectilePoolId: Ballista_shell
+  fireTransform: {fileID: 1058142554003859781}
   fireWeaponTransform: {fileID: 0}
 --- !u!136 &8029268368463161200
 CapsuleCollider:
@@ -178,7 +210,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 2
+  m_Height: 15
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 7.5, z: 0}

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -7177739894907692146}
   - component: {fileID: 537256410619434174}
   - component: {fileID: 1290958824845097611}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cannon_Tower_Lv4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,8 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1738736558640351485}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2622928317879590494
@@ -156,8 +157,8 @@ MonoBehaviour:
   poolId: CanonTower_Lv4
   poolSize: 10
   towerSO: {fileID: 11400000, guid: c314dd9ee66c62b488b4cd178f95efa5, type: 2}
-  ProjectilePoolId: 
-  fireTransform: {fileID: 0}
+  ProjectilePoolId: Cannom_shell
+  fireTransform: {fileID: 1738736558640351485}
   fireWeaponTransform: {fileID: 0}
 --- !u!136 &1290958824845097611
 CapsuleCollider:
@@ -178,7 +179,38 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 2
+  m_Height: 15
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 7.5, z: 0}
+--- !u!1 &7816438392476517566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1738736558640351485}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1738736558640351485
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7816438392476517566}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 13.7, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5858580359111920621}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

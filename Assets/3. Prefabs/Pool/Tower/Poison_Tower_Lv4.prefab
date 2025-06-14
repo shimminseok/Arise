@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &474635581855964535
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4878391879149391626}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4878391879149391626
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474635581855964535}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 14, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8303329786205762787}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2111355078768322255
 GameObject:
   m_ObjectHideFlags: 0
@@ -17,7 +48,7 @@ GameObject:
   - component: {fileID: 7381305291700806960}
   - component: {fileID: 5160910858496427565}
   - component: {fileID: 6320171510265404546}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Poison_Tower_Lv4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +67,8 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4878391879149391626}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7087816260456475724
@@ -156,8 +188,8 @@ MonoBehaviour:
   poolId: PoisonTower_Lv4
   poolSize: 10
   towerSO: {fileID: 11400000, guid: dea915742b8da3347b50f6a22ee90d3b, type: 2}
-  ProjectilePoolId: 
-  fireTransform: {fileID: 0}
+  ProjectilePoolId: Poison_shell
+  fireTransform: {fileID: 4878391879149391626}
   fireWeaponTransform: {fileID: 0}
 --- !u!136 &6320171510265404546
 CapsuleCollider:
@@ -178,7 +210,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 2
+  m_Height: 15
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 7.5, z: 0}

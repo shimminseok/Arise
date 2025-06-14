@@ -16,12 +16,14 @@ public abstract class BaseController<TController, TState> : MonoBehaviour where 
     private StateMachine<TController, TState> stateMachine;
     private IState<TController, TState>[] states;
     protected TState CurrentState;
+    public TController Controller { get; private set; }
 
     protected virtual void Awake()
     {
         StatManager = GetComponent<StatManager>();
         StatusEffectManager = GetComponent<StatusEffectManager>();
         stateMachine = new StateMachine<TController, TState>();
+        Controller = (TController)this;
     }
 
     protected virtual void Start()

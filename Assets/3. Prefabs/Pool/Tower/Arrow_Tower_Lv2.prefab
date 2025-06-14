@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -3659950801730356605}
   - component: {fileID: -4764631801799129903}
   - component: {fileID: 1645960249168709972}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Arrow_Tower_Lv2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,8 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 891666579454414540}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6832232986566493973
@@ -156,8 +157,8 @@ MonoBehaviour:
   poolId: ArcherTower_Lv2
   poolSize: 10
   towerSO: {fileID: 11400000, guid: ee92003cd4fa6e342b6dace0aca82926, type: 2}
-  ProjectilePoolId: 
-  fireTransform: {fileID: 0}
+  ProjectilePoolId: Archer_shell_LV2
+  fireTransform: {fileID: 891666579454414540}
   fireWeaponTransform: {fileID: 0}
 --- !u!136 &1645960249168709972
 CapsuleCollider:
@@ -178,7 +179,38 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 2
+  m_Height: 15
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 7.5, z: 0}
+--- !u!1 &4710239851482037597
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 891666579454414540}
+  m_Layer: 0
+  m_Name: FirePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &891666579454414540
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4710239851482037597}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7646388140874051266}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

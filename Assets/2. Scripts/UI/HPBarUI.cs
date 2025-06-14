@@ -1,47 +1,61 @@
 using EnemyStates;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 
 public class HPBarUI : MonoBehaviour, IPoolObject
 {
+    [FormerlySerializedAs("_poolId")]
     [SerializeField] private string poolId;
+
+    [FormerlySerializedAs("_poolSize")]
     [SerializeField] private int poolSize;
 
+    [FormerlySerializedAs("_barRect")]
     [SerializeField] RectTransform barRect;
+
+    [FormerlySerializedAs("_fillImage")]
     [SerializeField] Image fillImage;
+
+    [FormerlySerializedAs("_offset")]
     [SerializeField] Vector3 offset;
 
     public GameObject GameObject => gameObject;
     public string     PoolID     => poolId;
     public int        PoolSize   => poolSize;
 
-    private BaseController<EnemyController, EnemyState> target;
-    private Transform targetTrans;
-    private Camera mainCamera;
-
+    private BaseController<EnemyController, EnemyState> _target;
+    private Transform _targetTransform;
+    private Camera _mainCamera;
+    private float heightOffset;
     private void Awake()
     {
-        mainCamera = Camera.main;
+        _mainCamera = Camera.main;
     }
 
     public void Initialize(BaseController<EnemyController, EnemyState> owner)
     {
-        target = owner;
+        _target = owner;
         OnSpawnFromPool();
     }
 
     public void UpdatePosion()
     {
-        Vector3 screenPos = mainCamera.WorldToScreenPoint(targetTrans.position + offset);
+        Vector3 screenPos = _mainCamera.WorldToScreenPoint(_targetTransform.position + offset);
         barRect.position = screenPos;
     }
 
     public void UpdateHealthBarWrapper(float cur)
     {
-        UpdateFill(cur, target.StatManager.GetValue(StatType.MaxHp));
+        UpdateFill(cur, _target.StatManager.GetValue(StatType.MaxHp));
     }
 
+    /// <summary>
+    /// FillAmount를 업데이트 시켜주는 메서드
+    /// </summary>
+    /// <param name="cur">현재 값</param>
+    /// <param name="max">맥스 값</param>
     public void UpdateFill(float cur, float max)
     {
         fillImage.fillAmount = Mathf.Clamp01(cur / max);
@@ -54,13 +68,20 @@ public class HPBarUI : MonoBehaviour, IPoolObject
 
     public void OnSpawnFromPool()
     {
-        targetTrans = target.transform;
-        transform.SetParent(HealthBarManager.Instance.hpBarCanvas.transform);
+        if (_target.Controller is EnemyController enemyController)
+        {
+            _targetTransform = _target.transform;
+            heightOffset = enemyController.Collider.bounds.size.y;
+            offset.y += heightOffset;
+            transform.SetParent(HealthBarManager.Instance.hpBarCanvas.transform);
+        }
+        
+
     }
 
     public void OnReturnToPool()
     {
-        target = null;
+        _target = null;
         fillImage.fillAmount = 1f;
         barRect.position = Vector3.zero;
     }

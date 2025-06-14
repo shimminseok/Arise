@@ -13,10 +13,4 @@ public class BuildingData : MonoBehaviour
     {
         BuildingGhost = GetComponent<BuildingGhost>();
     }
-
-
-    public void InitFromPool()
-    {
-        BuildingGhost.SetValid(true);
-    }
 }

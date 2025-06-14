@@ -7,6 +7,7 @@ using UnityEngine;
 public class BuildingPlacer : MonoBehaviour
 {
     public GridManager gridManager;
+    public List<TowerSO> towers = new List<TowerSO>();
     private BuildingData buildingData;
     private Camera mainCamera;
     [SerializeField] private CinemachineVirtualCamera topViewCam;
@@ -15,6 +16,9 @@ public class BuildingPlacer : MonoBehaviour
     private BuildingGhost buildingGhost;
     private TowerController selectedTower;
     private GameObject ghostObj;
+
+    public bool BuildingMode { get; private set; }
+
 
     private void Start()
     {
@@ -40,7 +44,8 @@ public class BuildingPlacer : MonoBehaviour
             buildingGhost.SetValid(true);
             selectedTower = null;
             buildingGhost = null;
-            topViewCam.gameObject.SetActive(false);
+            BuildingMode = false;
+            topViewCam.gameObject.SetActive(BuildingMode);
         }
     }
 
@@ -65,13 +70,12 @@ public class BuildingPlacer : MonoBehaviour
         float buttonHeight = 80f;
         float spacing      = 5f;
 
-        float x = 10f;
+        float x = Screen.width - (buttonWidth + 10f);
         float y = Screen.height - buttonHeight - 50f;
 
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 0), buttonWidth, buttonHeight), $"Build_Tower1"))
         {
-            selectedBuildData = true;
-            selectedTower = ObjectPoolManager.Instance.GetObject("ArcherTower_Lv1").GetComponent<TowerController>();
+            selectedTower = ObjectPoolManager.Instance.GetObject(towers[0].name).GetComponent<TowerController>();
             selectedTower.OnSpawnFromPool();
             buildingData = selectedTower.BuildingData;
             buildingGhost = buildingData.BuildingGhost;
@@ -81,9 +85,8 @@ public class BuildingPlacer : MonoBehaviour
 
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 1), buttonWidth, buttonHeight), $"Build_Tower2"))
         {
-            topViewCam.gameObject.SetActive(true);
             selectedBuildData = true;
-            selectedTower = ObjectPoolManager.Instance.GetObject("BallistaTower_LV4").GetComponent<TowerController>();
+            selectedTower = ObjectPoolManager.Instance.GetObject(towers[1].name).GetComponent<TowerController>();
             selectedTower.OnSpawnFromPool();
             buildingData = selectedTower.BuildingData;
             buildingGhost = buildingData.BuildingGhost;
@@ -93,9 +96,8 @@ public class BuildingPlacer : MonoBehaviour
 
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 2), buttonWidth, buttonHeight), $"Build_Tower3"))
         {
-            topViewCam.gameObject.SetActive(true);
             selectedBuildData = true;
-            selectedTower = ObjectPoolManager.Instance.GetObject("CanonTower_Lv1").GetComponent<TowerController>();
+            selectedTower = ObjectPoolManager.Instance.GetObject(towers[2].name).GetComponent<TowerController>();
             selectedTower.OnSpawnFromPool();
             buildingData = selectedTower.BuildingData;
             buildingGhost = buildingData.BuildingGhost;
@@ -105,9 +107,8 @@ public class BuildingPlacer : MonoBehaviour
 
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 3), buttonWidth, buttonHeight), $"Build_Tower4"))
         {
-            topViewCam.gameObject.SetActive(true);
             selectedBuildData = true;
-            selectedTower = ObjectPoolManager.Instance.GetObject("PoisonTower_Lv1").GetComponent<TowerController>();
+            selectedTower = ObjectPoolManager.Instance.GetObject(towers[3].name).GetComponent<TowerController>();
             selectedTower.OnSpawnFromPool();
             buildingData = selectedTower.BuildingData;
             buildingGhost = buildingData.BuildingGhost;
@@ -115,7 +116,7 @@ public class BuildingPlacer : MonoBehaviour
             buildingGhost.SetValid(false);
         }
 
-        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 4), buttonWidth, buttonHeight), $"x4"))
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 4), buttonWidth, buttonHeight), $"x2"))
         {
             Time.timeScale *= 2f;
         }
@@ -124,5 +125,12 @@ public class BuildingPlacer : MonoBehaviour
         {
             Time.timeScale = 1f;
         }
+
+        if (GUI.Button(new Rect(10, y, buttonWidth, buttonHeight), $"BuildingMode"))
+        {
+            BuildingMode = !BuildingMode;
+            topViewCam.gameObject.SetActive(BuildingMode);
+        }
+        
     }
 }

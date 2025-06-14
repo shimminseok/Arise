@@ -16,7 +16,7 @@ MonoBehaviour:
   TowerStats:
   - StatType: 2
     ModifierType: 0
-    Value: 160
+    Value: 300
   - StatType: 3
     ModifierType: 0
     Value: 1

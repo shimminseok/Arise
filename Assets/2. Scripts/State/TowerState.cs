@@ -1,4 +1,5 @@
-﻿using Cinemachine;
+﻿using System.Collections;
+using Cinemachine;
 using UnityEngine;
 
 namespace TowerStates
@@ -39,17 +40,17 @@ namespace TowerStates
     {
         private float attackTimer = 0;
         private readonly float attackSpd;
-        private readonly float attackRange;
+        private bool _attackDone;
 
         public AttackState(float attackSpd, float attackRange)
         {
-            attackTimer = attackSpd;
             this.attackSpd = attackSpd;
-            this.attackRange = attackRange;
         }
 
         public void OnEnter(TowerController owner)
         {
+            _attackDone = false;
+            owner.StartCoroutine(DoAttack(owner));
         }
 
         public void OnUpdate(TowerController owner)
@@ -60,13 +61,13 @@ namespace TowerStates
                 targetPos.y = owner.FireTransformRoot.position.y;
                 owner.FireTransformRoot.LookAt(targetPos);
             }
+        }
 
-            attackTimer += Time.deltaTime;
-            if (attackTimer >= attackSpd)
-            {
-                owner.Attack();
-                attackTimer = 0;
-            }
+        private IEnumerator DoAttack(TowerController owner)
+        {
+            yield return new WaitForSeconds(1f / attackSpd);
+            owner.Attack();
+            _attackDone = true;
         }
 
         public void OnFixedUpdate(TowerController owner)
@@ -75,6 +76,7 @@ namespace TowerStates
 
         public void OnExit(TowerController entity)
         {
+            _attackDone = false;
         }
 
         public TowerState CheckTransition(TowerController owner)

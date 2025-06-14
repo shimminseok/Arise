@@ -1,4 +1,5 @@
-﻿using System.Reflection.Emit;
+﻿using System.Collections;
+using System.Reflection.Emit;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -20,11 +21,10 @@ namespace EnemyStates
         private readonly int attack = Animator.StringToHash("Attack");
         public void OnEnter(EnemyController owner)
         {
-            owner.Agent.ResetPath();
-            owner.Agent.isStopped = true;
             owner.Agent.velocity = Vector3.zero;
             owner.Animator.SetBool(isMoving, false);
             owner.Animator.ResetTrigger(attack);
+
         }
 
         public void OnUpdate(EnemyController owner)
@@ -90,39 +90,50 @@ namespace EnemyStates
 
     public class AttackState : IState<EnemyController, EnemyState>
     {
-        private float attackTimer = 0;
-        private readonly float attackSpd;
+        private float _attackTimer = 0;
+        private readonly float _attackSpd;
+        private bool _attackDone;
 
         private readonly int attackType = Animator.StringToHash("AttackType");
         private readonly int isMoving = Animator.StringToHash("IsMove");
         private readonly int attack = Animator.StringToHash("Attack");
+
+
+        
         public AttackState(float attackSpd, float attackRange)
         {
-            attackTimer = attackSpd;
-            this.attackSpd = attackSpd;
+            _attackTimer = attackSpd;
+            this._attackSpd = attackSpd;
         }
 
         public void OnEnter(EnemyController owner)
         {
-            owner.Agent.ResetPath();
-            owner.Agent.isStopped = true;
-            owner.Agent.velocity = Vector3.zero;
+            owner.StopMovement();
+            _attackDone = false;
             var order = EnemyManager.Instance.GetArrivalOrder();
             owner.Agent.avoidancePriority = Mathf.Clamp(order, 0, 99);
             owner.Animator.SetBool(isMoving, false);
+            owner.StartCoroutine(DoAttack(owner));
         }
 
         public void OnUpdate(EnemyController owner)
         {
-            attackTimer += Time.deltaTime;
-            if (attackTimer >= attackSpd)
-            {
-                int randomAttack = Random.Range(0, 3);
-                owner.Animator.SetTrigger(attack);
-                owner.Animator.SetInteger(attackType, randomAttack);
-                owner.Attack();
-                attackTimer = 0;
-            }
+            // _attackTimer += Time.deltaTime;
+            // if (_attackTimer >= _attackSpd)
+            // {
+            //     int randomAttack = Random.Range(0, 3);
+            //     owner.Animator.SetTrigger(attack);
+            //     owner.Animator.SetInteger(attackType, randomAttack);
+            //     owner.Attack();
+            //     _attackTimer = 0;
+            // }
+        }
+
+        private IEnumerator DoAttack(EnemyController owner)
+        {
+            yield return new WaitForSeconds(1f / _attackSpd);
+            owner.Attack();
+            _attackDone = true;
         }
 
         public void OnFixedUpdate(EnemyController owner)
@@ -133,7 +144,7 @@ namespace EnemyStates
         {
             owner.Animator.SetBool(isMoving, false);
             owner.Animator.ResetTrigger(attack);
-
+            _attackDone = false;
         }
 
         public EnemyState CheckTransition(EnemyController owner)
@@ -156,6 +167,7 @@ namespace EnemyStates
         public void OnEnter(EnemyController owner)
         {
             owner.Animator.SetTrigger(die);
+            owner.StopMovement();
         }
 
         public void OnUpdate(EnemyController owner)

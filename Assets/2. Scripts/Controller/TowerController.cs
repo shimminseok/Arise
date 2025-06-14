@@ -26,8 +26,9 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     public bool         IsPlaced          { get; private set; }
     public Transform    FireTransformRoot => fireWeaponTransform;
     public GameObject   GameObject        => gameObject;
-    public string       PoolID            => poolId;
+    public string       PoolID            => towerSO.name;
     public int          PoolSize          => poolSize;
+    public TowerSO      TowerSO           => towerSO;
 
     private Collider m_Collider;
 
@@ -101,6 +102,9 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
 
     public void OnReturnToPool()
     {
+        Target = null;
+        StatusEffectManager.RemoveAllEffects();
+        GridManager.Instance.PlaceDestroying(transform.position, BuildingData.Size);
     }
 
     public void OnBuildComplete()
@@ -122,6 +126,5 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position, StatManager.GetValue(StatType.AttackRange));
     }
 }
