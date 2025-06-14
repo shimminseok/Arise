@@ -35,7 +35,7 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
 
     public IEnumerator StartMonsterSpawn()
     {
-        int count = 50;
+        int count = 10;
         while (count > 0)
             // while (true)
         {

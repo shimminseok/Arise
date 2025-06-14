@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: e7004fa2ad1df804b817b78745a33c16, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 0cdefd137975fa844929c04b06747885, type: 2}
 --- !u!1 &415737904
 GameObject:
   m_ObjectHideFlags: 3
@@ -1466,6 +1466,7 @@ GameObject:
   - component: {fileID: 2926620715232250375}
   - component: {fileID: 2926620715232250374}
   - component: {fileID: 2926620715232250378}
+  - component: {fileID: 2926620715232250379}
   m_Layer: 0
   m_Name: character_barbarian
   m_TagString: Untagged
@@ -1557,6 +1558,27 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &2926620715232250379
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2926620715232250373}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &2932051703077925014
 Transform:
   m_ObjectHideFlags: 0

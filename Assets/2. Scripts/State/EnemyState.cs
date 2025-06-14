@@ -20,13 +20,15 @@ namespace EnemyStates
         private readonly int attack = Animator.StringToHash("Attack");
         public void OnEnter(EnemyController owner)
         {
+            owner.Agent.ResetPath();
+            owner.Agent.isStopped = true;
+            owner.Agent.velocity = Vector3.zero;
             owner.Animator.SetBool(isMoving, false);
             owner.Animator.ResetTrigger(attack);
         }
 
         public void OnUpdate(EnemyController owner)
         {
-            Debug.Log("Update Idle State");
         }
 
         public void OnFixedUpdate(EnemyController owner)
@@ -67,7 +69,7 @@ namespace EnemyStates
         }
 
         public void OnFixedUpdate(EnemyController owner)
-        {
+        { 
         }
 
         public void OnExit(EnemyController owner)
@@ -90,14 +92,14 @@ namespace EnemyStates
     {
         private float attackTimer = 0;
         private readonly float attackSpd;
-        private readonly float attackRange;
+
+        private readonly int attackType = Animator.StringToHash("AttackType");
         private readonly int isMoving = Animator.StringToHash("IsMove");
         private readonly int attack = Animator.StringToHash("Attack");
         public AttackState(float attackSpd, float attackRange)
         {
             attackTimer = attackSpd;
             this.attackSpd = attackSpd;
-            this.attackRange = attackRange;
         }
 
         public void OnEnter(EnemyController owner)
@@ -112,11 +114,12 @@ namespace EnemyStates
 
         public void OnUpdate(EnemyController owner)
         {
-            Debug.Log("Update Attack State");
             attackTimer += Time.deltaTime;
             if (attackTimer >= attackSpd)
             {
+                int randomAttack = Random.Range(0, 3);
                 owner.Animator.SetTrigger(attack);
+                owner.Animator.SetInteger(attackType, randomAttack);
                 owner.Attack();
                 attackTimer = 0;
             }
@@ -157,8 +160,6 @@ namespace EnemyStates
 
         public void OnUpdate(EnemyController owner)
         {
-            Debug.Log("Update Dead State");
-
         }
 
         public void OnFixedUpdate(EnemyController owner)

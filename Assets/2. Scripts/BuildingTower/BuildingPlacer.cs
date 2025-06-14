@@ -119,5 +119,10 @@ public class BuildingPlacer : MonoBehaviour
         {
             Time.timeScale *= 2f;
         }
+
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 5), buttonWidth, buttonHeight), $"ResetGameSpeed"))
+        {
+            Time.timeScale = 1f;
+        }
     }
 }

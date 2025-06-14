@@ -60,7 +60,7 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         {
             EnemyState.Idle   => new IdleState(),
             EnemyState.Move   => new MoveState(),
-            EnemyState.Attack => new AttackState(StatManager.GetValue(StatType.AttackPow), StatManager.GetValue(StatType.AttackRange)),
+            EnemyState.Attack => new AttackState(StatManager.GetValue(StatType.AttackSpd), StatManager.GetValue(StatType.AttackRange)),
             EnemyState.Die    => new DeadState(),
             _                 => null
         };
@@ -109,7 +109,7 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         _assignedPoint = CommandCenter.Instance.GetAvailablePoint();
         if (_assignedPoint != null)
         {
-            TargetPosition = _assignedPoint.transform.position;
+            TargetPosition = _assignedPoint.Collider.ClosestPoint(transform.position);
         }
     }
 
@@ -123,6 +123,7 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         if (Target != null && !Target.IsDead)
         {
             float distance = Utility.GetSqrDistanceBetween(Collider, Target.Collider);
+            
             return distance;
         }
 
