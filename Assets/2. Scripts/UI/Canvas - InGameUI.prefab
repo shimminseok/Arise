@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 6543625344842208475}
   - component: {fileID: 7458278166565799368}
   m_Layer: 5
-  m_Name: TurretPanel
+  m_Name: RightPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1501,7 +1501,7 @@ GameObject:
   - component: {fileID: 7829677617282718253}
   - component: {fileID: 6074756377562765262}
   m_Layer: 5
-  m_Name: Speed
+  m_Name: SpeedButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2595,7 +2595,7 @@ GameObject:
   - component: {fileID: 8081766404824662992}
   - component: {fileID: 5859890957675789214}
   m_Layer: 5
-  m_Name: Settings
+  m_Name: SettingBtton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5158,7 +5158,7 @@ GameObject:
   - component: {fileID: 267531312185851830}
   - component: {fileID: 7671910005926536046}
   m_Layer: 5
-  m_Name: Quest
+  m_Name: QuestButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5444,7 +5444,7 @@ GameObject:
   - component: {fileID: 8535696091235285842}
   - component: {fileID: 4037247500966701535}
   m_Layer: 5
-  m_Name: Button
+  m_Name: OnOffButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
