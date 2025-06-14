@@ -12,6 +12,7 @@
             StatusEffectType.Recover              => new RecoverEffect(),
             StatusEffectType.RecoverOverTime      => new RecoverOverTime(),
             StatusEffectType.PeriodicDamageDebuff => new PeriodicDamageDebuff(),
+            StatusEffectType.Damege               => new DamageDebuff(),
 
             _ => null
         };

@@ -9,50 +9,10 @@ public class StatManager : MonoBehaviour
     public Dictionary<StatType, StatBase> Stats { get; private set; } = new Dictionary<StatType, StatBase>();
 
 
-    // /// <summary>
-    // /// 플레이어의 스탯을 초기화 시켜주는 메서드
-    // /// </summary>
-    // /// <param name="player"></param>
-    // public void Initialize(PlayerSO player)
-    // {
-    //     foreach (var stat in player.PlayerStats)
-    //     {
-    //         Stats[stat.StatType] = BaseStatFactory(stat.StatType, stat.Value);
-    //     }
-    // }
-    //
-    // /// <summary>
-    // /// 몬스터의 스탯을 초기화 시켜주는 메서드
-    // /// </summary>
-    // /// <param name="monster"></param>
-    // public void Initialize(MonsterSO monster)
-    // {
-    //     foreach (StatData monsterStat in monster.Stats)
-    //     {
-    //         Stats[monsterStat.StatType] = BaseStatFactory(monsterStat.StatType, monsterStat.Value);
-    //     }
-    // }
-    //
-    // /// <summary>
-    // /// 타워의 스탯을 초기화 시켜주는 메서드
-    // /// </summary>
-    // /// <param name="tower"></param>
-    // public void Initialize(TowerSO tower)
-    // {
-    //     foreach (StatData towerStat in tower.Stats)
-    //     {
-    //         Stats[towerStat.StatType] = BaseStatFactory(towerStat.StatType, towerStat.Value);
-    //     }
-    // }
-    //
-    // public void Initialize(CommandCenterSO commandCenter)
-    // {
-    //     foreach (StatData command in commandCenter.Stats)
-    //     {
-    //         Stats[command.StatType] = BaseStatFactory(command.StatType, command.Value);
-    //     }
-    // }
-
+    /// <summary>
+    /// 스탯을 초기화 시켜주는 코드
+    /// </summary>
+    /// <param name="statProvider"></param>
     public void Initialize(IStatProvider statProvider)
     {
         foreach (StatData stat in statProvider.Stats)
@@ -60,19 +20,6 @@ public class StatManager : MonoBehaviour
             Stats[stat.StatType] = BaseStatFactory(stat.StatType, stat.Value);
         }
     }
-    
-    // /// <summary>
-    // /// 무기의 스탯을 초기화 시켜주는 메서드
-    // /// </summary>
-    // /// <param name="weapon"></param>
-    // public void Initialize(WeaponSO weapon)
-    // {
-    //     foreach (StatData weaponStat in weapon.Stats)
-    //     {
-    //         Stats[weaponStat.StatType] = BaseStatFactory(weaponStat.StatType, weaponStat.Value);
-    //     }
-    // }
-
     /// <summary>
     /// Stat을 생성해주는 팩토리
     /// </summary>

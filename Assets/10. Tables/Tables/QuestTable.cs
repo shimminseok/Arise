@@ -7,7 +7,8 @@ public class QuestTable : BaseTable<string, QuestData>
 
     public override void CreateTable()
     {
-        Type = GetType();
+        Type = typeof(QuestTable); // 이걸로 고정!
+
         foreach (QuestData item in dataList)
         {
             DataDic[item.QuestId] = item;

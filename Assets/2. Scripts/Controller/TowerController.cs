@@ -18,15 +18,16 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     [SerializeField] private TowerSO towerSO;
     [SerializeField] private string ProjectilePoolId;
     [SerializeField] private Transform fireTransform;
+    [SerializeField] private Transform fireWeaponTransform;
 
-    public StatBase     AttackStat   { get; private set; }
-    public IDamageable  Target       { get; private set; }
-    public BuildingData BuildingData { get; private set; }
-    public bool         IsPlaced     { get; private set; }
-
-    public GameObject GameObject => gameObject;
-    public string     PoolID     => poolId;
-    public int        PoolSize   => poolSize;
+    public StatBase     AttackStat        { get; private set; }
+    public IDamageable  Target            { get; private set; }
+    public BuildingData BuildingData      { get; private set; }
+    public bool         IsPlaced          { get; private set; }
+    public Transform    FireTransformRoot => fireWeaponTransform;
+    public GameObject   GameObject        => gameObject;
+    public string       PoolID            => poolId;
+    public int          PoolSize          => poolSize;
 
     private Collider m_Collider;
 
@@ -116,5 +117,11 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
             projectileController.transform.position = fireTransform.position;
             projectileController.SetTarget(this, Target);
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, StatManager.GetValue(StatType.AttackRange));
     }
 }

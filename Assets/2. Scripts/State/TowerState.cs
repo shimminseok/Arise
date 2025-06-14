@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cinemachine;
+using UnityEngine;
 
 namespace TowerStates
 {
@@ -24,7 +25,7 @@ namespace TowerStates
 
         public TowerState CheckTransition(TowerController owner)
         {
-            bool canAttack =
+            var canAttack =
                 owner.IsPlaced &&
                 owner.Target != null &&
                 !owner.Target.IsDead &&
@@ -53,6 +54,13 @@ namespace TowerStates
 
         public void OnUpdate(TowerController owner)
         {
+            if (owner.FireTransformRoot != null)
+            {
+                var targetPos = owner.Target.Collider.transform.position;
+                targetPos.y = owner.FireTransformRoot.position.y;
+                owner.FireTransformRoot.LookAt(targetPos);
+            }
+
             attackTimer += Time.deltaTime;
             if (attackTimer >= attackSpd)
             {

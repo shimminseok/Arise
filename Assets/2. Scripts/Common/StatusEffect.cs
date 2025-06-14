@@ -18,7 +18,7 @@ public abstract class StatusEffect
     }
 }
 
-//즉발 버프
+//즉발 버프(패시브)
 public class InstantBuff : StatusEffect
 {
     public override IEnumerator Apply(StatusEffectManager manager)
@@ -28,7 +28,7 @@ public class InstantBuff : StatusEffect
     }
 }
 
-//지속시간 버프
+//지속시간동안 증가 버프
 public class OverTimeBuff : StatusEffect
 {
     public override IEnumerator Apply(StatusEffectManager manager)
@@ -43,7 +43,7 @@ public class OverTimeBuff : StatusEffect
     }
 }
 
-// 즉발 디버프
+// 즉발 디버프(패시브 디버프)
 public class InstantDebuff : StatusEffect
 {
     public override IEnumerator Apply(StatusEffectManager manager)
@@ -53,7 +53,7 @@ public class InstantDebuff : StatusEffect
     }
 }
 
-//지속시간 디버프
+//지속시간 디버프(지속시간동안 깍는 버프)
 public class OverTimeDebuff : StatusEffect
 {
     public override IEnumerator Apply(StatusEffectManager manager)
@@ -68,6 +68,7 @@ public class OverTimeDebuff : StatusEffect
     }
 }
 
+//기존 버프
 public class TimedModifierBuff : StatusEffect
 {
     public override IEnumerator Apply(StatusEffectManager manager)
@@ -87,6 +88,7 @@ public class TimedModifierBuff : StatusEffect
     }
 }
 
+//즉시 회복
 public class RecoverEffect : StatusEffect
 {
     public override IEnumerator Apply(StatusEffectManager manager)
@@ -95,7 +97,7 @@ public class RecoverEffect : StatusEffect
         yield return null;
     }
 }
-
+//지속 시간 회복
 public class RecoverOverTime : StatusEffect
 {
     public override IEnumerator Apply(StatusEffectManager manager)
@@ -110,6 +112,7 @@ public class RecoverOverTime : StatusEffect
     }
 }
 
+//틱 데미지(독뎀, 화상뎀 등등)
 public class PeriodicDamageDebuff : StatusEffect
 {
     public override IEnumerator Apply(StatusEffectManager manager)
@@ -121,5 +124,14 @@ public class PeriodicDamageDebuff : StatusEffect
             yield return new WaitForSeconds(TickInterval);
             elapsed += TickInterval;
         }
+    }
+}
+// 데미지
+public class DamageDebuff : StatusEffect
+{
+    public override IEnumerator Apply(StatusEffectManager manager)
+    {
+        manager.ConsumeEffect(StatType, -Value);
+        yield return null;
     }
 }

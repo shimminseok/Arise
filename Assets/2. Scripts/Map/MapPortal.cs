@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class MapPortal : MonoBehaviour
 {
     public GameObject portalPos;
-    public GameObject target;
+    public Collider target;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,6 +14,7 @@ public class MapPortal : MonoBehaviour
         {
             enemyController.Agent.Warp(portalPos.transform.position);
             enemyController.AssignAttackPoint();
+            // enemyController.SetTargetPosition(target.ClosestPoint(enemyController.transform.position));
             // enemyController.SetTargetPosition(target.transform.position);
         }
 
