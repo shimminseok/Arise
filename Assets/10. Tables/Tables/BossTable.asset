@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ee9ab7abac4e44d9db15aa5c098c7e, type: 3}
+  m_Name: BossTable
+  m_EditorClassIdentifier: 
+  dataList:
+  - {fileID: 11400000, guid: 53f91cce240e8634b8a6892676108443, type: 2}
