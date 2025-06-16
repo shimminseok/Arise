@@ -52,7 +52,7 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
 
         PlayerTable playerTable = TableManager.Instance.GetTable<PlayerTable>();
         PlayerSO    playerData  = playerTable.GetDataByID(0);
-        StatManager.Initialize(playerData);
+        StatManager.Initialize(playerData, null);
     }
 
     protected override void Start()

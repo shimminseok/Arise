@@ -13,7 +13,7 @@ public class StatManager : MonoBehaviour
     /// 스탯을 초기화 시켜주는 코드
     /// </summary>
     /// <param name="statProvider"></param>
-    public void Initialize(IStatProvider statProvider, IDamageable owner)
+    public void Initialize(IStatProvider statProvider, IDamageable owner = null)
     {
         Owner = owner;
         foreach (StatData stat in statProvider.Stats)
