@@ -32,4 +32,9 @@ MonoBehaviour:
     Duration: 3
     TickInterval: 0
     IsStackable: 0
+  AttackType: {fileID: 11400000, guid: 8ae1a733619eaf14aaeeeededc068552, type: 2}
   BuildCost: 200
+  UseMultishot: 1
+  ProjectileCount: 4
+  UseSplashAttack: 0
+  SplashRadius: 0

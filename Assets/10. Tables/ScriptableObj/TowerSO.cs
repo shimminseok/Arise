@@ -11,7 +11,18 @@ public class TowerSO : ScriptableObject, IStatProvider
     public List<StatData> TowerStats;
 
     public List<StatusEffectData> StatusEffects;
+    public AttackTypeSO AttackType;
     public int BuildCost;
+
+    public bool UseMultishot;
+
+    [BoolShowIf("UseMultishot")]
+    public int ProjectileCount;
+
+    public bool UseSplashAttack;
+
+    [BoolShowIf("UseSplashAttack")]
+    public float SplashRadius;
 
     public List<StatData> Stats => TowerStats;
 }

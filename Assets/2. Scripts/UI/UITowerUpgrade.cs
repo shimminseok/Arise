@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 public class UITowerUpgrade : UIBase
@@ -34,12 +35,11 @@ public class UITowerUpgrade : UIBase
                     if (tower.GetCurrentState() != TowerState.Build)
                         SelectTower(tower);
                 }
-                else
-                {
-                    UIManager.Instance.Close<UITowerUpgrade>();
-                }
             }
-
+            else if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                UIManager.Instance.Close<UITowerUpgrade>();
+            }
         }
     }
 
@@ -68,7 +68,7 @@ public class UITowerUpgrade : UIBase
         if (_selectedTower == null)
             return;
 
-        _selectedTower.UpgradeTower();
+        _selectedTower = _selectedTower.UpgradeTower();
     }
 
     public void OnClickDestroyTower()

@@ -62,7 +62,6 @@ public class BuildingPlacer : SceneOnlySingleton<BuildingPlacer>
         buildingData = selectedTower.BuildingData;
         buildingGhost = buildingData.BuildingGhost;
         buildingGhost.SetValid(false);
-        topViewCam.gameObject.SetActive(true);
     }
 
     public void CompleteBuildingTower(Vector3Int cell)

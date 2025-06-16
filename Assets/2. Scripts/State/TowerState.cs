@@ -55,11 +55,11 @@ namespace TowerStates
 
         public void OnUpdate(TowerController owner)
         {
-            if (owner.FireTransformRoot != null)
+            if (owner.FireWeaponTransform != null)
             {
                 var targetPos = owner.Target.Collider.transform.position;
-                targetPos.y = owner.FireTransformRoot.position.y;
-                owner.FireTransformRoot.LookAt(targetPos);
+                targetPos.y = owner.FireWeaponTransform.position.y;
+                owner.FireWeaponTransform.LookAt(targetPos);
             }
         }
 

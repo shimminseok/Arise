@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TowerStates;
+using UnityEngine.Serialization;
 
 public enum TowerState
 {
@@ -17,20 +18,25 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     [SerializeField] private string poolId;
     [SerializeField] private int poolSize;
     [SerializeField] private TowerSO towerSO;
-    [SerializeField] private string ProjectilePoolId;
+
+    [FormerlySerializedAs("ProjectilePoolId")]
+    [SerializeField] private string projectilePoolId;
     [SerializeField] private Transform fireTransform;
-    [SerializeField] private Transform fireWeaponTransform;
 
-    public StatBase     AttackStat        { get; private set; }
-    public IDamageable  Target            { get; private set; }
-    public BuildingData BuildingData      { get; private set; }
-    public bool         IsPlaced          { get; private set; }
-    public Transform    FireTransformRoot => fireWeaponTransform;
-    public GameObject   GameObject        => gameObject;
-    public string       PoolID            => towerSO.name;
-    public int          PoolSize          => poolSize;
-    public TowerSO      TowerSO           => towerSO;
+    [FormerlySerializedAs("fireWeaponTransform")]
+    [SerializeField] private Transform fireWeaponWeaponTransform;
 
+    public StatBase     AttackStat          { get; private set; }
+    public IDamageable  Target              { get; private set; }
+    public BuildingData BuildingData        { get; private set; }
+    public bool         IsPlaced            { get; private set; }
+    public Transform    FireWeaponTransform => fireWeaponWeaponTransform;
+    public Transform    FireTransform       => fireTransform;
+    public GameObject   GameObject          => gameObject;
+    public string       PoolID              => towerSO.name;
+    public int          PoolSize            => poolSize;
+    public TowerSO      TowerSO             => towerSO;
+    public string       ProjectilePoolId    => projectilePoolId;
     private Collider m_Collider;
     private TowerTable towerTable;
     protected override void Awake()
@@ -120,21 +126,21 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
         IsPlaced = true;
     }
 
-    public void UpgradeTower()
+    public TowerController UpgradeTower()
     {
         var nextTowerData = towerTable.GetDataByID(TowerSO.ID + 1);
 
         if (nextTowerData == null)
         {
             Debug.Log("최대 레벨입니다.");
-            return;
+            return null;
         }
 
         GameObject upgradedTower = ObjectPoolManager.Instance.GetObject(nextTowerData.name);
         if (!upgradedTower.TryGetComponent(out TowerController nextTower))
         {
             ObjectPoolManager.Instance.ReturnObject(upgradedTower);
-            return;
+            return null;
         }
 
         nextTower.transform.position = transform.position;
@@ -142,6 +148,8 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
         nextTower.OnBuildComplete();
 
         ObjectPoolManager.Instance.ReturnObject(gameObject);
+
+        return nextTower;
     }
 
     public void DestroyTower()
@@ -151,19 +159,20 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
 
     public void Attack()
     {
-        GameObject projectile = ObjectPoolManager.Instance.GetObject(ProjectilePoolId);
-        if (projectile.TryGetComponent<ProjectileController>(out var projectileController))
-        {
-            projectileController.transform.position = fireTransform.position;
-            projectileController.SetTarget(this, Target);
-            if (Target.Collider.TryGetComponent(out StatusEffectManager statusEffectManager))
-            {
-                foreach (var effect in towerSO.StatusEffects)
-                {
-                    statusEffectManager.ApplyEffect(BuffFactory.CreateBuff(effect));
-                }
-            }
-        }
+        // GameObject projectile = ObjectPoolManager.Instance.GetObject(projectilePoolId);
+        // if (projectile.TryGetComponent<ProjectileController>(out var projectileController))
+        // {
+        //     projectileController.transform.position = fireTransform.position;
+        //     projectileController.SetTarget(this, Target);
+        //     if (Target.Collider.TryGetComponent(out StatusEffectManager statusEffectManager))
+        //     {
+        //         foreach (var effect in towerSO.StatusEffects)
+        //         {
+        //             statusEffectManager.ApplyEffect(BuffFactory.CreateBuff(effect));
+        //         }
+        //     }
+        // }
+        TowerSO.AttackType.Attack(this);
     }
 
     private void OnDrawGizmosSelected()
