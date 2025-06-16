@@ -84,20 +84,9 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
 
     public void MonsterDead(EnemyController monster)
     {
-        
+        Debug.Log($"MonsterDead 호출 - 남은 몬스터 수: {Enemies.Count - 1}");
         ObjectPoolManager.Instance.ReturnObject(monster.GameObject, 2f);
-        
-        if (Enemies.Contains(monster))
-        {
-            Enemies.Remove(monster);
-        }
-        else
-        {
-            Debug.LogWarning($"제거하려는 몬스터가 리스트에 없습니다: {monster}");
-        }
-
-        ObjectPoolManager.Instance.ReturnObject(monster.GameObject, 2f);
-
+        Enemies.Remove(monster);
     }
 
     public int GetArrivalOrder()
