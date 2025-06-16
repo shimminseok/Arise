@@ -8,10 +8,11 @@ namespace BossStates
         Idle,
         Move,
         Attack,
-        Die
+        Die,
+        Skill
     }
 
-    public class IdleState : IState<BossController,BossState>
+    public class IdleState : IState<BossController, BossState>
     {
         public void OnEnter(BossController owner)
         {
@@ -19,6 +20,7 @@ namespace BossStates
 
         public void OnUpdate(BossController owner)
         {
+            //계속 스킬 패턴 랜덤으로 고르기
         }
 
         public void OnFixedUpdate(BossController owner)
@@ -60,6 +62,8 @@ namespace BossStates
 
         public BossState CheckTransition(BossController owner)
         {
+                        if (owner.istest)
+                return BossState.Skill;
             if (owner.Target != null && !owner.Target.IsDead)
             {
                 return owner.IsTargetInAttackRange() ? BossState.Attack : BossState.Move;
@@ -141,6 +145,37 @@ namespace BossStates
         public BossState CheckTransition(BossController owner)
         {
             return BossState.Die;
+        }
+    }
+    
+        public class SkillState : IState<BossController, BossState>
+    {
+
+        public void OnEnter(BossController owner)
+        {
+                        owner.animator.SetTrigger("IsEarthquake");
+            owner.FindTarget();
+            owner.FireSkill();
+            owner.istest = false;
+        }
+
+        public void OnUpdate(BossController owner)
+        {
+
+        }
+
+        public void OnFixedUpdate(BossController owner)
+        {
+        }
+
+        public void OnExit(BossController owner)
+        {
+        }
+
+        public BossState CheckTransition(BossController owner)
+        {
+                        owner.animator.SetBool("IsEarthquake",false);
+                        return BossState.Idle;
         }
     }
 }

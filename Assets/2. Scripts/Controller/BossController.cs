@@ -13,20 +13,28 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
     [SerializeField] private string poolID;
     [SerializeField] private int poolSize;
     [SerializeField] private BossSO m_BossSo;
-    public StatBase     AttackStat     { get; private set; }
-    public IDamageable  Target         { get; private set; }
-    public bool         IsDead         { get; private set; }
-    public Collider     Collider       { get; private set; }
-    public Vector3      TargetPosition { get; private set; }
-    public NavMeshAgent Agent          { get; private set; }
+    public StatBase AttackStat { get; private set; }
+    public IDamageable Target { get; private set; }
+    public bool IsDead { get; private set; }
+    public Collider Collider { get; private set; }
+    public Vector3 TargetPosition { get; private set; }
+    public NavMeshAgent Agent { get; private set; }
 
     public GameObject GameObject => gameObject;
-    public string     PoolID     => poolID;
-    public int        PoolSize   => poolSize;
+    public string PoolID => poolID;
+    public int PoolSize => poolSize;
 
     private HPBarUI _healthBarUI;
     private AttackPoint _assignedPoint;
 
+    //스킬 프리팹 2개
+    public GameObject earthQuakeSkill;
+    public Animator animator;
+
+    public GameObject boxcollider;
+    [SerializeField] private string BossSkillPoolId;
+
+    public bool istest;
     protected override void Awake()
     {
         base.Awake();
@@ -50,16 +58,17 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
         base.FixedUpdate();
     }
 
-
-    protected override IState<BossController,BossState> GetState(BossState state)
+    //          _                 => null  ->알 수 없는 값이 들어오면: _ => null 실행 → null 리턴
+    protected override IState<BossController, BossState> GetState(BossState state)
     {
         return state switch
         {
-            BossState.Idle   => new IdleState(),
-            BossState.Move   => new MoveState(),
+            BossState.Idle => new IdleState(),
+            BossState.Move => new MoveState(),
             BossState.Attack => new AttackState(StatManager.GetValue(StatType.AttackPow), StatManager.GetValue(StatType.AttackRange)),
-            BossState.Die    => new DeadState(),
-            _                 => null
+            BossState.Die => new DeadState(),
+            BossState.Skill => new SkillState(),
+            _ => null
         };
     }
 
@@ -84,10 +93,25 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
         transform.position = Vector3.zero;
     }
 
+//20범위내에 Water layer를 가진 오브젝트 10개 삭제
     public override void FindTarget()
     {
-        if (Target != null && Target.IsDead)
-            return;
+        var results = new Collider[10];
+        var size = Physics.OverlapSphereNonAlloc(
+            transform.position,
+             20,
+              results, LayerMask.GetMask("Water"));
+        for (int i = 0; i < size; i++)
+        {
+            results[i].transform.gameObject.SetActive(false);
+            /*
+                        if (results[i].TryGetComponent<IDamageable>(out var damageable))
+                        {
+                            Target = damageable;
+                            break;
+                        }
+                        */
+        }
     }
 
     public override void Movement()
@@ -126,7 +150,7 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
 
     public bool IsTargetInAttackRange()
     {
-        float attackRange    = StatManager.GetValue(StatType.AttackRange);
+        float attackRange = StatManager.GetValue(StatType.AttackRange);
         float sqrAttackRange = attackRange * attackRange;
         return GetTargetDistance() <= sqrAttackRange;
     }
@@ -171,4 +195,15 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
         _assignedPoint?.Release();
         _healthBarUI = null;
     }
+
+    public void FireSkill()
+    {
+        GameObject projectile = ObjectPoolManager.Instance.GetObject(BossSkillPoolId);
+        if (projectile.TryGetComponent<BossSkillController>(out var BossSkillController))
+        {
+            BossSkillController.transform.position = transform.position;
+            BossSkillController.SetTarget(this, Target);
+        }
+    }
+
 }
