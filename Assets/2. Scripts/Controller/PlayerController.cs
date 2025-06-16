@@ -68,12 +68,6 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
         action.Run.canceled += context => _isRunning = false;
 
         AttackStat = weaponController.StatManager.GetStat<CalculatedStat>(StatType.AttackPow);
-        
-        UIPlayerStatPanel uiPanel = FindObjectOfType<UIPlayerStatPanel>();
-        if (uiPanel != null)
-        {
-            uiPanel.SetStatManagers(this.StatManager, weaponController.StatManager);
-        }
     }
 
     protected override void Update()

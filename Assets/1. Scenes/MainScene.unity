@@ -54052,7 +54052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contents: {fileID: 701738697}
-  offset: {x: 0, y: -60, z: 0}
+  offset: {x: 0, y: -120, z: 0}
 --- !u!114 &1744499168
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -69,58 +69,55 @@ public class BuildingPlacer : SceneOnlySingleton<BuildingPlacer>
         gridManager.PlaceBuilding(selectedTower.GameObject, cell, buildingData.Size);
         selectedTower.OnBuildComplete();
         buildingGhost.SetValid(true);
-        
-        // 설치 시 UI 한 번 띄워주기
-        
         selectedTower = null;
         buildingGhost = null;
     }
 
-    // private void OnGUI()
-    // {
-    //     float buttonWidth  = 150f;
-    //     float buttonHeight = 80f;
-    //     float spacing      = 5f;
-    //
-    //     float x = Screen.width - (buttonWidth + 10f);
-    //     float y = Screen.height - buttonHeight - 50f;
-    //
-    //     if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 0), buttonWidth, buttonHeight), "Build_Tower1"))
-    //     {
-    //         TryBuildingTower(towers[0]);
-    //     }
-    //
-    //     if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 1), buttonWidth, buttonHeight), "Build_Tower2"))
-    //     {
-    //         TryBuildingTower(towers[1]);
-    //     }
-    //
-    //     if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 2), buttonWidth, buttonHeight), "Build_Tower3"))
-    //     {
-    //         TryBuildingTower(towers[2]);
-    //
-    //     }
-    //
-    //     if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 3), buttonWidth, buttonHeight), "Build_Tower4"))
-    //     {
-    //         TryBuildingTower(towers[3]);
-    //     }
-    //
-    //     if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 4), buttonWidth, buttonHeight), "Build_Tower4"))
-    //     {
-    //         TryBuildingTower(towers[4]);
-    //     }
-    //
-    //     if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 5), buttonWidth, buttonHeight), "x2"))
-    //     {
-    //         Time.timeScale *= 2f;
-    //     }
-    //
-    //     if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 6), buttonWidth, buttonHeight), "ResetGameSpeed"))
-    //     {
-    //         Time.timeScale = 1f;
-    //     }
-    // }
+    private void OnGUI()
+    {
+        float buttonWidth  = 150f;
+        float buttonHeight = 80f;
+        float spacing      = 5f;
+
+        float x = Screen.width - (buttonWidth + 10f);
+        float y = Screen.height - buttonHeight - 50f;
+
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 0), buttonWidth, buttonHeight), "Build_Tower1"))
+        {
+            TryBuildingTower(towers[0]);
+        }
+
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 1), buttonWidth, buttonHeight), "Build_Tower2"))
+        {
+            TryBuildingTower(towers[1]);
+        }
+
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 2), buttonWidth, buttonHeight), "Build_Tower3"))
+        {
+            TryBuildingTower(towers[2]);
+
+        }
+
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 3), buttonWidth, buttonHeight), "Build_Tower4"))
+        {
+            TryBuildingTower(towers[3]);
+        }
+
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 4), buttonWidth, buttonHeight), "Build_Tower4"))
+        {
+            TryBuildingTower(towers[4]);
+        }
+
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 5), buttonWidth, buttonHeight), "x2"))
+        {
+            Time.timeScale *= 2f;
+        }
+
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 6), buttonWidth, buttonHeight), "ResetGameSpeed"))
+        {
+            Time.timeScale = 1f;
+        }
+    }
 
     public void ChangeBuilidMode(bool isBuilding)
     {
