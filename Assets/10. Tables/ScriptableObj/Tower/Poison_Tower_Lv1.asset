@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Poison_Tower_Lv1
   m_EditorClassIdentifier: 
   ID: 401
+  TowerName: "\uB530\uB054\uB530\uB054 \uB3C5 \uD0C0"
+  Description: "\uC801\uC5D0\uAC8C \uB3C5\uC744 \uD37C\uB728\uB824 \uC9C0\uC18D\uC801\uC73C\uB85C
+    \uCCB4\uB825\uC744 \uAE4E\uC544\uB0C5\uB2C8\uB2E4."
   TowerStats:
   - StatType: 2
     ModifierType: 0
