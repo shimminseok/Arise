@@ -8,5 +8,6 @@ public class WeaponSO : ScriptableObject, IStatProvider
     public int ID;
     public GameObject Prefab;
     public List<StatData> WeaponStat;
-    public List<StatData> Stats { get => WeaponStat; } 
+    public List<StatData> Stats { get => WeaponStat; }
+    public List<int> SkillIDs;
 }
