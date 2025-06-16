@@ -98,7 +98,7 @@ namespace EnemyStates
         private readonly int isMoving = Animator.StringToHash("IsMove");
         private readonly int attack = Animator.StringToHash("Attack");
 
-
+        private Coroutine attackCoroutine;
         
         public AttackState(float attackSpd, float attackRange)
         {
@@ -113,7 +113,7 @@ namespace EnemyStates
             var order = EnemyManager.Instance.GetArrivalOrder();
             owner.Agent.avoidancePriority = Mathf.Clamp(order, 0, 99);
             owner.Animator.SetBool(isMoving, false);
-            owner.StartCoroutine(DoAttack(owner));
+            attackCoroutine = owner.StartCoroutine(DoAttack(owner));
         }
 
         public void OnUpdate(EnemyController owner)
@@ -131,9 +131,15 @@ namespace EnemyStates
 
         private IEnumerator DoAttack(EnemyController owner)
         {
-            yield return new WaitForSeconds(1f / _attackSpd);
-            owner.Attack();
-            _attackDone = true;
+            while (true)
+            {
+                yield return new WaitForSeconds(1f / _attackSpd);
+                int randomAttack = Random.Range(0, 3);
+                owner.Animator.SetTrigger(attack);
+                owner.Animator.SetInteger(attackType, randomAttack);
+                owner.Attack();
+            }
+
         }
 
         public void OnFixedUpdate(EnemyController owner)
@@ -145,6 +151,8 @@ namespace EnemyStates
             owner.Animator.SetBool(isMoving, false);
             owner.Animator.ResetTrigger(attack);
             _attackDone = false;
+            if (attackCoroutine != null)
+                owner.StopCoroutine(attackCoroutine);
         }
 
         public EnemyState CheckTransition(EnemyController owner)

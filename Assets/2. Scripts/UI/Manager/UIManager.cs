@@ -11,13 +11,15 @@ public class UIManager : Singleton<UIManager>
 
     protected override void Awake()
     {
-        InitializeUIRoot(GameObject.Find("UIRoot").transform);
+        base.Awake();
+        InitializeUIRoot();
     }
 
-    public void InitializeUIRoot(Transform uiRoot)
+    public void InitializeUIRoot()
     {
         UIDict.Clear();
-        UIBase[] uiComponents = uiRoot.GetComponentsInChildren<UIBase>(true);
+        Transform uiRoot       = GameObject.Find("UIRoot").transform;
+        UIBase[]  uiComponents = uiRoot.GetComponentsInChildren<UIBase>(true);
 
         foreach (UIBase uiComponent in uiComponents)
         {
@@ -53,7 +55,6 @@ public class UIManager : Singleton<UIManager>
 
 public class UIBase : MonoBehaviour
 {
-    [FormerlySerializedAs("Contents")]
     [SerializeField] private RectTransform contents;
 
     protected RectTransform Contents => contents;

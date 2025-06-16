@@ -27,6 +27,7 @@ public class UITowerUpgrade : UIBase
     {
         if (Input.GetMouseButton(0) && BuildingPlacer.Instance.IsBuildingMode)
         {
+            Debug.Log("BuildingPlacer.Instance.IsBuildingMode");
             Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Tower")))
             {

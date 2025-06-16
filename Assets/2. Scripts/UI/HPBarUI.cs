@@ -34,7 +34,7 @@ public class HPBarUI : MonoBehaviour, IPoolObject
         _mainCamera = Camera.main;
     }
 
-    public void Initialize(BaseController<EnemyController, EnemyState> owner)
+    public void Initialize(EnemyController owner)
     {
         _target = owner;
         OnSpawnFromPool();

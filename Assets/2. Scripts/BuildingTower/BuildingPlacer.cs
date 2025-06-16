@@ -117,15 +117,14 @@ public class BuildingPlacer : SceneOnlySingleton<BuildingPlacer>
         {
             Time.timeScale = 1f;
         }
-
-        if (GUI.Button(new Rect(10, y, buttonWidth, buttonHeight), "BuildingMode"))
-        {
-            IsBuildingMode = !IsBuildingMode;
-            topViewCam.gameObject.SetActive(IsBuildingMode);
-            UIManager.Instance.Close<UITowerUpgrade>();
-        }
     }
 
+    public void ChangeBuilidMode(bool isBuilding)
+    {
+        IsBuildingMode = isBuilding;
+        topViewCam.gameObject.SetActive(IsBuildingMode);
+        UIManager.Instance.Close<UITowerUpgrade>();
+    }
     protected override void OnDestroy()
     {
         base.OnDestroy();

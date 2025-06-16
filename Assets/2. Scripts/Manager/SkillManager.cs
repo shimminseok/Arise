@@ -2,12 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillManager : Singleton<SkillManager>
+public class SkillManager : SceneOnlySingleton<SkillManager>
 {
     private readonly Dictionary<int, Skill> _skillInstances = new();
     private readonly Dictionary<int, float> _skillCooldowns = new();
 
     [SerializeField] private GameObject _owner;
+
+
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
+    private void Start()
+    {
+    }
 
     public void Initialize(GameObject owner)
     {
@@ -56,5 +66,10 @@ public class SkillManager : Singleton<SkillManager>
     {
         if (!_skillCooldowns.TryGetValue(skillID, out float endTime)) return 0f;
         return Mathf.Max(0f, endTime - Time.time);
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
     }
 }

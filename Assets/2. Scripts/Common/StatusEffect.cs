@@ -131,7 +131,7 @@ public class DamageDebuff : StatusEffect
 {
     public override IEnumerator Apply(StatusEffectManager manager)
     {
-        manager.ConsumeEffect(StatType, ModifierType, -Value);
+        manager.ConsumeEffect(StatType, ModifierType, Value);
         yield return null;
     }
 }

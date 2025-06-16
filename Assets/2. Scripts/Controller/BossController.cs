@@ -163,17 +163,16 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
 
     public void TakeDamage(IAttackable attacker)
     {
-        /*  형변환 안되고 hpbar 관리 새로 짜주거나 basecontroller로 바꾸기
-        if (_healthBarUI == null)
-        {
-            _healthBarUI = HealthBarManager.Instance.SpawnHealthBar(this);
-            StatManager.GetStat<ResourceStat>(StatType.CurHp).OnValueChanged += _healthBarUI.UpdateHealthBarWrapper;
-        }
-        */
+        //*  형변환 안되고 hpbar 관리 새로 짜주거나 basecontroller로 바꾸기
+        // if (_healthBarUI == null)
+        // {
+        //     _healthBarUI = HealthBarManager.Instance.SpawnHealthBar(this);
+        //     StatManager.GetStat<ResourceStat>(StatType.CurHp).OnValueChanged += _healthBarUI.UpdateHealthBarWrapper;
+        // }
 
         //TODO 방어력 계산
         float finalDam = attacker.AttackStat.Value;
-        StatManager.Consume(StatType.CurHp, finalDam);
+        StatManager.Consume(StatType.CurHp, StatModifierType.Base, finalDam);
 
         float curHp = StatManager.GetValue(StatType.CurHp);
         if (curHp <= 0)
@@ -190,7 +189,7 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
         BossManager.Instance.BossDead(this);
         ChangeState(BossState.Idle);
         QuestManager.Instance.UpdateProgress(QuestType.KillEnemies, 1);
-        _healthBarUI.UnLink();
+        _healthBarUI?.UnLink();
         StatManager.GetStat<ResourceStat>(StatType.CurHp).OnValueChanged -= _healthBarUI.UpdateHealthBarWrapper;
         _assignedPoint?.Release();
         _healthBarUI = null;
