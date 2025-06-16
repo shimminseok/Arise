@@ -32,7 +32,7 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
     public Animator animator;
 
     public GameObject boxcollider;
-    [SerializeField] private string BossSkillPoolId;
+    [SerializeField] private string[] BossSkillPoolId;
 
     public bool istest;
     protected override void Awake()
@@ -196,9 +196,9 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
         _healthBarUI = null;
     }
 
-    public void FireSkill()
+    public void FireSkill(int num)
     {
-        GameObject projectile = ObjectPoolManager.Instance.GetObject(BossSkillPoolId);
+        GameObject projectile = ObjectPoolManager.Instance.GetObject(BossSkillPoolId[num]);
         if (projectile.TryGetComponent<BossSkillController>(out var BossSkillController))
         {
             BossSkillController.transform.position = transform.position;

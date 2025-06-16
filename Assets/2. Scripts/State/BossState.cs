@@ -153,10 +153,10 @@ namespace BossStates
 
         public void OnEnter(BossController owner)
         {
-                        owner.animator.SetTrigger("IsEarthquake");
-            owner.FindTarget();
-            owner.FireSkill();
-            owner.istest = false;
+
+string[] triggers = { "IsEarthquake", "IsDispel" };
+string randomTrigger = triggers[Random.Range(0, triggers.Length)];
+owner.animator.SetTrigger(randomTrigger);
         }
 
         public void OnUpdate(BossController owner)
