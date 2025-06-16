@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9fea9f2f4b3e30468a9b3a20c2ffc27, type: 3}
-  m_Name: quest_skill_10
+  m_Name: quest_kill_10
   m_EditorClassIdentifier: 
-  QuestId: quest_skill_10
-  Title: "\uC2A4\uD0AC 10\uD68C \uC0AC\uC6A9"
-  Description: "\uC2A4\uD0AC\uC744 \uC790\uC8FC \uC0AC\uC6A9\uD558\uC138\uC694"
+  QuestId: quest_kill_10
+  Title: "10\uB9C8\uB9AC \uCC98\uCE58\uD558\uAE30"
+  Description: "\uBAAC\uC2A4\uD130\uB97C 10\uB9C8\uB9AC \uCC98\uCE58\uD558\uC138\uC694."
   Condition:
-    Type: 2
+    Type: 0
     TargetValue: 10
   RewardGold: 100
