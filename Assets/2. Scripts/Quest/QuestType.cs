@@ -5,5 +5,6 @@ public enum QuestType
     UseSkill,
     UpgradeWeapon,
     TimeLimitClear,
-    CollectGold
+    CollectGold,
+    BuildTower
 }

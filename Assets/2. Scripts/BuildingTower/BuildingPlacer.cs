@@ -68,6 +68,10 @@ public class BuildingPlacer : SceneOnlySingleton<BuildingPlacer>
     {
         gridManager.PlaceBuilding(selectedTower.GameObject, cell, buildingData.Size);
         selectedTower.OnBuildComplete();
+
+        QuestManager.Instance.UpdateProgress(QuestType.BuildTower, 1);
+
+
         buildingGhost.SetValid(true);
         
         // 설치 시 UI 한 번 띄워주기
