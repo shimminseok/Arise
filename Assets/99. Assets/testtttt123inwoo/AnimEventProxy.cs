@@ -1,6 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+public enum BossSkillName
+{
+    EarthQuake,
+    Dispel
+}
 
 public class AnimEventProxy : MonoBehaviour
 {
@@ -9,12 +16,12 @@ public class AnimEventProxy : MonoBehaviour
     BossController bossController;
     void Awake()
     {
-               bossController = target.GetComponent<BossController>(); 
+        bossController = target.GetComponent<BossController>();
     }
-    public void CallExternal(int num)
+    public void CallExternal(BossSkillName bossSkillName)
     {
-        bossController?.FindTarget();
-        bossController?.FireSkill(num);
+        bossController?.FindTargetByEnum(bossSkillName);
+        bossController?.FireSkill(bossSkillName);
         bossController.istest = false;
         //        owner.FindTarget();
         // owner.FireSkill();

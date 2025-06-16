@@ -114,6 +114,45 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
         }
     }
 
+    public void FindTargetByEnum(BossSkillName bossSkillName)
+    {
+                switch (bossSkillName)
+        {
+            case BossSkillName.EarthQuake:
+                EarthQuake();
+                break;
+            case BossSkillName.Dispel:
+                Dispel();
+                break;
+        }
+
+
+    }
+
+    public void EarthQuake()
+    {
+                    var results = new Collider[10];
+            var size = Physics.OverlapSphereNonAlloc(
+                transform.position,
+                 20,
+                  results, LayerMask.GetMask("Tower"));
+            for (int i = 0; i < size; i++)
+            {
+                results[i].transform.gameObject.SetActive(false);
+                /*
+                            if (results[i].TryGetComponent<IDamageable>(out var damageable))
+                            {
+                                Target = damageable;
+                                break;
+                            }
+                            */
+            }
+    }
+
+    public void Dispel()
+    {
+    
+}
     public override void Movement()
     {
         if (Agent.isOnNavMesh)
@@ -195,9 +234,9 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
         _healthBarUI = null;
     }
 
-    public void FireSkill(int num)
+    public void FireSkill(BossSkillName bossSkillName)
     {
-        GameObject projectile = ObjectPoolManager.Instance.GetObject(BossSkillPoolId[num]);
+        GameObject projectile = ObjectPoolManager.Instance.GetObject(bossSkillName.ToString());
         if (projectile.TryGetComponent<BossSkillController>(out var BossSkillController))
         {
             BossSkillController.transform.position = transform.position;

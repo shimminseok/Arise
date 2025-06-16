@@ -14512,7 +14512,7 @@ GameObject:
   - component: {fileID: 485970497329932894}
   - component: {fileID: 4470654317132217464}
   m_Layer: 0
-  m_Name: DIspel
+  m_Name: Dispel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19345,7 +19345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f52cf8a65414d934dbe9f6384350f55a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _poolId: DIspel
-  _poolSize: 10
+  _poolId: Dispel
+  _poolSize: 1
   _bossSkillSpeed: 10
   _bossSkillTrigger: {fileID: 0}

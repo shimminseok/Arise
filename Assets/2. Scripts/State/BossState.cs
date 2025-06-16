@@ -62,7 +62,7 @@ namespace BossStates
 
         public BossState CheckTransition(BossController owner)
         {
-                        if (owner.istest)
+            if (owner.istest)
                 return BossState.Skill;
             if (owner.Target != null && !owner.Target.IsDead)
             {
@@ -147,16 +147,14 @@ namespace BossStates
             return BossState.Die;
         }
     }
-    
-        public class SkillState : IState<BossController, BossState>
-    {
 
+    public class SkillState : IState<BossController, BossState>
+    {
+        string[] triggers = { "IsEarthquake", "IsDispel" };
         public void OnEnter(BossController owner)
         {
-
-string[] triggers = { "IsEarthquake", "IsDispel" };
-string randomTrigger = triggers[Random.Range(0, triggers.Length)];
-owner.animator.SetTrigger(randomTrigger);
+            string randomTrigger = triggers[Random.Range(0, triggers.Length)];
+            owner.animator.SetTrigger(randomTrigger);
         }
 
         public void OnUpdate(BossController owner)
@@ -174,8 +172,9 @@ owner.animator.SetTrigger(randomTrigger);
 
         public BossState CheckTransition(BossController owner)
         {
-                        owner.animator.SetBool("IsEarthquake",false);
-                        return BossState.Idle;
+            owner.animator.SetBool(triggers[0], false);
+            owner.animator.SetBool(triggers[1], false);
+            return BossState.Idle;
         }
     }
 }
