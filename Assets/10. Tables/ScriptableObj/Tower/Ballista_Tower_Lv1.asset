@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Ballista_Tower_Lv1
   m_EditorClassIdentifier: 
   ID: 201
+  TowerName: "\uD30C\uC6CC\uC0F7 \uD0C0\uC6CC"
+  Description: "\uAC15\uD654\uB41C \uD654\uC0B4\uB85C \uC801\uC5D0\uAC8C \uAC15\uB825\uD55C
+    \uC77C\uACA9\uC744 \uAC00\uD569\uB2C8\uB2E4."
   TowerStats:
   - StatType: 2
     ModifierType: 0

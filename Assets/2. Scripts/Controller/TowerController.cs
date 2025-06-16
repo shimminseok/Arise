@@ -38,7 +38,9 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     public TowerSO      TowerSO             => towerSO;
     public string       ProjectilePoolId    => projectilePoolId;
     private Collider m_Collider;
+    
     private TowerTable towerTable;
+    
     protected override void Awake()
     {
         base.Awake();
@@ -133,6 +135,22 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
         if (nextTowerData == null)
         {
             Debug.Log("최대 레벨입니다.");
+            return null;
+        }
+
+        int upgradeCost = nextTowerData.BuildCost;
+
+        if (GoldManager.Instance.CurrentGold < upgradeCost)
+        {
+            Debug.Log("골드가 부족하여 업그레이드를 할 수 없습니다.");
+            return null;
+        }
+
+        bool success = GoldManager.Instance.TrySpendGold(upgradeCost);
+
+        if (!success)
+        {
+            Debug.Log("골드 차감 실패");
             return null;
         }
 

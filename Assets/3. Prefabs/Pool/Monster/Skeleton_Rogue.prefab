@@ -806,7 +806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolID: Skeleton_Rogue
-  poolSize: 2
+  poolSize: 50
   m_MonsterSo: {fileID: 11400000, guid: d25995e1699a9774e8f86fa77c4dbdea, type: 2}
 --- !u!54 &5984737900787140118
 Rigidbody:

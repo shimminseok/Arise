@@ -2556,7 +2556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolID: Skeleton_Mage
-  poolSize: 2
+  poolSize: 50
   m_MonsterSo: {fileID: 11400000, guid: e8611efc7b771434ea8946d9f0a2638f, type: 2}
 --- !u!54 &-7065533199972475911
 Rigidbody:
