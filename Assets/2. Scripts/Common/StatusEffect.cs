@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class StatusEffect
 {
     public int StatusEffectID;
+    public StatusEffectType EffectType;
     public StatType StatType;
     public StatModifierType ModifierType;
     public float Value;

@@ -19,6 +19,7 @@
         if (effect == null)
             return null;
         effect.StatusEffectID = id;
+        effect.EffectType = data.EffectType;
         effect.StatType = data.Stat.StatType;
         effect.Duration = data.Duration;
         effect.ModifierType = data.Stat.ModifierType;

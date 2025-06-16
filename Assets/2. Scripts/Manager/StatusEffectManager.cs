@@ -28,10 +28,20 @@ public class StatusEffectManager : MonoBehaviour
     {
         if (!effect.IsStackable)
         {
-            var duplicate = activeEffects.Find(x => x.StatusEffectID == effect.StatusEffectID);
-            if (duplicate != null)
+            var existing = activeEffects.Find(x =>
+                x.EffectType == effect.EffectType &&
+                x.StatType == effect.StatType &&
+                x.ModifierType == effect.ModifierType);
+            if (existing != null)
             {
-                RemoveEffect(duplicate);
+                if (Mathf.Abs(effect.Value) >= Mathf.Abs(existing.Value))
+                {
+                    RemoveEffect(existing);
+                }
+                else
+                {
+                    return;
+                }
             }
         }
         Coroutine co = StartCoroutine(effect.Apply(this));
