@@ -9,13 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06889c64038a6b74cbb7c363fbc592a7, type: 3}
-  m_Name: SceneLink
+  m_Script: {fileID: 11500000, guid: 327cc34a4c94e824aa2b395a77103d42, type: 3}
+  m_Name: OnGameOverEvent
   m_EditorClassIdentifier: 
-  sceneLinks:
-  - currentScene: MainScene
-    nextScene: Stage 1
-  - currentScene: Stage 1
-    nextScene: Stage 2
-  - currentScene: Stage 2
-    nextScene: Stage 3

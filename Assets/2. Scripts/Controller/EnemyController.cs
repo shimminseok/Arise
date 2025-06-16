@@ -1,11 +1,10 @@
-// EnemyController.cs
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using EnemyStates;
 using UnityEngine;
 using UnityEngine.AI;
+
 
 [RequireComponent(typeof(CapsuleCollider))]
 [RequireComponent(typeof(NavMeshAgent))]
@@ -15,17 +14,17 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
     [SerializeField] private string poolID;
     [SerializeField] private int poolSize;
     [SerializeField] private MonsterSO m_MonsterSo;
-    public StatBase AttackStat { get; private set; }
-    public IDamageable Target { get; private set; }
-    public bool IsDead { get; private set; }
-    public Collider Collider { get; private set; }
-    public Vector3 TargetPosition { get; private set; }
-    public NavMeshAgent Agent { get; private set; }
-    public Animator Animator { get; private set; }
+    public StatBase     AttackStat     { get; private set; }
+    public IDamageable  Target         { get; private set; }
+    public bool         IsDead         { get; private set; }
+    public Collider     Collider       { get; private set; }
+    public Vector3      TargetPosition { get; private set; }
+    public NavMeshAgent Agent          { get; private set; }
+    public Animator     Animator       { get; private set; }
 
     public GameObject GameObject => gameObject;
-    public string PoolID => poolID;
-    public int PoolSize => poolSize;
+    public string     PoolID     => poolID;
+    public int        PoolSize   => poolSize;
 
     private HPBarUI _healthBarUI;
     private AttackPoint _assignedPoint;
@@ -54,26 +53,27 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         base.FixedUpdate();
     }
 
+
     protected override IState<EnemyController, EnemyState> GetState(EnemyState state)
     {
         return state switch
         {
-            EnemyState.Idle => new IdleState(),
-            EnemyState.Move => new MoveState(),
+            EnemyState.Idle   => new IdleState(),
+            EnemyState.Move   => new MoveState(),
             EnemyState.Attack => new AttackState(StatManager.GetValue(StatType.AttackSpd), StatManager.GetValue(StatType.AttackRange)),
-            EnemyState.Die => new DeadState(),
-            _ => null
+            EnemyState.Die    => new DeadState(),
+            _                 => null
         };
     }
 
     public void Initialized(Vector3 startPos, Vector3 targetPos)
     {
-        Agent.enabled = true;
-        Collider.enabled = true;
         Agent.Warp(startPos);
         TargetPosition = targetPos;
         IsDead = false;
         OnSpawnFromPool();
+        Agent.enabled = true;
+        Collider.enabled = true;
     }
 
     public void OnSpawnFromPool()
@@ -98,6 +98,7 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
     {
         if (Agent.isOnNavMesh)
         {
+            //Debug.Log("Update Movement");
             Agent.speed = StatManager.GetValue(StatType.MoveSpeed);
             Agent.SetDestination(TargetPosition);
         }
@@ -132,6 +133,7 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         if (Target != null && !Target.IsDead)
         {
             float distance = Utility.GetSqrDistanceBetween(Collider, Target.Collider);
+            
             return distance;
         }
 
@@ -140,15 +142,17 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
 
     public bool IsTargetInAttackRange()
     {
-        float attackRange = StatManager.GetValue(StatType.AttackRange);
+        float attackRange    = StatManager.GetValue(StatType.AttackRange);
         float sqrAttackRange = attackRange * attackRange;
         return GetTargetDistance() <= sqrAttackRange;
     }
+
 
     public void Attack()
     {
         Target?.TakeDamage(this);
     }
+
 
     public void TakeDamage(IAttackable attacker)
     {
@@ -186,10 +190,6 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         Agent.enabled = false;
         Collider.enabled = false;
         ChangeState(EnemyState.Idle);
-    }
-
-    public override string ToString()
-    {
-        return $"{m_MonsterSo.Name} (ID:{GetInstanceID()})";
+        
     }
 }

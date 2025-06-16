@@ -25,6 +25,7 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
         base.Awake();
     }
 
+    private bool isSpawning = false;
     private void Start()
     {
         StartCoroutine(StartMonsterSpawn());
@@ -38,6 +39,8 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
             
             waveChangedEvent?.Raise(currentWaveIndex + 1);
 
+            isSpawning = true; // 스폰 시작
+
             List<Coroutine> spawnCoroutines = new List<Coroutine>();
             foreach (var spawnInfo in wave.spawnList)
             {
@@ -50,7 +53,10 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
                 yield return coroutine;
             }
 
-            while (Enemies.Count > 0)
+            isSpawning = false; // 스폰 완료
+
+            // 스폰 중이 아니고, 몬스터 수가 0일 때만
+            while (Enemies.Count > 0 || isSpawning )
             {
                 yield return null;
             }
@@ -84,8 +90,8 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
 
     public void MonsterDead(EnemyController monster)
     {
-        Debug.Log($"MonsterDead 호출 - 남은 몬스터 수: {Enemies.Count - 1}");
-        ObjectPoolManager.Instance.ReturnObject(monster.GameObject, 2f);
+        Debug.Log($"몬스터 수 : {Enemies.Count}");
+        ObjectPoolManager.Instance.ReturnObject(monster.GameObject, 2f, () => Enemies.Remove(monster));
         Enemies.Remove(monster);
     }
 
