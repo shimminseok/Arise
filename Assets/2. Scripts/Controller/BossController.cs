@@ -164,11 +164,11 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
     public void TakeDamage(IAttackable attacker)
     {
         //*  형변환 안되고 hpbar 관리 새로 짜주거나 basecontroller로 바꾸기
-        // if (_healthBarUI == null)
-        // {
-        //     _healthBarUI = HealthBarManager.Instance.SpawnHealthBar(this);
-        //     StatManager.GetStat<ResourceStat>(StatType.CurHp).OnValueChanged += _healthBarUI.UpdateHealthBarWrapper;
-        // }
+        if (_healthBarUI == null)
+        {
+            _healthBarUI = HealthBarManager.Instance.SpawnHealthBar(this);
+            StatManager.GetStat<ResourceStat>(StatType.CurHp).OnValueChanged += _healthBarUI.UpdateHealthBarWrapper;
+        }
 
         //TODO 방어력 계산
         float finalDam = attacker.AttackStat.Value;
