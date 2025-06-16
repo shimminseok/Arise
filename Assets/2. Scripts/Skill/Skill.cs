@@ -47,7 +47,7 @@ public abstract class Skill : MonoBehaviour
         {
             foreach (var effectData in SkillData.StatusEffects)
             {
-                var effect = BuffFactory.CreateBuff(effectData);
+                var effect = BuffFactory.CreateBuff(SkillData.ID, effectData);
                 if (effect == null) continue;
                 effectManager.ApplyEffect(effect);
                 Debug.Log("효과 적용!");

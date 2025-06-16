@@ -16,6 +16,7 @@ public class ProjectileController : MonoBehaviour, IPoolObject
     public IDamageable Target       { get; private set; }
     public IAttackable Attacker     { get; private set; }
     public float       SplashRadius { get; private set; }
+    public TowerSO     OwnerTower   { get; private set; }
 
     public void Awake()
     {
@@ -44,7 +45,8 @@ public class ProjectileController : MonoBehaviour, IPoolObject
     public void SetTarget(TowerController attacker, IDamageable target)
     {
         Attacker = attacker;
-        SplashRadius = attacker.TowerSO.SplashRadius;
+        OwnerTower = attacker.TowerSO;
+        SplashRadius = OwnerTower.SplashRadius;
         Target = target;
         OnSpawnFromPool();
     }

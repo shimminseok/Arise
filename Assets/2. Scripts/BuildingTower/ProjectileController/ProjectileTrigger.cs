@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using TMPro;
 using UnityEngine;
 
@@ -31,6 +32,16 @@ public class ProjectileTrigger : MonoBehaviour
                     damageable.TakeDamage(_projectileController.Attacker);
                 }
                 ObjectPoolManager.Instance.ReturnObject(_projectileController.gameObject);
+                foreach (StatusEffectSO statusEffect in _projectileController.OwnerTower.StatusEffects)
+                {
+                    foreach (StatusEffectData effect in statusEffect.StatusEffects)
+                    {
+                        if (_target.Collider.TryGetComponent(out StatusEffectManager statusEffectManager))
+                        {
+                            statusEffectManager.ApplyEffect(BuffFactory.CreateBuff(statusEffect.ID, effect));
+                        }
+                    }
+                }
             }
         }
     }

@@ -161,6 +161,7 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     {
         TowerSO.AttackType.Attack(this);
 
+
     }
 
     private void OnDrawGizmosSelected()
