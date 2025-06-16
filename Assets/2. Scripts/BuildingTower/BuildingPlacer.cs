@@ -4,22 +4,25 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
-public class BuildingPlacer : MonoBehaviour
+public class BuildingPlacer : SceneOnlySingleton<BuildingPlacer>
 {
-    public GridManager gridManager;
+    [SerializeField] private GridManager gridManager;
     public List<TowerSO> towers = new List<TowerSO>();
     private BuildingData buildingData;
     private Camera mainCamera;
     [SerializeField] private CinemachineVirtualCamera topViewCam;
 
-    private bool selectedBuildData;
     private BuildingGhost buildingGhost;
     private TowerController selectedTower;
     private GameObject ghostObj;
 
-    public bool BuildingMode { get; private set; }
+    public bool        IsBuildingMode { get; private set; }
+    public GridManager GridManager    => gridManager;
 
-
+    protected override void Awake()
+    {
+        base.Awake();
+    }
     private void Start()
     {
         mainCamera = Camera.main;
@@ -40,12 +43,12 @@ public class BuildingPlacer : MonoBehaviour
         {
             gridManager.PlaceBuilding(selectedTower.GameObject, cell, buildingData.Size);
             selectedTower.OnBuildComplete();
-            selectedBuildData = false;
             buildingGhost.SetValid(true);
             selectedTower = null;
             buildingGhost = null;
-            BuildingMode = false;
-            topViewCam.gameObject.SetActive(BuildingMode);
+            IsBuildingMode = false;
+            topViewCam.gameObject.SetActive(IsBuildingMode);
+            UIManager.Instance.Close<UITowerUpgrade>();
         }
     }
 
@@ -63,6 +66,19 @@ public class BuildingPlacer : MonoBehaviour
         return mainCamera.ScreenToWorldPoint(screenPosition);
     }
 
+    public void BuildingTower(TowerSO tower)
+    {
+        GameObject towerObj = ObjectPoolManager.Instance.GetObject(tower.name);
+        if (!towerObj.TryGetComponent(out TowerController towerController))
+            return;
+
+        selectedTower = towerController;
+        selectedTower.OnSpawnFromPool();
+        buildingData = selectedTower.BuildingData;
+        buildingGhost = buildingData.BuildingGhost;
+        buildingGhost.SetValid(false);
+        topViewCam.gameObject.SetActive(true);
+    }
 
     private void OnGUI()
     {
@@ -73,64 +89,48 @@ public class BuildingPlacer : MonoBehaviour
         float x = Screen.width - (buttonWidth + 10f);
         float y = Screen.height - buttonHeight - 50f;
 
-        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 0), buttonWidth, buttonHeight), $"Build_Tower1"))
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 0), buttonWidth, buttonHeight), "Build_Tower1"))
         {
-            selectedTower = ObjectPoolManager.Instance.GetObject(towers[0].name).GetComponent<TowerController>();
-            selectedTower.OnSpawnFromPool();
-            buildingData = selectedTower.BuildingData;
-            buildingGhost = buildingData.BuildingGhost;
-            buildingGhost.SetValid(false);
-            topViewCam.gameObject.SetActive(true);
+            BuildingTower(towers[0]);
         }
 
-        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 1), buttonWidth, buttonHeight), $"Build_Tower2"))
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 1), buttonWidth, buttonHeight), "Build_Tower2"))
         {
-            selectedBuildData = true;
-            selectedTower = ObjectPoolManager.Instance.GetObject(towers[1].name).GetComponent<TowerController>();
-            selectedTower.OnSpawnFromPool();
-            buildingData = selectedTower.BuildingData;
-            buildingGhost = buildingData.BuildingGhost;
-            buildingGhost = buildingData.BuildingGhost;
-            buildingGhost.SetValid(false);
+            BuildingTower(towers[1]);
         }
 
-        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 2), buttonWidth, buttonHeight), $"Build_Tower3"))
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 2), buttonWidth, buttonHeight), "Build_Tower3"))
         {
-            selectedBuildData = true;
-            selectedTower = ObjectPoolManager.Instance.GetObject(towers[2].name).GetComponent<TowerController>();
-            selectedTower.OnSpawnFromPool();
-            buildingData = selectedTower.BuildingData;
-            buildingGhost = buildingData.BuildingGhost;
-            buildingGhost = buildingData.BuildingGhost;
-            buildingGhost.SetValid(false);
+            BuildingTower(towers[2]);
+
         }
 
-        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 3), buttonWidth, buttonHeight), $"Build_Tower4"))
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 3), buttonWidth, buttonHeight), "Build_Tower4"))
         {
-            selectedBuildData = true;
-            selectedTower = ObjectPoolManager.Instance.GetObject(towers[3].name).GetComponent<TowerController>();
-            selectedTower.OnSpawnFromPool();
-            buildingData = selectedTower.BuildingData;
-            buildingGhost = buildingData.BuildingGhost;
-            buildingGhost = buildingData.BuildingGhost;
-            buildingGhost.SetValid(false);
+            BuildingTower(towers[3]);
+
         }
 
-        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 4), buttonWidth, buttonHeight), $"x2"))
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 4), buttonWidth, buttonHeight), "x2"))
         {
             Time.timeScale *= 2f;
         }
 
-        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 5), buttonWidth, buttonHeight), $"ResetGameSpeed"))
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 5), buttonWidth, buttonHeight), "ResetGameSpeed"))
         {
             Time.timeScale = 1f;
         }
 
-        if (GUI.Button(new Rect(10, y, buttonWidth, buttonHeight), $"BuildingMode"))
+        if (GUI.Button(new Rect(10, y, buttonWidth, buttonHeight), "BuildingMode"))
         {
-            BuildingMode = !BuildingMode;
-            topViewCam.gameObject.SetActive(BuildingMode);
+            IsBuildingMode = !IsBuildingMode;
+            topViewCam.gameObject.SetActive(IsBuildingMode);
+            UIManager.Instance.Close<UITowerUpgrade>();
         }
-        
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
     }
 }
