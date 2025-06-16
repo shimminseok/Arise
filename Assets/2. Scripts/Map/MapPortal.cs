@@ -18,6 +18,11 @@ public class MapPortal : MonoBehaviour
             // enemyController.SetTargetPosition(target.transform.position);
         }
 
+        if (other.TryGetComponent<BossController>(out var bossController))
+        {
+            bossController.Agent.Warp(portalPos.transform.position);
+            bossController.AssignAttackPoint();
+        }
         // other.GetComponent<NavMeshAgent>().Warp(portalPos.transform.position);
         // 목적지 다시 지정
         // other.GetComponent<MoveToTarget>().target = target.transform;
