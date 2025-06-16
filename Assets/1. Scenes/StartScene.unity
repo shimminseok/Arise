@@ -1145,11 +1145,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIManager
       objectReference: {fileID: 0}
-    - target: {fileID: 8351764261580127685, guid: 45642b4915a7fa848a6a4114cf913ccf,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9105586401112205788, guid: 45642b4915a7fa848a6a4114cf913ccf,
         type: 3}
       propertyPath: m_AnchorMax.y
