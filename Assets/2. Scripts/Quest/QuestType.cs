@@ -6,5 +6,6 @@ public enum QuestType
     UpgradeWeapon,
     TimeLimitClear,
     CollectGold,
-    BuildTower
+    BuildTower,
+    DashCount
 }
