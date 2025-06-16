@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ProjectileTrigger : MonoBehaviour
@@ -45,6 +46,7 @@ public class ProjectileTrigger : MonoBehaviour
             if (results[i].TryGetComponent<IDamageable>(out var splashTarget) && !splashTarget.IsDead)
             {
                 splashTarget.TakeDamage(_projectileController.Attacker);
+
             }
         }
     }

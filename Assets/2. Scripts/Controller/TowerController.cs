@@ -94,7 +94,7 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
 
     public override void FindTarget()
     {
-        var results = new Collider[10];
+        var results = new Collider[1];
         var size    = Physics.OverlapSphereNonAlloc(transform.position, StatManager.GetValue(StatType.AttackRange), results, LayerMask.GetMask("Enemy"));
         for (int i = 0; i < size; i++)
         {
@@ -159,20 +159,8 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
 
     public void Attack()
     {
-        // GameObject projectile = ObjectPoolManager.Instance.GetObject(projectilePoolId);
-        // if (projectile.TryGetComponent<ProjectileController>(out var projectileController))
-        // {
-        //     projectileController.transform.position = fireTransform.position;
-        //     projectileController.SetTarget(this, Target);
-        //     if (Target.Collider.TryGetComponent(out StatusEffectManager statusEffectManager))
-        //     {
-        //         foreach (var effect in towerSO.StatusEffects)
-        //         {
-        //             statusEffectManager.ApplyEffect(BuffFactory.CreateBuff(effect));
-        //         }
-        //     }
-        // }
         TowerSO.AttackType.Attack(this);
+
     }
 
     private void OnDrawGizmosSelected()

@@ -151,7 +151,6 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
     public void Attack()
     {
         Target?.TakeDamage(this);
-        Target?.TakeDamage(this);
     }
 
 
