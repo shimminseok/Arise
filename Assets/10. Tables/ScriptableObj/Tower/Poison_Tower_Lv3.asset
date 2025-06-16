@@ -24,7 +24,7 @@ MonoBehaviour:
     ModifierType: 0
     Value: 12
   StatusEffects:
-  - EffectType: 0
+  - EffectType: 5
     Stat:
       StatType: 1
       ModifierType: 4

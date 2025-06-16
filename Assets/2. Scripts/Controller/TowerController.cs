@@ -110,7 +110,7 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     public void OnSpawnFromPool()
     {
         IsPlaced = false;
-        StatManager.Initialize(towerSO);
+        StatManager.Initialize(towerSO, null);
     }
 
     public void OnReturnToPool()

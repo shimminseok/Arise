@@ -83,7 +83,7 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
     {
         Target = CommandCenter.Instance;
         IsDead = false;
-        StatManager.Initialize(m_BossSo);
+        StatManager.Initialize(m_BossSo, this);
     }
 
     public void OnReturnToPool()

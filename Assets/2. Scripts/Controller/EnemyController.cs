@@ -80,7 +80,7 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
     public void OnSpawnFromPool()
     {
         Target = CommandCenter.Instance;
-        StatManager.Initialize(m_MonsterSo);
+        StatManager.Initialize(m_MonsterSo, this);
     }
 
     public void OnReturnToPool()
