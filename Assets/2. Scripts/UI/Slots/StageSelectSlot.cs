@@ -8,11 +8,10 @@ public class StageSelectSlot : MonoBehaviour
     [SerializeField] private TMP_Text stageNameText;
     [SerializeField] private GameObject lockIcon;
 
-    public void SetData(string stageName, bool isUnlocked)
+    public void SetData(string displayName, bool isUnlocked)
     {
-        stageNameText.text = stageName;
+        stageNameText.text = displayName;
         lockIcon.SetActive(!isUnlocked);
         stageButton.interactable = isUnlocked;
     }
 }
-

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class TurretDescriptionCloseButton : MonoBehaviour
 {
-    [SerializeField] private GameObject parentPanel;
+    [SerializeField] private TurretDescriptionPanel turretPanel;
     [SerializeField] private VoidEventChannelSO clickEvent;
     [SerializeField] private Button thisButton;
 
@@ -12,7 +12,7 @@ public class TurretDescriptionCloseButton : MonoBehaviour
         thisButton.onClick.AddListener(() =>
         {
             clickEvent?.Raise();
-            parentPanel?.SetActive(false);
+            turretPanel.ShowOnly(null);
         });
     }
 }
