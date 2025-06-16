@@ -23,9 +23,10 @@ MonoBehaviour:
     Stat:
       StatType: 1
       ModifierType: 0
-      Value: -1234
+      Value: 1234
     Duration: 0
     TickInterval: 0
+    IsStackable: 0
   ShapeType: 1
   Radius: 10
   RectSize: {x: 5, y: 5, z: 5}

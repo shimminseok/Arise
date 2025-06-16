@@ -8,9 +8,9 @@ public class SettingsPanel : MonoBehaviour
     [SerializeField] private Slider sensitivitySlider;
     [SerializeField] private Button saveButton;
 
-    private float _bgmValue = 1f;
-    private float _sfxValue = 1f;
-    private float _sensitivityValue = 1f;
+    private float _bgmValue = 0f;
+    private float _sfxValue = 0f;
+    private float _sensitivityValue = 0f;
 
     public void Show()
     {

@@ -25,7 +25,7 @@ public class CommandCenter : SceneOnlySingleton<CommandCenter>, IDamageable
         //TODO 방어력 계산
         float finalDam = attacker.AttackStat.Value;
 
-        StatManager.Consume(StatType.CurHp, finalDam);
+        StatManager.Consume(StatType.CurHp, StatModifierType.Base, finalDam);
 
         if (StatManager.GetValue(StatType.CurHp) <= 0)
         {

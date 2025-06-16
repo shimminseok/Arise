@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cannon_Tower_Lv2
   m_EditorClassIdentifier: 
   ID: 302
-  Stats:
+  TowerStats:
   - StatType: 2
     ModifierType: 0
     Value: 100
@@ -22,4 +22,11 @@ MonoBehaviour:
     Value: 1
   - StatType: 4
     ModifierType: 0
-    Value: 25
+    Value: 15
+  StatusEffects: []
+  AttackType: {fileID: 11400000, guid: 4ccc9c126d3422f4184c771c6a0ef6ad, type: 2}
+  BuildCost: 100
+  UseMultishot: 0
+  ProjectileCount: 0
+  UseSplashAttack: 1
+  SplashRadius: 4

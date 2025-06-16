@@ -86,6 +86,20 @@ public class ResourceStat : StatBase
         OnValueChanged?.Invoke(CurrentValue);
     }
 
+    public void RecoverPercent(float percent)
+    {
+        float amount = MaxValue * percent;
+        CurrentValue = Mathf.Min(CurrentValue + amount, MaxValue);
+        OnValueChanged?.Invoke(CurrentValue);
+    }
+
+    public void ConsumePercent(float percent)
+    {
+        float amount = MaxValue * percent;
+        CurrentValue = Mathf.Min(CurrentValue - amount, MaxValue);
+        OnValueChanged?.Invoke(CurrentValue);
+    }
+
     public void SetMax(float max)
     {
         MaxValue = max;

@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Content;
 using UnityEngine;
 
-public class QuestManager : SceneOnlySingleton<QuestManager>
+public class QuestManager : Singleton<QuestManager>
 {
     private Dictionary<string, QuestData> _questLookup = new();
     private Dictionary<string, QuestProgress> _progressLookup = new();

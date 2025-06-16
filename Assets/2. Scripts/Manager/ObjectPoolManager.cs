@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// 버전 1.06.13
 
 public class ObjectPoolManager : SceneOnlySingleton<ObjectPoolManager>
 {

@@ -5,7 +5,15 @@ using UnityEngine;
 public class AttackPoint : MonoBehaviour
 {
     [SerializeField] private int maxCapacity = 10;
-    public int CurrentCount { get; private set; } = 0;
+
+
+    public int      CurrentCount { get; private set; } = 0;
+    public Collider Collider     { get; private set; }
+
+    private void Awake()
+    {
+        Collider = GetComponent<Collider>();
+    }
 
     public bool TryReserve()
     {

@@ -95,6 +95,7 @@ Transform:
   m_Children:
   - {fileID: 5364832294963877300}
   - {fileID: 7561707309498729036}
+  - {fileID: 3153128544032659656}
   m_Father: {fileID: 6245415475133326227}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &3447299371642190969
@@ -336,7 +337,7 @@ GameObject:
   - component: {fileID: -1579696351747267935}
   - component: {fileID: 6146765032682042610}
   - component: {fileID: 3011802372469813745}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ballista_Tower_Lv4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +359,6 @@ Transform:
   m_Children:
   - {fileID: 4926558844733891384}
   - {fileID: 3946107506366235946}
-  - {fileID: 3153128544032659656}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1275412522508240077
@@ -409,10 +409,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 2
+  m_Height: 15
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 7.5, z: 0}
 --- !u!114 &-1579696351747267935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,9 +452,9 @@ MonoBehaviour:
   poolId: BallistaTower_LV4
   poolSize: 10
   towerSO: {fileID: 11400000, guid: 5256f563dc8d3ee4f87084fbe1343703, type: 2}
-  ProjectilePoolId: Ballista_shell
+  projectilePoolId: Ballista_shell
   fireTransform: {fileID: 3153128544032659656}
-  fireWeaponTransform: {fileID: 3946107506366235946}
+  fireWeaponWeaponTransform: {fileID: 3946107506366235946}
 --- !u!1 &7610744729478838609
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,10 +575,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8946184178597949082}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 13.3, z: 2}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.6900005, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6245415475133326227}
+  m_Father: {fileID: 3946107506366235946}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

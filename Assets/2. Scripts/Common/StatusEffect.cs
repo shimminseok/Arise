@@ -93,7 +93,7 @@ public class RecoverEffect : StatusEffect
 {
     public override IEnumerator Apply(StatusEffectManager manager)
     {
-        manager.RecoverEffect(StatType, Value);
+        manager.RecoverEffect(StatType, ModifierType, Value);
         yield return null;
     }
 }
@@ -105,7 +105,7 @@ public class RecoverOverTime : StatusEffect
         float elapsed = 0f;
         while (elapsed < Duration)
         {
-            manager.RecoverEffect(StatType, Value);
+            manager.RecoverEffect(StatType, ModifierType, Value);
             yield return new WaitForSeconds(TickInterval);
             elapsed += TickInterval;
         }
@@ -120,7 +120,7 @@ public class PeriodicDamageDebuff : StatusEffect
         float elapsed = 0f;
         while (elapsed < Duration)
         {
-            manager.ConsumeEffect(StatType, Value);
+            manager.ConsumeEffect(StatType, ModifierType, Value);
             yield return new WaitForSeconds(TickInterval);
             elapsed += TickInterval;
         }
@@ -131,7 +131,7 @@ public class DamageDebuff : StatusEffect
 {
     public override IEnumerator Apply(StatusEffectManager manager)
     {
-        manager.ConsumeEffect(StatType, -Value);
+        manager.ConsumeEffect(StatType, ModifierType, Value);
         yield return null;
     }
 }

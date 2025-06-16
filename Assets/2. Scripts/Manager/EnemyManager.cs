@@ -35,11 +35,11 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
 
     public IEnumerator StartMonsterSpawn()
     {
-        int count = 50;
-        // while (count > 0)
-        while (true)
+        int count = 10;
+        while (count > 0)
+            // while (true)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
             SpawnMonster();
             count--;
         }
@@ -49,7 +49,7 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
 
     public void MonsterDead(EnemyController monster)
     {
-        ObjectPoolManager.Instance.ReturnObject(monster.GameObject);
+        ObjectPoolManager.Instance.ReturnObject(monster.GameObject, 2f);
         Enemies.Remove(monster);
     }
 

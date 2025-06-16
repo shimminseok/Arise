@@ -168,4 +168,4 @@ MonoBehaviour:
   _poolId: Poison_shell
   _poolSize: 100
   _projectileSpeed: 50
-  _projectileTrigger: {fileID: 0}
+  _projectileTrigger: {fileID: 2720714676633065435}

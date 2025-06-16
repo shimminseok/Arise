@@ -13,6 +13,7 @@ public class GridManager : MonoBehaviour
     private void Start()
     {
         GenerateGrid();
+        UIManager.Instance.InitializeUIRoot();
     }
 
     public void GenerateGrid()
@@ -73,6 +74,18 @@ public class GridManager : MonoBehaviour
             {
                 Vector3Int pos = baseCellPos + new Vector3Int(x, 0, z);
                 _cells[pos].OccupiedObject = prefab;
+            }
+        }
+    }
+
+    public void PlaceDestroying(Vector3 baseCellPos, Vector2Int size)
+    {
+        for (int x = 0; x < size.x; x++)
+        {
+            for (int z = 0; z < size.y; z++)
+            {
+                Vector3Int pos = Vector3Int.FloorToInt(baseCellPos + new Vector3(x, -cellHeightOffset, z));
+                _cells[pos].OccupiedObject = null;
             }
         }
     }

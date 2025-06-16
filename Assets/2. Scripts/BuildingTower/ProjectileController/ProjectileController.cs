@@ -13,8 +13,9 @@ public class ProjectileController : MonoBehaviour, IPoolObject
     public int        PoolSize   => _poolSize;
 
     private Coroutine _fireCoroutine;
-    public IDamageable Target   { get; private set; }
-    public IAttackable Attacker { get; private set; }
+    public IDamageable Target       { get; private set; }
+    public IAttackable Attacker     { get; private set; }
+    public float       SplashRadius { get; private set; }
 
     public void Awake()
     {
@@ -27,7 +28,7 @@ public class ProjectileController : MonoBehaviour, IPoolObject
         if (Target != null)
         {
             _fireCoroutine = StartCoroutine(FireProjectile());
-            _projectileTrigger.SetTarget(this);
+            _projectileTrigger.SetTarget(this, SplashRadius);
         }
     }
 
@@ -40,9 +41,10 @@ public class ProjectileController : MonoBehaviour, IPoolObject
         Target = null;
     }
 
-    public void SetTarget(IAttackable attacker, IDamageable target)
+    public void SetTarget(TowerController attacker, IDamageable target)
     {
         Attacker = attacker;
+        SplashRadius = attacker.TowerSO.SplashRadius;
         Target = target;
         OnSpawnFromPool();
     }

@@ -168,4 +168,4 @@ MonoBehaviour:
   _poolId: Wizars_shell
   _poolSize: 100
   _projectileSpeed: 50
-  _projectileTrigger: {fileID: 0}
+  _projectileTrigger: {fileID: 6270671647430815587}

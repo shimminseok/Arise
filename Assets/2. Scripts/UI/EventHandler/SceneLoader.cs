@@ -17,7 +17,7 @@ public class SceneLoader : MonoBehaviour
 
     private void LoadScene(string sceneName)
     {
-        Debug.Log($"[씬 전환] : {sceneName}");
+        Debug.Log($"씬 전환 : {sceneName}");
         SceneManager.LoadScene(sceneName);
     }
 }

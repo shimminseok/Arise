@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 1593876427886082289}
   - component: {fileID: -2556945744114645121}
   - component: {fileID: 6893179869936512790}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ballista_Tower_Lv1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 2
+  m_Height: 15
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 7.5, z: 0}

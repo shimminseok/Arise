@@ -4,46 +4,29 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
-public class BuildingPlacer : MonoBehaviour
+public class BuildingPlacer : SceneOnlySingleton<BuildingPlacer>
 {
-    public GridManager gridManager;
+    [SerializeField] private GridManager gridManager;
+    public List<TowerSO> towers = new List<TowerSO>();
     private BuildingData buildingData;
     private Camera mainCamera;
     [SerializeField] private CinemachineVirtualCamera topViewCam;
 
-    private bool selectedBuildData;
     private BuildingGhost buildingGhost;
     private TowerController selectedTower;
     private GameObject ghostObj;
 
+    public bool        IsBuildingMode { get; private set; }
+    public GridManager GridManager    => gridManager;
+
+    protected override void Awake()
+    {
+        base.Awake();
+    }
     private void Start()
     {
         mainCamera = Camera.main;
     }
-
-    private void Update()
-    {
-        if (selectedTower == null)
-            return;
-
-        var mousePos = GetMouseWorldPosition();
-        buildingGhost.SetPosition(mousePos);
-        Vector3    mouseWorld    = mousePos;
-        Vector3Int cell          = Vector3Int.FloorToInt(mouseWorld);
-        bool       isCanBuilding = gridManager.CanPlaceBuilding(cell, buildingData.Size);
-        buildingGhost.SetMaterialColor(isCanBuilding);
-        if (Input.GetMouseButtonDown(0) && isCanBuilding)
-        {
-            gridManager.PlaceBuilding(selectedTower.GameObject, cell, buildingData.Size);
-            selectedTower.OnBuildComplete();
-            selectedBuildData = false;
-            buildingGhost.SetValid(true);
-            selectedTower = null;
-            buildingGhost = null;
-            topViewCam.gameObject.SetActive(false);
-        }
-    }
-
     private Vector3 GetMouseWorldPosition()
     {
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -58,6 +41,37 @@ public class BuildingPlacer : MonoBehaviour
         return mainCamera.ScreenToWorldPoint(screenPosition);
     }
 
+    public void HandleGhostTower(out (bool, Vector3Int) isCanBuilding)
+    {
+        var        mousePos = GetMouseWorldPosition();
+        Vector3Int cell     = Vector3Int.FloorToInt(mousePos);
+        isCanBuilding.Item1 = gridManager.CanPlaceBuilding(cell, buildingData.Size);
+        isCanBuilding.Item2 = cell;
+        buildingGhost.SetMaterialColor(isCanBuilding.Item1);
+        buildingGhost.SetPosition(mousePos);
+    }
+
+    public void TryBuildingTower(TowerSO tower)
+    {
+        GameObject towerObj = ObjectPoolManager.Instance.GetObject(tower.name);
+        if (!towerObj.TryGetComponent(out TowerController towerController))
+            return;
+
+        selectedTower = towerController;
+        selectedTower.OnSpawnFromPool();
+        buildingData = selectedTower.BuildingData;
+        buildingGhost = buildingData.BuildingGhost;
+        buildingGhost.SetValid(false);
+    }
+
+    public void CompleteBuildingTower(Vector3Int cell)
+    {
+        gridManager.PlaceBuilding(selectedTower.GameObject, cell, buildingData.Size);
+        selectedTower.OnBuildComplete();
+        buildingGhost.SetValid(true);
+        selectedTower = null;
+        buildingGhost = null;
+    }
 
     private void OnGUI()
     {
@@ -65,59 +79,54 @@ public class BuildingPlacer : MonoBehaviour
         float buttonHeight = 80f;
         float spacing      = 5f;
 
-        float x = 10f;
+        float x = Screen.width - (buttonWidth + 10f);
         float y = Screen.height - buttonHeight - 50f;
 
-        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 0), buttonWidth, buttonHeight), $"Build_Tower1"))
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 0), buttonWidth, buttonHeight), "Build_Tower1"))
         {
-            selectedBuildData = true;
-            selectedTower = ObjectPoolManager.Instance.GetObject("ArcherTower_Lv1").GetComponent<TowerController>();
-            selectedTower.OnSpawnFromPool();
-            buildingData = selectedTower.BuildingData;
-            buildingGhost = buildingData.BuildingGhost;
-            buildingGhost.SetValid(false);
-            topViewCam.gameObject.SetActive(true);
+            TryBuildingTower(towers[0]);
         }
 
-        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 1), buttonWidth, buttonHeight), $"Build_Tower2"))
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 1), buttonWidth, buttonHeight), "Build_Tower2"))
         {
-            topViewCam.gameObject.SetActive(true);
-            selectedBuildData = true;
-            selectedTower = ObjectPoolManager.Instance.GetObject("BallistaTower_LV4").GetComponent<TowerController>();
-            selectedTower.OnSpawnFromPool();
-            buildingData = selectedTower.BuildingData;
-            buildingGhost = buildingData.BuildingGhost;
-            buildingGhost = buildingData.BuildingGhost;
-            buildingGhost.SetValid(false);
+            TryBuildingTower(towers[1]);
         }
 
-        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 2), buttonWidth, buttonHeight), $"Build_Tower3"))
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 2), buttonWidth, buttonHeight), "Build_Tower3"))
         {
-            topViewCam.gameObject.SetActive(true);
-            selectedBuildData = true;
-            selectedTower = ObjectPoolManager.Instance.GetObject("CanonTower_Lv1").GetComponent<TowerController>();
-            selectedTower.OnSpawnFromPool();
-            buildingData = selectedTower.BuildingData;
-            buildingGhost = buildingData.BuildingGhost;
-            buildingGhost = buildingData.BuildingGhost;
-            buildingGhost.SetValid(false);
+            TryBuildingTower(towers[2]);
+
         }
 
-        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 3), buttonWidth, buttonHeight), $"Build_Tower4"))
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 3), buttonWidth, buttonHeight), "Build_Tower4"))
         {
-            topViewCam.gameObject.SetActive(true);
-            selectedBuildData = true;
-            selectedTower = ObjectPoolManager.Instance.GetObject("PoisonTower_Lv1").GetComponent<TowerController>();
-            selectedTower.OnSpawnFromPool();
-            buildingData = selectedTower.BuildingData;
-            buildingGhost = buildingData.BuildingGhost;
-            buildingGhost = buildingData.BuildingGhost;
-            buildingGhost.SetValid(false);
+            TryBuildingTower(towers[3]);
         }
 
-        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 4), buttonWidth, buttonHeight), $"x4"))
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 4), buttonWidth, buttonHeight), "Build_Tower4"))
+        {
+            TryBuildingTower(towers[4]);
+        }
+
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 5), buttonWidth, buttonHeight), "x2"))
         {
             Time.timeScale *= 2f;
         }
+
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 6), buttonWidth, buttonHeight), "ResetGameSpeed"))
+        {
+            Time.timeScale = 1f;
+        }
+    }
+
+    public void ChangeBuilidMode(bool isBuilding)
+    {
+        IsBuildingMode = isBuilding;
+        topViewCam.gameObject.SetActive(IsBuildingMode);
+        UIManager.Instance.Close<UITowerUpgrade>();
+    }
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
     }
 }
