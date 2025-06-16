@@ -154,7 +154,7 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
 
     public void DestroyTower()
     {
-        OnReturnToPool();
+        ObjectPoolManager.Instance.ReturnObject(gameObject);
     }
 
     public void Attack()

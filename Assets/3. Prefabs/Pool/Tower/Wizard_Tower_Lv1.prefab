@@ -188,9 +188,9 @@ MonoBehaviour:
   poolId: WizardTower_Lv1
   poolSize: 10
   towerSO: {fileID: 11400000, guid: bd34f02da9b0fd84589c99facaf9166e, type: 2}
-  ProjectilePoolId: Wizars_shell
+  projectilePoolId: Wizars_shell
   fireTransform: {fileID: 638447683857332653}
-  fireWeaponTransform: {fileID: 0}
+  fireWeaponWeaponTransform: {fileID: 0}
 --- !u!136 &2243958914949027068
 CapsuleCollider:
   m_ObjectHideFlags: 0
