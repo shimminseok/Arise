@@ -85,7 +85,7 @@ public class StatManager : MonoBehaviour
                 }
                 Debug.Log($"Consume {statType} : {value}, RemainValue: {res.CurrentValue}");
 
-                if (statType == StatType.CurMp && res.CurrentValue <= 0)
+                if (statType == StatType.CurHp && res.CurrentValue <= 0)
                 {
                     Owner?.Dead();
                 }
