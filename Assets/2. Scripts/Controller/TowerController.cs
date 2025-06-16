@@ -5,6 +5,7 @@ using TowerStates;
 
 public enum TowerState
 {
+    Build,
     Idle,
     Attack
 }
@@ -57,10 +58,15 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
         {
             TowerState.Idle   => new IdleState(),
             TowerState.Attack => new AttackState(StatManager.GetValue(StatType.AttackSpd), StatManager.GetValue(StatType.AttackRange)),
+            TowerState.Build  => new BuildState(),
             _                 => null
         };
     }
 
+    public TowerState GetCurrentState()
+    {
+        return CurrentState;
+    }
     public float GetTargetDistance()
     {
         if (Target != null && !Target.IsDead)
@@ -105,6 +111,7 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
         Target = null;
         StatusEffectManager.RemoveAllEffects();
         BuildingPlacer.Instance.GridManager.PlaceDestroying(transform.position, BuildingData.Size);
+        ChangeState(TowerState.Build);
     }
 
     public void OnBuildComplete()

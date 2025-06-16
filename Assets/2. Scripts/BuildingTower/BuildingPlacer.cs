@@ -27,31 +27,6 @@ public class BuildingPlacer : SceneOnlySingleton<BuildingPlacer>
     {
         mainCamera = Camera.main;
     }
-
-    private void Update()
-    {
-        if (selectedTower == null)
-            return;
-
-        var mousePos = GetMouseWorldPosition();
-        buildingGhost.SetPosition(mousePos);
-        Vector3    mouseWorld    = mousePos;
-        Vector3Int cell          = Vector3Int.FloorToInt(mouseWorld);
-        bool       isCanBuilding = gridManager.CanPlaceBuilding(cell, buildingData.Size);
-        buildingGhost.SetMaterialColor(isCanBuilding);
-        if (Input.GetMouseButtonDown(0) && isCanBuilding)
-        {
-            gridManager.PlaceBuilding(selectedTower.GameObject, cell, buildingData.Size);
-            selectedTower.OnBuildComplete();
-            buildingGhost.SetValid(true);
-            selectedTower = null;
-            buildingGhost = null;
-            IsBuildingMode = false;
-            topViewCam.gameObject.SetActive(IsBuildingMode);
-            UIManager.Instance.Close<UITowerUpgrade>();
-        }
-    }
-
     private Vector3 GetMouseWorldPosition()
     {
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -66,7 +41,17 @@ public class BuildingPlacer : SceneOnlySingleton<BuildingPlacer>
         return mainCamera.ScreenToWorldPoint(screenPosition);
     }
 
-    public void BuildingTower(TowerSO tower)
+    public void HandleGhostTower(out (bool, Vector3Int) isCanBuilding)
+    {
+        var        mousePos = GetMouseWorldPosition();
+        Vector3Int cell     = Vector3Int.FloorToInt(mousePos);
+        isCanBuilding.Item1 = gridManager.CanPlaceBuilding(cell, buildingData.Size);
+        isCanBuilding.Item2 = cell;
+        buildingGhost.SetMaterialColor(isCanBuilding.Item1);
+        buildingGhost.SetPosition(mousePos);
+    }
+
+    public void TryBuildingTower(TowerSO tower)
     {
         GameObject towerObj = ObjectPoolManager.Instance.GetObject(tower.name);
         if (!towerObj.TryGetComponent(out TowerController towerController))
@@ -80,6 +65,15 @@ public class BuildingPlacer : SceneOnlySingleton<BuildingPlacer>
         topViewCam.gameObject.SetActive(true);
     }
 
+    public void CompleteBuildingTower(Vector3Int cell)
+    {
+        gridManager.PlaceBuilding(selectedTower.GameObject, cell, buildingData.Size);
+        selectedTower.OnBuildComplete();
+        buildingGhost.SetValid(true);
+        selectedTower = null;
+        buildingGhost = null;
+    }
+
     private void OnGUI()
     {
         float buttonWidth  = 150f;
@@ -91,23 +85,23 @@ public class BuildingPlacer : SceneOnlySingleton<BuildingPlacer>
 
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 0), buttonWidth, buttonHeight), "Build_Tower1"))
         {
-            BuildingTower(towers[0]);
+            TryBuildingTower(towers[0]);
         }
 
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 1), buttonWidth, buttonHeight), "Build_Tower2"))
         {
-            BuildingTower(towers[1]);
+            TryBuildingTower(towers[1]);
         }
 
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 2), buttonWidth, buttonHeight), "Build_Tower3"))
         {
-            BuildingTower(towers[2]);
+            TryBuildingTower(towers[2]);
 
         }
 
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 3), buttonWidth, buttonHeight), "Build_Tower4"))
         {
-            BuildingTower(towers[3]);
+            TryBuildingTower(towers[3]);
 
         }
 

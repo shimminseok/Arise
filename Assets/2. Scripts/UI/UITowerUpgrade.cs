@@ -31,7 +31,8 @@ public class UITowerUpgrade : UIBase
             {
                 if (hit.collider.TryGetComponent(out TowerController tower))
                 {
-                    SelectTower(tower);
+                    if (tower.GetCurrentState() != TowerState.Build)
+                        SelectTower(tower);
                 }
             }
         }

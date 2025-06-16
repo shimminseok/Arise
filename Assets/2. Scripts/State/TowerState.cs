@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Cinemachine;
 using UnityEngine;
 
@@ -85,6 +86,41 @@ namespace TowerStates
                 return TowerState.Idle;
 
             return TowerState.Attack;
+        }
+    }
+
+    public class BuildState : IState<TowerController, TowerState>
+    {
+        public event Action<Vector3Int> OnTryPlace;
+
+
+        public void OnEnter(TowerController owner)
+        {
+            OnTryPlace += BuildingPlacer.Instance.CompleteBuildingTower;
+        }
+
+        public void OnUpdate(TowerController owner)
+        {
+            Debug.Log("Update BuildState");
+            BuildingPlacer.Instance.HandleGhostTower(out (bool, Vector3Int) isCanBuilding);
+            if (Input.GetMouseButtonDown(0) && isCanBuilding.Item1)
+            {
+                OnTryPlace?.Invoke(isCanBuilding.Item2);
+            }
+        }
+
+        public void OnFixedUpdate(TowerController owner)
+        {
+        }
+
+        public void OnExit(TowerController entity)
+        {
+            OnTryPlace -= BuildingPlacer.Instance.CompleteBuildingTower;
+        }
+
+        public TowerState CheckTransition(TowerController owner)
+        {
+            return owner.IsPlaced ? TowerState.Idle : TowerState.Build;
         }
     }
 }
