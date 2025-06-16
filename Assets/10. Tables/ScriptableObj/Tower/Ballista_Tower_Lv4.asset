@@ -23,3 +23,5 @@ MonoBehaviour:
   - StatType: 4
     ModifierType: 0
     Value: 12
+  StatusEffects: []
+  BuildCost: 200

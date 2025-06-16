@@ -10,5 +10,8 @@ public class TowerSO : ScriptableObject, IStatProvider
     [FormerlySerializedAs("Stats")]
     public List<StatData> TowerStats;
 
+    public List<StatusEffectData> StatusEffects;
+    public int BuildCost;
+
     public List<StatData> Stats => TowerStats;
 }

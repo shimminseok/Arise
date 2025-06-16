@@ -25,7 +25,6 @@ public abstract class BaseController<TController, TState> : MonoBehaviour where 
         stateMachine = new StateMachine<TController, TState>();
         Controller = (TController)this;
     }
-
     protected virtual void Start()
     {
         SetupState();

@@ -26,5 +26,7 @@ public enum StatModifierType
     Base,
     BuffFlat,
     BuffPercent,
-    Equipment
+    Equipment,
+
+    BasePercent
 }

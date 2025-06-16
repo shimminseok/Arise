@@ -172,7 +172,7 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
         if (Target == null)
             Target = attacker as IDamageable;
 
-        StatManager.Consume(StatType.CurHp, attacker.AttackStat.Value);
+        StatManager.Consume(StatType.CurHp, StatModifierType.Base, attacker.AttackStat.Value);
 
         float curHp = StatManager.GetValue(StatType.CurHp);
         if (curHp <= 0)

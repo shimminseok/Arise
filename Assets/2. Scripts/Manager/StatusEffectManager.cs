@@ -44,14 +44,14 @@ public class StatusEffectManager : MonoBehaviour
         }
     }
 
-    public void RecoverEffect(StatType statType, float value)
+    public void RecoverEffect(StatType statType, StatModifierType modifierType, float value)
     {
-        statManager.Recover(statType, value);
+        statManager.Recover(statType, modifierType, value);
     }
 
-    public void ConsumeEffect(StatType statType, float value)
+    public void ConsumeEffect(StatType statType, StatModifierType modifierType, float value)
     {
-        statManager.Consume(statType, value);
+        statManager.Consume(statType, modifierType, value);
     }
 
     public void RemoveAllEffects()

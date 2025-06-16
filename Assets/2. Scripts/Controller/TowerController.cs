@@ -32,12 +32,13 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     public TowerSO      TowerSO           => towerSO;
 
     private Collider m_Collider;
-
+    private TowerTable towerTable;
     protected override void Awake()
     {
         base.Awake();
         BuildingData = GetComponent<BuildingData>();
         m_Collider = GetComponent<CapsuleCollider>();
+        towerTable = TableManager.Instance.GetTable<TowerTable>();
     }
 
     protected override void Start()
@@ -119,6 +120,34 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
         IsPlaced = true;
     }
 
+    public void UpgradeTower()
+    {
+        var nextTowerData = towerTable.GetDataByID(TowerSO.ID + 1);
+
+        if (nextTowerData == null)
+        {
+            Debug.Log("최대 레벨입니다.");
+            return;
+        }
+
+        GameObject upgradedTower = ObjectPoolManager.Instance.GetObject(nextTowerData.name);
+        if (!upgradedTower.TryGetComponent(out TowerController nextTower))
+        {
+            ObjectPoolManager.Instance.ReturnObject(upgradedTower);
+            return;
+        }
+
+        nextTower.transform.position = transform.position;
+        nextTower.OnSpawnFromPool();
+        nextTower.OnBuildComplete();
+
+        ObjectPoolManager.Instance.ReturnObject(gameObject);
+    }
+
+    public void DestroyTower()
+    {
+        OnReturnToPool();
+    }
 
     public void Attack()
     {
@@ -127,6 +156,13 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
         {
             projectileController.transform.position = fireTransform.position;
             projectileController.SetTarget(this, Target);
+            if (Target.Collider.TryGetComponent(out StatusEffectManager statusEffectManager))
+            {
+                foreach (var effect in towerSO.StatusEffects)
+                {
+                    statusEffectManager.ApplyEffect(BuffFactory.CreateBuff(effect));
+                }
+            }
         }
     }
 

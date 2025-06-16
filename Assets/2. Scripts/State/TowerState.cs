@@ -42,7 +42,7 @@ namespace TowerStates
         private float attackTimer = 0;
         private readonly float attackSpd;
         private bool _attackDone;
-
+        private Coroutine attackCoroutine;
         public AttackState(float attackSpd, float attackRange)
         {
             this.attackSpd = attackSpd;
@@ -50,8 +50,7 @@ namespace TowerStates
 
         public void OnEnter(TowerController owner)
         {
-            _attackDone = false;
-            owner.StartCoroutine(DoAttack(owner));
+            attackCoroutine = owner.StartCoroutine(DoAttack(owner));
         }
 
         public void OnUpdate(TowerController owner)
@@ -66,9 +65,11 @@ namespace TowerStates
 
         private IEnumerator DoAttack(TowerController owner)
         {
-            yield return new WaitForSeconds(1f / attackSpd);
-            owner.Attack();
-            _attackDone = true;
+            while (true)
+            {
+                yield return new WaitForSeconds(1f / attackSpd);
+                owner.Attack();
+            }
         }
 
         public void OnFixedUpdate(TowerController owner)
@@ -77,7 +78,8 @@ namespace TowerStates
 
         public void OnExit(TowerController entity)
         {
-            _attackDone = false;
+            if (attackCoroutine != null)
+                entity.StopCoroutine(attackCoroutine);
         }
 
         public TowerState CheckTransition(TowerController owner)
@@ -101,7 +103,6 @@ namespace TowerStates
 
         public void OnUpdate(TowerController owner)
         {
-            Debug.Log("Update BuildState");
             BuildingPlacer.Instance.HandleGhostTower(out (bool, Vector3Int) isCanBuilding);
             if (Input.GetMouseButtonDown(0) && isCanBuilding.Item1)
             {

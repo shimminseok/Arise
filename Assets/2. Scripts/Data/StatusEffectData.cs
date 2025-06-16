@@ -23,4 +23,5 @@ public class StatusEffectData
     public StatData Stat;
     public float Duration;
     public float TickInterval;
+    public bool IsStackable;
 }

@@ -22,4 +22,6 @@ public class InputController : MonoBehaviour
     {
         PlayerInputs.Disable();
     }
+
+
 }

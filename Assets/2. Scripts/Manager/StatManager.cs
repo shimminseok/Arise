@@ -47,25 +47,41 @@ public class StatManager : MonoBehaviour
         return Stats[type].GetCurrent();
     }
 
-    public void Recover(StatType statType, float value)
+    public void Recover(StatType statType, StatModifierType modifierType, float value)
     {
         if (Stats[statType] is ResourceStat res)
         {
             if (res.CurrentValue < res.MaxValue)
             {
-                res.Recover(value);
+                switch (modifierType)
+                {
+                    case StatModifierType.Base:
+                        res.Recover(value);
+                        break;
+                    case StatModifierType.BasePercent:
+                        res.RecoverPercent(value);
+                        break;
+                }
                 Debug.Log($"Recover : {statType} : {value} RemainValue: {res.CurrentValue}");
             }
         }
     }
 
-    public void Consume(StatType statType, float value)
+    public void Consume(StatType statType, StatModifierType modifierType, float value)
     {
         if (Stats[statType] is ResourceStat res)
         {
             if (res.CurrentValue > 0)
             {
-                res.Consume(value);
+                switch (modifierType)
+                {
+                    case StatModifierType.Base:
+                        res.Consume(value);
+                        break;
+                    case StatModifierType.BasePercent:
+                        res.ConsumePercent(value);
+                        break;
+                }
                 Debug.Log($"Consume {statType} : {value}, RemainValue: {res.CurrentValue}");
             }
         }

@@ -34,7 +34,12 @@ public class UITowerUpgrade : UIBase
                     if (tower.GetCurrentState() != TowerState.Build)
                         SelectTower(tower);
                 }
+                else
+                {
+                    UIManager.Instance.Close<UITowerUpgrade>();
+                }
             }
+
         }
     }
 
@@ -46,6 +51,7 @@ public class UITowerUpgrade : UIBase
     public override void Close()
     {
         base.Close();
+        _selectedTower = null;
     }
 
     public void SelectTower(TowerController selectedTower)
@@ -61,23 +67,8 @@ public class UITowerUpgrade : UIBase
     {
         if (_selectedTower == null)
             return;
-        TowerSO nextLevelTower = _towerTable.GetDataByID(_selectedTower.TowerSO.ID + 1);
-        if (nextLevelTower == null)
-            return;
-        GameObject tower = ObjectPoolManager.Instance.GetObject(nextLevelTower.name);
-        if (!tower.TryGetComponent(out TowerController towerController))
-        {
-            ObjectPoolManager.Instance.ReturnObject(tower);
-            return;
-        }
 
-        towerController = tower.GetComponent<TowerController>();
-        towerController.OnSpawnFromPool();
-        towerController.transform.position = _selectedTower.transform.position;
-        towerController.OnBuildComplete();
-        ObjectPoolManager.Instance.ReturnObject(_selectedTower.GameObject);
-        _selectedTower = null;
-        UIManager.Instance.Close<UITowerUpgrade>();
+        _selectedTower.UpgradeTower();
     }
 
     public void OnClickDestroyTower()
@@ -85,7 +76,7 @@ public class UITowerUpgrade : UIBase
         if (_selectedTower == null)
             return;
 
-        ObjectPoolManager.Instance.ReturnObject(_selectedTower.GameObject);
+        _selectedTower.DestroyTower();
         _selectedTower = null;
         UIManager.Instance.Close<UITowerUpgrade>();
     }

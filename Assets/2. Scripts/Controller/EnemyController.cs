@@ -165,7 +165,7 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
 
         //TODO 방어력 계산
         float finalDam = attacker.AttackStat.Value;
-        StatManager.Consume(StatType.CurHp, finalDam);
+        StatManager.Consume(StatType.CurHp, StatModifierType.Base, finalDam);
 
         float curHp = StatManager.GetValue(StatType.CurHp);
         if (curHp <= 0)

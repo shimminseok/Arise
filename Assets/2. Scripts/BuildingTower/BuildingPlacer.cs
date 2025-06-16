@@ -102,15 +102,19 @@ public class BuildingPlacer : SceneOnlySingleton<BuildingPlacer>
         if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 3), buttonWidth, buttonHeight), "Build_Tower4"))
         {
             TryBuildingTower(towers[3]);
-
         }
 
-        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 4), buttonWidth, buttonHeight), "x2"))
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 4), buttonWidth, buttonHeight), "Build_Tower4"))
+        {
+            TryBuildingTower(towers[4]);
+        }
+
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 5), buttonWidth, buttonHeight), "x2"))
         {
             Time.timeScale *= 2f;
         }
 
-        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 5), buttonWidth, buttonHeight), "ResetGameSpeed"))
+        if (GUI.Button(new Rect(x, y - ((buttonHeight + spacing) * 6), buttonWidth, buttonHeight), "ResetGameSpeed"))
         {
             Time.timeScale = 1f;
         }
