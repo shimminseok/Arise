@@ -10,7 +10,7 @@ public class TowerSO : ScriptableObject, IStatProvider
     [FormerlySerializedAs("Stats")]
     public List<StatData> TowerStats;
 
-    public List<StatusEffectData> StatusEffects;
+    public List<StatusEffectSO> StatusEffects;
     public AttackTypeSO AttackType;
     public int BuildCost;
 

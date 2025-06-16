@@ -4,12 +4,15 @@ using UnityEngine;
 
 public abstract class StatusEffect
 {
+    public int StatusEffectID;
     public StatType StatType;
     public StatModifierType ModifierType;
     public float Value;
     public float Duration;
     public float TickInterval = 1f;
     public Coroutine CoroutineRef;
+
+    public bool IsStackable;
 
     public abstract IEnumerator Apply(StatusEffectManager manager);
 
@@ -135,3 +138,4 @@ public class DamageDebuff : StatusEffect
         yield return null;
     }
 }
+

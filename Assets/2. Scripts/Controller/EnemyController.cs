@@ -99,6 +99,7 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
     {
         if (Agent.isOnNavMesh)
         {
+            Debug.Log("Update Movement");
             Agent.speed = StatManager.GetValue(StatType.MoveSpeed);
             Agent.SetDestination(TargetPosition);
         }

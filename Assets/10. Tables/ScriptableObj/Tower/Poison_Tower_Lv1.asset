@@ -24,14 +24,7 @@ MonoBehaviour:
     ModifierType: 0
     Value: 12
   StatusEffects:
-  - EffectType: 5
-    Stat:
-      StatType: 1
-      ModifierType: 4
-      Value: 0.01
-    Duration: 5
-    TickInterval: 1
-    IsStackable: 0
+  - {fileID: 11400000, guid: 7fe0a3d7b75d6d64a9e677314afda76e, type: 2}
   AttackType: {fileID: 11400000, guid: 8ae1a733619eaf14aaeeeededc068552, type: 2}
   BuildCost: 300
   UseMultishot: 1

@@ -83,7 +83,6 @@ public class StatManager : MonoBehaviour
                         res.ConsumePercent(value);
                         break;
                 }
-                Debug.Log($"Consume {statType} : {value}, RemainValue: {res.CurrentValue}");
 
                 if (statType == StatType.CurHp && res.CurrentValue <= 0)
                 {

@@ -1,6 +1,6 @@
 ﻿public static class BuffFactory
 {
-    public static StatusEffect CreateBuff(StatusEffectData data)
+    public static StatusEffect CreateBuff(int id, StatusEffectData data)
     {
         StatusEffect effect = data.EffectType switch
         {
@@ -16,13 +16,15 @@
 
             _ => null
         };
-        if (effect == null) return null;
-
+        if (effect == null)
+            return null;
+        effect.StatusEffectID = id;
         effect.StatType = data.Stat.StatType;
         effect.Duration = data.Duration;
         effect.ModifierType = data.Stat.ModifierType;
         effect.Value = data.Stat.Value;
         effect.TickInterval = data.TickInterval;
+        effect.IsStackable = data.IsStackable;
         return effect;
     }
 }
