@@ -52,7 +52,7 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
 
         PlayerTable playerTable = TableManager.Instance.GetTable<PlayerTable>();
         PlayerSO    playerData  = playerTable.GetDataByID(0);
-        StatManager.Initialize(playerData);
+        StatManager.Initialize(playerData, null);
     }
 
     protected override void Start()
@@ -68,6 +68,12 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
         action.Run.canceled += context => _isRunning = false;
 
         AttackStat = weaponController.StatManager.GetStat<CalculatedStat>(StatType.AttackPow);
+        
+        UIPlayerStatPanel uiPanel = FindObjectOfType<UIPlayerStatPanel>();
+        if (uiPanel != null)
+        {
+            uiPanel.SetStatManagers(this.StatManager, weaponController.StatManager);
+        }
     }
 
     protected override void Update()

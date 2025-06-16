@@ -26,6 +26,24 @@ public class StatusEffectManager : MonoBehaviour
 
     public void ApplyEffect(StatusEffect effect)
     {
+        if (!effect.IsStackable)
+        {
+            var existing = activeEffects.Find(x =>
+                x.EffectType == effect.EffectType &&
+                x.StatType == effect.StatType &&
+                x.ModifierType == effect.ModifierType);
+            if (existing != null)
+            {
+                if (Mathf.Abs(effect.Value) >= Mathf.Abs(existing.Value))
+                {
+                    RemoveEffect(existing);
+                }
+                else
+                {
+                    return;
+                }
+            }
+        }
         Coroutine co = StartCoroutine(effect.Apply(this));
         effect.CoroutineRef = co;
         activeEffects.Add(effect);
@@ -54,6 +72,16 @@ public class StatusEffectManager : MonoBehaviour
         statManager.Consume(statType, modifierType, value);
     }
 
+    public void RemoveEffect(StatusEffect effect)
+    {
+        activeEffects.Remove(effect);
+        if (effect.CoroutineRef != null)
+        {
+            StopCoroutine(effect.CoroutineRef);
+        }
+
+        effect.OnEffectRemoved(this);
+    }
     public void RemoveAllEffects()
     {
         foreach (StatusEffect effect in activeEffects)

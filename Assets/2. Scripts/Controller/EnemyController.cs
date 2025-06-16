@@ -80,7 +80,7 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
     public void OnSpawnFromPool()
     {
         Target = CommandCenter.Instance;
-        StatManager.Initialize(m_MonsterSo);
+        StatManager.Initialize(m_MonsterSo, this);
     }
 
     public void OnReturnToPool()
@@ -99,6 +99,7 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
     {
         if (Agent.isOnNavMesh)
         {
+            Debug.Log("Update Movement");
             Agent.speed = StatManager.GetValue(StatType.MoveSpeed);
             Agent.SetDestination(TargetPosition);
         }
@@ -180,8 +181,11 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         StatusEffectManager.RemoveAllEffects();
         EnemyManager.Instance.MonsterDead(this);
         QuestManager.Instance.UpdateProgress(QuestType.KillEnemies, 1);
-        _healthBarUI.UnLink();
-        StatManager.GetStat<ResourceStat>(StatType.CurHp).OnValueChanged -= _healthBarUI.UpdateHealthBarWrapper;
+        if (_healthBarUI != null)
+        {
+            _healthBarUI.UnLink();
+            StatManager.GetStat<ResourceStat>(StatType.CurHp).OnValueChanged -= _healthBarUI.UpdateHealthBarWrapper;
+        }
         _assignedPoint?.Release();
         _healthBarUI = null;
         Agent.enabled = false;

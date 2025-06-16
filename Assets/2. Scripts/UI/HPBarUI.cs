@@ -25,19 +25,22 @@ public class HPBarUI : MonoBehaviour, IPoolObject
     public string     PoolID     => poolId;
     public int        PoolSize   => poolSize;
 
-    private BaseController<EnemyController, EnemyState> _target;
+    private IDamageable _target;
     private Transform _targetTransform;
     private Camera _mainCamera;
     private float heightOffset;
+
+    StatManager _statManager;
     private void Awake()
     {
         _mainCamera = Camera.main;
     }
 
-    public void Initialize(EnemyController owner)
+    public void Initialize(IDamageable owner)
     {
         _target = owner;
         OnSpawnFromPool();
+        _statManager = _target.Collider.GetComponent<StatManager>();
     }
 
     public void UpdatePosion()
@@ -48,7 +51,7 @@ public class HPBarUI : MonoBehaviour, IPoolObject
 
     public void UpdateHealthBarWrapper(float cur)
     {
-        UpdateFill(cur, _target.StatManager.GetValue(StatType.MaxHp));
+        UpdateFill(cur, _statManager.GetValue(StatType.MaxHp));
     }
 
     /// <summary>
@@ -68,15 +71,11 @@ public class HPBarUI : MonoBehaviour, IPoolObject
 
     public void OnSpawnFromPool()
     {
-        if (_target.Controller is EnemyController enemyController)
-        {
-            _targetTransform = _target.transform;
-            heightOffset = enemyController.Collider.bounds.size.y;
-            offset.y += heightOffset;
-            transform.SetParent(HealthBarManager.Instance.hpBarCanvas.transform);
-        }
-        
-
+        _targetTransform = _target.Collider.transform;
+        heightOffset = _target.Collider.bounds.size.y;
+        offset.y += heightOffset;
+        transform.SetParent(HealthBarManager.Instance.hpBarCanvas.transform);
+            
     }
 
     public void OnReturnToPool()

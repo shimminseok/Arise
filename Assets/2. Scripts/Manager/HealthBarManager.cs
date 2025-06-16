@@ -20,7 +20,8 @@ public class HealthBarManager : SceneOnlySingleton<HealthBarManager>
             bar.UpdatePosion();
         }
     }
-    public HPBarUI SpawnHealthBar(EnemyController owner)
+
+    public HPBarUI SpawnHealthBar(IDamageable owner)
     {
         HPBarUI bar = ObjectPoolManager.Instance.GetObject("HealthBar").GetComponent<HPBarUI>();
         bar.Initialize(owner);

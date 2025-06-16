@@ -17,7 +17,7 @@ public class CommandCenter : SceneOnlySingleton<CommandCenter>, IDamageable
         base.Awake();
         StatManager = GetComponent<StatManager>();
         m_Collider = GetComponent<BoxCollider>();
-        StatManager.Initialize(commandCenterSo);
+        StatManager.Initialize(commandCenterSo, this);
     }
 
     public void TakeDamage(IAttackable attacker)

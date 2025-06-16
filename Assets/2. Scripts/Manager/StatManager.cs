@@ -7,18 +7,22 @@ using UnityEngine;
 public class StatManager : MonoBehaviour
 {
     public Dictionary<StatType, StatBase> Stats { get; private set; } = new Dictionary<StatType, StatBase>();
-
-
+    
+    public event Action OnStatChanged;
+    public IDamageable Owner { get; private set; }
     /// <summary>
     /// 스탯을 초기화 시켜주는 코드
     /// </summary>
     /// <param name="statProvider"></param>
-    public void Initialize(IStatProvider statProvider)
+    public void Initialize(IStatProvider statProvider, IDamageable owner = null)
     {
+        Owner = owner;
         foreach (StatData stat in statProvider.Stats)
         {
             Stats[stat.StatType] = BaseStatFactory(stat.StatType, stat.Value);
         }
+        
+        OnStatChanged?.Invoke();
     }
     /// <summary>
     /// Stat을 생성해주는 팩토리
@@ -82,7 +86,11 @@ public class StatManager : MonoBehaviour
                         res.ConsumePercent(value);
                         break;
                 }
-                Debug.Log($"Consume {statType} : {value}, RemainValue: {res.CurrentValue}");
+
+                if (statType == StatType.CurHp && res.CurrentValue <= 0)
+                {
+                    Owner?.Dead();
+                }
             }
         }
     }
@@ -115,6 +123,7 @@ public class StatManager : MonoBehaviour
                 break;
         }
 
+        OnStatChanged?.Invoke();
         Debug.Log($"Stat : {type} Modify Value {value}, FinalValue : {stat.Value}");
     }
 
