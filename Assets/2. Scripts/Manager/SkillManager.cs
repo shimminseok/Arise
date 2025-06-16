@@ -1,0 +1,60 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SkillManager : Singleton<SkillManager>
+{
+    private readonly Dictionary<int, Skill> _skillInstances = new();
+    private readonly Dictionary<int, float> _skillCooldowns = new();
+
+    [SerializeField] private GameObject _owner;
+
+    public void Initialize(GameObject owner)
+    {
+        _owner = owner;
+    }
+
+    public void ExecuteSkill(int skillID)
+    {
+        SkillTable skillTable = TableManager.Instance.GetTable<SkillTable>();
+        if (skillTable == null)
+        {
+            Debug.LogError("SkillTable이 로드되지 않았습니다.");
+            return;
+        }
+
+        if (!skillTable.DataDic.TryGetValue(skillID, out SkillSO skillData))
+        {
+            Debug.LogWarning($"Skill ID {skillID}가 테이블에 없습니다.");
+            return;
+        }
+
+        if (IsOnCooldown(skillID))
+        {
+            Debug.LogWarning($"Skill ID {skillID}는 쿨다운 중입니다. 남은 시간: {GetRemainingCooldown(skillID):F2}s");
+            return;
+        }
+        
+
+        Skill skillInstance = skillData.CreateSkillInstance(_owner);
+        _skillInstances[skillID] = skillInstance;
+        skillInstance.Excute(_owner.transform);
+    }
+
+    public void StartCooldown(int skillID, float cooldown)
+    {
+        _skillCooldowns[skillID] = Time.time + cooldown;
+    }
+
+    public bool IsOnCooldown(int skillID)
+    {
+        if (!_skillCooldowns.TryGetValue(skillID, out float endTime)) return false;
+        return Time.time < endTime;
+    }
+
+    public float GetRemainingCooldown(int skillID)
+    {
+        if (!_skillCooldowns.TryGetValue(skillID, out float endTime)) return 0f;
+        return Mathf.Max(0f, endTime - Time.time);
+    }
+}

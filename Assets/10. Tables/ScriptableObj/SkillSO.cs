@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewSkillSO", menuName = "ScriptableObject/Skill", order = 0)]
-public class SkillSO : ScriptableObject
+public abstract class SkillSO : ScriptableObject
 {
+    [Header("ID")]
     public int ID;
-
+    
+    [Header("Skill Info")]
     public Sprite Icon;
+    public string SkillName;
+    [TextArea] public string Description;
+    public float Cooldown;
+    public float Duration;
 
-    public string Description;
-    // 스킬 범위 타입
-    // 스킬의 넓이 가로 x 세로
-
-    // 원형 혹은 부채꼴
-    public float SkillRange;
+    [Header("Skill Effects")]
     public List<StatusEffectData> StatusEffects = new List<StatusEffectData>();
+    
+    public abstract Skill CreateSkillInstance(GameObject owner);
 }
