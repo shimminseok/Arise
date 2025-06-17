@@ -24,8 +24,7 @@ public class CommandCenter : SceneOnlySingleton<CommandCenter>, IDamageable
 
     public void TakeDamage(IAttackable attacker)
     {
-        //TODO 방어력 계산
-        float finalDam = attacker.AttackStat.Value;
+        float finalDam = attacker.AttackStat.Value * (100 / (100 + StatManager.GetValue(StatType.Defense)));
 
         StatManager.Consume(StatType.CurHp, StatModifierType.Base, finalDam);
 
