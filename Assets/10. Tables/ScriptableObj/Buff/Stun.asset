@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 1010105
   StatusEffects:
-  - EffectType: 3
+  - EffectType: 4
     Stat:
       StatType: 3
-      ModifierType: 0
-      Value: 10
+      ModifierType: 1
+      Value: -10
     Duration: 5
     TickInterval: 0
     IsStackable: 0
