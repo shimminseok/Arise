@@ -16,7 +16,7 @@ MonoBehaviour:
   Icon: {fileID: 0}
   SkillName: "\uC601\uC5ED"
   Description: 
-  Cooldown: 1
+  Cooldown: 3
   Duration: 1.2
   SkillPrefab: {fileID: 584207449403360073, guid: b1ae5055f08b8284d9e996465d1d37e3,
     type: 3}
@@ -31,6 +31,7 @@ MonoBehaviour:
     IsStackable: 0
   ShapeType: 0
   Radius: 7
+  Angle: 0
   RectSize: {x: 0, y: 0, z: 0}
   Owner: {fileID: 0}
   Offset: 7

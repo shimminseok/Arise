@@ -68,7 +68,9 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
         action.Run.canceled += context => _isRunning = false;
 
         AttackStat = weaponController.StatManager.GetStat<CalculatedStat>(StatType.AttackPow);
-    }
+        
+        UIManager.Instance.ConnectStatUI(gameObject, weaponController.gameObject);
+        }
 
     protected override void Update()
     {
