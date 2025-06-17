@@ -133,6 +133,7 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
 
     public void EarthQuake()
     {
+        //Physics.OverlapSphereNonAlloc->랜덤으로 값을 받음
         var size = Physics.OverlapSphereNonAlloc(
             transform.position,
              20,
@@ -241,12 +242,29 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
 
     public void FireSkill(BossSkillName bossSkillName)
     {
+        //results
 
-        GameObject projectile = ObjectPoolManager.Instance.GetObject(bossSkillName.ToString());
-        if (projectile.TryGetComponent<BossSkillController>(out var BossSkillController))
+        if (bossSkillName.Equals(BossSkillName.EarthQuake))
         {
-            BossSkillController.transform.position = transform.position;
-            BossSkillController.SetTarget(this, Target);
+            GameObject projectile = ObjectPoolManager.Instance.GetObject(bossSkillName.ToString());
+            if (projectile.TryGetComponent<BossSkillController>(out var BossSkillController))
+            {
+                BossSkillController.transform.position = transform.position;
+                BossSkillController.SetTarget(this, Target);
+            }
+        }
+        if (bossSkillName.Equals(BossSkillName.Dispel))
+        {
+            for (int i = 0; i < results.Length - 1; i++)
+            {
+                
+                GameObject projectile = ObjectPoolManager.Instance.GetObject(bossSkillName.ToString());
+                if (projectile.TryGetComponent<BossSkillController>(out var BossSkillController))
+                {
+                    BossSkillController.transform.position = results[i].transform.position;
+                    BossSkillController.SetTarget(this, Target);
+                }
+            }
         }
 
     }

@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 6991854275923391210}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -157,9 +157,10 @@ MonoBehaviour:
   poolId: ArcherTower_Lv4
   poolSize: 10
   towerSO: {fileID: 11400000, guid: fd80b2bdb0bb8f34eb22e404f221c2e9, type: 2}
-  ProjectilePoolId: Archer_shell_LV4
+  fireSound: 0
+  projectilePoolId: Archer_shell_LV4
   fireTransform: {fileID: 6408566535569884703}
-  fireWeaponTransform: {fileID: 0}
+  fireWeaponWeaponTransform: {fileID: 0}
 --- !u!136 &1854852932341437642
 CapsuleCollider:
   m_ObjectHideFlags: 0
