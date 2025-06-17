@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using _2._Scripts.Events;
 using UnityEngine;
 
 public class EnemyManager : SceneOnlySingleton<EnemyManager>
@@ -11,6 +12,8 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
     [SerializeField] private Transform _endPoint;
     [SerializeField] private IntegerEventChannelSO waveChangedEvent; // 웨이브 이벤트
     [SerializeField] private VoidEventChannelSO onGameClearEvent;
+    [SerializeField] private TwoIntegerEvent waveRemainMonsterCountEvent;
+    [SerializeField] private IntegerEventChannelSO waveCountDownEvent;
     public List<EnemyController> Enemies { get; private set; } = new List<EnemyController>();
 
     private int _arrivalOrder = 0;
@@ -19,7 +22,8 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
     [SerializeField] private StageWaveSO stageWaves;
 
     private int currentWaveIndex = 0;
-
+    private int waveTotalMonsterCount = 0;
+    private int waveCurrentMonsterCount = 0;
     protected override void Awake()
     {
         base.Awake();
@@ -40,13 +44,17 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
             waveChangedEvent?.Raise(currentWaveIndex + 1);
 
             isSpawning = true; // 스폰 시작
-
+            waveTotalMonsterCount = 0;
             List<Coroutine> spawnCoroutines = new List<Coroutine>();
             foreach (var spawnInfo in wave.spawnList)
             {
+                waveTotalMonsterCount += spawnInfo.count;
                 Coroutine c = StartCoroutine(SpawnMonsterTypeRoutine(spawnInfo.monster, spawnInfo.count));
                 spawnCoroutines.Add(c);
             }
+
+            waveCurrentMonsterCount = waveTotalMonsterCount;
+            waveRemainMonsterCountEvent?.Raise(waveCurrentMonsterCount, waveTotalMonsterCount);
 
             foreach (var coroutine in spawnCoroutines)
             {
@@ -61,8 +69,7 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
                 yield return null;
             }
 
-            Debug.Log($"웨이브 {currentWaveIndex + 1} 몬스터 전멸 확인.");
-
+            StartCoroutine(StartWaveCountDown());
             yield return new WaitForSeconds(3f);
 
             currentWaveIndex++;
@@ -92,6 +99,7 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
     {
         ObjectPoolManager.Instance.ReturnObject(monster.GameObject, 2f);
         Enemies.Remove(monster);
+        waveRemainMonsterCountEvent?.Raise(--waveCurrentMonsterCount, waveTotalMonsterCount);
     }
 
     public int GetArrivalOrder()
@@ -110,6 +118,18 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
         onGameClearEvent?.Raise();
     }
 
+    private IEnumerator StartWaveCountDown()
+    {
+        int count = 3;
+        while (count > 0)
+        {
+            waveCountDownEvent?.Raise(count);
+            yield return new WaitForSeconds(1f);
+            count--;
+        }
+
+        waveCountDownEvent?.Raise(count);
+    }
     protected override void OnDestroy()
     {
         base.OnDestroy();
