@@ -27,7 +27,7 @@ public class TurretPanelToggleButton : MonoBehaviour
         turretPanel.anchoredPosition = Vector2.Lerp(
             turretPanel.anchoredPosition,
             targetPosition,
-            Time.deltaTime * slideSpeed
+            Time.unscaledDeltaTime * slideSpeed
         );
     }
 

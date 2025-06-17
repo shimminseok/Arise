@@ -562,7 +562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &808047143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -919,6 +919,7 @@ MonoBehaviour:
   tableList:
   - {fileID: 11400000, guid: edff8798e9564f64d86beee137cc97e9, type: 2}
   - {fileID: 11400000, guid: b01cee55146ba374792665e8942449b5, type: 2}
+  - {fileID: 11400000, guid: 2f989bfc2a0c4f94ea11487abe2bb72b, type: 2}
   - {fileID: 11400000, guid: a0843ee72340ab144833fe367585345f, type: 2}
   - {fileID: 11400000, guid: 8d6059e8c26361f419ec62ae1a9e0948, type: 2}
   - {fileID: 11400000, guid: 7c59c6e159418ad43a15bdc4eab5b6bd, type: 2}
@@ -2499,6 +2500,12 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1477708842496188995}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1477708842496188997 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6579117514895191103, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+    type: 3}
+  m_PrefabInstance: {fileID: 1477708842496188995}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1518913380657005659
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3010,6 +3017,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStatPanel: {fileID: 1696972266}
+  turretModeButton: {fileID: 1477708842496188997}
+  questPanel: {fileID: 967999051873980506}
 --- !u!1 &3481256167170909026
 GameObject:
   m_ObjectHideFlags: 0

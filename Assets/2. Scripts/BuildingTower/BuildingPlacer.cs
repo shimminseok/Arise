@@ -94,6 +94,9 @@ public class BuildingPlacer : SceneOnlySingleton<BuildingPlacer>
         // 골드 차감 성공 후에만 설치
         gridManager.PlaceBuilding(_selectedTower.GameObject, cell, _buildingData.Size);
         _selectedTower.OnBuildComplete();
+        
+        if (TurretInstallTracker.Instance != null)
+            TurretInstallTracker.Instance.OnTurretInstalled();
 
         QuestManager.Instance.UpdateProgress(QuestType.BuildTower, 1);
 

@@ -9,7 +9,7 @@ public class StageSelectPanel : MonoBehaviour
 
     private void Start()
     {
-        AddStageSlot("MainScene", "Tutorial", true);
+        AddStageSlot("MainScene 1", "Tutorial", true);
         AddStageSlot("Stage 1", "Stage 1", true);
         AddStageSlot("Stage 2", "Stage 2", false);
         AddStageSlot("Stage 3", "Stage 3", false);
