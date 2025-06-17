@@ -17,17 +17,10 @@ public class TurretPanelToggleButton : MonoBehaviour
 
     private void Start()
     {
-        turretPanel.anchoredPosition = hiddenPosition;
-
-        isVisible = false;
-        targetPosition = hiddenPosition;
-
         toggleButton.onClick.AddListener(TogglePanel);
+        targetPosition = shownPosition;
         UpdateButtonText();
-
-        //BuildingPlacer.Instance.ChangeBuilidMode(false);
     }
-
 
     private void Update()
     {

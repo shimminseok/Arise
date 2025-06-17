@@ -65,7 +65,7 @@ namespace TowerStates
 
         private IEnumerator DoAttack(TowerController owner)
         {
-            while (true)
+            while (owner.Target != null && !owner.Target.IsDead)
             {
                 yield return new WaitForSeconds(1f / attackSpd);
                 owner.Attack();

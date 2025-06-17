@@ -156,6 +156,9 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
 
     public void TakeDamage(IAttackable attacker)
     {
+        if (IsDead)
+            return;
+        
         if (_healthBarUI == null)
         {
             _healthBarUI = HealthBarManager.Instance.SpawnHealthBar(this);
@@ -175,6 +178,8 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
 
     public void Dead()
     {
+        if (IsDead)
+            return;
         IsDead = true;
         Target = null;
         StatusEffectManager.RemoveAllEffects();

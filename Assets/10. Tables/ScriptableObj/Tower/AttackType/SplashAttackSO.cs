@@ -16,20 +16,18 @@ public class SplashAttackSO : AttackTypeSO
 
     protected override List<IDamageable> FindTargets(TowerController owner)
     {
-        var results   = new List<IDamageable>();
-        var colliders = new Collider[1];
-        int size = Physics.OverlapSphereNonAlloc(owner.transform.position, owner.StatManager.GetValue(StatType.AttackRange), colliders,
-            LayerMask.GetMask("Enemy")
-        );
+        List<IDamageable> targets = new List<IDamageable>();
 
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < owner.TargetResults.Length; i++)
         {
-            if (colliders[i].TryGetComponent<IDamageable>(out var d) && !d.IsDead)
+            if (owner.TargetResults[i] == null)
+                continue;
+            if (owner.TargetResults[i].TryGetComponent<IDamageable>(out var d) && !d.IsDead)
             {
-                results.Add(d);
+                targets.Add(d);
             }
         }
 
-        return results;
+        return targets;
     }
 }
