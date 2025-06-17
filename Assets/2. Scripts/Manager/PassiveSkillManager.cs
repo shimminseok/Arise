@@ -1,12 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PassiveSkillManager : SceneOnlySingleton<PassiveSkillManager>
 {
     [SerializeField] private StatusEffectManager _playerStatus;
     [SerializeField] private IntegerEventChannelSO _OnGainGold;
     private List<PassiveSkillSO> _allPassives;
+    private StatusEffectManager _weaponStatus;
 
     protected override void Awake()
     {
@@ -20,7 +23,13 @@ public class PassiveSkillManager : SceneOnlySingleton<PassiveSkillManager>
 
         _allPassives = new List<PassiveSkillSO>(table.DataDic.Values);
     }
-    
+
+    private void Start()
+    {
+        // 이렇게 가져오는건 진짜 너무 구린데...
+        _weaponStatus = _playerStatus.GetComponent<PlayerController>().WeaponController.GetComponent<StatusEffectManager>();
+    }
+
     public List<PassiveSkillSO> GetThreeRandomChoices()
     {
         var chosen = new List<PassiveSkillSO>();
@@ -45,9 +54,13 @@ public class PassiveSkillManager : SceneOnlySingleton<PassiveSkillManager>
             case PassiveStatType.GoldGain:
                 _OnGainGold.Raise(passive.Effect.Value);
                 break;
-            default:
+            case PassiveStatType.MoveSpeed:
                 var effect = BuffFactory.CreateBuff(passive.ID, passive.Effect.StatusEffectData);
                 _playerStatus.ApplyEffect(effect);
+                break;
+            default:
+                effect = BuffFactory.CreateBuff(passive.ID, passive.Effect.StatusEffectData);
+                _weaponStatus.ApplyEffect(effect);
                 break;
         }
     }

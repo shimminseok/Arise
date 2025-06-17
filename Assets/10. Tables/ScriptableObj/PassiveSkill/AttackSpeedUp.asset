@@ -21,7 +21,7 @@ MonoBehaviour:
     StatusEffectData:
       EffectType: 0
       Stat:
-        StatType: 5
+        StatType: 3
         ModifierType: 1
         Value: 2
       Duration: 0

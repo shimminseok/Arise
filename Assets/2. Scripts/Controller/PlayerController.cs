@@ -40,6 +40,8 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
     public IDamageable Target     { get; private set; }
     public Transform   Transform  => transform;
 
+    public WeaponController WeaponController => weaponController;
+
 
     protected override void Awake()
     {
@@ -93,8 +95,7 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
         {
             PlayerState.Idle   => new IdleState(),
             PlayerState.Move   => new MoveState(),
-            PlayerState.Attack => new AttackState(weaponController.StatManager.GetValue(StatType.AttackSpd) + StatManager.GetValue(StatType.AttackSpd),
-                weaponController.StatManager.GetValue(StatType.AttackRange) + StatManager.GetValue(StatType.AttackRange)),
+            PlayerState.Attack => new AttackState(weaponController.StatManager.GetValue(StatType.AttackSpd), weaponController.StatManager.GetValue(StatType.AttackRange)),
             PlayerState.Run    => new RunState(),
             _                  => null
         };

@@ -4,16 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(StatManager))]
+[RequireComponent(typeof(StatusEffectManager))]
 public class WeaponController : MonoBehaviour
 {
     [SerializeField] private int weaponID;
     private GameObject _currentWeaponInstance;
     
     public StatManager StatManager { get; private set; }
+    public StatusEffectManager StatusEffectManager { get; private set; }
     public WeaponSO WeaponData { get; private set; }
     private void Awake()
     {
         StatManager = GetComponent<StatManager>();
+        StatusEffectManager = GetComponent<StatusEffectManager>();
     }
 
     private void Start()
