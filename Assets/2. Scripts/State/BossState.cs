@@ -149,32 +149,51 @@ namespace BossStates
     }
 
     public class SkillState : IState<BossController, BossState>
+{
+    string[] triggers = { "IsEarthquake", "IsDispel" };
+    private bool hasTriggered = false;
+
+    public void OnEnter(BossController owner)
     {
-        string[] triggers = { "IsEarthquake", "IsDispel" };
-        public void OnEnter(BossController owner)
+        if (owner.skillStateFinished)
         {
+                Debug.Log("SkillState.OnEnter");
             string randomTrigger = triggers[Random.Range(0, triggers.Length)];
             owner.animator.SetTrigger(randomTrigger);
+            hasTriggered = true;
         }
+    }
 
-        public void OnUpdate(BossController owner)
-        {
+    public void OnUpdate(BossController owner)
+    {
+    if (IsAnimationFinished(owner))
+    {
+        owner.skillStateFinished = true;
+    }
+    }
 
-        }
-
-        public void OnFixedUpdate(BossController owner)
-        {
-        }
+    public void OnFixedUpdate(BossController owner) { }
 
         public void OnExit(BossController owner)
         {
-        }
-
-        public BossState CheckTransition(BossController owner)
-        {
-            owner.animator.SetBool(triggers[0], false);
-            owner.animator.SetBool(triggers[1], false);
-            return BossState.Idle;
-        }
+            hasTriggered = false;
+            owner.skillStateFinished = false;
+      
     }
+
+    public BossState CheckTransition(BossController owner)
+    {
+    if (owner.skillStateFinished)
+        return BossState.Idle;
+
+    return BossState.Skill;
+    }
+
+    private bool IsAnimationFinished(BossController owner)
+    {
+        AnimatorStateInfo stateInfo = owner.animator.GetCurrentAnimatorStateInfo(0);
+        return stateInfo.normalizedTime >= 1f && !owner.animator.IsInTransition(0);
+    }
+}
+
 }

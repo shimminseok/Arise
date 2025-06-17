@@ -35,6 +35,8 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
     [SerializeField] private string[] BossSkillPoolId;
 
     public bool istest;
+
+    public bool skillStateFinished;
     protected override void Awake()
     {
         base.Awake();
@@ -242,6 +244,7 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
             BossSkillController.transform.position = transform.position;
             BossSkillController.SetTarget(this, Target);
         }
+    istest = false;
     }
 
 }

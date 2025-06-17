@@ -20,9 +20,9 @@ public class AnimEventProxy : MonoBehaviour
     }
     public void CallExternal(BossSkillName bossSkillName)
     {
-        bossController?.FindTargetByEnum(bossSkillName);
         bossController?.FireSkill(bossSkillName);
-        bossController.istest = false;
+        bossController?.FindTargetByEnum(bossSkillName);
+
         //        owner.FindTarget();
         // owner.FireSkill();
         // owner.istest = false;
