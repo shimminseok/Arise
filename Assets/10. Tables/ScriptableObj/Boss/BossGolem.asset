@@ -18,10 +18,10 @@ MonoBehaviour:
   BossStats:
   - StatType: 0
     ModifierType: 0
-    Value: 2000
+    Value: 20000
   - StatType: 1
     ModifierType: 0
-    Value: 2000
+    Value: 20000
   - StatType: 2
     ModifierType: 0
     Value: 100

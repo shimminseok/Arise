@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27dafcc04b2342b4a684e7a2700f2593, type: 3}
   m_Name: Stun
   m_EditorClassIdentifier: 
-  ID: 1010104
+  ID: 1010105
   StatusEffects:
-  - EffectType: 4
+  - EffectType: 3
     Stat:
-      StatType: 5
-      ModifierType: 2
-      Value: -0.4
+      StatType: 3
+      ModifierType: 0
+      Value: 10
     Duration: 5
     TickInterval: 0
     IsStackable: 0

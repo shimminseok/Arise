@@ -26,6 +26,7 @@ public class StatusEffectManager : MonoBehaviour
 
     public void ApplyEffect(StatusEffect effect)
     {
+
         if (!effect.IsStackable)
         {
             var existing = activeEffects.Find(x =>

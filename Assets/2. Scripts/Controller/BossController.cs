@@ -35,7 +35,7 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
     public bool istest;
 
     public bool skillStateFinished;
-    private  Collider[] results = new Collider[3];
+    private Collider[] results = new Collider[3];
     public StatusEffectSO statusEffectSO;
     protected override void Awake()
     {
@@ -95,7 +95,7 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
         transform.position = Vector3.zero;
     }
 
-//20범위내에 Water layer를 가진 오브젝트 10개 삭제
+    //20범위내에 Water layer를 가진 오브젝트 10개 삭제
     public override void FindTarget()
     {
         var results = new Collider[10];
@@ -118,7 +118,7 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
 
     public void FindTargetByEnum(BossSkillName bossSkillName)
     {
-                switch (bossSkillName)
+        switch (bossSkillName)
         {
             case BossSkillName.EarthQuake:
                 EarthQuake();
@@ -132,37 +132,32 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
     }
 
     public void EarthQuake()
-    {            
-            var size = Physics.OverlapSphereNonAlloc(
-                transform.position,
-                 results.Length,
-                  results, LayerMask.GetMask("Tower"));
-            for (int i = 0; i < size; i++)
-            {
-                results[i].transform.gameObject.SetActive(false);
-            }
+    {
+        var size = Physics.OverlapSphereNonAlloc(
+            transform.position,
+             20,
+              results, LayerMask.GetMask("Tower"));
+        for (int i = 0; i < size; i++)
+        {
+            results[i].transform.gameObject.SetActive(false);
+        }
     }
 
     public void Dispel()
     {
-                       
-            var size = Physics.OverlapSphereNonAlloc(
-                transform.position,
-                 results.Length,
-                  results, LayerMask.GetMask("Tower"));
-            for (int i = 0; i < size; i++)
-            {
-                            if (results[i].TryGetComponent<IDamageable>(out var damageable))
-                            {
+
+        var size = Physics.OverlapSphereNonAlloc(
+            transform.position,
+             20,
+              results, LayerMask.GetMask("Tower"));
+        for (int i = 0; i < size; i++)
+        {
                 foreach (var effectData in statusEffectSO.StatusEffects)
                 {
-                   results[i].GetComponent<StatusEffectManager>().ApplyEffect(BuffFactory.CreateBuff(statusEffectSO.ID,effectData));
+                    results[i].GetComponent<StatusEffectManager>().ApplyEffect(BuffFactory.CreateBuff(statusEffectSO.ID, effectData));
                 }
-                    Target = damageable;
-                                break;
-                            }
-            }
-}
+        }
+    }
     public override void Movement()
     {
         if (Agent.isOnNavMesh)
@@ -246,14 +241,14 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
 
     public void FireSkill(BossSkillName bossSkillName)
     {
-        
+
         GameObject projectile = ObjectPoolManager.Instance.GetObject(bossSkillName.ToString());
         if (projectile.TryGetComponent<BossSkillController>(out var BossSkillController))
         {
             BossSkillController.transform.position = transform.position;
             BossSkillController.SetTarget(this, Target);
         }
-   
+
     }
 
 }
