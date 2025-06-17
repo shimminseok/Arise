@@ -7,14 +7,14 @@ using UnityEngine;
 public class BuildingPlacer : SceneOnlySingleton<BuildingPlacer>
 {
     [SerializeField] private GridManager gridManager;
-    public List<TowerSO> towers = new List<TowerSO>();
-    private BuildingData buildingData;
-    private Camera mainCamera;
     [SerializeField] private CinemachineVirtualCamera topViewCam;
+    [SerializeField] private LayerMask cellLayerMask;
+    private BuildingData _buildingData;
+    private Camera _mainCamera;
 
-    private BuildingGhost buildingGhost;
-    private TowerController selectedTower;
-    private GameObject ghostObj;
+    private BuildingGhost _buildingGhost;
+    private TowerController _selectedTower;
+    private GameObject _ghostObj;
 
     public bool        IsBuildingMode { get; private set; }
     public GridManager GridManager    => gridManager;
@@ -25,12 +25,12 @@ public class BuildingPlacer : SceneOnlySingleton<BuildingPlacer>
     }
     private void Start()
     {
-        mainCamera = Camera.main;
+        _mainCamera = Camera.main;
     }
     private Vector3 GetMouseWorldPosition()
     {
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Cell")))
+        Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, cellLayerMask))
         {
             return hit.point;
         }
@@ -38,61 +38,71 @@ public class BuildingPlacer : SceneOnlySingleton<BuildingPlacer>
         Vector3 screenPosition = Input.mousePosition;
         screenPosition.z = 50f;
 
-        return mainCamera.ScreenToWorldPoint(screenPosition);
+        return _mainCamera.ScreenToWorldPoint(screenPosition);
     }
 
-    public void HandleGhostTower(out (bool, Vector3Int) isCanBuilding)
+    public (bool canBuild, Vector3Int cell) GetGhostBuildInfo()
     {
         var        mousePos = GetMouseWorldPosition();
         Vector3Int cell     = Vector3Int.FloorToInt(mousePos);
-        isCanBuilding.Item1 = gridManager.CanPlaceBuilding(cell, buildingData.Size);
-        isCanBuilding.Item2 = cell;
-        buildingGhost.SetMaterialColor(isCanBuilding.Item1);
-        buildingGhost.SetPosition(mousePos);
+        bool       canBuild = gridManager.CanPlaceBuilding(cell, _buildingData.Size);
+
+        _buildingGhost.SetMaterialColor(canBuild);
+        _buildingGhost.SetPosition(mousePos);
+
+        return (canBuild, cell);
     }
 
     public void TryBuildingTower(TowerSO tower)
     {
+        if (_selectedTower != null)
+            RefundOrClearSelectedTower();
         GameObject towerObj = ObjectPoolManager.Instance.GetObject(tower.name);
         if (!towerObj.TryGetComponent(out TowerController towerController))
             return;
 
-        selectedTower = towerController;
-        selectedTower.OnSpawnFromPool();
-        buildingData = selectedTower.BuildingData;
-        buildingGhost = buildingData.BuildingGhost;
-        buildingGhost.SetValid(false);
+        _selectedTower = towerController;
+        _selectedTower.OnSpawnFromPool();
+        _buildingData = _selectedTower.BuildingData;
+        _buildingGhost = _buildingData.BuildingGhost;
+        _buildingGhost.SetValid(false);
     }
 
+    private void RefundOrClearSelectedTower()
+    {
+        ObjectPoolManager.Instance.ReturnObject(_selectedTower.GameObject);
+        _selectedTower = null;
+        _buildingGhost = null;
+    }
     public void CompleteBuildingTower(Vector3Int cell)
     {
-        int cost = selectedTower.TowerSO.BuildCost;
+        int cost = _selectedTower.TowerSO.BuildCost;
 
         if (GoldManager.Instance.CurrentGold < cost)
         {
             Debug.Log("골드 부족으로 타워 설치를 할 수 없음.");
+            RefundOrClearSelectedTower();
             return;
         }
 
         bool success = GoldManager.Instance.TrySpendGold(cost);
         if (!success)
         {
-            Debug.Log("골드 차감 실패");
             return;
         }
 
         // 골드 차감 성공 후에만 설치
-        gridManager.PlaceBuilding(selectedTower.GameObject, cell, buildingData.Size);
-        selectedTower.OnBuildComplete();
+        gridManager.PlaceBuilding(_selectedTower.GameObject, cell, _buildingData.Size);
+        _selectedTower.OnBuildComplete();
 
         QuestManager.Instance.UpdateProgress(QuestType.BuildTower, 1);
 
 
-        buildingGhost.SetValid(true);
+        _buildingGhost.SetValid(true);
 
         // 설치 완료 후 변수 초기화
-        selectedTower = null;
-        buildingGhost = null;
+        _selectedTower = null;
+        _buildingGhost = null;
     }
 
     // private void OnGUI()
@@ -141,7 +151,7 @@ public class BuildingPlacer : SceneOnlySingleton<BuildingPlacer>
     //     }
     // }
 
-    public void ChangeBuilidMode(bool isBuilding)
+    public void ChangeBuildMode(bool isBuilding)
     {
         IsBuildingMode = isBuilding;
         topViewCam.gameObject.SetActive(IsBuildingMode);

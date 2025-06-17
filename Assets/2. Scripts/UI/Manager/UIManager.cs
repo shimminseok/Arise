@@ -54,8 +54,8 @@ public class UIManager : Singleton<UIManager>
     {
         if (UIDict.TryGetValue(typeof(T), out UIBase ui))
         {
-            ui.Open();
             openedUIList.Add(ui);
+            ui.Open();
         }
     }
 
@@ -63,8 +63,8 @@ public class UIManager : Singleton<UIManager>
     {
         if (UIDict.TryGetValue(typeof(T), out UIBase ui) && openedUIList.Contains(ui))
         {
-            ui.Close();
             openedUIList.Remove(ui);
+            ui.Close();
         }
     }
 
