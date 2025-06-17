@@ -94,4 +94,24 @@ public class QuestManager : Singleton<QuestManager>
             yield return (pair.Value, _progressLookup[pair.Key]);
         }
     }
+
+    public void ApplyLoadedProgress(List<QuestProgress> loadedList)
+    {
+        foreach (var progress in loadedList)
+        {
+            if (_progressLookup.ContainsKey(progress.QuestId))
+            {
+                _progressLookup[progress.QuestId] = progress;
+            }
+        }
+
+        // 퀘스트 패널 갱신
+        var panel = FindObjectOfType<QuestPanelUI>();
+        if (panel != null)
+        {
+            panel.RefreshAll();
+        }
+
+        Debug.Log("퀘스트 진행도 불러오기 완료");
+    }
 }
