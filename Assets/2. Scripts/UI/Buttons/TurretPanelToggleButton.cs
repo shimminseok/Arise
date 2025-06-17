@@ -12,22 +12,24 @@ public class TurretPanelToggleButton : MonoBehaviour
     [SerializeField] private Vector2 hiddenPosition;
     [SerializeField] private float slideSpeed = 5f;
 
-    private bool isVisible = true;
+    private bool isVisible = false;
     private Vector2 targetPosition;
 
     private void Start()
     {
         toggleButton.onClick.AddListener(TogglePanel);
-        targetPosition = shownPosition;
+        targetPosition = hiddenPosition;
+        turretPanel.anchoredPosition = hiddenPosition;
         UpdateButtonText();
     }
+
 
     private void Update()
     {
         turretPanel.anchoredPosition = Vector2.Lerp(
             turretPanel.anchoredPosition,
             targetPosition,
-            Time.deltaTime * slideSpeed
+            Time.unscaledDeltaTime * slideSpeed
         );
     }
 

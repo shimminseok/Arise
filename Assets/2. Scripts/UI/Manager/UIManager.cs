@@ -10,6 +10,14 @@ public class UIManager : Singleton<UIManager>
     private List<UIBase> openedUIList = new List<UIBase>();
 
     [SerializeField] private UIPlayerStatPanel playerStatPanel;
+    
+    [SerializeField] private GameObject turretModeButton;
+    
+    [SerializeField] private GameObject questPanel; 
+
+    public GameObject QuestPanelObject => questPanel;
+    public GameObject TurretModeButton => turretModeButton;
+    
     protected override void Awake()
     {
         base.Awake();

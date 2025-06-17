@@ -1,26 +1,27 @@
-﻿// EnemyManager.cs
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using _2._Scripts.Events;
 using UnityEngine;
+using System.Linq;
 
 public class EnemyManager : SceneOnlySingleton<EnemyManager>
 {
     [SerializeField] private Transform _startPoint;
     [SerializeField] private Transform _endPoint;
-    [SerializeField] private IntegerEventChannelSO waveChangedEvent; // 웨이브 이벤트
+    [SerializeField] private IntegerEventChannelSO waveChangedEvent;
     [SerializeField] private VoidEventChannelSO onGameClearEvent;
     [SerializeField] private TwoIntegerEvent waveRemainMonsterCountEvent;
     [SerializeField] private IntegerEventChannelSO waveCountDownEvent;
     public List<EnemyController> Enemies { get; private set; } = new List<EnemyController>();
 
     private int _arrivalOrder = 0;
+    private bool isSpawning = false;
+    private bool isTutorialMode = false;
+    private bool isWaveStarted = false; // 중복 실행 방지
 
     [Header("웨이브 데이터")]
     [SerializeField] private StageWaveSO stageWaves;
-
     private int currentWaveIndex = 0;
     private int waveTotalMonsterCount = 0;
     private int waveCurrentMonsterCount = 0;
@@ -29,10 +30,34 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
         base.Awake();
     }
 
-    private bool isSpawning = false;
     private void Start()
     {
-        StartCoroutine(StartMonsterSpawn());
+        if (IsTutorialScene()) return;
+        StartWaveSpawn();
+    }
+
+    public void InitTutorialMode(Transform start, Transform end)
+    {
+        isTutorialMode = true;
+        _startPoint = start;
+        _endPoint = end;
+        Enemies.Clear();
+        ResetArrivalOrder();
+    }
+
+    public void SpawnTutorialMonster(MonsterSO monsterSO, int count = 1, float interval = 0.5f)
+    {
+        if (!isTutorialMode) return;
+        StartCoroutine(SpawnTutorialRoutine(monsterSO, count, interval));
+    }
+
+    private IEnumerator SpawnTutorialRoutine(MonsterSO monsterSO, int count, float interval)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            SpawnSingleMonster(monsterSO);
+            yield return new WaitForSeconds(interval);
+        }
     }
 
     private IEnumerator StartMonsterSpawn()
@@ -40,7 +65,6 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
         while (currentWaveIndex < stageWaves.waves.Count)
         {
             WaveSO wave = stageWaves.waves[currentWaveIndex];
-            
             waveChangedEvent?.Raise(currentWaveIndex + 1);
 
             isSpawning = true; // 스폰 시작
@@ -61,15 +85,14 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
                 yield return coroutine;
             }
 
-            isSpawning = false; // 스폰 완료
+            isSpawning = false;
 
-            // 스폰 중이 아니고, 몬스터 수가 0일 때만
-            while (Enemies.Count > 0 || isSpawning )
+            while (Enemies.Count > 0 || isSpawning)
             {
                 yield return null;
             }
-
             StartCoroutine(StartWaveCountDown());
+            Debug.Log($"웨이브 {currentWaveIndex + 1} 몬스터 전멸 확인.");
             yield return new WaitForSeconds(3f);
 
             currentWaveIndex++;
@@ -102,15 +125,8 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
         waveRemainMonsterCountEvent?.Raise(--waveCurrentMonsterCount, waveTotalMonsterCount);
     }
 
-    public int GetArrivalOrder()
-    {
-        return _arrivalOrder++;
-    }
-
-    public void ResetArrivalOrder()
-    {
-        _arrivalOrder = 0;
-    }
+    public int GetArrivalOrder() => _arrivalOrder++;
+    public void ResetArrivalOrder() => _arrivalOrder = 0;
 
     private void OnAllWavesComplete()
     {
@@ -130,8 +146,23 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
 
         waveCountDownEvent?.Raise(count);
     }
+
     protected override void OnDestroy()
     {
-        base.OnDestroy();
+        
+    }
+
+    public void StartWaveSpawn()
+    {
+        if (isWaveStarted) return; // 중복 실행 방지
+        isWaveStarted = true;
+
+        Debug.Log("[EnemyManager] StartWaveSpawn() 실행됨");
+        StartCoroutine(StartMonsterSpawn());
+    }
+
+    private bool IsTutorialScene()
+    {
+        return UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Tutorial";
     }
 }

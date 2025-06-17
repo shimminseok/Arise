@@ -182,7 +182,7 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         IsDead = true;
         Target = null;
         StatusEffectManager.RemoveAllEffects();
-        EnemyManager.Instance.MonsterDead(this);
+        //EnemyManager.Instance.MonsterDead(this);
         QuestManager.Instance.UpdateProgress(QuestType.KillEnemies, 1);
         if (_healthBarUI != null)
         {
@@ -195,5 +195,9 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         Collider.enabled = false;
         ChangeState(EnemyState.Idle);
         
+        if (TutorialEnemyManager.Instance != null)
+            TutorialEnemyManager.Instance.OnEnemyKilled(this);
+        else if (EnemyManager.Instance != null)
+            EnemyManager.Instance.MonsterDead(this);
     }
 }
