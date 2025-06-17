@@ -27,7 +27,7 @@ public class BossSkillController : MonoBehaviour, IPoolObject
         if (Target != null)
         {
             _fireCoroutine = StartCoroutine(FireBossSkill());
-            _bossSkillTrigger.SetTarget(this);
+      //      _bossSkillTrigger.SetTarget(this);
         }
     }
 

@@ -30,11 +30,13 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
     //스킬 프리팹 2개
     public GameObject earthQuakeSkill;
     public Animator animator;
-
-    public GameObject boxcollider;
     [SerializeField] private string[] BossSkillPoolId;
 
     public bool istest;
+
+    public bool skillStateFinished;
+    private Collider[] results = new Collider[3];
+    public StatusEffectSO statusEffectSO;
     protected override void Awake()
     {
         base.Awake();
@@ -93,7 +95,7 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
         transform.position = Vector3.zero;
     }
 
-//20범위내에 Water layer를 가진 오브젝트 10개 삭제
+    //20범위내에 Water layer를 가진 오브젝트 10개 삭제
     public override void FindTarget()
     {
         var results = new Collider[10];
@@ -114,6 +116,48 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
         }
     }
 
+    public void FindTargetByEnum(BossSkillName bossSkillName)
+    {
+        switch (bossSkillName)
+        {
+            case BossSkillName.EarthQuake:
+                EarthQuake();
+                break;
+            case BossSkillName.Dispel:
+                Dispel();
+                break;
+        }
+
+
+    }
+
+    public void EarthQuake()
+    {
+        var size = Physics.OverlapSphereNonAlloc(
+            transform.position,
+             20,
+              results, LayerMask.GetMask("Tower"));
+        for (int i = 0; i < size; i++)
+        {
+            results[i].transform.gameObject.SetActive(false);
+        }
+    }
+
+    public void Dispel()
+    {
+
+        var size = Physics.OverlapSphereNonAlloc(
+            transform.position,
+             20,
+              results, LayerMask.GetMask("Tower"));
+        for (int i = 0; i < size; i++)
+        {
+                foreach (var effectData in statusEffectSO.StatusEffects)
+                {
+                    results[i].GetComponent<StatusEffectManager>().ApplyEffect(BuffFactory.CreateBuff(statusEffectSO.ID, effectData));
+                }
+        }
+    }
     public override void Movement()
     {
         if (Agent.isOnNavMesh)
@@ -195,14 +239,16 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
         _healthBarUI = null;
     }
 
-    public void FireSkill(int num)
+    public void FireSkill(BossSkillName bossSkillName)
     {
-        GameObject projectile = ObjectPoolManager.Instance.GetObject(BossSkillPoolId[num]);
+
+        GameObject projectile = ObjectPoolManager.Instance.GetObject(bossSkillName.ToString());
         if (projectile.TryGetComponent<BossSkillController>(out var BossSkillController))
         {
             BossSkillController.transform.position = transform.position;
             BossSkillController.SetTarget(this, Target);
         }
+
     }
 
 }

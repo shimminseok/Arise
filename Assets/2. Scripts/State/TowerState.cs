@@ -41,7 +41,7 @@ namespace TowerStates
     {
         private readonly int Attack = Animator.StringToHash("Attack");
         private float attackTimer = 0;
-        private readonly float attackSpd;
+        private float attackSpd;
         private bool _attackDone;
         private Coroutine attackCoroutine;
         public AttackState(float attackSpd, float attackRange)
@@ -56,6 +56,7 @@ namespace TowerStates
 
         public void OnUpdate(TowerController owner)
         {
+            
             if (owner.FireWeaponTransform != null)
             {
                 var targetPos = owner.Target.Collider.transform.position;
@@ -68,6 +69,7 @@ namespace TowerStates
         {
             while (owner.Target != null && !owner.Target.IsDead)
             {
+                attackSpd = owner.StatManager.GetValue(StatType.AttackSpd);
                 yield return new WaitForSeconds(1f / attackSpd);
                 if (owner.Animator != null)
                     owner.Animator.SetTrigger(Attack);
