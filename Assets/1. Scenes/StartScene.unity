@@ -1320,6 +1320,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746304889}
   m_CullTransparentMesh: 1
+--- !u!114 &1969398655 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7801600123910191298, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+    type: 3}
+  m_PrefabInstance: {fileID: 1477708842496188995}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94ea7a28aae2cf74cab4ce72b96bd328, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1986943559
 GameObject:
   m_ObjectHideFlags: 0
@@ -2585,7 +2597,7 @@ PrefabInstance:
         type: 3}
       propertyPath: skillSlots.Array.data[2].cooldownIndicator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1969398655}
     - target: {fileID: 3432519714563346194, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
         type: 3}
       propertyPath: m_AnchorMax.y

@@ -182,7 +182,7 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         IsDead = true;
         Target = null;
         StatusEffectManager.RemoveAllEffects();
-        EnemyManager.Instance.MonsterDead(this);
+        //EnemyManager.Instance.MonsterDead(this);
         QuestManager.Instance.UpdateProgress(QuestType.KillEnemies, 1);
         if (_healthBarUI != null)
         {
