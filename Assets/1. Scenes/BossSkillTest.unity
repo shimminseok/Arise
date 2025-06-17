@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1.05
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 1, g: 1, b: 1, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 80fa4f34db87aad4d93c45188b19bfd6, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 54f8c96517bcca349ab5fd90f34dbaa1, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.024334831, g: 0.09024735, b: 0.18724039, a: 1}
+  m_IndirectSpecularColor: {r: 0.022332806, g: 0.072919846, b: 0.15999281, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8111,9 +8111,9 @@ MonoBehaviour:
   poolId: 
   poolSize: 0
   towerSO: {fileID: 0}
-  ProjectilePoolId: 
+  projectilePoolId: 
   fireTransform: {fileID: 0}
-  fireWeaponTransform: {fileID: 0}
+  fireWeaponWeaponTransform: {fileID: 0}
 --- !u!114 &263356188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18350,9 +18350,9 @@ MonoBehaviour:
   poolId: 
   poolSize: 0
   towerSO: {fileID: 0}
-  ProjectilePoolId: 
+  projectilePoolId: 
   fireTransform: {fileID: 0}
-  fireWeaponTransform: {fileID: 0}
+  fireWeaponWeaponTransform: {fileID: 0}
 --- !u!114 &606168355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19752,7 +19752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portalPos: {fileID: 91290224}
-  target: {fileID: 618547401}
+  target: {fileID: 618547402}
 --- !u!1 &630895809
 GameObject:
   m_ObjectHideFlags: 0
@@ -19876,9 +19876,9 @@ MonoBehaviour:
   poolId: 
   poolSize: 0
   towerSO: {fileID: 0}
-  ProjectilePoolId: 
+  projectilePoolId: 
   fireTransform: {fileID: 0}
-  fireWeaponTransform: {fileID: 0}
+  fireWeaponWeaponTransform: {fileID: 0}
 --- !u!114 &631707015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20325,6 +20325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridManager: {fileID: 212957060}
+  towers: []
   topViewCam: {fileID: 1002116923}
 --- !u!4 &642054557
 Transform:
@@ -20872,7 +20873,10 @@ MonoBehaviour:
   - {fileID: 6987377360658992160, guid: 0e872477af6d20f4bbf42b15c3c0c725, type: 3}
   - {fileID: 6126188424833946103, guid: 6f53e2bed80ccb141ab7ba3fdea9ed02, type: 3}
   - {fileID: 4994997792314849709, guid: ce6841de76762f2449f6c877a05cbad0, type: 3}
-  - {fileID: 6987377360658992160, guid: 0874e1a80fa32484f9d1d62ae84c45e2, type: 3}
+  - {fileID: 8633950227409755659, guid: c6fee38ddf9cb5a4abe2583e80cd796d, type: 3}
+  - {fileID: 6679644637447044905, guid: af4ec1ab8cffde34b86dcafa0352425f, type: 3}
+  - {fileID: 1648831473136490765, guid: 10a96be0f88bb2b45ac4b1ffa7db2a3f, type: 3}
+  - {fileID: 2275898282774941211, guid: dd9b75e52220ccb4d92acac4ede36e81, type: 3}
   - {fileID: 7349670301093728596, guid: 705f34f937b1acf47ade615e007fd752, type: 3}
   - {fileID: 3417396172482619182, guid: 6f6f19b210ebc6246ac7e093c751a999, type: 3}
   - {fileID: 7322435405920248672, guid: 0a3dd092c3f4235478edda626a9600e5, type: 3}
@@ -20892,7 +20896,7 @@ MonoBehaviour:
   - {fileID: 4453798793692347556, guid: cc8d00bf8a6781a47b4967db78d86812, type: 3}
   - {fileID: 3913738513965477629, guid: 3ce6684d2b6619446ae75be0942070de, type: 3}
   - {fileID: 200694866649241029, guid: 2e836ef563d58434aaabce82c63cd191, type: 3}
-  - {fileID: 5598041503365167077, guid: 6f9ace53966f32d40acd6a95b3af8af2, type: 3}
+  - {fileID: 8607717935226603265, guid: f5a667522e571fa4f900f9c24d7e4698, type: 3}
   - {fileID: 640456147929166247, guid: 0af48a8c78846014ca5cf957e25108ab, type: 3}
   - {fileID: 515941876779140839, guid: fde9328755dd8a142817f3290f3dc264, type: 3}
   - {fileID: 3007401005470559389, guid: 628318cba681a5c4cae2fdcdd5e088dc, type: 3}
@@ -31295,6 +31299,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b01cee55146ba374792665e8942449b5, type: 2}
   - {fileID: 11400000, guid: a0843ee72340ab144833fe367585345f, type: 2}
   - {fileID: 11400000, guid: 8d6059e8c26361f419ec62ae1a9e0948, type: 2}
+  - {fileID: 11400000, guid: 7c59c6e159418ad43a15bdc4eab5b6bd, type: 2}
   - {fileID: 11400000, guid: 73ecddec5d55c124cadce51c4993341a, type: 2}
   - {fileID: 11400000, guid: 1bd57d0af13b25542ada984ee2a7ce79, type: 2}
 --- !u!4 &1011031088
@@ -31518,9 +31523,9 @@ MonoBehaviour:
   poolId: 
   poolSize: 0
   towerSO: {fileID: 0}
-  ProjectilePoolId: 
+  projectilePoolId: 
   fireTransform: {fileID: 0}
-  fireWeaponTransform: {fileID: 0}
+  fireWeaponWeaponTransform: {fileID: 0}
 --- !u!114 &1022121219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33370,9 +33375,9 @@ MonoBehaviour:
   poolId: 
   poolSize: 0
   towerSO: {fileID: 0}
-  ProjectilePoolId: 
+  projectilePoolId: 
   fireTransform: {fileID: 0}
-  fireWeaponTransform: {fileID: 0}
+  fireWeaponWeaponTransform: {fileID: 0}
 --- !u!114 &1071165978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34597,9 +34602,9 @@ MonoBehaviour:
   poolId: 
   poolSize: 0
   towerSO: {fileID: 0}
-  ProjectilePoolId: 
+  projectilePoolId: 
   fireTransform: {fileID: 0}
-  fireWeaponTransform: {fileID: 0}
+  fireWeaponWeaponTransform: {fileID: 0}
 --- !u!114 &1112611550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36556,9 +36561,9 @@ MonoBehaviour:
   poolId: 
   poolSize: 0
   towerSO: {fileID: 0}
-  ProjectilePoolId: 
+  projectilePoolId: 
   fireTransform: {fileID: 0}
-  fireWeaponTransform: {fileID: 0}
+  fireWeaponWeaponTransform: {fileID: 0}
 --- !u!114 &1188980984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47076,9 +47081,9 @@ MonoBehaviour:
   poolId: 
   poolSize: 0
   towerSO: {fileID: 0}
-  ProjectilePoolId: 
+  projectilePoolId: 
   fireTransform: {fileID: 0}
-  fireWeaponTransform: {fileID: 0}
+  fireWeaponWeaponTransform: {fileID: 0}
 --- !u!114 &1531467415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53620,7 +53625,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738763169}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268346, y: 0.00000002248122, z: -0.000000009312027, w: 0.92387956}
+  m_LocalRotation: {x: 0.38268346, y: -0.000000022481217, z: 0.000000009312026, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -59392,9 +59397,9 @@ MonoBehaviour:
   poolId: 
   poolSize: 0
   towerSO: {fileID: 0}
-  ProjectilePoolId: 
+  projectilePoolId: 
   fireTransform: {fileID: 0}
-  fireWeaponTransform: {fileID: 0}
+  fireWeaponWeaponTransform: {fileID: 0}
 --- !u!114 &1981884133
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -84,6 +84,10 @@ public class BuildingPlacer : SceneOnlySingleton<BuildingPlacer>
         // 골드 차감 성공 후에만 설치
         gridManager.PlaceBuilding(selectedTower.GameObject, cell, buildingData.Size);
         selectedTower.OnBuildComplete();
+
+        QuestManager.Instance.UpdateProgress(QuestType.BuildTower, 1);
+
+
         buildingGhost.SetValid(true);
 
         // 설치 완료 후 변수 초기화

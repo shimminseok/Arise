@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9fea9f2f4b3e30468a9b3a20c2ffc27, type: 3}
+  m_Name: quest_skill_500
+  m_EditorClassIdentifier: 
+  QuestId: quest_skill_500
+  Title: "\uC2A4\uD0AC 500\uD68C \uC0AC\uC6A9"
+  Description: "\uC2A4\uD0AC\uC5D0 \uC911\uB3C5\uB418\uC138\uC694."
+  Condition:
+    Type: 2
+    TargetValue: 500
+  RewardGold: 800
