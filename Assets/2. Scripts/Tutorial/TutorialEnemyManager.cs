@@ -46,7 +46,6 @@ public class TutorialEnemyManager : MonoBehaviour
 
         if (ActiveEnemies.Count == 0)
         {
-            Debug.Log("[튜토리얼] 모든 몬스터가 제거됨.");
             OnAllEnemiesCleared?.Invoke();
         }
     }

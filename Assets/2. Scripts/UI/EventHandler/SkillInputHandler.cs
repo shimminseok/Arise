@@ -7,6 +7,7 @@ public class SkillInputHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             SkillManager.Instance.ExecuteSkill(0);
+            Debug.Log("gd");
         }
         else if (Input.GetKeyDown(KeyCode.X))
         {

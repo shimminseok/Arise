@@ -4,5 +4,7 @@ public enum TutorialPhase
     WaitForTower,
     WaitForFirstWave,
     AutoWaveProgression,
-    WaitForQuest
+    WaitForSkillKeys,
+    FinalMessage,
+    StartWaveAfterTutorial
 }

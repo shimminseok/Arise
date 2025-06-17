@@ -13,12 +13,19 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private MonsterSO tutorialMonsterSO;
     [SerializeField] private GameObject questPanelObject;
 
-    private TutorialPhase currentPhase;
-    private float phaseTimer = 0f;
-    private bool isPhaseWaiting = false;
-    private int killCount = 0;
-    private bool questCompleted = false;
-    private bool questPanelOpened = false;
+    private TutorialPhase _currentPhase;
+    private float _phaseTimer = 0f;
+    private bool _isPhaseWaiting = false;
+    private bool _isTransitioningPhase = false;
+
+    private int _killCount = 0;
+    private bool _zPressed = false;
+    private bool _xPressed = false;
+    private bool _cPressed = false;
+
+    private bool _hasStoppedForQuest = false;
+    private bool _hasResumedAfterQuest = false;
+    private bool _hasShownFinalClearMessage = false;
 
     private void Awake()
     {
@@ -28,39 +35,33 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
-        // 버튼 자동 연결
         if (turretModeButton == null)
             turretModeButton = UIManager.Instance?.TurretModeButton;
         if (turretModeButton == null)
             Debug.LogWarning("[TutorialManager] turretModeButton 연결 안됨");
 
-        // 퀘스트 패널 자동 연결
         if (questPanelObject == null)
             questPanelObject = UIManager.Instance?.QuestPanelObject;
         if (questPanelObject == null)
             Debug.LogWarning("[TutorialManager] questPanelObject 연결 안됨");
 
-        // 시점 문제 방지: 시작 시 타임스케일은 1, 이후 단계에서 0
         Time.timeScale = 1f;
-
-        // 튜토리얼 스폰 위치 초기화
         EnemyManager.Instance.InitTutorialMode(tutorialStartPoint, tutorialEndPoint);
 
-        // 튜토리얼 시작
-        StartPhase(TutorialPhase.WaitForMove);
+        StartCoroutine(PlayIntroSequence());
     }
 
     private void Update()
     {
-        switch (currentPhase)
+        switch (_currentPhase)
         {
             case TutorialPhase.WaitForMove:
-                if (!isPhaseWaiting &&
+                if (!_isPhaseWaiting &&
                     (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) ||
                      Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) ||
                      Input.GetKeyDown(KeyCode.LeftShift)))
                 {
-                    StartCoroutine(WaitAndAdvanceToNextPhase(3f));
+                    CompletePhase();
                 }
                 break;
 
@@ -72,109 +73,195 @@ public class TutorialManager : MonoBehaviour
                 break;
 
             case TutorialPhase.WaitForFirstWave:
-                phaseTimer += Time.unscaledDeltaTime;
-                if (phaseTimer >= 3f)
+                if (!_isPhaseWaiting)
                 {
-                    Time.timeScale = 1f;
-                    EnemyManager.Instance.SpawnTutorialMonster(tutorialMonsterSO, 3);
-                    CompletePhase();
+                    _isPhaseWaiting = true;
+                    StartCoroutine(HandleFirstWaveSpawn());
                 }
                 break;
 
             case TutorialPhase.AutoWaveProgression:
-                if (EnemyManager.Instance.Enemies.Count == 0 && !isPhaseWaiting)
+                break;
+
+            case TutorialPhase.WaitForSkillKeys:
+                if (Input.GetKeyDown(KeyCode.Z)) _zPressed = true;
+                if (Input.GetKeyDown(KeyCode.X)) _xPressed = true;
+                if (Input.GetKeyDown(KeyCode.C)) _cPressed = true;
+
+                if (_zPressed && _xPressed && _cPressed && !_isPhaseWaiting)
                 {
-                    StartCoroutine(DelayNextWave(5f));
+                    StartCoroutine(ShowNextPhaseMessage());
+                }
+                else
+                {
+                    tutorialText.text = "Z, X, C 키를 눌러 스킬을 사용해보세요!";
                 }
                 break;
 
-            case TutorialPhase.WaitForQuest:
-                if (!questCompleted && killCount >= 10)
+            case TutorialPhase.FinalMessage:
+                if (!_isPhaseWaiting)
+                    StartCoroutine(ShowFinalMessageThenNext());
+                break;
+
+            case TutorialPhase.StartWaveAfterTutorial:
+                tutorialText.text = "";
+
+                if (tutorialText != null)
                 {
-                    questCompleted = true;
-                    StartCoroutine(HandleQuestCompleteSequence());
+                    var parent = tutorialText.transform.parent;
+                    if (parent != null)
+                        parent.gameObject.SetActive(false);
                 }
 
-                if (questCompleted && !questPanelOpened && questPanelObject.activeSelf)
-                {
-                    questPanelOpened = true;
-                    CompletePhase();
-                }
+                EnemyManager.Instance.StartWaveSpawn();
                 break;
         }
     }
 
     private void StartPhase(TutorialPhase phase)
     {
-        currentPhase = phase;
+        _currentPhase = phase;
 
         switch (phase)
         {
             case TutorialPhase.WaitForMove:
-                tutorialText.text = "WASD 또는 Shift 키를 눌러 움직이세요!";
+                tutorialText.text = "WASD 키를 눌러 움직이세요! (Shift는 대쉬입니다.)";
                 Time.timeScale = 0f;
                 break;
 
             case TutorialPhase.WaitForTower:
                 tutorialText.text = "터렛 설치 버튼을 눌러 설치해보세요!";
                 Time.timeScale = 0f;
-                if (turretModeButton != null)
-                    turretModeButton.SetActive(true);
                 break;
 
             case TutorialPhase.WaitForFirstWave:
-                tutorialText.text = "곧 몬스터가 등장합니다...";
                 Time.timeScale = 0f;
                 break;
 
             case TutorialPhase.AutoWaveProgression:
-                tutorialText.text = "";
+                tutorialText.text = "몬스터를 모두 처치하세요!";
                 Time.timeScale = 1f;
                 break;
 
-            case TutorialPhase.WaitForQuest:
-                tutorialText.text = "몬스터 10마리를 처치해보세요!";
+            case TutorialPhase.WaitForSkillKeys:
+                tutorialText.text = "Z, X, C 키를 눌러 스킬을 사용해보세요!";
+                break;
+
+            case TutorialPhase.FinalMessage:
                 break;
         }
     }
 
     private void CompletePhase()
     {
-        currentPhase++;
-        phaseTimer = 0;
-        isPhaseWaiting = false;
-        StartPhase(currentPhase);
+        if (_isTransitioningPhase) return;
+        _isTransitioningPhase = true;
+
+        if (_currentPhase == TutorialPhase.WaitForFirstWave || _currentPhase == TutorialPhase.FinalMessage)
+        {
+            _currentPhase++;
+            _isTransitioningPhase = false;
+            StartPhase(_currentPhase);
+            return;
+        }
+
+        StartCoroutine(ShowNextPhaseMessage());
     }
 
-    private IEnumerator DelayNextWave(float delay)
+    private IEnumerator ShowNextPhaseMessage()
     {
-        isPhaseWaiting = true;
-        yield return new WaitForSeconds(delay);
-        EnemyManager.Instance.StartWaveSpawn();
-    }
-
-    private IEnumerator WaitAndAdvanceToNextPhase(float delay)
-    {
-        isPhaseWaiting = true;
-        tutorialText.text = "잘 하셨어요! 잠시 후 다음 단계로 넘어갑니다...";
+        _isPhaseWaiting = true;
+        tutorialText.text = "잘 하셨어요! 잠시 후 다음 단계로 넘어갑니다.";
         Time.timeScale = 1f;
-        yield return new WaitForSecondsRealtime(delay);
+
+        yield return new WaitForSecondsRealtime(2f);
+
+        _currentPhase++;
+        _phaseTimer = 0;
+        _isPhaseWaiting = false;
+        _isTransitioningPhase = false;
+        StartPhase(_currentPhase);
+    }
+
+    private IEnumerator HandleFirstWaveSpawn()
+    {
+        tutorialText.text = "곧 몬스터가 등장합니다.";
+        Time.timeScale = 1f;
+
+        yield return new WaitForSecondsRealtime(2f);
+
+        EnemyManager.Instance.SpawnTutorialMonster(tutorialMonsterSO, 20);
+
+        _isPhaseWaiting = false;
+        CompletePhase();
+    }
+
+    private IEnumerator ShowFinalMessageThenNext()
+    {
+        _isPhaseWaiting = true;
+        tutorialText.text = "튜토리얼 완료! 이제 게임이 시작됩니다!";
+        yield return new WaitForSecondsRealtime(3f);
+        _isPhaseWaiting = false;
         CompletePhase();
     }
 
     private IEnumerator HandleQuestCompleteSequence()
     {
         tutorialText.text = "퀘스트가 완료되었습니다!";
-        yield return new WaitForSecondsRealtime(2f);
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(1f);
         questPanelObject.SetActive(true);
     }
 
+    public void OnQuestPanelConfirmed()
+    {
+        Time.timeScale = 1f;
+        questPanelObject.SetActive(false);
+        _hasResumedAfterQuest = true;
+        StartCoroutine(ShowMessageThenWait("잘 하셨어요! 성에 몬스터가 접근하지 못하도록 모두 잡아주세요!", 2f));
+    }
+
+    private IEnumerator ShowMessageThenWait(string message, float duration)
+    {
+        tutorialText.text = message;
+        yield return new WaitForSecondsRealtime(duration);
+        tutorialText.text = "몬스터를 모두 처치하세요!";
+    }
+
+    private IEnumerator HandleAllMonsterCleared()
+    {
+        tutorialText.text = "모두 처치하셨습니다!";
+        yield return new WaitForSecondsRealtime(2f);
+        CompletePhase();
+    }
+    
+    private IEnumerator PlayIntroSequence()
+    {
+        tutorialText.gameObject.SetActive(true);
+
+        tutorialText.text = "안녕하세요! 우리 게임에 오신걸 환영해요!";
+        yield return new WaitForSecondsRealtime(2f);
+
+        tutorialText.text = "간단한 조작과 게임 흐름을 알려드리도록 하겠습니다.";
+        yield return new WaitForSecondsRealtime(2f);
+
+        StartPhase(TutorialPhase.WaitForMove);
+    }
     public void OnEnemyKilled()
     {
-        killCount++;
-        if (currentPhase == TutorialPhase.AutoWaveProgression && killCount >= 10)
+        _killCount++;
+
+        if (!_hasStoppedForQuest && _killCount >= 10)
         {
-            CompletePhase();
+            _hasStoppedForQuest = true;
+            StartCoroutine(HandleQuestCompleteSequence());
+            return;
+        }
+
+        if (_killCount >= 20 && _hasResumedAfterQuest && !_hasShownFinalClearMessage)
+        {
+            _hasShownFinalClearMessage = true;
+            StartCoroutine(HandleAllMonsterCleared());
         }
     }
 }

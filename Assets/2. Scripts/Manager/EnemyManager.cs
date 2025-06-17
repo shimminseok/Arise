@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using System.Linq;
 
 public class EnemyManager : SceneOnlySingleton<EnemyManager>
 {
@@ -15,6 +15,7 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
     private int _arrivalOrder = 0;
     private bool isSpawning = false;
     private bool isTutorialMode = false;
+    private bool isWaveStarted = false; // 중복 실행 방지
 
     [Header("웨이브 데이터")]
     [SerializeField] private StageWaveSO stageWaves;
@@ -27,10 +28,8 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
 
     private void Start()
     {
-        if (isTutorialMode || IsTutorialScene())
-            return;
-
-        StartCoroutine(StartMonsterSpawn());
+        if (IsTutorialScene()) return;
+        StartWaveSpawn();
     }
 
     public void InitTutorialMode(Transform start, Transform end)
@@ -44,12 +43,7 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
 
     public void SpawnTutorialMonster(MonsterSO monsterSO, int count = 1, float interval = 0.5f)
     {
-        if (!isTutorialMode)
-        {
-            Debug.LogWarning("튜토리얼 모드 아님");
-            return;
-        }
-
+        if (!isTutorialMode) return;
         StartCoroutine(SpawnTutorialRoutine(monsterSO, count, interval));
     }
 
@@ -122,7 +116,6 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
     }
 
     public int GetArrivalOrder() => _arrivalOrder++;
-
     public void ResetArrivalOrder() => _arrivalOrder = 0;
 
     private void OnAllWavesComplete()
@@ -133,11 +126,15 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
 
     public void StartWaveSpawn()
     {
+        if (isWaveStarted) return; // 중복 실행 방지
+        isWaveStarted = true;
+
+        Debug.Log("[EnemyManager] StartWaveSpawn() 실행됨");
         StartCoroutine(StartMonsterSpawn());
     }
 
     private bool IsTutorialScene()
     {
-        return UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "MainScene 1";
+        return UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Tutorial";
     }
 }
