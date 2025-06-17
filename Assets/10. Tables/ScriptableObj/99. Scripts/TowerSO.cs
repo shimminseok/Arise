@@ -22,7 +22,7 @@ public class TowerSO : ScriptableObject, IStatProvider
     public bool UseMultishot;
 
     [BoolShowIf("UseMultishot")]
-    public int ProjectileCount;
+    public int ProjectileCount = 1;
 
     public bool UseSplashAttack;
 

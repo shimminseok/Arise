@@ -90,8 +90,7 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
 
     public void MonsterDead(EnemyController monster)
     {
-        Debug.Log($"몬스터 수 : {Enemies.Count}");
-        ObjectPoolManager.Instance.ReturnObject(monster.GameObject, 2f, () => Enemies.Remove(monster));
+        ObjectPoolManager.Instance.ReturnObject(monster.GameObject, 2f);
         Enemies.Remove(monster);
     }
 

@@ -134,7 +134,7 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
     {
         if (_targets.Count == 0) return;
 
-        foreach (var damageable in _targets)
+        foreach (var damageable in _targets.Where(x => !x.IsDead))
         {
             Target = damageable;
             Attack();
