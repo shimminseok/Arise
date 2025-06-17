@@ -8,7 +8,9 @@ public class TurretSelectSlot : MonoBehaviour
     [SerializeField] private TowerSO towerData;
 
     [Header("UI")]
-    [SerializeField] private TMP_Text goldText; // TurretGold_Text
+    [SerializeField] private TMP_Text goldText;
+    [SerializeField] private TMP_Text turretNameText;
+    [SerializeField] private TMP_Text turretDescriptionText;
     [SerializeField] private GameObject turretDescriptionPanel;
     [SerializeField] private TurretDescriptionPanel turretPanel;
     [SerializeField] private Button installButton;
@@ -23,12 +25,16 @@ public class TurretSelectSlot : MonoBehaviour
     private void Start()
     {
         if (towerData != null && goldText != null)
-        {
             goldText.text = towerData.BuildCost.ToString();
-        }
 
         slotButton.onClick.AddListener(() =>
         {
+            if (turretNameText != null)
+                turretNameText.text = towerData.TowerName;
+
+            if (turretDescriptionText != null)
+                turretDescriptionText.text = towerData.Description;
+
             turretPanel.ShowOnly(turretDescriptionPanel);
         });
 

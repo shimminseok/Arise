@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Cannon_Tower_Lv1
   m_EditorClassIdentifier: 
   ID: 301
+  TowerName: "\uCF85\uCF85\uB300\uD3EC \uD0C0\uC6CC"
+  Description: "\uD3ED\uBC1C\uC744 \uC77C\uC73C\uCF1C \uC8FC\uBCC0 \uC801\uAE4C\uC9C0
+    \uD568\uAED8 \uB0A0\uB824\uBC84\uB9BD\uB2C8\uB2E4."
   TowerStats:
   - StatType: 2
     ModifierType: 0

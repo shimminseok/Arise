@@ -1993,7 +1993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolID: Skeleton_Minion
-  poolSize: 2
+  poolSize: 50
   m_MonsterSo: {fileID: 11400000, guid: ec72dd5813c8a6947ae9397a1237cf0d, type: 2}
 --- !u!54 &-4796998329696222492
 Rigidbody:

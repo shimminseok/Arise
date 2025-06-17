@@ -6,10 +6,26 @@ using System.Text.RegularExpressions;
 public class StageInfoUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text stageInfoText;
+    [SerializeField] private IntegerEventChannelSO waveChangedEvent;
 
     private int currentStage = -1;
     private int currentWave = -1;
 
+    private void OnEnable()
+    {
+        waveChangedEvent.RegisterListener(OnWaveChanged);
+    }
+
+    private void OnDisable()
+    {
+        waveChangedEvent.UnregisterListener(OnWaveChanged);
+    }
+
+    private void OnWaveChanged(int wave)
+    {
+        currentWave = wave;
+        UpdateText();
+    }
     private void Start()
     {
         TrySetStageFromSceneName();

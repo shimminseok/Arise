@@ -68,13 +68,12 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
 
     public void Initialized(Vector3 startPos, Vector3 targetPos)
     {
-        Agent.enabled = true;
-        Collider.enabled = true;
         Agent.Warp(startPos);
         TargetPosition = targetPos;
         IsDead = false;
         OnSpawnFromPool();
-        
+        Agent.enabled = true;
+        Collider.enabled = true;
     }
 
     public void OnSpawnFromPool()
@@ -99,7 +98,7 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
     {
         if (Agent.isOnNavMesh)
         {
-            Debug.Log("Update Movement");
+            //Debug.Log("Update Movement");
             Agent.speed = StatManager.GetValue(StatType.MoveSpeed);
             Agent.SetDestination(TargetPosition);
         }
