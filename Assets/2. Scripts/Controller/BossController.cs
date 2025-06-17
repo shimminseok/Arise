@@ -244,7 +244,7 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
     {
         //results
 
-        if (bossSkillName.Equals("EarthQuake"))
+        if (bossSkillName.Equals(BossSkillName.EarthQuake))
         {
             GameObject projectile = ObjectPoolManager.Instance.GetObject(bossSkillName.ToString());
             if (projectile.TryGetComponent<BossSkillController>(out var BossSkillController))
@@ -253,7 +253,7 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
                 BossSkillController.SetTarget(this, Target);
             }
         }
-        if (bossSkillName.Equals("Dispel"))
+        if (bossSkillName.Equals(BossSkillName.Dispel))
         {
             for (int i = 0; i < results.Length - 1; i++)
             {
