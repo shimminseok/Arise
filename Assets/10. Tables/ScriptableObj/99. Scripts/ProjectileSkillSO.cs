@@ -6,7 +6,6 @@ using UnityEngine;
 public class ProjectileSkillSO : AreaSkillSO
 {
     [Header("Projectile Info")]
-    public GameObject ProjectilePrefab;
     public float Speed;
     public float Range;
     
