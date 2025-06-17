@@ -4732,7 +4732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerStatus: {fileID: 933290881350881407}
-  _OnGainGold: {fileID: 0}
+  _OnGainGold: {fileID: 11400000, guid: a68bb3514df7ec7448ff74594485317b, type: 2}
 --- !u!4 &161295562
 Transform:
   m_ObjectHideFlags: 0
