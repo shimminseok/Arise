@@ -7,7 +7,7 @@ public class UITowerUpgrade : UIBase
     [SerializeField] private Vector3 offset;
     [SerializeField] private TMP_Text upgradeCostText;
     [SerializeField] private GameObject upgradeIcon;
-
+    [SerializeField] private EventTrigger eventTrigger;
     private TowerController _selectedTower;
     private Camera _mainCamera;
     private TowerTable _towerTable;
@@ -16,6 +16,16 @@ public class UITowerUpgrade : UIBase
     {
         _mainCamera = Camera.main;
         _towerTable = TableManager.Instance.GetTable<TowerTable>();
+
+
+        EventTrigger.Entry clickEntry = new EventTrigger.Entry
+        {
+            eventID = EventTriggerType.PointerClick
+        };
+
+        clickEntry.callback.AddListener((eventData) => { UIManager.Instance.Close<UITowerUpgrade>(); });
+
+        eventTrigger.triggers.Add(clickEntry);
     }
 
     private void Update()
@@ -25,6 +35,7 @@ public class UITowerUpgrade : UIBase
 
     private void HandleSelectionInput()
     {
+        
         if (Input.GetMouseButton(0) && BuildingPlacer.Instance.IsBuildingMode)
         {
             Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -37,10 +48,6 @@ public class UITowerUpgrade : UIBase
                         SelectTower(tower);
                     }
                 }
-            }
-            else if (!EventSystem.current.IsPointerOverGameObject())
-            {
-                UIManager.Instance.Close<UITowerUpgrade>();
             }
         }
     }
@@ -132,5 +139,6 @@ public class UITowerUpgrade : UIBase
         _selectedTower.DestroyTower();
         _selectedTower = null;
         UIManager.Instance.Close<UITowerUpgrade>();
+
     }
 }

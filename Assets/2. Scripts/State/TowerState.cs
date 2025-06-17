@@ -107,10 +107,10 @@ namespace TowerStates
 
         public void OnUpdate(TowerController owner)
         {
-            BuildingPlacer.Instance.HandleGhostTower(out (bool, Vector3Int) isCanBuilding);
-            if (Input.GetMouseButtonDown(0) && isCanBuilding.Item1)
+            var (canBuild, cell) = BuildingPlacer.Instance.GetGhostBuildInfo();
+            if (Input.GetMouseButtonDown(0) && canBuild)
             {
-                OnTryPlace?.Invoke(isCanBuilding.Item2);
+                OnTryPlace?.Invoke(cell);
             }
         }
 

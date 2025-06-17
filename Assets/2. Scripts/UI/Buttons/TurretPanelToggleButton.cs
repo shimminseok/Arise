@@ -36,7 +36,7 @@ public class TurretPanelToggleButton : MonoBehaviour
         isVisible = !isVisible;
         targetPosition = isVisible ? shownPosition : hiddenPosition;
         UpdateButtonText();
-        BuildingPlacer.Instance.ChangeBuilidMode(isVisible);
+        BuildingPlacer.Instance.ChangeBuildMode(isVisible);
     }
 
     private void UpdateButtonText()
