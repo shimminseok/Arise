@@ -14,6 +14,7 @@ public class QuestManager : Singleton<QuestManager>
         // 아무 것도 하지 않음. 초기화는 Start에서.
     }
 
+    public bool IsInitialized { get; private set; } = false;
     private IEnumerator Start()
     {
         //  1프레임 딜레이 → TableManager 등록을 기다림
@@ -42,6 +43,7 @@ public class QuestManager : Singleton<QuestManager>
         }
 
         Debug.Log($" 총 퀘스트 수: {_questLookup.Count}");
+        IsInitialized = true;
     }
 
     public void UpdateProgress(QuestType type, int amount = 1)
@@ -61,6 +63,12 @@ public class QuestManager : Singleton<QuestManager>
                 progress.IsCompleted = true;
                 Debug.Log($"퀘스트 완료: {data.Title}");
             }
+        }
+        
+        var panel = FindObjectOfType<QuestPanelUI>();
+        if (panel != null)
+        {
+            panel.RefreshAll();
         }
     }
 
