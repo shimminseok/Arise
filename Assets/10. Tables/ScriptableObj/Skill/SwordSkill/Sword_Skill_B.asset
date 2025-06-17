@@ -29,6 +29,14 @@ MonoBehaviour:
     Duration: 0
     TickInterval: 0
     IsStackable: 0
+  - EffectType: 2
+    Stat:
+      StatType: 5
+      ModifierType: 2
+      Value: 0.3
+    Duration: 0
+    TickInterval: 0
+    IsStackable: 0
   ShapeType: 2
   Radius: 10
   Angle: 50
