@@ -63,7 +63,10 @@ namespace BossStates
         public BossState CheckTransition(BossController owner)
         {
             if (owner.istest)
+            {
+                owner.istest = false;
                 return BossState.Skill;
+            }
             if (owner.Target != null && !owner.Target.IsDead)
             {
                 return owner.IsTargetInAttackRange() ? BossState.Attack : BossState.Move;
@@ -149,51 +152,39 @@ namespace BossStates
     }
 
     public class SkillState : IState<BossController, BossState>
-{
-    string[] triggers = { "IsEarthquake", "IsDispel" };
-    private bool hasTriggered = false;
-
-    public void OnEnter(BossController owner)
     {
-        if (owner.skillStateFinished)
+        string[] triggers = { "IsEarthquake", "IsDispel" };
+
+
+        public void OnEnter(BossController owner)
         {
-                Debug.Log("SkillState.OnEnter");
+            Debug.Log("SkillState.OnEnter");
             string randomTrigger = triggers[Random.Range(0, triggers.Length)];
             owner.animator.SetTrigger(randomTrigger);
-            hasTriggered = true;
         }
-    }
 
-    public void OnUpdate(BossController owner)
-    {
-    if (IsAnimationFinished(owner))
-    {
-        owner.skillStateFinished = true;
-    }
-    }
+        public void OnUpdate(BossController owner)
+        {
 
-    public void OnFixedUpdate(BossController owner) { }
+        }
+
+        public void OnFixedUpdate(BossController owner)
+        {
+
+        }
 
         public void OnExit(BossController owner)
         {
-            hasTriggered = false;
-            owner.skillStateFinished = false;
-      
-    }
 
-    public BossState CheckTransition(BossController owner)
-    {
-    if (owner.skillStateFinished)
-        return BossState.Idle;
+        }
 
-    return BossState.Skill;
-    }
+        public BossState CheckTransition(BossController owner)
+        {
 
-    private bool IsAnimationFinished(BossController owner)
-    {
-        AnimatorStateInfo stateInfo = owner.animator.GetCurrentAnimatorStateInfo(0);
-        return stateInfo.normalizedTime >= 1f && !owner.animator.IsInTransition(0);
+            return BossState.Idle;
+
+        }
+
     }
-}
 
 }

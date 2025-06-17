@@ -30,13 +30,13 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
     //스킬 프리팹 2개
     public GameObject earthQuakeSkill;
     public Animator animator;
-
-    public GameObject boxcollider;
     [SerializeField] private string[] BossSkillPoolId;
 
     public bool istest;
 
     public bool skillStateFinished;
+    private  Collider[] results = new Collider[3];
+    public StatusEffectSO statusEffectSO;
     protected override void Awake()
     {
         base.Awake();
@@ -132,28 +132,36 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
     }
 
     public void EarthQuake()
-    {
-                    var results = new Collider[10];
+    {            
             var size = Physics.OverlapSphereNonAlloc(
                 transform.position,
-                 20,
+                 results.Length,
                   results, LayerMask.GetMask("Tower"));
             for (int i = 0; i < size; i++)
             {
                 results[i].transform.gameObject.SetActive(false);
-                /*
-                            if (results[i].TryGetComponent<IDamageable>(out var damageable))
-                            {
-                                Target = damageable;
-                                break;
-                            }
-                            */
             }
     }
 
     public void Dispel()
     {
-    
+                       
+            var size = Physics.OverlapSphereNonAlloc(
+                transform.position,
+                 results.Length,
+                  results, LayerMask.GetMask("Tower"));
+            for (int i = 0; i < size; i++)
+            {
+                            if (results[i].TryGetComponent<IDamageable>(out var damageable))
+                            {
+                foreach (var effectData in statusEffectSO.StatusEffects)
+                {
+                   results[i].GetComponent<StatusEffectManager>().ApplyEffect(BuffFactory.CreateBuff(statusEffectSO.ID,effectData));
+                }
+                    Target = damageable;
+                                break;
+                            }
+            }
 }
     public override void Movement()
     {
@@ -238,13 +246,14 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
 
     public void FireSkill(BossSkillName bossSkillName)
     {
+        
         GameObject projectile = ObjectPoolManager.Instance.GetObject(bossSkillName.ToString());
         if (projectile.TryGetComponent<BossSkillController>(out var BossSkillController))
         {
             BossSkillController.transform.position = transform.position;
             BossSkillController.SetTarget(this, Target);
         }
-    istest = false;
+   
     }
 
 }
