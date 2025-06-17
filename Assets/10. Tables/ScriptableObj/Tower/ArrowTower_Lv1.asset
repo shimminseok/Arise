@@ -22,7 +22,7 @@ MonoBehaviour:
     Value: 100
   - StatType: 3
     ModifierType: 0
-    Value: 10
+    Value: 1
   - StatType: 4
     ModifierType: 0
     Value: 12
