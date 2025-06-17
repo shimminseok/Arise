@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85df3cd47c39a2a438f08944b1a71e1a, type: 3}
+  m_Name: Axe_Skill_C
+  m_EditorClassIdentifier: 
+  ID: 2
+  Icon: {fileID: 0}
+  SkillName: 
+  Description: 
+  Cooldown: 1
+  Duration: 0.8
+  SkillPrefab: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+    type: 3}
+  StatusEffects:
+  - EffectType: 8
+    Stat:
+      StatType: 1
+      ModifierType: 0
+      Value: 3000
+    Duration: 0
+    TickInterval: 0
+    IsStackable: 0
+  ShapeType: 1
+  Radius: 0
+  Angle: 0
+  RectSize: {x: 5, y: 5, z: 5}
+  Owner: {fileID: 0}
+  Offset: 3
+  Speed: 50
+  Range: 1000
