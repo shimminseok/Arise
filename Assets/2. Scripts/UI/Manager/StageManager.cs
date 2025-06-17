@@ -22,6 +22,10 @@ public class StageManager : MonoBehaviour
     public void SetStage(int stage)
     {
         CurrentStage = stage;
+
+        var questTimer = FindObjectOfType<TimeLimitQuestHelper>();
+        if (questTimer != null)
+            questTimer.StartTimer();
     }
 
     public void SetWave(int wave)

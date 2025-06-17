@@ -21,5 +21,7 @@ public class GameClearManager : MonoBehaviour
     {
         if (clearPanel != null)
             clearPanel.SetActive(true);
+
+        FindObjectOfType<TimeLimitQuestHelper>()?.TryClear();
     }
 }
