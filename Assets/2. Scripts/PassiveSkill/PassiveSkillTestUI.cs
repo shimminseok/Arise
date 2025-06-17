@@ -18,6 +18,15 @@ public class PassiveSkillTestUI : MonoBehaviour
         Debug.Log($"스킬 A {_passiveSkills[0].SkillName}");
     }
 
-    public void PassiveSkillB() => PassiveSkillManager.Instance.ApplyPassive(_passiveSkills[1]);
-    public void PassiveSkillC() => PassiveSkillManager.Instance.ApplyPassive(_passiveSkills[2]);
+    public void PassiveSkillB()
+    {
+        PassiveSkillManager.Instance.ApplyPassive(_passiveSkills[1]);
+        Debug.Log($"스킬 B {_passiveSkills[1].SkillName}");
+    }
+
+    public void PassiveSkillC()
+    {
+        PassiveSkillManager.Instance.ApplyPassive(_passiveSkills[2]);
+        Debug.Log($"스킬 C {_passiveSkills[2].SkillName}");
+    }
 }

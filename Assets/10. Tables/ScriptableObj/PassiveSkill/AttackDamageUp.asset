@@ -22,8 +22,8 @@ MonoBehaviour:
       EffectType: 0
       Stat:
         StatType: 2
-        ModifierType: 0
-        Value: 30
+        ModifierType: 1
+        Value: 40
       Duration: 0
       TickInterval: 0
       IsStackable: 0
