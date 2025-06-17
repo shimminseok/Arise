@@ -126,7 +126,7 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
 
     public void Attack()
     {
-        Debug.Log("공격!");
+        //Debug.Log("공격!");
         Target?.TakeDamage(this);
     }
 

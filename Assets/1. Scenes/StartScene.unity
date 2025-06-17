@@ -434,6 +434,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventToRaise: {fileID: 11400000, guid: d4d583a5537e33b478aaf083de059a6e, type: 2}
   button: {fileID: 355572362}
+--- !u!1 &370767738 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4528968645349544009, guid: 84d881172b182db4c99984a158d2c412,
+    type: 3}
+  m_PrefabInstance: {fileID: 967999051873980505}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &371138310 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4278574107033122966, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
@@ -1116,6 +1122,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1562899074 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4102414586386958457, guid: 84d881172b182db4c99984a158d2c412,
+    type: 3}
+  m_PrefabInstance: {fileID: 967999051873980505}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1696972262 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6785602354812187746, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
@@ -4107,6 +4119,8 @@ GameObject:
   - component: {fileID: 4646526204099020491}
   - component: {fileID: 3478457397516425329}
   - component: {fileID: 3012329586564613900}
+  - component: {fileID: 6325557714624273654}
+  - component: {fileID: 6325557714624273655}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -4114,6 +4128,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6325557714624273654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6325557714624273653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dadad04918f0714b9198d176f27ea99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clearPanel: {fileID: 370767738}
+  onGameClearEvent: {fileID: 11400000, guid: 9bbb666907d074a4894fd54b30360fef, type: 2}
+--- !u!114 &6325557714624273655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6325557714624273653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d85a3467a3097834fb8e3b2c830486dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overPanel: {fileID: 1562899074}
+  onGameOverEvent: {fileID: 11400000, guid: cbf4098076d3978468fc129fbe258cff, type: 2}
 --- !u!224 &6502863503627480134
 RectTransform:
   m_ObjectHideFlags: 0

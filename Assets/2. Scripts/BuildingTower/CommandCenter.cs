@@ -8,6 +8,8 @@ public class CommandCenter : SceneOnlySingleton<CommandCenter>, IDamageable
     [SerializeField] private List<AttackPoint> attackPoints;
     [SerializeField] private CommandCenterSO commandCenterSo;
     [SerializeField] private BoxCollider m_Collider;
+
+    [SerializeField] private VoidEventChannelSO gameOverEvent;
     public bool        IsDead      { get; private set; }
     public StatManager StatManager { get; private set; }
     public Collider    Collider    => m_Collider;
@@ -48,7 +50,11 @@ public class CommandCenter : SceneOnlySingleton<CommandCenter>, IDamageable
 
     public void Dead()
     {
+        if (IsDead)
+            return;
+        
         IsDead = true;
+        gameOverEvent?.Raise();
     }
 
     protected override void OnDestroy()
