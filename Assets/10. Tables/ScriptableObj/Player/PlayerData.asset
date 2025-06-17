@@ -20,3 +20,12 @@ MonoBehaviour:
   - StatType: 9
     ModifierType: 0
     Value: 1.5
+  - StatType: 2
+    ModifierType: 0
+    Value: 0
+  - StatType: 3
+    ModifierType: 0
+    Value: 0
+  - StatType: 4
+    ModifierType: 0
+    Value: 0

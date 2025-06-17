@@ -39,6 +39,7 @@ public class PassiveSkillManager : SceneOnlySingleton<PassiveSkillManager>
 
     public void ApplyPassive(PassiveSkillSO passive)
     {
+        Debug.Log($"{passive.Effect.StatType}");
         switch (passive.Effect.StatType)
         {
             case PassiveStatType.GoldGain:
