@@ -8111,6 +8111,7 @@ MonoBehaviour:
   poolId: 
   poolSize: 0
   towerSO: {fileID: 0}
+  fireSound: 0
   projectilePoolId: 
   fireTransform: {fileID: 0}
   fireWeaponWeaponTransform: {fileID: 0}
@@ -12055,14 +12056,6 @@ MonoBehaviour:
   - position: {x: 71.860916, y: 0, z: 32.0537}
     roll: 0
   - position: {x: 69.55107, y: 0, z: 66.003296}
-    roll: 0
-  - position: {x: 49.981953, y: 0, z: 102.434814}
-    roll: 0
-  - position: {x: 8.208662, y: 0, z: 110.91562}
-    roll: 0
-  - position: {x: -10.984438, y: 0, z: 62.058155}
-    roll: 0
-  - position: {x: -10.400551, y: 0, z: 19.86184}
     roll: 0
 --- !u!4 &380427125
 Transform:
@@ -18419,6 +18412,7 @@ MonoBehaviour:
   poolId: 
   poolSize: 0
   towerSO: {fileID: 0}
+  fireSound: 0
   projectilePoolId: 
   fireTransform: {fileID: 0}
   fireWeaponWeaponTransform: {fileID: 0}
@@ -19946,6 +19940,7 @@ MonoBehaviour:
   poolId: 
   poolSize: 0
   towerSO: {fileID: 0}
+  fireSound: 0
   projectilePoolId: 
   fireTransform: {fileID: 0}
   fireWeaponWeaponTransform: {fileID: 0}
@@ -20395,8 +20390,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridManager: {fileID: 212957060}
-  towers: []
   topViewCam: {fileID: 1002116923}
+  cellLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!4 &642054557
 Transform:
   m_ObjectHideFlags: 0
@@ -26206,7 +26203,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 825934524}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10526692, y: 0.17122766, z: -0.018403374, w: 0.9794189}
+  m_LocalRotation: {x: 0.10526693, y: 0.17122768, z: -0.018403372, w: 0.9794189}
   m_LocalPosition: {x: 3.1, y: 22.6, z: -0.8000002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -31665,6 +31662,7 @@ MonoBehaviour:
   poolId: 
   poolSize: 0
   towerSO: {fileID: 0}
+  fireSound: 0
   projectilePoolId: 
   fireTransform: {fileID: 0}
   fireWeaponWeaponTransform: {fileID: 0}
@@ -33517,6 +33515,7 @@ MonoBehaviour:
   poolId: 
   poolSize: 0
   towerSO: {fileID: 0}
+  fireSound: 0
   projectilePoolId: 
   fireTransform: {fileID: 0}
   fireWeaponWeaponTransform: {fileID: 0}
@@ -34744,6 +34743,7 @@ MonoBehaviour:
   poolId: 
   poolSize: 0
   towerSO: {fileID: 0}
+  fireSound: 0
   projectilePoolId: 
   fireTransform: {fileID: 0}
   fireWeaponWeaponTransform: {fileID: 0}
@@ -36703,6 +36703,7 @@ MonoBehaviour:
   poolId: 
   poolSize: 0
   towerSO: {fileID: 0}
+  fireSound: 0
   projectilePoolId: 
   fireTransform: {fileID: 0}
   fireWeaponWeaponTransform: {fileID: 0}
@@ -47229,6 +47230,7 @@ MonoBehaviour:
   poolId: 
   poolSize: 0
   towerSO: {fileID: 0}
+  fireSound: 0
   projectilePoolId: 
   fireTransform: {fileID: 0}
   fireWeaponWeaponTransform: {fileID: 0}
@@ -53774,7 +53776,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738763169}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10526692, y: 0.17122766, z: -0.018403374, w: 0.9794189}
+  m_LocalRotation: {x: 0.10526693, y: 0.17122768, z: -0.018403372, w: 0.9794189}
   m_LocalPosition: {x: 3.1, y: 22.6, z: -0.8000002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -53964,7 +53966,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1744655292}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.6767854, z: 0, w: 0.73618037}
+  m_LocalRotation: {x: 0, y: 0.677372, z: 0, w: 0.7356407}
   m_LocalPosition: {x: 3.1, y: 22.6, z: -0.8000002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -59720,6 +59722,7 @@ MonoBehaviour:
   poolId: 
   poolSize: 0
   towerSO: {fileID: 0}
+  fireSound: 0
   projectilePoolId: 
   fireTransform: {fileID: 0}
   fireWeaponWeaponTransform: {fileID: 0}
