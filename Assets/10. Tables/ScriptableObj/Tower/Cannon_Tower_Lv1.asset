@@ -29,7 +29,7 @@ MonoBehaviour:
   StatusEffects: []
   AttackType: {fileID: 11400000, guid: 4ccc9c126d3422f4184c771c6a0ef6ad, type: 2}
   BuildCost: 450
-  UseMultishot: 0
-  ProjectileCount: 0
+  UseMultishot: 1
+  ProjectileCount: 1
   UseSplashAttack: 1
   SplashRadius: 3

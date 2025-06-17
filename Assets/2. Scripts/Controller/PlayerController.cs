@@ -40,6 +40,8 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
     public IDamageable Target     { get; private set; }
     public Transform   Transform  => transform;
 
+    public WeaponController WeaponController => weaponController;
+
 
     protected override void Awake()
     {
@@ -69,12 +71,8 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
 
         AttackStat = weaponController.StatManager.GetStat<CalculatedStat>(StatType.AttackPow);
         
-        UIPlayerStatPanel uiPanel = FindObjectOfType<UIPlayerStatPanel>();
-        if (uiPanel != null)
-        {
-            uiPanel.SetStatManagers(this.StatManager, weaponController.StatManager);
+        UIManager.Instance.ConnectStatUI(gameObject, weaponController.gameObject);
         }
-    }
 
     protected override void Update()
     {
@@ -140,7 +138,7 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
     {
         if (_targets.Count == 0) return;
 
-        foreach (var damageable in _targets)
+        foreach (var damageable in _targets.Where(x => !x.IsDead))
         {
             Target = damageable;
             Attack();

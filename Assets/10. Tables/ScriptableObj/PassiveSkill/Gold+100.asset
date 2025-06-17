@@ -10,11 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07a4c30491b553b4ba0393e408f4bac3, type: 3}
-  m_Name: Gold+500
+  m_Name: Gold+100
   m_EditorClassIdentifier: 
-  ID: 1
-  SkillName: Gold +500
+  ID: 0
+  SkillName: Gold +100
   Description: 
+  Icon: {fileID: 0}
   Effect:
-    statType: 0
-    value: 500
+    StatType: 0
+    StatusEffectData:
+      EffectType: 0
+      Stat:
+        StatType: 0
+        ModifierType: 0
+        Value: 0
+      Duration: 0
+      TickInterval: 0
+      IsStackable: 0
+    Value: 100

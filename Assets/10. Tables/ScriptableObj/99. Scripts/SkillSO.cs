@@ -14,6 +14,9 @@ public abstract class SkillSO : ScriptableObject
     public float Cooldown;
     public float Duration;
 
+    [Header("Skill Prefab")] 
+    public GameObject SkillPrefab;
+
     [Header("Skill Effects")]
     public List<StatusEffectData> StatusEffects = new List<StatusEffectData>();
     

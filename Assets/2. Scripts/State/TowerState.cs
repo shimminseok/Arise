@@ -39,8 +39,9 @@ namespace TowerStates
 
     public class AttackState : IState<TowerController, TowerState>
     {
+        private readonly int Attack = Animator.StringToHash("Attack");
         private float attackTimer = 0;
-        private readonly float attackSpd;
+        private float attackSpd;
         private bool _attackDone;
         private Coroutine attackCoroutine;
         public AttackState(float attackSpd, float attackRange)
@@ -55,6 +56,7 @@ namespace TowerStates
 
         public void OnUpdate(TowerController owner)
         {
+            
             if (owner.FireWeaponTransform != null)
             {
                 var targetPos = owner.Target.Collider.transform.position;
@@ -65,9 +67,12 @@ namespace TowerStates
 
         private IEnumerator DoAttack(TowerController owner)
         {
-            while (true)
+            while (owner.Target != null && !owner.Target.IsDead)
             {
+                attackSpd = owner.StatManager.GetValue(StatType.AttackSpd);
                 yield return new WaitForSeconds(1f / attackSpd);
+                if (owner.Animator != null)
+                    owner.Animator.SetTrigger(Attack);
                 owner.Attack();
             }
         }
@@ -78,6 +83,7 @@ namespace TowerStates
 
         public void OnExit(TowerController entity)
         {
+            Debug.Log("Exit Attack");
             if (attackCoroutine != null)
                 entity.StopCoroutine(attackCoroutine);
         }
@@ -103,10 +109,10 @@ namespace TowerStates
 
         public void OnUpdate(TowerController owner)
         {
-            BuildingPlacer.Instance.HandleGhostTower(out (bool, Vector3Int) isCanBuilding);
-            if (Input.GetMouseButtonDown(0) && isCanBuilding.Item1)
+            var (canBuild, cell) = BuildingPlacer.Instance.GetGhostBuildInfo();
+            if (Input.GetMouseButtonDown(0) && canBuild)
             {
-                OnTryPlace?.Invoke(isCanBuilding.Item2);
+                OnTryPlace?.Invoke(cell);
             }
         }
 

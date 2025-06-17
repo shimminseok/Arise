@@ -7,7 +7,7 @@ using UnityEngine;
 public class StatManager : MonoBehaviour
 {
     public Dictionary<StatType, StatBase> Stats { get; private set; } = new Dictionary<StatType, StatBase>();
-    
+
     public event Action OnStatChanged;
     public IDamageable Owner { get; private set; }
     /// <summary>

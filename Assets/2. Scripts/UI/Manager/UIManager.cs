@@ -9,12 +9,34 @@ public class UIManager : Singleton<UIManager>
 
     private List<UIBase> openedUIList = new List<UIBase>();
 
+    [SerializeField] private UIPlayerStatPanel playerStatPanel;
     protected override void Awake()
     {
         base.Awake();
         InitializeUIRoot();
     }
 
+    public void ConnectStatUI(GameObject playerObject, GameObject weaponObject)
+    {
+        if (playerStatPanel == null)
+        {
+            return;
+        }
+
+        var playerStat = playerObject?.GetComponent<StatManager>();
+        var weaponCtrl = weaponObject?.GetComponent<WeaponController>();
+        var weaponStat = weaponCtrl?.StatManager;
+
+        if (playerStat != null && weaponStat != null)
+        {
+            playerStatPanel.SetStatManagers(playerStat, weaponStat);
+            Debug.Log("[UIManager] 스탯 UI 연결 완료");
+        }
+        else
+        {
+            Debug.LogWarning("[UIManager] Stat 연결 실패: StatManager 참조가 비어 있음");
+        }
+    }
     public void InitializeUIRoot()
     {
         UIDict.Clear();
@@ -32,8 +54,8 @@ public class UIManager : Singleton<UIManager>
     {
         if (UIDict.TryGetValue(typeof(T), out UIBase ui))
         {
-            ui.Open();
             openedUIList.Add(ui);
+            ui.Open();
         }
     }
 
@@ -41,8 +63,8 @@ public class UIManager : Singleton<UIManager>
     {
         if (UIDict.TryGetValue(typeof(T), out UIBase ui) && openedUIList.Contains(ui))
         {
-            ui.Close();
             openedUIList.Remove(ui);
+            ui.Close();
         }
     }
 

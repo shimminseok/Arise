@@ -18,6 +18,7 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     [SerializeField] private string poolId;
     [SerializeField] private int poolSize;
     [SerializeField] private TowerSO towerSO;
+    [SerializeField] private SFX fireSound;
 
     [FormerlySerializedAs("ProjectilePoolId")]
     [SerializeField] private string projectilePoolId;
@@ -30,6 +31,8 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     public IDamageable  Target              { get; private set; }
     public BuildingData BuildingData        { get; private set; }
     public bool         IsPlaced            { get; private set; }
+    public Collider[]   TargetResults       { get; private set; }
+    public Animator     Animator            { get; private set; }
     public Transform    FireWeaponTransform => fireWeaponWeaponTransform;
     public Transform    FireTransform       => fireTransform;
     public GameObject   GameObject          => gameObject;
@@ -37,16 +40,17 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     public int          PoolSize            => poolSize;
     public TowerSO      TowerSO             => towerSO;
     public string       ProjectilePoolId    => projectilePoolId;
+    
+    
     private Collider m_Collider;
-    
     private TowerTable towerTable;
-    
     protected override void Awake()
     {
         base.Awake();
         BuildingData = GetComponent<BuildingData>();
         m_Collider = GetComponent<CapsuleCollider>();
         towerTable = TableManager.Instance.GetTable<TowerTable>();
+        Animator = GetComponentInChildren<Animator>();
     }
 
     protected override void Start()
@@ -96,11 +100,11 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
 
     public override void FindTarget()
     {
-        var results = new Collider[1];
-        var size    = Physics.OverlapSphereNonAlloc(transform.position, StatManager.GetValue(StatType.AttackRange), results, LayerMask.GetMask("Enemy"));
+        TargetResults = new Collider[towerSO.ProjectileCount];
+        var size = Physics.OverlapSphereNonAlloc(transform.position, StatManager.GetValue(StatType.AttackRange), TargetResults, LayerMask.GetMask("Enemy"));
         for (int i = 0; i < size; i++)
         {
-            if (results[i].TryGetComponent<IDamageable>(out var damageable))
+            if (TargetResults[i].TryGetComponent<IDamageable>(out var damageable) && !damageable.IsDead)
             {
                 Target = damageable;
                 break;
@@ -112,7 +116,7 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     public void OnSpawnFromPool()
     {
         IsPlaced = false;
-        StatManager.Initialize(towerSO, null);
+        StatManager.Initialize(towerSO);
     }
 
     public void OnReturnToPool()
@@ -178,8 +182,7 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     public void Attack()
     {
         TowerSO.AttackType.Attack(this);
-
-
+        SoundManager.Instance.PlaySFX(fireSound);
     }
 
     private void OnDrawGizmosSelected()

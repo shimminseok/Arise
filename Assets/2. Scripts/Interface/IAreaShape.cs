@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IAreaShape
 {
-    public void SpawnAreaCollider(GameObject targetObject, Skill ownerSkill, float duration);
-    public void DrawGizmos(Transform origin);
+    public void SpawnAreaCollider(GameObject targetObject, Skill ownerSkill, float duration, Transform origin);
+    public void DrawGizmos();
 }

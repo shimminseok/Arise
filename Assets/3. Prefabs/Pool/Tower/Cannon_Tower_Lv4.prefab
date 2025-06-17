@@ -747,6 +747,7 @@ MonoBehaviour:
   poolId: CanonTower_Lv4
   poolSize: 10
   towerSO: {fileID: 11400000, guid: c314dd9ee66c62b488b4cd178f95efa5, type: 2}
+  fireSound: 2
   projectilePoolId: Cannom_shell
   fireTransform: {fileID: 2666854004724055851}
   fireWeaponWeaponTransform: {fileID: 531079809595212647}

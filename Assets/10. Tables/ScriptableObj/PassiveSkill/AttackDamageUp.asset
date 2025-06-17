@@ -15,6 +15,16 @@ MonoBehaviour:
   ID: 3
   SkillName: Attack Damage Up
   Description: 
+  Icon: {fileID: 0}
   Effect:
-    statType: 2
-    value: 50
+    StatType: 2
+    StatusEffectData:
+      EffectType: 0
+      Stat:
+        StatType: 2
+        ModifierType: 1
+        Value: 40
+      Duration: 0
+      TickInterval: 0
+      IsStackable: 0
+    Value: 0

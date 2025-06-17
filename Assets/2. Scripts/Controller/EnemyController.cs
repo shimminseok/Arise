@@ -156,14 +156,16 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
 
     public void TakeDamage(IAttackable attacker)
     {
+        if (IsDead)
+            return;
+        
         if (_healthBarUI == null)
         {
             _healthBarUI = HealthBarManager.Instance.SpawnHealthBar(this);
             StatManager.GetStat<ResourceStat>(StatType.CurHp).OnValueChanged += _healthBarUI.UpdateHealthBarWrapper;
         }
 
-        //TODO 방어력 계산
-        float finalDam = attacker.AttackStat.Value;
+        float finalDam = attacker.AttackStat.Value * (100 / (100 + StatManager.GetValue(StatType.Defense)));
         StatManager.Consume(StatType.CurHp, StatModifierType.Base, finalDam);
 
         float curHp = StatManager.GetValue(StatType.CurHp);
@@ -175,6 +177,8 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
 
     public void Dead()
     {
+        if (IsDead)
+            return;
         IsDead = true;
         Target = null;
         StatusEffectManager.RemoveAllEffects();

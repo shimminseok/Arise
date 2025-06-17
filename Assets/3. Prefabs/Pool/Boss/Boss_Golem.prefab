@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1757104494003250192}
+  - component: {fileID: 6293022375732559019}
   - component: {fileID: 8043999371744070039}
   - component: {fileID: 5603999421912507524}
   - component: {fileID: 1116048451824056750}
-  - component: {fileID: 6293022375732559019}
   - component: {fileID: -28091565810385768}
   - component: {fileID: 4980882164610433717}
   m_Layer: 8
@@ -38,6 +38,29 @@ Transform:
   - {fileID: 2307723783849437954}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6293022375732559019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6987377360658992160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97a09125253906e47b9a52491ca6ecf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolID: BossGolem
+  poolSize: 1
+  m_BossSo: {fileID: 11400000, guid: 53f91cce240e8634b8a6892676108443, type: 2}
+  earthQuakeSkill: {fileID: 0}
+  animator: {fileID: 2021591543381167734}
+  BossSkillPoolId:
+  - EarthQuake
+  - DIspel
+  istest: 0
+  skillStateFinished: 0
+  statusEffectSO: {fileID: 11400000, guid: c328bfb610e3c6d4a9ac75c9c00740e6, type: 2}
 --- !u!114 &8043999371744070039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,7 +95,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -84,28 +107,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6293022375732559019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6987377360658992160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97a09125253906e47b9a52491ca6ecf8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  poolID: BossGolem
-  poolSize: 1
-  m_BossSo: {fileID: 11400000, guid: 53f91cce240e8634b8a6892676108443, type: 2}
-  earthQuakeSkill: {fileID: 0}
-  animator: {fileID: 2021591543381167734}
-  boxcollider: {fileID: 0}
-  BossSkillPoolId:
-  - EarthQuake
-  - DIspel
-  istest: 0
 --- !u!136 &-28091565810385768
 CapsuleCollider:
   m_ObjectHideFlags: 0

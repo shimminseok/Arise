@@ -157,9 +157,10 @@ MonoBehaviour:
   poolId: CanonTower_Lv3
   poolSize: 10
   towerSO: {fileID: 11400000, guid: ded118c7c5315cb4e94aa3ad9d27b15c, type: 2}
-  ProjectilePoolId: Cannom_shell
+  fireSound: 2
+  projectilePoolId: Cannom_shell
   fireTransform: {fileID: 4552391691040413077}
-  fireWeaponTransform: {fileID: 0}
+  fireWeaponWeaponTransform: {fileID: 0}
 --- !u!136 &3424359097474343998
 CapsuleCollider:
   m_ObjectHideFlags: 0

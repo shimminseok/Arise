@@ -29,6 +29,8 @@ public class InstantBuff : StatusEffect
     {
         manager.ModifyBuffStat(StatType, ModifierType, Value);
         yield return null;
+        manager.RemoveEffect(this);
+
     }
 }
 
@@ -44,6 +46,8 @@ public class OverTimeBuff : StatusEffect
             yield return new WaitForSeconds(TickInterval);
             elapsed += TickInterval;
         }
+
+        manager.RemoveEffect(this);
     }
 }
 
@@ -54,7 +58,9 @@ public class InstantDebuff : StatusEffect
     {
         manager.ModifyBuffStat(StatType, ModifierType, -Value);
         yield return null;
+        manager.RemoveEffect(this);
     }
+    
 }
 
 //지속시간 디버프(지속시간동안 깍는 버프)
@@ -69,6 +75,8 @@ public class OverTimeDebuff : StatusEffect
             yield return new WaitForSeconds(TickInterval);
             elapsed += TickInterval;
         }
+
+        manager.RemoveEffect(this);
     }
 }
 
@@ -83,7 +91,7 @@ public class TimedModifierBuff : StatusEffect
         yield return new WaitForSeconds(Duration);
 
         // 시간 지나면 원래대로 복구
-        manager.ModifyBuffStat(StatType, ModifierType, -Value);
+        manager.RemoveEffect(this);
     }
 
     public override void OnEffectRemoved(StatusEffectManager manager)
@@ -99,6 +107,7 @@ public class RecoverEffect : StatusEffect
     {
         manager.RecoverEffect(StatType, ModifierType, Value);
         yield return null;
+        manager.RemoveEffect(this);
     }
 }
 //지속 시간 회복
@@ -113,6 +122,8 @@ public class RecoverOverTime : StatusEffect
             yield return new WaitForSeconds(TickInterval);
             elapsed += TickInterval;
         }
+
+        manager.RemoveEffect(this);
     }
 }
 
@@ -128,6 +139,8 @@ public class PeriodicDamageDebuff : StatusEffect
             yield return new WaitForSeconds(TickInterval);
             elapsed += TickInterval;
         }
+
+        manager.RemoveEffect(this);
     }
 }
 // 데미지
@@ -137,6 +150,7 @@ public class DamageDebuff : StatusEffect
     {
         manager.ConsumeEffect(StatType, ModifierType, Value);
         yield return null;
+        manager.RemoveEffect(this);
     }
 }
 
