@@ -5,12 +5,12 @@ using System.Collections;
 public class SkillCooldownIndicator : MonoBehaviour
 {
     [SerializeField] private Image cooldownOverlay;
-    [SerializeField] private float cooldownDuration = 3f;
-
+    private float cooldownDuration;
     private bool isCooldown = false;
 
-    public void StartCooldown()
+    public void StartCooldown(float duration)
     {
+        cooldownDuration = duration;
         if (!isCooldown)
             StartCoroutine(CooldownRoutine());
     }
@@ -24,11 +24,13 @@ public class SkillCooldownIndicator : MonoBehaviour
         while (timer < cooldownDuration)
         {
             timer += Time.deltaTime;
-            cooldownOverlay.fillAmount = 1f - (timer / cooldownDuration);
+            float fill = 1f - (timer / cooldownDuration);
+            cooldownOverlay.fillAmount = fill;
             yield return null;
         }
 
         cooldownOverlay.fillAmount = 0f;
         isCooldown = false;
     }
+
 }

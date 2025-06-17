@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: SkillTable
   m_EditorClassIdentifier: 
   dataList:
+  - {fileID: 11400000, guid: 6f083d60cf67f3c4ca4e102ca7e3a241, type: 2}
+  - {fileID: 11400000, guid: 45eb5fceb80ecd141a9aa935ad40bd6c, type: 2}
+  - {fileID: 11400000, guid: 2b588c84c53a5904c9500e63e6c7a961, type: 2}
   - {fileID: 11400000, guid: 4aef5c9d8fcbf69439adb5c640977e05, type: 2}
-  - {fileID: 11400000, guid: 6b1166ecad99fe64ca4a608eb28a822a, type: 2}
+  - {fileID: 11400000, guid: c52525898595c78469b8db7a3726090d, type: 2}
+  - {fileID: 11400000, guid: 9e58f6e2851ce924299d608452fb5a43, type: 2}
