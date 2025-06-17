@@ -85,7 +85,8 @@ public class GridManager : MonoBehaviour
             for (int z = 0; z < size.y; z++)
             {
                 Vector3Int pos = Vector3Int.FloorToInt(baseCellPos + new Vector3(x, -cellHeightOffset, z));
-                _cells[pos].OccupiedObject = null;
+                if (_cells.TryGetValue(pos, out GridCell cell))
+                    cell.OccupiedObject = null;
             }
         }
     }
