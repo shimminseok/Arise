@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e84f8dabccde74444b81d37e09083a95, type: 3}
+  m_Name: Sword_Skill_B
+  m_EditorClassIdentifier: 
+  ID: 1
+  Icon: {fileID: 0}
+  SkillName: "\uC601\uC5ED"
+  Description: 
+  Cooldown: 1
+  Duration: 1.2
+  SkillPrefab: {fileID: 3156866507962234106, guid: 645ebd7cef59b7b40b27c29bf3e99cf2,
+    type: 3}
+  StatusEffects:
+  - EffectType: 8
+    Stat:
+      StatType: 1
+      ModifierType: 0
+      Value: 140
+    Duration: 0
+    TickInterval: 0
+    IsStackable: 0
+  ShapeType: 2
+  Radius: 10
+  Angle: 50
+  RectSize: {x: 3, y: 2, z: 13}
+  Owner: {fileID: 0}
+  Offset: 0
