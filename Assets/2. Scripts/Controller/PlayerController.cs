@@ -93,7 +93,8 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
         {
             PlayerState.Idle   => new IdleState(),
             PlayerState.Move   => new MoveState(),
-            PlayerState.Attack => new AttackState(weaponController.StatManager.GetValue(StatType.AttackSpd), weaponController.StatManager.GetValue(StatType.AttackRange)),
+            PlayerState.Attack => new AttackState(weaponController.StatManager.GetValue(StatType.AttackSpd) + StatManager.GetValue(StatType.AttackSpd),
+                weaponController.StatManager.GetValue(StatType.AttackRange) + StatManager.GetValue(StatType.AttackRange)),
             PlayerState.Run    => new RunState(),
             _                  => null
         };

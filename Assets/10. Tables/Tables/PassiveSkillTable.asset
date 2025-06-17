@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aa86a4cfb6321f4d877d2d32ebd9f83, type: 3}
+  m_Name: PassiveSkillTable
+  m_EditorClassIdentifier: 
+  dataList:
+  - {fileID: 11400000, guid: 440257e7dcaca844980fc17ef8c880e7, type: 2}
+  - {fileID: 11400000, guid: 29dca445fac091e4c9fc85db5b073d82, type: 2}
+  - {fileID: 11400000, guid: 5d5d5e98fa3a1bc4ab4d8f412dc6fe71, type: 2}
+  - {fileID: 11400000, guid: fabbf7c31ce71674aa1d560028373cdc, type: 2}
+  - {fileID: 11400000, guid: 34c01ab2f38f6af42aa1bdcc83406d82, type: 2}
+  - {fileID: 11400000, guid: 2f87224d80d099746aa4ba5c313e0f2d, type: 2}

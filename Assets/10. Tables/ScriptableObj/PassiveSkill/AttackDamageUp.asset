@@ -10,11 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07a4c30491b553b4ba0393e408f4bac3, type: 3}
-  m_Name: AttackSpeedUp
+  m_Name: AttackDamageUp
   m_EditorClassIdentifier: 
-  ID: 4
-  SkillName: Attack Speed Up
+  ID: 3
+  SkillName: Attack Damage Up
   Description: 
+  Icon: {fileID: 0}
   Effect:
-    statType: 3
-    value: 1
+    StatType: 2
+    StatusEffectData:
+      EffectType: 0
+      Stat:
+        StatType: 2
+        ModifierType: 0
+        Value: 30
+      Duration: 0
+      TickInterval: 0
+      IsStackable: 0
+    Value: 0
