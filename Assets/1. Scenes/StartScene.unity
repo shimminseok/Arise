@@ -532,6 +532,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &529368827 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6451759379118581109, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+    type: 3}
+  m_PrefabInstance: {fileID: 1477708842496188995}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &808047142
 GameObject:
   m_ObjectHideFlags: 0
@@ -2355,6 +2367,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3535257363319068860, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f97f27194175b354eb3a1f03a20bbee2,
+        type: 3}
     - target: {fileID: 3907432089351621036, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
         type: 3}
       propertyPath: m_Name
@@ -2400,6 +2418,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6451759379118581109, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451759379118581109, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451759379118581109, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 7260006922516277273, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2439,6 +2472,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776816378048400218, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7801600123910191298, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: cooldownText
+      value: 
+      objectReference: {fileID: 529368827}
+    - target: {fileID: 8544487358148738368, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
