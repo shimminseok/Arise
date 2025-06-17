@@ -157,9 +157,10 @@ MonoBehaviour:
   poolId: BallistaTower_LV2
   poolSize: 10
   towerSO: {fileID: 11400000, guid: c2482bc145053334f92b46eefd19e1b9, type: 2}
-  ProjectilePoolId: Ballista_shell
+  fireSound: 1
+  projectilePoolId: Ballista_shell
   fireTransform: {fileID: 2052029757008185671}
-  fireWeaponTransform: {fileID: 0}
+  fireWeaponWeaponTransform: {fileID: 0}
 --- !u!136 &6531261187194057745
 CapsuleCollider:
   m_ObjectHideFlags: 0

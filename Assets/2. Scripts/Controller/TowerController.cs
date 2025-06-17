@@ -18,6 +18,7 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     [SerializeField] private string poolId;
     [SerializeField] private int poolSize;
     [SerializeField] private TowerSO towerSO;
+    [SerializeField] private SFX fireSound;
 
     [FormerlySerializedAs("ProjectilePoolId")]
     [SerializeField] private string projectilePoolId;
@@ -181,6 +182,7 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     public void Attack()
     {
         TowerSO.AttackType.Attack(this);
+        SoundManager.Instance.PlaySFX(fireSound);
     }
 
     private void OnDrawGizmosSelected()
