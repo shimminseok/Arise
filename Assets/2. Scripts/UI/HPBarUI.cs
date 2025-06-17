@@ -71,6 +71,7 @@ public class HPBarUI : MonoBehaviour, IPoolObject
 
     public void OnSpawnFromPool()
     {
+        offset = Vector3.up;
         _targetTransform = _target.Collider.transform;
         heightOffset = _target.Collider.bounds.size.y;
         offset.y += heightOffset;

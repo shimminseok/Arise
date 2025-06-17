@@ -40,7 +40,7 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     private Collider m_Collider;
     
     private TowerTable towerTable;
-    
+    public Collider[] TargetResults { get; private set; }
     protected override void Awake()
     {
         base.Awake();
@@ -96,11 +96,11 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
 
     public override void FindTarget()
     {
-        var results = new Collider[1];
-        var size    = Physics.OverlapSphereNonAlloc(transform.position, StatManager.GetValue(StatType.AttackRange), results, LayerMask.GetMask("Enemy"));
+        TargetResults = new Collider[towerSO.ProjectileCount];
+        var size = Physics.OverlapSphereNonAlloc(transform.position, StatManager.GetValue(StatType.AttackRange), TargetResults, LayerMask.GetMask("Enemy"));
         for (int i = 0; i < size; i++)
         {
-            if (results[i].TryGetComponent<IDamageable>(out var damageable))
+            if (TargetResults[i].TryGetComponent<IDamageable>(out var damageable) && !damageable.IsDead)
             {
                 Target = damageable;
                 break;
@@ -112,7 +112,7 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     public void OnSpawnFromPool()
     {
         IsPlaced = false;
-        StatManager.Initialize(towerSO, null);
+        StatManager.Initialize(towerSO);
     }
 
     public void OnReturnToPool()

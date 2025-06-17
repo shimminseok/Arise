@@ -16,19 +16,18 @@ public class MultishotAttackSO : AttackTypeSO
 
     protected override List<IDamageable> FindTargets(TowerController owner)
     {
-        var results = new Collider[owner.TowerSO.ProjectileCount];
-        int size = Physics.OverlapSphereNonAlloc(
-            owner.transform.position,
-            owner.StatManager.GetValue(StatType.AttackRange),
-            results,
-            LayerMask.GetMask("Enemy")
-        );
+        var results = owner.TargetResults;
 
         var targets = new List<IDamageable>();
-        for (int i = 0; i < size && targets.Count < owner.TowerSO.ProjectileCount; i++)
+        targets.Add(owner.Target);
+        for (int i = 0; i < results.Length; i++)
         {
-            if (results[i].TryGetComponent<IDamageable>(out var damageable))
+            if (results[i] == null)
+                continue;
+            if (results[i].TryGetComponent<IDamageable>(out var damageable) && !damageable.IsDead && !targets.Contains(damageable))
+            {
                 targets.Add(damageable);
+            }
         }
 
         return targets;

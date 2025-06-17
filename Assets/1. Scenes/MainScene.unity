@@ -1318,6 +1318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dbb75c144705494d88ecc03cd84e38c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStatPanel: {fileID: 0}
 --- !u!4 &64051216
 Transform:
   m_ObjectHideFlags: 0
@@ -65975,6 +65976,7 @@ GameObject:
   - component: {fileID: 933290881350881412}
   - component: {fileID: 933290881350881415}
   - component: {fileID: 933290881350881416}
+  - component: {fileID: 933290881350881417}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -66220,6 +66222,18 @@ MonoBehaviour:
     walkParameterName: Walk
     runParameterName: Run
     attackParameterName: Attack
+--- !u!114 &933290881350881417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556308559688075974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2060e861a7e4a4648b15a813f82fb143, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &976554683536442501
 GameObject:
   m_ObjectHideFlags: 0

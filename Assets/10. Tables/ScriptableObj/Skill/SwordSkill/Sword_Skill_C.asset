@@ -16,7 +16,7 @@ MonoBehaviour:
   Icon: {fileID: 0}
   SkillName: 
   Description: 
-  Cooldown: 1
+  Cooldown: 8
   Duration: 0.8
   SkillPrefab: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
     type: 3}

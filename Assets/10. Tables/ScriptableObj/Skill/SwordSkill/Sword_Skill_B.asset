@@ -16,7 +16,7 @@ MonoBehaviour:
   Icon: {fileID: 0}
   SkillName: "\uC601\uC5ED"
   Description: 
-  Cooldown: 1
+  Cooldown: 5
   Duration: 1.2
   SkillPrefab: {fileID: 3156866507962234106, guid: 645ebd7cef59b7b40b27c29bf3e99cf2,
     type: 3}
@@ -26,6 +26,14 @@ MonoBehaviour:
       StatType: 1
       ModifierType: 0
       Value: 140
+    Duration: 0
+    TickInterval: 0
+    IsStackable: 0
+  - EffectType: 2
+    Stat:
+      StatType: 5
+      ModifierType: 2
+      Value: 0.3
     Duration: 0
     TickInterval: 0
     IsStackable: 0
