@@ -15,6 +15,16 @@ MonoBehaviour:
   ID: 2
   SkillName: Move Speed Up
   Description: 
+  Icon: {fileID: 0}
   Effect:
-    statType: 1
-    value: 1
+    StatType: 1
+    StatusEffectData:
+      EffectType: 0
+      Stat:
+        StatType: 5
+        ModifierType: 1
+        Value: 4
+      Duration: 0
+      TickInterval: 0
+      IsStackable: 0
+    Value: 0

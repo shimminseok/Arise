@@ -40,6 +40,8 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
     public IDamageable Target     { get; private set; }
     public Transform   Transform  => transform;
 
+    public WeaponController WeaponController => weaponController;
+
 
     protected override void Awake()
     {

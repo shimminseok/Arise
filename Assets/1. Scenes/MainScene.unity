@@ -4702,6 +4702,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ad33d58a66ab154a89c9e88255601e5, type: 3}
+--- !u!1 &161295560
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 161295562}
+  - component: {fileID: 161295561}
+  m_Layer: 0
+  m_Name: PassiveSkillManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &161295561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161295560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a7cb951a258d94ea45f51c1516c682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerStatus: {fileID: 933290881350881407}
+  _OnGainGold: {fileID: 0}
+--- !u!4 &161295562
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161295560}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 110.509026, y: 98.76936, z: 37.613495}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &165136950
 GameObject:
   m_ObjectHideFlags: 0
@@ -28028,6 +28074,7 @@ GameObject:
   - component: {fileID: 887103303}
   - component: {fileID: 887103302}
   - component: {fileID: 887103301}
+  - component: {fileID: 887103304}
   m_Layer: 9
   m_Name: Weapon
   m_TagString: Untagged
@@ -28075,6 +28122,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 586565679}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &887103304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887103300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b6f1928fe527c543b673c802595267b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &887307450
 GameObject:
   m_ObjectHideFlags: 0
@@ -34345,7 +34404,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1097112177}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1969098749}
+        m_TargetAssemblyTypeName: PassiveSkillTestUI, Assembly-CSharp
+        m_MethodName: PassiveSkillC
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1097112177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36579,7 +36650,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1186444919}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268346, y: -0.000000022481217, z: 0.000000009312026, w: 0.92387956}
+  m_LocalRotation: {x: 0.38268346, y: 0.00000002248122, z: -0.000000009312027, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45067,7 +45138,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1461936532}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1969098749}
+        m_TargetAssemblyTypeName: PassiveSkillTestUI, Assembly-CSharp
+        m_MethodName: PassiveSkillA
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1461936532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54008,7 +54091,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738763169}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268346, y: -0.000000022481217, z: 0.000000009312026, w: 0.92387956}
+  m_LocalRotation: {x: 0.38268346, y: 0.00000002248122, z: -0.000000009312027, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -59519,7 +59602,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1937446923}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1969098749}
+        m_TargetAssemblyTypeName: PassiveSkillTestUI, Assembly-CSharp
+        m_MethodName: PassiveSkillB
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1937446923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60227,6 +60322,7 @@ GameObject:
   - component: {fileID: 1969098746}
   - component: {fileID: 1969098745}
   - component: {fileID: 1969098744}
+  - component: {fileID: 1969098749}
   m_Layer: 5
   m_Name: PassivePanel
   m_TagString: Untagged
@@ -60335,6 +60431,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 750, y: 260}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1969098749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969098743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49dc08d330069a2409ff225c2dc462ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1969133350
 GameObject:
   m_ObjectHideFlags: 0
@@ -66958,6 +67066,7 @@ SceneRoots:
   - {fileID: 64051216}
   - {fileID: 42208583}
   - {fileID: 575867628}
+  - {fileID: 161295562}
   - {fileID: 719136206}
   - {fileID: 933290881350881404}
   - {fileID: 923143312}
