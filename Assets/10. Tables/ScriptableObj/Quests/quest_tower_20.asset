@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9fea9f2f4b3e30468a9b3a20c2ffc27, type: 3}
-  m_Name: quest_skill_10
+  m_Name: quest_tower_20
   m_EditorClassIdentifier: 
-  QuestId: quest_skill_10
-  Title: "\uC2A4\uD0AC 10\uD68C \uC0AC\uC6A9"
-  Description: "\uC2A4\uD0AC\uC744 \uC790\uC8FC \uC0AC\uC6A9\uD558\uC138\uC694"
+  QuestId: quest_tower_20
+  Title: "\uD0C0\uC6CC 20\uAC1C \uAC74\uC124"
+  Description: "\uD0C0\uC6CC\uB97C 20\uAC1C \uAC74\uC124\uD558\uC138\uC694."
   Condition:
-    Type: 2
-    TargetValue: 10
-  RewardGold: 100
+    Type: 6
+    TargetValue: 20
+  RewardGold: 1000

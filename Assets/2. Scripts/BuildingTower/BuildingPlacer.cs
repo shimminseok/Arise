@@ -66,12 +66,31 @@ public class BuildingPlacer : SceneOnlySingleton<BuildingPlacer>
 
     public void CompleteBuildingTower(Vector3Int cell)
     {
+        int cost = selectedTower.TowerSO.BuildCost;
+
+        if (GoldManager.Instance.CurrentGold < cost)
+        {
+            Debug.Log("골드 부족으로 타워 설치를 할 수 없음.");
+            return;
+        }
+
+        bool success = GoldManager.Instance.TrySpendGold(cost);
+        if (!success)
+        {
+            Debug.Log("골드 차감 실패");
+            return;
+        }
+
+        // 골드 차감 성공 후에만 설치
         gridManager.PlaceBuilding(selectedTower.GameObject, cell, buildingData.Size);
         selectedTower.OnBuildComplete();
+
+        QuestManager.Instance.UpdateProgress(QuestType.BuildTower, 1);
+
+
         buildingGhost.SetValid(true);
-        
-        // 설치 시 UI 한 번 띄워주기
-        
+
+        // 설치 완료 후 변수 초기화
         selectedTower = null;
         buildingGhost = null;
     }

@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolId: HealthBar
-  poolSize: 50
+  poolSize: 205
   barRect: {fileID: 8592687335365169543}
   fillImage: {fileID: 1641733088521863087}
   offset: {x: 0, y: 1, z: 0}

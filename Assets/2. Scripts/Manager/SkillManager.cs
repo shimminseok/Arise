@@ -49,6 +49,8 @@ public class SkillManager : SceneOnlySingleton<SkillManager>
         Skill skillInstance = skillData.CreateSkillInstance(_owner);
         _skillInstances[skillID] = skillInstance;
         skillInstance.Excute(_owner.transform);
+        
+        QuestManager.Instance.UpdateProgress(QuestType.UseSkill, 1);
     }
 
     public void StartCooldown(int skillID, float cooldown)

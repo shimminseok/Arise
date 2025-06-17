@@ -128,6 +128,8 @@ namespace PlayerStates
         {
             owner.PlayerAnimation.Animator.SetBool(owner.PlayerAnimation.AnimationData.WalkParameterHash, true);
             owner.PlayerAnimation.Animator.SetBool(owner.PlayerAnimation.AnimationData.RunParameterHash, true);
+
+            QuestManager.Instance.UpdateProgress(QuestType.DashCount, 1);
         }
 
         public void OnUpdate(PlayerController owner)
