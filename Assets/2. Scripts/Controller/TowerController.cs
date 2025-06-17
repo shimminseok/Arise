@@ -30,6 +30,8 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     public IDamageable  Target              { get; private set; }
     public BuildingData BuildingData        { get; private set; }
     public bool         IsPlaced            { get; private set; }
+    public Collider[]   TargetResults       { get; private set; }
+    public Animator     Animator            { get; private set; }
     public Transform    FireWeaponTransform => fireWeaponWeaponTransform;
     public Transform    FireTransform       => fireTransform;
     public GameObject   GameObject          => gameObject;
@@ -37,16 +39,17 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     public int          PoolSize            => poolSize;
     public TowerSO      TowerSO             => towerSO;
     public string       ProjectilePoolId    => projectilePoolId;
-    private Collider m_Collider;
     
+    
+    private Collider m_Collider;
     private TowerTable towerTable;
-    public Collider[] TargetResults { get; private set; }
     protected override void Awake()
     {
         base.Awake();
         BuildingData = GetComponent<BuildingData>();
         m_Collider = GetComponent<CapsuleCollider>();
         towerTable = TableManager.Instance.GetTable<TowerTable>();
+        Animator = GetComponentInChildren<Animator>();
     }
 
     protected override void Start()

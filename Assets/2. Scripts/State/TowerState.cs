@@ -39,6 +39,7 @@ namespace TowerStates
 
     public class AttackState : IState<TowerController, TowerState>
     {
+        private readonly int Attack = Animator.StringToHash("Attack");
         private float attackTimer = 0;
         private readonly float attackSpd;
         private bool _attackDone;
@@ -68,6 +69,8 @@ namespace TowerStates
             while (owner.Target != null && !owner.Target.IsDead)
             {
                 yield return new WaitForSeconds(1f / attackSpd);
+                if (owner.Animator != null)
+                    owner.Animator.SetTrigger(Attack);
                 owner.Attack();
             }
         }
@@ -78,6 +81,7 @@ namespace TowerStates
 
         public void OnExit(TowerController entity)
         {
+            Debug.Log("Exit Attack");
             if (attackCoroutine != null)
                 entity.StopCoroutine(attackCoroutine);
         }
