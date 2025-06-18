@@ -23,7 +23,7 @@
 
 ## 🎥 인트로씬
 <details>
-## <summary>인트로씬</summary>
+<summary>인트로씬</summary>
 <div markdown="1">
 
 - 인트로씬입니다.
@@ -36,23 +36,22 @@
 ---
 
 
-## 🧬 저장/ 불러오기기
-🔹 액티브 스킬 (SkillManager.cs)
-- 쿨타임 관리, 스킬 인스턴스 생성, 트랜스폼 기반 실행 구조
-- SkillTable 기반으로 스킬 데이터 조회 및 실행
-
-🔹 패시브 스킬 (PassiveSkillManager.cs)
-- 랜덤 3종 선택 → 선택한 스킬은 StatusEffectManager를 통해 적용
-- 골드 획득 / 이동속도 증가 / 공격 관련 스탯 강화 등 다양한 효과 지원
-
-🔹 스탯 시스템 (StatManager.cs)
-- CalculatedStat, ResourceStat 구조 분리
-- 버프, 장비, 회복, 소모를 세부적으로 분리 (StatModifierType 기반)
-- 실시간 동기화 및 최대 체력 반영 처리 포함
-
-🔹 상태이상 (StatusEffectManager.cs)
-- 버프/디버프/회복 등 타이머 기반 효과 관리
-- 중첩 제한, 우선순위 처리 등 확장 가능
+## 🧬💾 세이브 / 로드 시스템
+<details>
+<summary>저장</summary>
+<div markdown="1">
+- 플레이도중 S키를 눌러 게임의 상태를 저장합니다.
+- 플레이어 위치, 타워 배치, 스테이지 정보등이 저장됩니다.
+ ![Movie_029](https://github.com/user-attachments/assets/fce5c15e-5dfa-4e77-9509-e88271f3e286)
+</div>
+</details>
+<summary>불러오기</summary>
+<div markdown="1">
+- 플레이도중 L키를 눌러 게임의 상태를 저장합니다.
+- 플레이어 위치, 타워 배치, 스테이지 정보등이 불러와집니다.
+ ![Movie_031](https://github.com/user-attachments/assets/a51f5c4e-3907-495a-b2a9-a1b5eedd2bcd)
+</div>
+</details>
 
 ---
  ## 🏰 타워 시스템
@@ -70,34 +69,19 @@
 
 ---
 
-## 💥 보스 스킬 시스템
-- BossSkillController는 IPoolObject를 구현해 풀링 가능
-- SetTarget()으로 대상 지정 후 FireBossSkill() 코루틴 동작
-- 디버깅용 트리거 (BossSkillTrigger)는 구조 상 비활성 처리됨 (로직 대체됨)
-
-## 💾 세이브 / 로드 시스템
-- SaveManager를 통해 JSON 기반 저장/불러오기 지원
-- 저장 대상:
-  - 퀘스트 진행도 (QuestProgress)
-  - 스킬 해금 여부 (UnlockedSkills)
-  - 배치된 타워 정보 (BuildingSaveData)
-  - 플레이어 위치, 골드, 스테이지 정보
-- S, L 키로 수동 저장/로드 테스트 가능
-
----
-
 ## 📜 퀘스트 시스템
-- QuestManager에서 전체 퀘스트 초기화 및 진행도 관리
-- QuestData (SO) + QuestProgress (Data) 구조
-- 조건 달성 시 자동으로 완료 처리 (UpdateProgress)
-- 보상 수령 (ClaimReward) 시 골드 획득
-- UI 연동: QuestPanelUI 자동 갱신
-- 세이브/로드 연동도 포함
+<details>
+<summary>퀘스트</summary>
+<div markdown="1">
+ - 퀘스트 시스템입니다.
+ - 다양한 퀘스트를 통해 게임의 목표성을 부여합니다.
+![Movie_032](https://github.com/user-attachments/assets/550534e3-8968-41ef-a568-efa05da150f6)
+
+</div>
+</details>
 
 ---
 ✅ 결론
-
-이 프로젝트는 다양한 핵심 시스템들을 제네릭, 인터페이스, 싱글톤, Table 기반 구조로 설계함으로써 재사용성과 유지보수성을 높였습니다. 특히, FSM과 스탯 시스템은 실무에서도 그대로 활용 가능한 구조로 구현되어 포트폴리오에서 강력한 어필이 가능합니다.
  사용 기술 스택
 - Unity 2022.3.17f1 (LTS)
 - URP (Universal Render Pipeline)
