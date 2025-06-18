@@ -98,5 +98,3 @@
 | 심교인 | 보스 스킬, 풀링 시스템     | [심교인_README.md](./Members/ParkREADME.md) |
 | 심민석 | 타워 설치, FSM, ObjectPooling,Stat     | [심민석_README.md](./Members/README_Shimminseok.md) |
 | 전인우 | 보스 스킬, 풀링 시스템     | [전인우_README.md](./Members/ParkREADME.md) |
-
-[⬅ 메인 리드미로 돌아가기](../README.md)
