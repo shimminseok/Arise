@@ -51,11 +51,7 @@
 ## 🏰 타워 설치 시스템
 
 ### 구조도
-[BuildingPlacer] ⇄ [BuildingGhost] ⇄ [GridManager ↔ GridCell]
-         ↓                         ↓
-[TowerSO / BuildingData]     [CommandCenter]
-         ↓
-[TowerController]
+![Image](https://github.com/user-attachments/assets/9543f5b6-9ec6-4c07-b7e6-159dbdc9f723)
 
 ### 핵심 기능
 - 실시간 배치 미리보기: BuildingGhost는 SetMaterialColor와 SetPosition으로 설치 가능 여부 및 위치를 실시간 반영합니다.
