@@ -45,7 +45,7 @@
 
 ---
 <details>
-<summary>## 🏰 타워 설치 시스템</summary>
+<summary> ## 🏰 타워 설치 시스템</summary>
 <div markdown="1">
 
 - 오른쪽 화살표를 눌러 타워 설치 모드로 진입하여 타워를 설치할 수 있습니다.
