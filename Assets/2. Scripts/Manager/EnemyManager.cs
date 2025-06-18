@@ -92,8 +92,13 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
             {
                 yield return null;
             }
-            yield return new WaitForSeconds(1f);
-            onPassiveSkillPanelEvent.Raise();
+
+            if (!isTutorialMode)
+            {
+                yield return new WaitForSeconds(1f);
+                onPassiveSkillPanelEvent.Raise();
+            }
+            
             StartCoroutine(StartWaveCountDown());
             Debug.Log($"웨이브 {currentWaveIndex + 1} 몬스터 전멸 확인.");
             yield return new WaitForSeconds(3f);
