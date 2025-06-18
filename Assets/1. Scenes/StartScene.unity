@@ -1740,11 +1740,31 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2261481313097968205, guid: 84d881172b182db4c99984a158d2c412,
+        type: 3}
+      propertyPath: panelToDisableAfterClick
+      value: 
+      objectReference: {fileID: 1562899074}
+    - target: {fileID: 2670034470412433926, guid: 84d881172b182db4c99984a158d2c412,
+        type: 3}
+      propertyPath: panelToDisableAfterClick
+      value: 
+      objectReference: {fileID: 370767738}
+    - target: {fileID: 3283417088035998178, guid: 84d881172b182db4c99984a158d2c412,
+        type: 3}
+      propertyPath: panelToDisableAfterClick
+      value: 
+      objectReference: {fileID: 370767738}
     - target: {fileID: 3357369021159630955, guid: 84d881172b182db4c99984a158d2c412,
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 3774424252824140375, guid: 84d881172b182db4c99984a158d2c412,
+        type: 3}
+      propertyPath: panelToDisableAfterClick
+      value: 
+      objectReference: {fileID: 1562899074}
     - target: {fileID: 4467846840183366423, guid: 84d881172b182db4c99984a158d2c412,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2315,10 +2335,60 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4500817172182113223}
     m_Modifications:
+    - target: {fileID: 554628649444225295, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: m_text
+      value: 30 / 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 554628649444225295, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 554628649444225295, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: m_fontSizeMax
+      value: 42
+      objectReference: {fileID: 0}
     - target: {fileID: 2352519293731376650, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
         type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2482600685585951563, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyCountText
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902084031290610571, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902084031290610571, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902084031290610571, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3043461080358846137, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 3043461080358846137, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 3043461080358846137, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 38.5
       objectReference: {fileID: 0}
     - target: {fileID: 3417581503732008280, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
         type: 3}
@@ -2465,6 +2535,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5877321683517301587, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 29.6
+      objectReference: {fileID: 0}
     - target: {fileID: 6431352903160508561, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2524,6 +2599,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8340836357293156566, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyCountImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
