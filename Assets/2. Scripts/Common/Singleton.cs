@@ -23,6 +23,7 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
         }
     }
 
+    protected bool IsDuplicate { get; private set; }
     protected virtual void Awake()
     {
         RemoveDuplicates();
@@ -33,7 +34,10 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
         if (Instance == null)
             SetupInstance();
         else if (instance != null && instance != this as T)
+        {
             Destroy(gameObject);
+            IsDuplicate = true;
+        }
     }
 
     private static void SetupInstance()

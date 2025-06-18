@@ -29,7 +29,7 @@ public class BuildingManager : SceneOnlySingleton<BuildingManager>
 
             if (towerObj.TryGetComponent(out TowerController tower))
             {
-                tower.UpgradeLevel = data.UpgradeLevel;
+                // tower.UpgradeLevel = data.UpgradeLevel;
                 tower.OnSpawnFromPool();
                 tower.OnBuildComplete();
                 RegisterTower(tower);

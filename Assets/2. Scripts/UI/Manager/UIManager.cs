@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class UIManager : Singleton<UIManager>
@@ -21,7 +22,9 @@ public class UIManager : Singleton<UIManager>
     protected override void Awake()
     {
         base.Awake();
-        InitializeUIRoot();
+        if (IsDuplicate)
+            return;
+        SceneLoader.Instance.AddChangeSceneEvent(InitializeUIRoot);
     }
 
     public void ConnectStatUI(GameObject playerObject, GameObject weaponObject)
@@ -45,10 +48,13 @@ public class UIManager : Singleton<UIManager>
             Debug.LogWarning("[UIManager] Stat 연결 실패: StatManager 참조가 비어 있음");
         }
     }
-    public void InitializeUIRoot()
+
+    private void InitializeUIRoot()
     {
         UIDict.Clear();
-        Transform uiRoot       = GameObject.Find("UIRoot").transform;
+        Transform uiRoot = GameObject.Find("UIRoot")?.transform;
+        if (uiRoot == null)
+            return;
         UIBase[]  uiComponents = uiRoot.GetComponentsInChildren<UIBase>(true);
 
         foreach (UIBase uiComponent in uiComponents)
@@ -56,6 +62,8 @@ public class UIManager : Singleton<UIManager>
             UIDict[uiComponent.GetType()] = uiComponent;
             uiComponent.Close();
         }
+        
+        
     }
 
     public void Open<T>() where T : UIBase

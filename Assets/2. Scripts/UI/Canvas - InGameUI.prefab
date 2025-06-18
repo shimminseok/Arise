@@ -6098,7 +6098,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4973832524619954794}
   - component: {fileID: 2086842272059100181}
-  - component: {fileID: 4537262288598389125}
   m_Layer: 5
   m_Name: Gold
   m_TagString: Untagged
@@ -6129,19 +6128,6 @@ RectTransform:
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2086842272059100181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6518398120462307884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74e93d49f5affee49ac2c4cb04790f80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goldText: {fileID: 2697432403617074211}
---- !u!114 &4537262288598389125
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
