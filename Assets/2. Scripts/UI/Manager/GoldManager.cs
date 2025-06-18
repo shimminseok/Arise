@@ -35,6 +35,17 @@ public class GoldManager : SceneOnlySingleton<GoldManager>
         OnGoldChanged?.Invoke(CurrentGold);
     }
 
+    public int Gold
+    {
+        get => CurrentGold;
+        set
+        {
+            CurrentGold = value;
+            OnGoldChanged?.Invoke(CurrentGold);
+        }
+    }
+
+
     protected override void OnDestroy()
     {
         base.OnDestroy();
