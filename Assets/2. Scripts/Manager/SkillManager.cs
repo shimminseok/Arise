@@ -9,10 +9,10 @@ public class SkillManager : SceneOnlySingleton<SkillManager>
     private readonly Dictionary<int, Skill> _skillInstances = new();
     private readonly Dictionary<int, float> _skillCooldowns = new();
     private readonly Dictionary<int, SkillCooldownIndicator> _cooldownIndicators = new();
-
+    
     [SerializeField] private GameObject _owner;
 
-
+    private HashSet<string> _unlockedSkillIds = new();
     public GameObject Owner => _owner;
     protected override void Awake()
     {
@@ -79,4 +79,16 @@ public class SkillManager : SceneOnlySingleton<SkillManager>
         if (!_skillCooldowns.TryGetValue(skillID, out float endTime)) return 0f;
         return Mathf.Max(0f, endTime - Time.time);
     }
+
+    public List<string> GetUnlockedSkillIds()
+    {
+        return new List<string>(_unlockedSkillIds);
+    }
+
+    public void ApplyUnlockedSkillIds(List<string> ids)
+    {
+        _unlockedSkillIds = new HashSet<string>(ids);
+    }
+
+
 }
