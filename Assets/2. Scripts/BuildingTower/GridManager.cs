@@ -13,7 +13,6 @@ public class GridManager : MonoBehaviour
     private void Start()
     {
         GenerateGrid();
-        UIManager.Instance.InitializeUIRoot();
     }
 
     public void GenerateGrid()
