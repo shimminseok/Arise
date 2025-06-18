@@ -44,13 +44,16 @@
 - 중첩 제한, 우선순위 처리 등 확장 가능
 
 ---
+<details>
+<summary>## 🏰 타워 설치 시스템</summary>
+<div markdown="1">
 
-## 🏰 타워 설치 시스템
 - 오른쪽 화살표를 눌러 타워 설치 모드로 진입하여 타워를 설치할 수 있습니다.
 - 설치 가능한 구역이면 초록색, 불가능한 구역이면 빨간색으로 표시됩니다.
 - 설치된 타워를 클릭하여 업그레이드, 제거가 가능합니다.
-![Movie_006](https://github.com/user-attachments/assets/e43cdb9f-c921-448d-9229-65f3d6027e38)
-
+ ![image](https://github.com/user-attachments/assets/f574a9b7-e29c-409b-b0f1-ab2170c8a870)
+</div>
+</details>
 ---
 
 ## 💥 보스 스킬 시스템
