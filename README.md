@@ -18,19 +18,6 @@
 
 </div>
 </details>
-
-
-- 제네릭 기반 상태 머신 (StateMachine<T, TState>)으로 구현
-- IState<TOwner, TState> 인터페이스를 통해 상태별 책임 분리
-- 사용 대상:
-  - 플레이어: Idle, Move, Run, Attack
-  - 몬스터: Idle, Move, Attack, Die
-  - 보스: Idle, Move, Attack, Skill, Die
-  - 타워: Build, Idle, Attack
-- 특징:
-  - SOLID 원칙 기반 (특히 OCP, SRP)
-  - 상태별 코루틴, 애니메이션, FSM 전이 로직 독립 구현
-
 ---
 
 ## ♻️ Object Pooling
