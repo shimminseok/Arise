@@ -36,18 +36,6 @@
 - 풀 키는 프리팹 이름을 기준으로 관리됨
 ---
 
-## 🧬 Skill / Stat / Buff 시스템
-🔹 스탯 시스템 (StatManager.cs)
-- CalculatedStat, ResourceStat 구조 분리
-- 버프, 장비, 회복, 소모를 세부적으로 분리 (StatModifierType 기반)
-- 실시간 동기화 및 최대 체력 반영 처리 포함
-
-🔹 상태이상 (StatusEffectManager.cs)
-- 버프/디버프/회복 등 타이머 기반 효과 관리
-- 중첩 제한, 우선순위 처리 등 확장 가능
-
----
-
 ## 🏰 타워 설치 시스템
 
 ### 구조도
