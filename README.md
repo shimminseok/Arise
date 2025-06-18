@@ -4,15 +4,17 @@
 
 ## 🧠 플레이어 이동동
 <details>
-<summary>타워 설치</summary>
+<summary>플레이어</summary>
 <div markdown="1">
 
 - WASD로 캐릭터를 이동할 수 있습니다.
 - Shift를 누른 상태로 이동시 달릴 수 있습니다.
 - 적이 근접하면 자동으로 공격을 합니다.
 - Z,X,C로 스킬을 사용할 수 있습니다.
+- 스테이지가 클리어되면 패시브 스킬을 선택해서 캐릭터를 강화할 수 있습니다.
 ![Movie_018](https://github.com/user-attachments/assets/3d2085b9-90b7-474c-9f99-39869aa28f9b)
 ![Movie_019](https://github.com/user-attachments/assets/385a86f7-3535-4a61-a449-bd691b82d9bc)
+![Movie_020](https://github.com/user-attachments/assets/2276a4b5-9eeb-4135-b7de-b3ec43297b9b)
 
 </div>
 </details>
