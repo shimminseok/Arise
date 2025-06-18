@@ -1776,11 +1776,31 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2261481313097968205, guid: 84d881172b182db4c99984a158d2c412,
+        type: 3}
+      propertyPath: panelToDisableAfterClick
+      value: 
+      objectReference: {fileID: 1562899074}
+    - target: {fileID: 2670034470412433926, guid: 84d881172b182db4c99984a158d2c412,
+        type: 3}
+      propertyPath: panelToDisableAfterClick
+      value: 
+      objectReference: {fileID: 370767738}
+    - target: {fileID: 3283417088035998178, guid: 84d881172b182db4c99984a158d2c412,
+        type: 3}
+      propertyPath: panelToDisableAfterClick
+      value: 
+      objectReference: {fileID: 370767738}
     - target: {fileID: 3357369021159630955, guid: 84d881172b182db4c99984a158d2c412,
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 3774424252824140375, guid: 84d881172b182db4c99984a158d2c412,
+        type: 3}
+      propertyPath: panelToDisableAfterClick
+      value: 
+      objectReference: {fileID: 1562899074}
     - target: {fileID: 4467846840183366423, guid: 84d881172b182db4c99984a158d2c412,
         type: 3}
       propertyPath: m_AnchorMax.x

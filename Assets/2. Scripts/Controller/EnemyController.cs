@@ -195,16 +195,12 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         Collider.enabled = false;
         ChangeState(EnemyState.Idle);
         
-        Debug.Log($"[EnemyController] Dead 호출됨");
-
         if (TutorialEnemyManager.Instance != null)
         {
-            Debug.Log("[EnemyController] 튜토리얼 모드 → TutorialEnemyManager.OnEnemyKilled 호출");
             TutorialEnemyManager.Instance.OnEnemyKilled(this);
         }
         else if (EnemyManager.Instance != null)
         {
-            Debug.Log("[EnemyController] 일반 모드 → EnemyManager.MonsterDead 호출");
             EnemyManager.Instance.MonsterDead(this);
         }
     }
