@@ -2,7 +2,21 @@
 
 본 프로젝트는 FSM, 오브젝트 풀링, 스킬/스탯, 타워 설치, 보스 스킬, 퀘스트, 세이브/로드 등 다양한 게임 시스템을 모듈화하고 확장성 있는 구조로 개발하였습니다.
 
-## 🧠 FSM (Finite State Machine)
+## 🧠 플레이어 이동동
+<details>
+<summary>타워 설치</summary>
+<div markdown="1">
+
+- WASD로 캐릭터를 이동할 수 있습니다.
+- Shift를 누른 상태로 이동시 달릴 수 있습니다.
+- 적이 근접하면 자동으로 공격을 합니다.
+- Z,X,C로 스킬을 사용할 수 있습니다.
+![Movie_018](https://github.com/user-attachments/assets/3d2085b9-90b7-474c-9f99-39869aa28f9b)
+![Movie_019](https://github.com/user-attachments/assets/385a86f7-3535-4a61-a449-bd691b82d9bc)
+
+</div>
+</details>
+
 
 - 제네릭 기반 상태 머신 (StateMachine<T, TState>)으로 구현
 - IState<TOwner, TState> 인터페이스를 통해 상태별 책임 분리
@@ -44,9 +58,9 @@
 - 중첩 제한, 우선순위 처리 등 확장 가능
 
 ---
- ## 🏰 타워 설치 시스템
+ ## 🏰 타워 시스템
 <details>
-<summary></summary>
+<summary>타워 설치</summary>
 <div markdown="1">
 
 - 오른쪽 화살표를 눌러 타워 설치 모드로 진입하여 타워를 설치할 수 있습니다.
