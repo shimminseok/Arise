@@ -57,7 +57,7 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
     {
         while (true)
         {
-            float waitTime = UnityEngine.Random.Range(8f, 10f);
+            float waitTime = UnityEngine.Random.Range(2f,4f);
             yield return new WaitForSeconds(waitTime);
 
             istest = true;
