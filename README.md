@@ -52,7 +52,8 @@
 - 오른쪽 화살표를 눌러 타워 설치 모드로 진입하여 타워를 설치할 수 있습니다.
 - 설치 가능한 구역이면 초록색, 불가능한 구역이면 빨간색으로 표시됩니다.
 - 설치된 타워를 클릭하여 업그레이드, 제거가 가능합니다.
- ![image](https://github.com/user-attachments/assets/f574a9b7-e29c-409b-b0f1-ab2170c8a870)
+![Movie_006](https://github.com/user-attachments/assets/ccafee1c-af4b-49cd-a38b-5cf4f96f08f1)
+
 </div>
 </details>
 
