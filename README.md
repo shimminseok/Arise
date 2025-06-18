@@ -83,6 +83,17 @@ Unity 2022.3.17f1 + URP 환경에서 개발되었으며, Git을 기반으로 팀
 </details>
 
 ---
+##  🗿보스 스킬 패턴
+<details>
+<summary>보스</summary>
+ -보스의 스킬 시전 모습입니다.
+ -타워를 부시거나 디버프를 걸 수 있습니다.
+![Image](https://github.com/user-attachments/assets/c4298b75-27a3-4583-893f-d059a06f6785)
+
+![Image](https://github.com/user-attachments/assets/bca58867-9a85-4a39-92d7-da4a94a78693)
+
+</div>
+---
 
 ## 🔩 사용 기술 스택
 - Unity 2022.3.17f1 (LTS)
