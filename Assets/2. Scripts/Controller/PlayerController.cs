@@ -12,7 +12,6 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(PlayerAnimation))]
 public class PlayerController : BaseController<PlayerController, PlayerState>, IAttackable
 {
-    [SerializeField] private TransformEventSO rooting;
     [SerializeField] private WeaponController weaponController;
     private InputController _inputController;
     private CharacterController _characterController;
@@ -81,8 +80,6 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
         Rotate();
         FindTarget();
     }
-    [ContextMenu("골드 루팅")]
-    public void Rooting() => rooting.Raise(this.transform);
 
     /// <summary>
     /// 플레이어의 State를 생성해주는 팩토리 입니다.
@@ -130,7 +127,6 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
 
     public void Attack()
     {
-        //Debug.Log("공격!");
         Target?.TakeDamage(this);
     }
 
@@ -170,25 +166,7 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
             }
         }
     }
-
-    public void TakeDamage(IAttackable attacker)
-    {
-        if (Target == null)
-            Target = attacker as IDamageable;
-
-        StatManager.Consume(StatType.CurHp, StatModifierType.Base, attacker.AttackStat.Value);
-
-        float curHp = StatManager.GetValue(StatType.CurHp);
-        if (curHp <= 0)
-        {
-            Dead();
-        }
-    }
-
-    public void Dead()
-    {
-        print($"플레이어 사망");
-    }
+    
 
     private void LockCursor()
     {

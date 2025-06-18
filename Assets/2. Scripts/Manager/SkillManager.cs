@@ -12,6 +12,8 @@ public class SkillManager : SceneOnlySingleton<SkillManager>
 
     [SerializeField] private GameObject _owner;
 
+
+    public GameObject Owner => _owner;
     protected override void Awake()
     {
         base.Awake();

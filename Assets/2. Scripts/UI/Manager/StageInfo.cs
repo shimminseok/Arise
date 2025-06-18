@@ -1,4 +1,3 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,7 +16,7 @@ public class StageInfoUI : MonoBehaviour
     [SerializeField] private TwoIntegerEvent remainMonsterCountEvent;
     [SerializeField] private IntegerEventChannelSO startWaveCountDownEvent;
 
-    [Header("튜토리얼일 때 꺼줄 오브젝트")]
+    [Header("튜토리얼 전용 끄기 대상")]
     [SerializeField] private GameObject waveTextObject;
     [SerializeField] private GameObject waveStartTimerObject;
 
@@ -29,6 +28,8 @@ public class StageInfoUI : MonoBehaviour
         waveChangedEvent.RegisterListener(OnWaveChanged);
         remainMonsterCountEvent.RegisterListener(UpdateRemainMonsterCount);
         startWaveCountDownEvent.RegisterListener(UpdateStartWaveCountDown);
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
@@ -36,21 +37,23 @@ public class StageInfoUI : MonoBehaviour
         waveChangedEvent.UnregisterListener(OnWaveChanged);
         remainMonsterCountEvent.UnregisterListener(UpdateRemainMonsterCount);
         startWaveCountDownEvent.UnregisterListener(UpdateStartWaveCountDown);
+
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+
     private void Start()
     {
         TrySetStageFromSceneName();
         UpdateText();
-        StartCoroutine(DelayCheckSelectedScene());
     }
 
-    private IEnumerator DelayCheckSelectedScene()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        yield return null;
+        string selectedScene = PlayerPrefs.GetString("SelectedScene", "");
 
-        string selectedSceneName = PlayerPrefs.GetString("SelectedScene", "None");
+        Debug.Log($"[StageInfoUI] 새 씬 로드됨: {scene.name}, 선택된 씬: {selectedScene}");
 
-        if (selectedSceneName == "Tutorial")
+        if (selectedScene == "Tutorial")
         {
             waveTextObject?.SetActive(false);
             waveStartTimerObject?.SetActive(false);
@@ -62,6 +65,11 @@ public class StageInfoUI : MonoBehaviour
         }
     }
 
+    private void OnWaveChanged(int wave)
+    {
+        currentWave = wave;
+        UpdateText();
+    }
 
     private void TrySetStageFromSceneName()
     {
@@ -76,18 +84,6 @@ public class StageInfoUI : MonoBehaviour
         {
             currentStage = 0;
         }
-    }
-
-    private void OnWaveChanged(int wave)
-    {
-        currentWave = wave;
-        UpdateText();
-    }
-
-    public void SetWave(int wave)
-    {
-        currentWave = wave;
-        UpdateText();
     }
 
     private void UpdateText()
