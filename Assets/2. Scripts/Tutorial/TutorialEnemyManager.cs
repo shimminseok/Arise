@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TutorialEnemyManager : MonoBehaviour
 {
-    public static TutorialEnemyManager Instance { get; private set; }
+    public static TutorialEnemyManager Instance { get; set; }
 
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Transform destinationPoint;

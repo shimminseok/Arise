@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06889c64038a6b74cbb7c363fbc592a7, type: 3}
-  m_Name: SceneLink
+  m_Script: {fileID: 11500000, guid: 93d8b9b9fe60c9844be3910272abf904, type: 3}
+  m_Name: StageWaves_Tutorial
   m_EditorClassIdentifier: 
-  sceneLinks:
-  - currentScene: Tutorial
-    nextScene: MainScene
-  - currentScene: MainScene
-    nextScene: Stage 2
-  - currentScene: Stage 2
-    nextScene: Stage 3
+  waves:
+  - {fileID: 11400000, guid: 49689adb59225a34ba6ba26cd4242729, type: 2}
