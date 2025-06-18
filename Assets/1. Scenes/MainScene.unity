@@ -55616,7 +55616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contents: {fileID: 330752512}
-  offset: {x: 0, y: -60, z: 0}
+  offset: {x: 0, y: 140, z: 0}
   upgradeCostText: {fileID: 1940485689}
   upgradeIcon: {fileID: 1611227597}
   eventTrigger: {fileID: 330752515}
