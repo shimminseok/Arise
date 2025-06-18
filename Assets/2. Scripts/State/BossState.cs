@@ -33,9 +33,11 @@ namespace BossStates
 
         public BossState CheckTransition(BossController owner)
         {
-            if (!owner.Target.IsDead)
+            if (owner.IsDead)
+                return BossState.Die;
+            else if (owner.Target != null && !owner.Target.IsDead)
                 return BossState.Move;
-
+            
             return BossState.Idle;
         }
     }
@@ -62,16 +64,13 @@ namespace BossStates
 
         public BossState CheckTransition(BossController owner)
         {
-            if (owner.istest)
-            {
-                owner.istest = false;
-                return BossState.Skill;
-            }
+            if (owner.IsDead)
+                return BossState.Die;
             if (owner.Target != null && !owner.Target.IsDead)
             {
                 return owner.IsTargetInAttackRange() ? BossState.Attack : BossState.Move;
             }
-
+            
             return BossState.Idle;
         }
     }
@@ -118,6 +117,8 @@ namespace BossStates
 
         public BossState CheckTransition(BossController owner)
         {
+            if (owner.IsDead)
+                return BossState.Die;
             if (owner.Target == null || owner.Target.IsDead)
             {
                 return BossState.Idle;

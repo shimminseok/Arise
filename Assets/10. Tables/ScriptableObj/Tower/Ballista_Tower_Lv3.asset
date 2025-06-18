@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Ballista_Tower_Lv3
   m_EditorClassIdentifier: 
   ID: 203
+  TowerName: 
+  Description: 
   TowerStats:
   - StatType: 2
     ModifierType: 0
-    Value: 100
+    Value: 160
   - StatType: 3
     ModifierType: 0
     Value: 1.2
@@ -25,7 +27,7 @@ MonoBehaviour:
     Value: 12
   StatusEffects: []
   AttackType: {fileID: 11400000, guid: 8ae1a733619eaf14aaeeeededc068552, type: 2}
-  BuildCost: 150
+  BuildCost: 400
   UseMultishot: 1
   ProjectileCount: 3
   UseSplashAttack: 0

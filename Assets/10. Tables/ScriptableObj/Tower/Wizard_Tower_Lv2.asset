@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Wizard_Tower_Lv2
   m_EditorClassIdentifier: 
   ID: 502
+  TowerName: 
+  Description: 
   TowerStats:
   - StatType: 2
     ModifierType: 0
@@ -26,7 +28,7 @@ MonoBehaviour:
   StatusEffects:
   - {fileID: 11400000, guid: bcacf3f6f9d3125449fced4cc30ddfd9, type: 2}
   AttackType: {fileID: 11400000, guid: 8ae1a733619eaf14aaeeeededc068552, type: 2}
-  BuildCost: 100
+  BuildCost: 50
   UseMultishot: 1
   ProjectileCount: 2
   UseSplashAttack: 0
