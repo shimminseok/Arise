@@ -95,7 +95,7 @@ Unity 2022.3.17f1 + URP 환경에서 개발되었으며, Git을 기반으로 팀
 | 이름 | 담당 기능 | 문서 링크 |
 |------|-----------|-----------|
 | 김경민 | UI / 튜토리얼        | [김경민_README.md](./Members/README_rudals4469.md) |
-| 박상민 | 스킬 / 스탯 / 버프 시스템 | [박상민_README.md](./Members/LeeREADME.md) |
+| 박상민 | 스킬 / 스탯 / 버프 시스템 | [박상민_README.md](./Members/README_Sangmin1008.md) |
 | 심교인 | 저장 시스템 & 퀘스트 시스템    | [심교인_README.md](./Members/README_Simkyoin.md) |
 | 심민석 | 타워 설치, FSM, ObjectPooling,Stat     | [심민석_README.md](./Members/README_Shimminseok.md) |
 | 전인우 | 보스 스킬, 풀링 시스템     | [전인우_README.md](./Members/README_InwooJeon.md) |
