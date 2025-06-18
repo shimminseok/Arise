@@ -89,6 +89,7 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
 
             while (Enemies.Count > 0 || isSpawning)
             {
+                Debug.Log($"[WaveLoop] 대기 중... Enemies.Count = {Enemies.Count}, isSpawning = {isSpawning}");
                 yield return null;
             }
             StartCoroutine(StartWaveCountDown());
@@ -115,13 +116,16 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
         GameObject monsterObj = ObjectPoolManager.Instance.GetObject(monsterSo.name);
         var monsterCtrl = monsterObj.GetComponent<EnemyController>();
         monsterCtrl.Initialized(_startPoint.position, _endPoint.position);
-        Enemies.Add(monsterCtrl);
+        
+        if (!isTutorialMode)
+            Enemies.Add(monsterCtrl);
     }
 
     public void MonsterDead(EnemyController monster)
     {
         ObjectPoolManager.Instance.ReturnObject(monster.GameObject, 2f);
         Enemies.Remove(monster);
+        
         waveRemainMonsterCountEvent?.Raise(--waveCurrentMonsterCount, waveTotalMonsterCount);
     }
 

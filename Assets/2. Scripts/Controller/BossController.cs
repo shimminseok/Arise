@@ -48,6 +48,19 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
         base.Start();
         AttackStat = StatManager.GetStat<CalculatedStat>(StatType.AttackPow);
         Collider = GetComponent<CapsuleCollider>();
+         StartCoroutine(SetTestTrueRoutine());
+    }
+
+        IEnumerator SetTestTrueRoutine()
+    {
+        while (true)
+        {
+            float waitTime = UnityEngine.Random.Range(8f, 10f);
+            yield return new WaitForSeconds(waitTime);
+
+            istest = true;
+            yield return null; // 1프레임 후 꺼짐 
+        }
     }
 
     protected override void Update()
