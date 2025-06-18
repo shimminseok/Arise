@@ -49,9 +49,7 @@ public class StageInfoUI : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        string selectedScene = PlayerPrefs.GetString("SelectedScene", "");
-
-        Debug.Log($"[StageInfoUI] 새 씬 로드됨: {scene.name}, 선택된 씬: {selectedScene}");
+        string currentSceneName = SceneManager.GetActiveScene().name;
 
         // if (selectedScene == "Tutorial")
         // {

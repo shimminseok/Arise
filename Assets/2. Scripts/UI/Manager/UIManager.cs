@@ -2,37 +2,101 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class UIManager : Singleton<UIManager>
 {
-    private readonly Dictionary<Type, UIBase> UIDict = new Dictionary<Type, UIBase>();
-
-    private List<UIBase> openedUIList = new List<UIBase>();
+    private readonly Dictionary<Type, UIBase> UIDict = new();
+    private List<UIBase> openedUIList = new();
 
     [SerializeField] private UIPlayerStatPanel playerStatPanel;
-    
     [SerializeField] private GameObject turretModeButton;
-    
-    [SerializeField] private GameObject questPanel; 
+    [SerializeField] private GameObject questPanel;
 
     public GameObject QuestPanelObject => questPanel;
     public GameObject TurretModeButton => turretModeButton;
-    
+
     protected override void Awake()
     {
         base.Awake();
         if (IsDuplicate)
             return;
-        SceneLoader.Instance.AddChangeSceneEvent(InitializeUIRoot);
+
+        DontDestroyOnLoad(gameObject); // 씬 전환 시 살아있도록 유지
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += HandleSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= HandleSceneLoaded;
+    }
+
+    private void Start()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        if (currentScene == "IntroScene")
+        {
+            SetCanvasGroupActive(false);
+        }
+        else
+        {
+            SetCanvasGroupActive(true);
+            InitializeUIRoot();
+        }
+    }
+
+    private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        string sceneName = scene.name;
+
+        if (sceneName == "IntroScene")
+        {
+            SetCanvasGroupActive(false);
+            Debug.Log("[UIManager] IntroScene → UI 숨김");
+        }
+        else
+        {
+            SetCanvasGroupActive(true);
+            InitializeUIRoot();
+            Debug.Log($"[UIManager] {sceneName} → UI 활성화 및 초기화");
+        }
+    }
+
+    private void SetCanvasGroupActive(bool active)
+    {
+        Transform inGameUI = transform.Find("Canvas - InGameUI");
+        Transform systemUI = transform.Find("Canvas - SystemUI");
+
+        if (inGameUI != null) inGameUI.gameObject.SetActive(active);
+        if (systemUI != null) systemUI.gameObject.SetActive(active);
+    }
+
+    private void InitializeUIRoot()
+    {
+        UIDict.Clear();
+
+        Transform uiRoot = GameObject.Find("UIRoot")?.transform;
+        if (uiRoot == null)
+        {
+            Debug.LogWarning("[UIManager] UIRoot를 찾을 수 없습니다.");
+            return;
+        }
+
+        UIBase[] uiComponents = uiRoot.GetComponentsInChildren<UIBase>(true);
+        foreach (UIBase uiComponent in uiComponents)
+        {
+            UIDict[uiComponent.GetType()] = uiComponent;
+            uiComponent.Close();
+        }
     }
 
     public void ConnectStatUI(GameObject playerObject, GameObject weaponObject)
     {
-        if (playerStatPanel == null)
-        {
-            return;
-        }
+        if (playerStatPanel == null) return;
 
         var playerStat = playerObject?.GetComponent<StatManager>();
         var weaponCtrl = weaponObject?.GetComponent<WeaponController>();
@@ -47,23 +111,6 @@ public class UIManager : Singleton<UIManager>
         {
             Debug.LogWarning("[UIManager] Stat 연결 실패: StatManager 참조가 비어 있음");
         }
-    }
-
-    private void InitializeUIRoot()
-    {
-        UIDict.Clear();
-        Transform uiRoot = GameObject.Find("UIRoot")?.transform;
-        if (uiRoot == null)
-            return;
-        UIBase[]  uiComponents = uiRoot.GetComponentsInChildren<UIBase>(true);
-
-        foreach (UIBase uiComponent in uiComponents)
-        {
-            UIDict[uiComponent.GetType()] = uiComponent;
-            uiComponent.Close();
-        }
-        
-        
     }
 
     public void Open<T>() where T : UIBase
@@ -84,10 +131,9 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-
     public T GetUIComponent<T>() where T : UIBase
     {
-        return UIDict[typeof(T)] as T;
+        return UIDict.TryGetValue(typeof(T), out var ui) ? ui as T : null;
     }
 }
 
