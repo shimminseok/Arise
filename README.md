@@ -29,12 +29,10 @@
 - SkillTable 기반으로 스킬 데이터 조회 및 실행
 
 🔹 패시브 스킬 (PassiveSkillManager.cs)
-
 - 랜덤 3종 선택 → 선택한 스킬은 StatusEffectManager를 통해 적용
 - 골드 획득 / 이동속도 증가 / 공격 관련 스탯 강화 등 다양한 효과 지원
 
 🔹 스탯 시스템 (StatManager.cs)
-
 - CalculatedStat, ResourceStat 구조 분리
 - 버프, 장비, 회복, 소모를 세부적으로 분리 (StatModifierType 기반)
 - 실시간 동기화 및 최대 체력 반영 처리 포함
@@ -43,6 +41,8 @@
 - 버프/디버프/회복 등 타이머 기반 효과 관리
 - 중첩 제한, 우선순위 처리 등 확장 가능
 
+---
+
 ## 🏰 타워 설치 시스템
 
 - BuildingPlacer와 GridManager를 기반으로 타워 배치
@@ -50,6 +50,8 @@
 - GridCell 단위로 충돌 감지 및 겹침 방지 처리
 - 설치 완료 시 타워 FSM 상태 Build -> Idle 전이
 - 업그레이드 / 파괴 / 저장 가능 (TowerController.cs)
+
+---
 
 ## 💥 보스 스킬 시스템
 - BossSkillController는 IPoolObject를 구현해 풀링 가능
@@ -63,8 +65,9 @@
   - 스킬 해금 여부 (UnlockedSkills)
   - 배치된 타워 정보 (BuildingSaveData)
   - 플레이어 위치, 골드, 스테이지 정보
-
 - S, L 키로 수동 저장/로드 테스트 가능
+
+---
 
 ## 📜 퀘스트 시스템
 - QuestManager에서 전체 퀘스트 초기화 및 진행도 관리
