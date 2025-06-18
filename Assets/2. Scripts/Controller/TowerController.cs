@@ -130,6 +130,7 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     public void OnBuildComplete()
     {
         IsPlaced = true;
+        BuildingManager.Instance?.RegisterTower(this);
     }
 
     public TowerController UpgradeTower()
@@ -188,5 +189,15 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
+    }
+
+    public BuildingSaveData GetSaveData()
+    {
+        return new BuildingSaveData
+        {
+            TowerId = towerSO.name,
+            Position = transform.position,
+            UpgradeLevel = towerSO.ID
+        };
     }
 }
