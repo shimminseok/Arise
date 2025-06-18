@@ -94,6 +94,8 @@ Unity 2022.3.17f1 + URP 환경에서 개발되었으며, Git을 기반으로 팀
 ![Image](https://github.com/user-attachments/assets/bca58867-9a85-4a39-92d7-da4a94a78693)
 
 </div>
+</details>
+
 ---
 
 ## 🔩 사용 기술 스택
