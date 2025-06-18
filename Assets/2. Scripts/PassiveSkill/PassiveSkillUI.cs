@@ -31,6 +31,8 @@ public class PassiveSkillUI : MonoBehaviour
         SetPanelInfo(_passiveSkillNameA, _passiveSkillIconA, _passiveSkillDescriptionA, 0);
         SetPanelInfo(_passiveSkillNameB, _passiveSkillIconB, _passiveSkillDescriptionB, 1);
         SetPanelInfo(_passiveSkillNameC, _passiveSkillIconC, _passiveSkillDescriptionC, 2);
+
+        Time.timeScale = 0f;
     }
 
     private void SetPanelInfo(TextMeshProUGUI name, Image icon, TextMeshProUGUI description, int index)
@@ -41,21 +43,17 @@ public class PassiveSkillUI : MonoBehaviour
         description.text = skill.Description;
     }
 
-    public void PassiveSkillA()
+    private void ApplyPassiveSkill(int index)
     {
-        PassiveSkillManager.Instance.ApplyPassive(_passiveSkills[0]);
-        Debug.Log($"스킬 A {_passiveSkills[0].SkillName}");
+        PassiveSkillManager.Instance.ApplyPassive(_passiveSkills[index]);
+        Debug.Log($"스킬 {index} {_passiveSkills[index].SkillName}");
+        Time.timeScale = 1f;
+        gameObject.SetActive(false);
     }
 
-    public void PassiveSkillB()
-    {
-        PassiveSkillManager.Instance.ApplyPassive(_passiveSkills[1]);
-        Debug.Log($"스킬 B {_passiveSkills[1].SkillName}");
-    }
+    public void PassiveSkillA() => ApplyPassiveSkill(0);
 
-    public void PassiveSkillC()
-    {
-        PassiveSkillManager.Instance.ApplyPassive(_passiveSkills[2]);
-        Debug.Log($"스킬 C {_passiveSkills[2].SkillName}");
-    }
+    public void PassiveSkillB() => ApplyPassiveSkill(1);
+
+    public void PassiveSkillC() => ApplyPassiveSkill(2);
 }

@@ -1,3 +1,20 @@
-﻿fileFormatVersion: 2
+fileFormatVersion: 2
 guid: 47cc9012c7964580ad79c3548202ceb1
-timeCreated: 1749721466
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _startPoint: {instanceID: 0}
+  - _endPoint: {instanceID: 0}
+  - waveChangedEvent: {instanceID: 0}
+  - onGameClearEvent: {instanceID: 0}
+  - waveRemainMonsterCountEvent: {instanceID: 0}
+  - waveCountDownEvent: {instanceID: 0}
+  - onPassiveSkillPanelEvent: {fileID: 11400000, guid: 443b56535f1271b48bd95db6a1caba6d,
+      type: 2}
+  - stageWaves: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
