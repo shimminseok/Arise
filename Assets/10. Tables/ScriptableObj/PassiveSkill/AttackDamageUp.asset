@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: AttackDamageUp
   m_EditorClassIdentifier: 
   ID: 3
-  SkillName: Attack Damage Up
-  Description: 
-  Icon: {fileID: 0}
+  SkillName: "\uACF5\uACA9\uB825 \uC99D\uAC00"
+  Description: "\uD50C\uB808\uC774\uC5B4\uC758 \uACF5\uACA9\uB825\uC774 40\uB9CC\uD07C
+    \uC99D\uAC00\uD569\uB2C8\uB2E4"
+  Icon: {fileID: 21300000, guid: 0b3fe550adcff0042b2833eaf9523432, type: 3}
   Effect:
     StatType: 2
     StatusEffectData:

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 1
   SkillName: Gold +500
-  Description: 
-  Icon: {fileID: 0}
+  Description: "500\uACE8\uB4DC\uB97C \uC5BB\uC2B5\uB2C8\uB2E4"
+  Icon: {fileID: 5659230168238626165, guid: b6bf64f3818ea7048adcf794dea42649, type: 3}
   Effect:
     StatType: 0
     StatusEffectData:
