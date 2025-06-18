@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SceneLink
   m_EditorClassIdentifier: 
   sceneLinks:
+  - currentScene: Tutorial
+    nextScene: MainScene
   - currentScene: MainScene
-    nextScene: Stage 1
-  - currentScene: Stage 1
     nextScene: Stage 2
   - currentScene: Stage 2
     nextScene: Stage 3

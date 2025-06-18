@@ -21,9 +21,11 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
     public NavMeshAgent Agent { get; private set; }
 
     public GameObject GameObject => gameObject;
-    public string PoolID => poolID;
-    public int PoolSize => poolSize;
-
+    public string     PoolID     => poolID;
+    public int        PoolSize   => poolSize;
+    public BossSO     BossSo     => m_BossSo;
+    
+    
     private HPBarUI _healthBarUI;
     private AttackPoint _assignedPoint;
 
@@ -41,17 +43,17 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
     {
         base.Awake();
         Agent = GetComponent<NavMeshAgent>();
+        Collider = GetComponent<CapsuleCollider>();
     }
 
     protected override void Start()
     {
         base.Start();
         AttackStat = StatManager.GetStat<CalculatedStat>(StatType.AttackPow);
-        Collider = GetComponent<CapsuleCollider>();
-         StartCoroutine(SetTestTrueRoutine());
+        StartCoroutine(SetTestTrueRoutine());
     }
 
-        IEnumerator SetTestTrueRoutine()
+    IEnumerator SetTestTrueRoutine()
     {
         while (true)
         {
@@ -91,19 +93,20 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
     {
         Agent.Warp(startPos);
         TargetPosition = targetPos;
+        IsDead = false;
         OnSpawnFromPool();
+        Agent.enabled = true;
+        Collider.enabled = true;
     }
 
     public void OnSpawnFromPool()
     {
         Target = CommandCenter.Instance;
-        IsDead = false;
         StatManager.Initialize(m_BossSo, this);
     }
 
     public void OnReturnToPool()
     {
-        Agent.ResetPath();
         Target = null;
         transform.position = Vector3.zero;
     }
@@ -243,8 +246,11 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
     {
         IsDead = true;
         Target = null;
+        Agent.ResetPath();
+        Agent.enabled = false;
+        Collider.enabled = false;
         StatusEffectManager.RemoveAllEffects();
-        BossManager.Instance.BossDead(this);
+        EnemyManager.Instance.MonsterDead(this);
         ChangeState(BossState.Idle);
         QuestManager.Instance.UpdateProgress(QuestType.KillEnemies, 1);
         _healthBarUI?.UnLink();

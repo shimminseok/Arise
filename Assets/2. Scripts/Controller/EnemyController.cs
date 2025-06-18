@@ -25,7 +25,7 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
     public GameObject GameObject => gameObject;
     public string     PoolID     => poolID;
     public int        PoolSize   => poolSize;
-
+    public MonsterSO  MonsterSo  => m_MonsterSo;
     private HPBarUI _healthBarUI;
     private AttackPoint _assignedPoint;
 
@@ -182,8 +182,12 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         IsDead = true;
         Target = null;
         StatusEffectManager.RemoveAllEffects();
-        //EnemyManager.Instance.MonsterDead(this);
         QuestManager.Instance.UpdateProgress(QuestType.KillEnemies, 1);
+
+
+
+        
+        
         if (_healthBarUI != null)
         {
             _healthBarUI.UnLink();
@@ -196,8 +200,12 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         ChangeState(EnemyState.Idle);
         
         if (TutorialEnemyManager.Instance != null)
+        {
             TutorialEnemyManager.Instance.OnEnemyKilled(this);
+        }
         else if (EnemyManager.Instance != null)
+        {
             EnemyManager.Instance.MonsterDead(this);
+        }
     }
 }

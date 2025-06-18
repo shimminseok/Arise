@@ -7398,7 +7398,9 @@ MonoBehaviour:
   _endPoint: {fileID: 328867974}
   waveChangedEvent: {fileID: 11400000, guid: 1be9ac59b6b5529449c038dc9fa6e41c, type: 2}
   onGameClearEvent: {fileID: 11400000, guid: 9bbb666907d074a4894fd54b30360fef, type: 2}
-  stageWaves: {fileID: 11400000, guid: b5bfa63f6d2d0684dbd9a23021e8f964, type: 2}
+  waveRemainMonsterCountEvent: {fileID: 0}
+  waveCountDownEvent: {fileID: 0}
+  stageWaves: {fileID: 11400000, guid: 41bc61a8bcf592a4fa4af0fabaab22c0, type: 2}
 --- !u!4 &220602683
 Transform:
   m_ObjectHideFlags: 0
@@ -55220,12 +55222,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolObjectList:
+  - {fileID: 6987377360658992160, guid: 0e872477af6d20f4bbf42b15c3c0c725, type: 3}
   - {fileID: 6126188424833946103, guid: 6f53e2bed80ccb141ab7ba3fdea9ed02, type: 3}
   - {fileID: 4994997792314849709, guid: ce6841de76762f2449f6c877a05cbad0, type: 3}
+  - {fileID: 1693527095820631764, guid: 2e1bde38dbaea964f88410f61e19db85, type: 3}
   - {fileID: 8633950227409755659, guid: c6fee38ddf9cb5a4abe2583e80cd796d, type: 3}
   - {fileID: 6679644637447044905, guid: af4ec1ab8cffde34b86dcafa0352425f, type: 3}
   - {fileID: 1648831473136490765, guid: 10a96be0f88bb2b45ac4b1ffa7db2a3f, type: 3}
   - {fileID: 2275898282774941211, guid: dd9b75e52220ccb4d92acac4ede36e81, type: 3}
+  - {fileID: 8633950227409755659, guid: 3970d2bc0d3245e4caab0d4ebc81ad38, type: 3}
   - {fileID: 7349670301093728596, guid: 705f34f937b1acf47ade615e007fd752, type: 3}
   - {fileID: 3417396172482619182, guid: 6f6f19b210ebc6246ac7e093c751a999, type: 3}
   - {fileID: 7322435405920248672, guid: 0a3dd092c3f4235478edda626a9600e5, type: 3}
@@ -55246,14 +55251,14 @@ MonoBehaviour:
   - {fileID: 3913738513965477629, guid: 3ce6684d2b6619446ae75be0942070de, type: 3}
   - {fileID: 200694866649241029, guid: 2e836ef563d58434aaabce82c63cd191, type: 3}
   - {fileID: 8607717935226603265, guid: f5a667522e571fa4f900f9c24d7e4698, type: 3}
-  - {fileID: 640456147929166247, guid: 0af48a8c78846014ca5cf957e25108ab, type: 3}
-  - {fileID: 515941876779140839, guid: fde9328755dd8a142817f3290f3dc264, type: 3}
-  - {fileID: 3007401005470559389, guid: 628318cba681a5c4cae2fdcdd5e088dc, type: 3}
-  - {fileID: 2111355078768322255, guid: 767625a1ee014d64eb70853a0dd397d8, type: 3}
-  - {fileID: 7036203129003147257, guid: 1a5eb2b2513baff489c563281417aa3b, type: 3}
-  - {fileID: 721683284702499188, guid: 8b664785a8d9dcd49b625193b8db1474, type: 3}
-  - {fileID: 2847873687554210706, guid: f5856f5efb5a73f4f99ffd8f4ce1bac5, type: 3}
-  - {fileID: 2488854151207131200, guid: 9a69b33592aa34e4cbed29fb48096162, type: 3}
+  - {fileID: 2951061329936063240, guid: 0af48a8c78846014ca5cf957e25108ab, type: 3}
+  - {fileID: 7872260628999639454, guid: fde9328755dd8a142817f3290f3dc264, type: 3}
+  - {fileID: 6263469889709321727, guid: 628318cba681a5c4cae2fdcdd5e088dc, type: 3}
+  - {fileID: 6867900664811836424, guid: 767625a1ee014d64eb70853a0dd397d8, type: 3}
+  - {fileID: 1715079442734568034, guid: 1a5eb2b2513baff489c563281417aa3b, type: 3}
+  - {fileID: 6038857216761230912, guid: 8b664785a8d9dcd49b625193b8db1474, type: 3}
+  - {fileID: 6669050927328152904, guid: f5856f5efb5a73f4f99ffd8f4ce1bac5, type: 3}
+  - {fileID: 351433367495758992, guid: 9a69b33592aa34e4cbed29fb48096162, type: 3}
   - {fileID: 7531993055659480014, guid: 85091e28934ab1b45832c9ffaed314dc, type: 3}
 --- !u!4 &1762764027
 Transform:
@@ -66858,7 +66863,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0726a57b3488f584b89eb5c89941ff70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooting: {fileID: 11400000, guid: 33ccc4ab075210f4d9318721d8809630, type: 2}
   weaponController: {fileID: 887103301}
   PlayerAnimation: {fileID: 0}
 --- !u!114 &933290881350881407

@@ -15,25 +15,25 @@ MonoBehaviour:
   Name: BossGolem
   ID: 200001
   Prefab: {fileID: 6987377360658992160, guid: 0e872477af6d20f4bbf42b15c3c0c725, type: 3}
-  BossStats:
+  MonsterStats:
   - StatType: 0
     ModifierType: 0
-    Value: 20000
+    Value: 1000
   - StatType: 1
     ModifierType: 0
-    Value: 20000
+    Value: 1000
   - StatType: 2
     ModifierType: 0
-    Value: 100
+    Value: 150
   - StatType: 3
     ModifierType: 0
-    Value: 0.5
+    Value: 1
   - StatType: 4
     ModifierType: 0
-    Value: 5
+    Value: 2
   - StatType: 5
     ModifierType: 0
-    Value: 3.5
+    Value: 5
   - StatType: 6
     ModifierType: 0
-    Value: 20
+    Value: 10

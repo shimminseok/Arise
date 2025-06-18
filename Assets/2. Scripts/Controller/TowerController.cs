@@ -33,6 +33,7 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     public bool         IsPlaced            { get; private set; }
     public Collider[]   TargetResults       { get; private set; }
     public Animator     Animator            { get; private set; }
+
     public Transform    FireWeaponTransform => fireWeaponWeaponTransform;
     public Transform    FireTransform       => fireTransform;
     public GameObject   GameObject          => gameObject;
@@ -40,8 +41,10 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     public int          PoolSize            => poolSize;
     public TowerSO      TowerSO             => towerSO;
     public string       ProjectilePoolId    => projectilePoolId;
-    
-    
+    public int UpgradeLevel { get; set; } = 1;
+
+
+
     private Collider m_Collider;
     private TowerTable towerTable;
     protected override void Awake()
@@ -130,6 +133,7 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     public void OnBuildComplete()
     {
         IsPlaced = true;
+        BuildingManager.Instance?.RegisterTower(this);
     }
 
     public TowerController UpgradeTower()
@@ -188,5 +192,15 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
+    }
+
+    public BuildingSaveData GetSaveData()
+    {
+        return new BuildingSaveData
+        {
+            TowerId = towerSO.name,
+            Position = transform.position,
+            UpgradeLevel = towerSO.ID
+        };
     }
 }

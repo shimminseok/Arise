@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoldRooting : MonoBehaviour
+public class GoldRooting : MonoBehaviour, IPoolObject
 {
     [SerializeField] private int goldAmount;
 
@@ -22,23 +22,25 @@ public class GoldRooting : MonoBehaviour
     [SerializeField] private AnimationCurve easeInCurve;
     [SerializeField] private AnimationCurve easeOutCurve;
     
+
     [Space(10f)]
-    [Header("Events")]
-    [SerializeField] private TransformEventSO rooting;
-    [SerializeField] private IntegerEventChannelSO rootedGold;
-    
+    [Header("ObjectPool")]
+    [SerializeField] private string poolID;
+
+    [SerializeField] private int poolSize;
     private ProgressTweener chaseTweener;
+
+    public GameObject GameObject => gameObject;
+    public string     PoolID     => poolID;
+    public int        PoolSize   => poolSize;
+
+    private Transform target;
     
     private void Awake()
     {
         chaseTweener = new(this);
     }
-
-    private void OnEnable()
-    {
-        rooting.RegisterListener(ChasedTarget);
-        StartPopLoop();
-    }
+    
     
     private void StartPopLoop()
     {
@@ -58,11 +60,27 @@ public class GoldRooting : MonoBehaviour
             }).SetCurve(easeOutCurve);
     }
 
-    private void OnDisable()
+    public void Initialized(int amount)
     {
-        rooting.UnregisterListener(ChasedTarget);
+        goldAmount = amount;
+        OnSpawnFromPool();
+        StartPopLoop();
+    }
+    public void OnSpawnFromPool()
+    {
+        StartCoroutine(DropGold());
     }
 
+    public void OnReturnToPool()
+    {
+    }
+
+    private IEnumerator DropGold()
+    {
+        yield return new WaitForSeconds(3f);
+        ChasedTarget(SkillManager.Instance.Owner.transform);
+    }
+    
     void ChasedTarget(Transform target)
     {
         Vector3 yoyoStartPos = transform.position;
@@ -80,10 +98,12 @@ public class GoldRooting : MonoBehaviour
                     chaseTime,
                     () =>
                     {
-                        rootedGold.Raise(goldAmount);
-                        gameObject.SetActive(false);
+                        GoldManager.Instance.AddGold(goldAmount);
+                        ObjectPoolManager.Instance.ReturnObject(gameObject);
                     }).SetCurve(easeInCurve);
                 
             }).SetCurve(easeOutCurve);
     }
+
+
 }
