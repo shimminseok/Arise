@@ -101,6 +101,7 @@ public class StageInfoUI : MonoBehaviour
 
     private void UpdateStartWaveCountDown(int countDown)
     {
+        startWaveCountDown.gameObject.SetActive(false);
         startWaveCountDown.gameObject.SetActive(countDown > 0);
         startWaveCountDown.text = $"{countDown}";
     }
