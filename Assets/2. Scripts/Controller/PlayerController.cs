@@ -22,6 +22,7 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
     private bool _attackTriggered;
 
     private List<IDamageable> _targets = new List<IDamageable>();
+    public bool IsTargetExists => _targets.Count > 0;
 
     public Vector2 MoveInput => _moveInput;
     public bool    IsRunning => _isRunning;
