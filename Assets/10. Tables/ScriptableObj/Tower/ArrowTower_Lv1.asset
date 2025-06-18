@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ArrowTower_Lv1
   m_EditorClassIdentifier: 
   ID: 101
-  TowerName: "\uC3D8\uC3D8\uD654\uC0B4 \uD0C0\uC6CC"
+  TowerName: "\uC3D8\uC3D8 \uD654\uC0B4 \uD0C0\uC6CC"
   Description: "\uBE60\uB978 \uC18D\uB3C4\uB85C \uC801\uC744 \uAFF0\uB6AB\uB294 \uAE30\uBCF8
     \uD654\uC0B4 \uD0C0\uC6CC\uC785\uB2C8\uB2E4."
   TowerStats:

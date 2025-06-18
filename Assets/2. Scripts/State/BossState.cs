@@ -153,7 +153,7 @@ namespace BossStates
 
     public class SkillState : IState<BossController, BossState>
     {
-        string[] triggers = { "IsDispel" };
+        string[] triggers = { "IsDispel","IsEarthquake" };
 
 
         public void OnEnter(BossController owner)

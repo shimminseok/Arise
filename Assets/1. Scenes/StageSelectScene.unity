@@ -256,10 +256,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Please, Select Stage
+  m_text: "\uC2A4\uD14C\uC774\uC9C0\uB97C \uC120\uD0DD\uD574\uC8FC\uC138\uC694"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d86e933e6ca983a45ad912f7d7fa9882, type: 2}
-  m_sharedMaterial: {fileID: -5660775149628104760, guid: d86e933e6ca983a45ad912f7d7fa9882,
+  m_fontAsset: {fileID: 11400000, guid: 547267e27622499419e60c3b7115107c, type: 2}
+  m_sharedMaterial: {fileID: -4581673290252781548, guid: 547267e27622499419e60c3b7115107c,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
