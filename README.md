@@ -93,7 +93,7 @@
 
 | 이름 | 담당 기능 | 문서 링크 |
 |------|-----------|-----------|
-| 김경민 | 타워 설치, FSM           | [김경민_README.md](./Members/README_Shimminseok.md) |
+| 김경민 | 타워 설치, FSM           | [김경민_README.md](./Members/README_rudals4469.md) |
 | 박상민 | 스킬 / 스탯 / 버프 시스템 | [박상민_README.md](./Members/LeeREADME.md) |
 | 심교인 | 보스 스킬, 풀링 시스템     | [심교인_README.md](./Members/ParkREADME.md) |
 | 심민석 | 타워 설치, FSM, ObjectPooling,Stat     | [심민석_README.md](./Members/README_Shimminseok.md) |
