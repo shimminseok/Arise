@@ -142,7 +142,7 @@ MonoBehaviour:
   fireSound: 1
   projectilePoolId: Ballista_shell
   fireTransform: {fileID: 1058142554003859781}
-  fireWeaponWeaponTransform: {fileID: 0}
+  fireWeaponWeaponTransform: {fileID: 220339686168637143}
 --- !u!136 &8029268368463161200
 CapsuleCollider:
   m_ObjectHideFlags: 0
