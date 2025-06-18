@@ -93,7 +93,7 @@
 
 | 이름 | 담당 기능 | 문서 링크 |
 |------|-----------|-----------|
-| 김철수 | 타워 설치, FSM           | [김철수_README.md](./Members/README_Shimminseok.md) |
+| 김철수 | 타워 설치, FSM           | [심민석_README.md](./Members/README_Shimminseok.md) |
 | 이영희 | 스킬 / 스탯 / 버프 시스템 | [이영희_README.md](./Members/LeeREADME.md) |
 | 박민수 | 보스 스킬, 풀링 시스템     | [박민수_README.md](./Members/ParkREADME.md) |
 
