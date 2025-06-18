@@ -82,10 +82,8 @@ public class QuestManager : Singleton<QuestManager>
 
         progress.RewardClaimed = true;
         var data = _questLookup[questId];
-
-        Debug.Log($"보상 수령: {data.RewardGold} 골드 지급");
         
-        // 골드 지급 로직은 외부 시스템에서 처리할 수 있도록 설계
+        GoldManager.Instance.AddGold(data.RewardGold);
         
         if (TutorialManager.Instance != null)
         {
