@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.022332806, g: 0.072919846, b: 0.15999281, a: 1}
+  m_IndirectSpecularColor: {r: 0.022324178, g: 0.07287497, b: 0.15995622, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -37213,7 +37213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1186444919}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268346, y: 0.00000002248122, z: -0.000000009312027, w: 0.92387956}
+  m_LocalRotation: {x: 0.38268346, y: -0.000000022481217, z: 0.000000009312026, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -55140,7 +55140,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738763169}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268346, y: 0.00000002248122, z: -0.000000009312027, w: 0.92387956}
+  m_LocalRotation: {x: 0.38268346, y: -0.000000022481217, z: 0.000000009312026, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -55755,10 +55755,12 @@ MonoBehaviour:
   - {fileID: 6987377360658992160, guid: 0e872477af6d20f4bbf42b15c3c0c725, type: 3}
   - {fileID: 6126188424833946103, guid: 6f53e2bed80ccb141ab7ba3fdea9ed02, type: 3}
   - {fileID: 4994997792314849709, guid: ce6841de76762f2449f6c877a05cbad0, type: 3}
+  - {fileID: 1693527095820631764, guid: 2e1bde38dbaea964f88410f61e19db85, type: 3}
   - {fileID: 8633950227409755659, guid: c6fee38ddf9cb5a4abe2583e80cd796d, type: 3}
   - {fileID: 6679644637447044905, guid: af4ec1ab8cffde34b86dcafa0352425f, type: 3}
   - {fileID: 1648831473136490765, guid: 10a96be0f88bb2b45ac4b1ffa7db2a3f, type: 3}
   - {fileID: 2275898282774941211, guid: dd9b75e52220ccb4d92acac4ede36e81, type: 3}
+  - {fileID: 8633950227409755659, guid: 3970d2bc0d3245e4caab0d4ebc81ad38, type: 3}
   - {fileID: 7349670301093728596, guid: 705f34f937b1acf47ade615e007fd752, type: 3}
   - {fileID: 3417396172482619182, guid: 6f6f19b210ebc6246ac7e093c751a999, type: 3}
   - {fileID: 7322435405920248672, guid: 0a3dd092c3f4235478edda626a9600e5, type: 3}

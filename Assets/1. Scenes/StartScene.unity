@@ -262,6 +262,7 @@ MonoBehaviour:
   sceneToLoadOverride: StageSelectScene
   reloadCurrentSceneInstead: 0
   button: {fileID: 202392430}
+  panelToDisableAfterClick: {fileID: 0}
 --- !u!1 &355572360
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,7 +563,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &808047143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -887,6 +888,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1227832102 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4783967757394350179, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+    type: 3}
+  m_PrefabInstance: {fileID: 1477708842496188995}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1373279386
 GameObject:
   m_ObjectHideFlags: 0
@@ -1320,6 +1327,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746304889}
   m_CullTransparentMesh: 1
+--- !u!1 &1937097363 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2482600685585951563, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+    type: 3}
+  m_PrefabInstance: {fileID: 1477708842496188995}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1969398655 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7801600123910191298, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
@@ -1763,11 +1776,31 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2261481313097968205, guid: 84d881172b182db4c99984a158d2c412,
+        type: 3}
+      propertyPath: panelToDisableAfterClick
+      value: 
+      objectReference: {fileID: 1562899074}
+    - target: {fileID: 2670034470412433926, guid: 84d881172b182db4c99984a158d2c412,
+        type: 3}
+      propertyPath: panelToDisableAfterClick
+      value: 
+      objectReference: {fileID: 370767738}
+    - target: {fileID: 3283417088035998178, guid: 84d881172b182db4c99984a158d2c412,
+        type: 3}
+      propertyPath: panelToDisableAfterClick
+      value: 
+      objectReference: {fileID: 370767738}
     - target: {fileID: 3357369021159630955, guid: 84d881172b182db4c99984a158d2c412,
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 3774424252824140375, guid: 84d881172b182db4c99984a158d2c412,
+        type: 3}
+      propertyPath: panelToDisableAfterClick
+      value: 
+      objectReference: {fileID: 1562899074}
     - target: {fileID: 4467846840183366423, guid: 84d881172b182db4c99984a158d2c412,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2354,6 +2387,17 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 562226028369172101, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 562226028369172101, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2133749748, guid: 30465c58cf8f34e47891cdbcc937df6c,
+        type: 3}
     - target: {fileID: 819907306211063381, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
         type: 3}
       propertyPath: m_fontAsset
@@ -2399,6 +2443,16 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1667820724026935051, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: waveTextObject
+      value: 
+      objectReference: {fileID: 1937097363}
+    - target: {fileID: 1667820724026935051, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: waveStartTimerObject
+      value: 
+      objectReference: {fileID: 1227832102}
     - target: {fileID: 2315367651139290274, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
         type: 3}
       propertyPath: m_fontAsset
@@ -2620,9 +2674,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3535257363319068860, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
         type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535257363319068860, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f97f27194175b354eb3a1f03a20bbee2,
+      objectReference: {fileID: -2133749748, guid: 30465c58cf8f34e47891cdbcc937df6c,
         type: 3}
     - target: {fileID: 3894927911400610670, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
         type: 3}

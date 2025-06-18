@@ -12,6 +12,15 @@ public class SceneLoadButton : MonoBehaviour
         _sceneLoadEvent = sceneLoadEvent;
         _sceneToLoad = sceneToLoad;
         _button = GetComponent<Button>();
-        _button.onClick.AddListener(() => _sceneLoadEvent.Raise(_sceneToLoad));
+        _button.onClick.AddListener(OnClickLoadScene);
+    }
+
+    private void OnClickLoadScene()
+    {
+        
+        PlayerPrefs.SetString("SelectedScene", _sceneToLoad);
+        PlayerPrefs.Save();
+
+        _sceneLoadEvent.Raise(_sceneToLoad);
     }
 }

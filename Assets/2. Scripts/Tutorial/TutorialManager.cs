@@ -113,6 +113,7 @@ public class TutorialManager : MonoBehaviour
                         parent.gameObject.SetActive(false);
                 }
 
+                TutorialEnemyManager.Instance = null;
                 EnemyManager.Instance.StartWaveSpawn();
                 break;
         }

@@ -196,8 +196,12 @@ public class EnemyController : BaseController<EnemyController, EnemyState>, IPoo
         ChangeState(EnemyState.Idle);
         
         if (TutorialEnemyManager.Instance != null)
+        {
             TutorialEnemyManager.Instance.OnEnemyKilled(this);
+        }
         else if (EnemyManager.Instance != null)
+        {
             EnemyManager.Instance.MonsterDead(this);
+        }
     }
 }

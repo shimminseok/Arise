@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoldRooting : MonoBehaviour
+public class GoldRooting : MonoBehaviour, IPoolObject
 {
     [SerializeField] private int goldAmount;
 
@@ -26,8 +26,19 @@ public class GoldRooting : MonoBehaviour
     [Header("Events")]
     [SerializeField] private TransformEventSO rooting;
     [SerializeField] private IntegerEventChannelSO rootedGold;
-    
+
+    [Space(10f)]
+    [Header("ObjectPool")]
+    [SerializeField] private string poolID;
+
+    [SerializeField] private int poolSize;
     private ProgressTweener chaseTweener;
+
+    public GameObject GameObject => gameObject;
+    public string     PoolID     => poolID;
+    public int        PoolSize   => poolSize;
+
+
     
     private void Awake()
     {
@@ -58,6 +69,19 @@ public class GoldRooting : MonoBehaviour
             }).SetCurve(easeOutCurve);
     }
 
+    public void OnSpawnFromPool()
+    {
+        StartCoroutine(DropGold());
+    }
+
+    public void OnReturnToPool()
+    {
+    }
+
+    private IEnumerator DropGold()
+    {
+        yield return new WaitForSeconds(3f);
+    }
     private void OnDisable()
     {
         rooting.UnregisterListener(ChasedTarget);
@@ -86,4 +110,6 @@ public class GoldRooting : MonoBehaviour
                 
             }).SetCurve(easeOutCurve);
     }
+
+
 }
