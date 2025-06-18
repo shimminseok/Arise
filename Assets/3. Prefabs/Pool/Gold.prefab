@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7883205186270852695}
   - component: {fileID: 57506793957606732}
   - component: {fileID: 77862296386421603}
-  - component: {fileID: 8600849968782231928}
   - component: {fileID: 1619745595552218878}
   m_Layer: 0
   m_Name: Gold
@@ -29,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1693527095820631764}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.043, y: 1.0799999, z: 5.0826206}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693527095820631764}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 2159703810824169821, guid: 3e261228e6dc32f4abeffbce591aa0ca, type: 3}
 --- !u!23 &77862296386421603
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -63,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3a4c18140ffacf94a96a8933c3449a69, type: 2}
+  - {fileID: -905690159841262435, guid: 13e2a9a09284d7a4da3f670b14b5e8a0, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,27 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8600849968782231928
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1693527095820631764}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1619745595552218878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,7 +150,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  rooting: {fileID: 11400000, guid: 33ccc4ab075210f4d9318721d8809630, type: 2}
-  rootedGold: {fileID: 11400000, guid: a68bb3514df7ec7448ff74594485317b, type: 2}
   poolID: Gold
   poolSize: 50
