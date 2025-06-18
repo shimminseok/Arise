@@ -71,8 +71,6 @@ namespace TowerStates
             {
                 attackSpd = owner.StatManager.GetValue(StatType.AttackSpd);
                 yield return new WaitForSeconds(1f / attackSpd);
-                if (owner.Animator != null)
-                    owner.Animator.SetTrigger(Attack);
                 owner.Attack();
             }
         }
