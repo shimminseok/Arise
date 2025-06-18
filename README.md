@@ -45,6 +45,7 @@
  ![Movie_029](https://github.com/user-attachments/assets/fce5c15e-5dfa-4e77-9509-e88271f3e286)
 </div>
 </details>
+<details>
 <summary>불러오기</summary>
 <div markdown="1">
 - 플레이도중 L키를 눌러 게임의 상태를 저장합니다.
