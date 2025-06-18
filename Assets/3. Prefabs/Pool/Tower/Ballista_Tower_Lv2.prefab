@@ -238,6 +238,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: c10d60ebffcb51c4dbdc338dc19efda3,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c10d60ebffcb51c4dbdc338dc19efda3,
         type: 3}
       propertyPath: m_Name
@@ -331,6 +336,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ballista_tower_LVL_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126137243243206036, guid: 36826abe4aa8fd445a40925213e67f68,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -53,16 +53,16 @@ public class StageInfoUI : MonoBehaviour
 
         Debug.Log($"[StageInfoUI] 새 씬 로드됨: {scene.name}, 선택된 씬: {selectedScene}");
 
-        if (selectedScene == "Tutorial")
-        {
-            waveTextObject?.SetActive(false);
-            waveStartTimerObject?.SetActive(false);
-        }
-        else
-        {
-            waveTextObject?.SetActive(true);
-            waveStartTimerObject?.SetActive(true);
-        }
+        // if (selectedScene == "Tutorial")
+        // {
+        //     waveTextObject?.SetActive(false);
+        //     waveStartTimerObject?.SetActive(false);
+        // }
+        // else
+        // {
+        //     waveTextObject?.SetActive(true);
+        //     waveStartTimerObject?.SetActive(true);
+        // }
     }
 
     private void OnWaveChanged(int wave)

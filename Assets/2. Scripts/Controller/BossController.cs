@@ -253,8 +253,11 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
         EnemyManager.Instance.MonsterDead(this);
         ChangeState(BossState.Idle);
         QuestManager.Instance.UpdateProgress(QuestType.KillEnemies, 1);
-        _healthBarUI?.UnLink();
-        StatManager.GetStat<ResourceStat>(StatType.CurHp).OnValueChanged -= _healthBarUI.UpdateHealthBarWrapper;
+        if (_healthBarUI != null)
+        {
+            _healthBarUI.UnLink();
+            StatManager.GetStat<ResourceStat>(StatType.CurHp).OnValueChanged -= _healthBarUI.UpdateHealthBarWrapper;
+        }
         _assignedPoint?.Release();
         _healthBarUI = null;
     }
