@@ -15,4 +15,6 @@ MonoBehaviour:
   spawnList:
   - monster: {fileID: 11400000, guid: e8611efc7b771434ea8946d9f0a2638f, type: 2}
     count: 20
+  - monster: {fileID: 11400000, guid: 53f91cce240e8634b8a6892676108443, type: 2}
+    count: 1
   waveDelay: 3

@@ -16,11 +16,12 @@ namespace BossStates
     {
         public void OnEnter(BossController owner)
         {
+                                  Debug.LogWarning("Boss IdleState.OnEnter@@@@@@@@@");
         }
 
         public void OnUpdate(BossController owner)
         {
-            //계속 스킬 패턴 랜덤으로 고르기
+                                 Debug.LogWarning("Boss IdleState.OnUpdate@@@@@@@@@");
         }
 
         public void OnFixedUpdate(BossController owner)
@@ -33,10 +34,15 @@ namespace BossStates
 
         public BossState CheckTransition(BossController owner)
         {
+            if (owner.istest)
+            {
+                 owner.istest = false;
+                return BossState.Skill; 
+            }
             if (owner.IsDead)
-                return BossState.Die;
-            else if (owner.Target != null && !owner.Target.IsDead)
-                return BossState.Move;
+                    return BossState.Die;
+                else if (owner.Target != null && !owner.Target.IsDead)
+                    return BossState.Move;
             
             return BossState.Idle;
         }
@@ -46,11 +52,13 @@ namespace BossStates
     {
         public void OnEnter(BossController owner)
         {
+              Debug.LogWarning("Boss MoveState.OnEnter@@@@@@@@@");
             owner.Agent.isStopped = false;
         }
 
         public void OnUpdate(BossController owner)
         {
+                                             Debug.LogWarning("Boss MoveState.OnUpdate@@@@@@@@@");
             owner.Movement();
         }
 
@@ -64,8 +72,13 @@ namespace BossStates
 
         public BossState CheckTransition(BossController owner)
         {
+                            Debug.LogWarning($"{owner.IsDead},{owner.Target},{owner.Target.IsDead},{owner.IsTargetInAttackRange()}");
+            if (owner.istest)
+            {
+                return BossState.Idle;
+            }
             if (owner.IsDead)
-                return BossState.Die;
+                    return BossState.Die;
             if (owner.Target != null && !owner.Target.IsDead)
             {
                 return owner.IsTargetInAttackRange() ? BossState.Attack : BossState.Move;
@@ -90,6 +103,7 @@ namespace BossStates
 
         public void OnEnter(BossController owner)
         {
+                                                          Debug.LogWarning("Boss ATTackState.OnEnter@@@@@@@@@");
             owner.Agent.ResetPath();
             owner.Agent.isStopped = true;
             owner.Agent.velocity = Vector3.zero;
@@ -99,6 +113,7 @@ namespace BossStates
 
         public void OnUpdate(BossController owner)
         {
+                                             Debug.LogWarning("Boss AttackState.OnUpdate@@@@@@@@@");
             attackTimer += Time.deltaTime;
             if (attackTimer >= attackSpd)
             {
@@ -132,10 +147,12 @@ namespace BossStates
     {
         public void OnEnter(BossController owner)
         {
+                                                          Debug.LogWarning("Boss DeadState.OnEnter@@@@@@@@@");
         }
 
         public void OnUpdate(BossController owner)
         {
+                                             Debug.LogWarning("Boss DeadState.OnUpdate@@@@@@@@@");
         }
 
         public void OnFixedUpdate(BossController owner)
@@ -159,14 +176,14 @@ namespace BossStates
 
         public void OnEnter(BossController owner)
         {
-            Debug.Log("SkillState.OnEnter");
+                        Debug.LogWarning("Boss SkillState.OnEnter@@@@@@@@@@");
             string randomTrigger = triggers[Random.Range(0, triggers.Length)];
             owner.animator.SetTrigger(randomTrigger);
         }
 
         public void OnUpdate(BossController owner)
         {
-
+                                 Debug.LogWarning("Boss SkillState.OnUpdate@@@@@@@@@");
         }
 
         public void OnFixedUpdate(BossController owner)
