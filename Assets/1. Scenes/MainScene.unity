@@ -37214,7 +37214,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1186444919}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268346, y: -0.000000022481217, z: 0.000000009312026, w: 0.92387956}
+  m_LocalRotation: {x: 0.38268346, y: 0.00000002248122, z: -0.000000009312027, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -55393,7 +55393,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738763169}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268346, y: -0.000000022481217, z: 0.000000009312026, w: 0.92387956}
+  m_LocalRotation: {x: 0.38268346, y: 0.00000002248122, z: -0.000000009312027, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -55616,7 +55616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contents: {fileID: 330752512}
-  offset: {x: 0, y: -60, z: 0}
+  offset: {x: 0, y: 140, z: 0}
   upgradeCostText: {fileID: 1940485689}
   upgradeIcon: {fileID: 1611227597}
   eventTrigger: {fileID: 330752515}
@@ -61747,6 +61747,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49dc08d330069a2409ff225c2dc462ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _passiveSkillNameA: {fileID: 0}
+  _passiveSkillIconA: {fileID: 0}
+  _passiveSkillDescriptionA: {fileID: 0}
+  _passiveSkillNameB: {fileID: 0}
+  _passiveSkillIconB: {fileID: 0}
+  _passiveSkillDescriptionB: {fileID: 0}
+  _passiveSkillNameC: {fileID: 0}
+  _passiveSkillIconC: {fileID: 0}
+  _passiveSkillDescriptionC: {fileID: 0}
 --- !u!1 &1969133350
 GameObject:
   m_ObjectHideFlags: 0
@@ -65250,6 +65259,8 @@ MonoBehaviour:
   waveRemainMonsterCountEvent: {fileID: 11400000, guid: 7b5ca453560dff34790ed96a526de1c5,
     type: 2}
   waveCountDownEvent: {fileID: 11400000, guid: 2a402116c3cbbb54784580c54cb76c87, type: 2}
+  onPassiveSkillPanelEvent: {fileID: 11400000, guid: 443b56535f1271b48bd95db6a1caba6d,
+    type: 2}
   stageWaves: {fileID: 11400000, guid: b5bfa63f6d2d0684dbd9a23021e8f964, type: 2}
 --- !u!4 &2071091199
 Transform:

@@ -31,8 +31,7 @@ namespace PlayerStates
                 return owner.IsRunning ? PlayerState.Run : PlayerState.Move;
             }
 
-            return PlayerState.Attack;
-
+            if (owner.IsTargetExists) return PlayerState.Attack;
             return PlayerState.Idle;
         }
     }

@@ -243,6 +243,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canon_tower_LVL_3
       objectReference: {fileID: 0}
+    - target: {fileID: 8121463084861485981, guid: c270f36158e1e574d8d9cfe1158b964a,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -1618608917287834628, guid: c270f36158e1e574d8d9cfe1158b964a, type: 3}
@@ -361,6 +366,11 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 90d68029db8f6bc4fbf48edd62f1b26e,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 90d68029db8f6bc4fbf48edd62f1b26e,
+        type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 90d68029db8f6bc4fbf48edd62f1b26e,

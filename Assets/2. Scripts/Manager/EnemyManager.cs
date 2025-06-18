@@ -13,6 +13,7 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
     [SerializeField] private VoidEventChannelSO onGameClearEvent;
     [SerializeField] private TwoIntegerEvent waveRemainMonsterCountEvent;
     [SerializeField] private IntegerEventChannelSO waveCountDownEvent;
+    [SerializeField] private VoidEventChannelSO onPassiveSkillPanelEvent;
     public List<MonsterSO> Enemies { get; private set; } = new List<MonsterSO>();
 
     private int _arrivalOrder = 0;
@@ -91,6 +92,8 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
             {
                 yield return null;
             }
+            yield return new WaitForSeconds(1f);
+            onPassiveSkillPanelEvent.Raise();
             StartCoroutine(StartWaveCountDown());
             Debug.Log($"웨이브 {currentWaveIndex + 1} 몬스터 전멸 확인.");
             yield return new WaitForSeconds(3f);
@@ -162,6 +165,7 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
         int count = 3;
         while (count > 0)
         {
+            yield return new WaitForSeconds(0.1f);
             waveCountDownEvent?.Raise(count);
             yield return new WaitForSeconds(1f);
             count--;

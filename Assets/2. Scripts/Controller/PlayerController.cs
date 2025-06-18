@@ -22,6 +22,7 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
     private bool _attackTriggered;
 
     private List<IDamageable> _targets = new List<IDamageable>();
+    public bool IsTargetExists => _targets.Count > 0;
 
     public Vector2 MoveInput => _moveInput;
     public bool    IsRunning => _isRunning;
@@ -148,15 +149,14 @@ public class PlayerController : BaseController<PlayerController, PlayerState>, I
         Target = null;
         _targets.Clear();
 
-        Collider[] hits = Physics.OverlapSphere(transform.position, weaponController.StatManager.GetValue(StatType.AttackRange));
+        Collider[] results = new Collider[5];
+        var        size    = Physics.OverlapSphereNonAlloc(transform.position, weaponController.StatManager.GetValue(StatType.AttackRange), results, LayerMask.GetMask("Enemy"));
 
-        foreach (var hit in hits)
+        for (int i = 0; i < size; i++)
         {
-            if (hit.TryGetComponent<IDamageable>(out var damageable))
+            if (results[i].TryGetComponent(out IDamageable damageable))
             {
-                if (damageable == this) continue;
-
-                Vector3 toTarget = (hit.transform.position - transform.position).normalized;
+                Vector3 toTarget = (results[i].transform.position - transform.position).normalized;
                 float   angle    = Vector3.Angle(transform.forward, toTarget);
 
                 if (angle < 60f)
