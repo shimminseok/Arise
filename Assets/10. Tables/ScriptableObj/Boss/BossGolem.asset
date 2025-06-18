@@ -18,10 +18,10 @@ MonoBehaviour:
   MonsterStats:
   - StatType: 0
     ModifierType: 0
-    Value: 1000
+    Value: 4000
   - StatType: 1
     ModifierType: 0
-    Value: 1000
+    Value: 4000
   - StatType: 2
     ModifierType: 0
     Value: 150

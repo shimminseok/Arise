@@ -64,8 +64,25 @@ public class UIManager : Singleton<UIManager>
             InitializeUIRoot();
             Debug.Log($"[UIManager] {sceneName} → UI 활성화 및 초기화");
         }
+
+        ChangeSceneBGM(sceneName);
     }
 
+    private void ChangeSceneBGM(string sceneName)
+    {
+        switch (sceneName)
+        {
+            case "StageSelectScene":
+                break;
+            case "Tutorial":
+                break;
+            case "Stage 1":
+            case "Stage 2":
+            case "Stage 3":
+                SoundManager.Instance.ChangeBGM(BGM.InGame);
+                break;
+        }
+    }
     private void SetCanvasGroupActive(bool active)
     {
         Transform inGameUI = transform.Find("Canvas - InGameUI");

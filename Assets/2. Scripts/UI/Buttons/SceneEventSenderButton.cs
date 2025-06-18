@@ -31,9 +31,11 @@ public class SceneEventSenderButton : MonoBehaviour
             }
 
             sceneLoadEvent.Raise(targetScene);
-            
             if (panelToDisableAfterClick != null)
                 panelToDisableAfterClick.SetActive(false);
         });
     }
+
+
+
 }

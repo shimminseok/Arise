@@ -80,12 +80,12 @@ public class BossController : BaseController<BossController, BossState>, IPoolOb
     {
         return state switch
         {
-            BossState.Idle => new IdleState(),
-            BossState.Move => new MoveState(),
-            BossState.Attack => new AttackState(StatManager.GetValue(StatType.AttackPow), StatManager.GetValue(StatType.AttackRange)),
-            BossState.Die => new DeadState(),
-            BossState.Skill => new SkillState(),
-            _ => null
+            BossState.Idle   => new IdleState(),
+            BossState.Move   => new MoveState(),
+            BossState.Attack => new AttackState(StatManager.GetValue(StatType.AttackSpd), StatManager.GetValue(StatType.AttackRange)),
+            BossState.Die    => new DeadState(),
+            BossState.Skill  => new SkillState(),
+            _                => null
         };
     }
 
