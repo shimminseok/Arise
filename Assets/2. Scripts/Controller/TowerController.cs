@@ -185,6 +185,7 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
 
     public void Attack()
     {
+        FindTarget();
         TowerSO.AttackType.Attack(this);
         SoundManager.Instance.PlaySFX(fireSound);
     }

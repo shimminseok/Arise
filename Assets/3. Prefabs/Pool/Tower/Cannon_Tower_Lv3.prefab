@@ -64,7 +64,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa329bc6dd901e041bdc5d9fd4233834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderers: []
+  meshRenderers:
+  - {fileID: 7381535052888171779}
   validMaterial: {fileID: 2100000, guid: 8f7ec23884f1fce448264424d77e4ba5, type: 2}
   invalidMaterial: {fileID: 2100000, guid: f97ce8e665fa67347961b65e85693ba5, type: 2}
 --- !u!114 &-1068107448694935389
@@ -109,7 +110,7 @@ MonoBehaviour:
   fireSound: 2
   projectilePoolId: Cannom_shell
   fireTransform: {fileID: 4552391691040413077}
-  fireWeaponWeaponTransform: {fileID: 0}
+  fireWeaponWeaponTransform: {fileID: 4616028273094285140}
 --- !u!136 &3424359097474343998
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -278,7 +279,7 @@ Animator:
   m_GameObject: {fileID: 5423668678614945262}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 53c30ec802559654e9ed7404746d3f24, type: 2}
+  m_Controller: {fileID: 9100000, guid: 67baf6e0dcecd8640901d6d95f9f10e8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -372,6 +373,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90d68029db8f6bc4fbf48edd62f1b26e, type: 3}
+--- !u!23 &7381535052888171779 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 90d68029db8f6bc4fbf48edd62f1b26e,
+    type: 3}
+  m_PrefabInstance: {fileID: 8192591586763012487}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8519499710298431084 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 90d68029db8f6bc4fbf48edd62f1b26e,
