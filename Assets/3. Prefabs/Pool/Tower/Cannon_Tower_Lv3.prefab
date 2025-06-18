@@ -239,10 +239,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4974021854257393431, guid: bc38131a49d82094a80b096092e01daf,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: bc38131a49d82094a80b096092e01daf,
         type: 3}
       propertyPath: m_Name
       value: CanonAnim
+      objectReference: {fileID: 0}
+    - target: {fileID: 4232718216146464942, guid: bc38131a49d82094a80b096092e01daf,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204958550169499658, guid: bc38131a49d82094a80b096092e01daf,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
