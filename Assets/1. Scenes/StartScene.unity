@@ -1081,6 +1081,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedButton: {fileID: 1576022212}
   speedText: {fileID: 1409155533}
+  isFastEvent: {fileID: 11400000, guid: 161b763c624955041ac50645072b89ca, type: 2}
 --- !u!1 &1641832210
 GameObject:
   m_ObjectHideFlags: 0
@@ -1897,6 +1898,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6071664303726726635, guid: 84d881172b182db4c99984a158d2c412,
+        type: 3}
+      propertyPath: isFastEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 161b763c624955041ac50645072b89ca,
+        type: 2}
     - target: {fileID: 9008278887955265616, guid: 84d881172b182db4c99984a158d2c412,
         type: 3}
       propertyPath: m_Pivot.x

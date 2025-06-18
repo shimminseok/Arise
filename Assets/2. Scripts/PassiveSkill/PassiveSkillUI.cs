@@ -23,6 +23,7 @@ public class PassiveSkillUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _passiveSkillDescriptionC;
     
     private List<PassiveSkillSO> _passiveSkills;
+    public bool IsFast = false;
 
     private void OnEnable()
     {
@@ -47,7 +48,7 @@ public class PassiveSkillUI : MonoBehaviour
     {
         PassiveSkillManager.Instance.ApplyPassive(_passiveSkills[index]);
         Debug.Log($"스킬 {index} {_passiveSkills[index].SkillName}");
-        Time.timeScale = 1f;
+        Time.timeScale = (!IsFast) ? 1f : 2f;
         gameObject.SetActive(false);
     }
 
