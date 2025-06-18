@@ -7,7 +7,6 @@ using Random = UnityEngine.Random;
 public class PassiveSkillManager : SceneOnlySingleton<PassiveSkillManager>
 {
     [SerializeField] private StatusEffectManager _playerStatus;
-    [SerializeField] private IntegerEventChannelSO _OnGainGold;
     private List<PassiveSkillSO> _allPassives;
     private StatusEffectManager _weaponStatus;
 
@@ -52,7 +51,7 @@ public class PassiveSkillManager : SceneOnlySingleton<PassiveSkillManager>
         switch (passive.Effect.StatType)
         {
             case PassiveStatType.GoldGain:
-                _OnGainGold.Raise(passive.Effect.Value);
+                GoldManager.Instance.AddGold(passive.Effect.Value);
                 break;
             case PassiveStatType.MoveSpeed:
                 var effect = BuffFactory.CreateBuff(passive.ID, passive.Effect.StatusEffectData);
