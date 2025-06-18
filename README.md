@@ -42,6 +42,7 @@
 <div markdown="1">
 - 플레이도중 S키를 눌러 게임의 상태를 저장합니다.
 - 플레이어 위치, 타워 배치, 스테이지 정보등이 저장됩니다.
+
  ![Movie_029](https://github.com/user-attachments/assets/fce5c15e-5dfa-4e77-9509-e88271f3e286)
 </div>
 </details>
@@ -49,7 +50,8 @@
 <summary>불러오기</summary>
 <div markdown="1">
 - 플레이도중 L키를 눌러 게임의 상태를 저장합니다.
-- 플레이어 위치, 타워 배치, 스테이지 정보등이 불러와집니다.
+- 플레이어 위치, 타워 배치, 스테이지 정보등이 불러와집니다. 
+
  ![Movie_031](https://github.com/user-attachments/assets/a51f5c4e-3907-495a-b2a9-a1b5eedd2bcd)
 </div>
 </details>
