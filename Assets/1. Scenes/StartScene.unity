@@ -563,7 +563,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &808047143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -888,6 +888,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1227832102 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4783967757394350179, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+    type: 3}
+  m_PrefabInstance: {fileID: 1477708842496188995}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1373279386
 GameObject:
   m_ObjectHideFlags: 0
@@ -1321,6 +1327,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746304889}
   m_CullTransparentMesh: 1
+--- !u!1 &1937097363 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2482600685585951563, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+    type: 3}
+  m_PrefabInstance: {fileID: 1477708842496188995}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1969398655 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7801600123910191298, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
@@ -2411,6 +2423,16 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1667820724026935051, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: waveTextObject
+      value: 
+      objectReference: {fileID: 1937097363}
+    - target: {fileID: 1667820724026935051, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
+        type: 3}
+      propertyPath: waveStartTimerObject
+      value: 
+      objectReference: {fileID: 1227832102}
     - target: {fileID: 2315367651139290274, guid: 6f96ed05ef0e7c3499eb0cb26ffb19df,
         type: 3}
       propertyPath: m_fontAsset
