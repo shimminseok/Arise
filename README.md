@@ -78,7 +78,8 @@
 <div markdown="1">
  - 퀘스트 시스템입니다.
  - 다양한 퀘스트를 통해 게임의 목표성을 부여합니다.
-![Movie_032](https://github.com/user-attachments/assets/550534e3-8968-41ef-a568-efa05da150f6)
+
+ ![Movie_032](https://github.com/user-attachments/assets/550534e3-8968-41ef-a568-efa05da150f6)
 
 </div>
 </details>
