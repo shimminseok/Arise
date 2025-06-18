@@ -46,12 +46,10 @@
 ---
 
 ## 🏰 타워 설치 시스템
-
-- BuildingPlacer와 GridManager를 기반으로 타워 배치
-- BuildingGhost로 실시간 프리뷰 및 설치 가능 여부 표시
-- GridCell 단위로 충돌 감지 및 겹침 방지 처리
-- 설치 완료 시 타워 FSM 상태 Build -> Idle 전이
-- 업그레이드 / 파괴 / 저장 가능 (TowerController.cs)
+- 오른쪽 화살표를 눌러 타워 설치 모드로 진입하여 타워를 설치할 수 있습니다.
+- 설치 가능한 구역이면 초록색, 불가능한 구역이면 빨간색으로 표시됩니다.
+- 설치된 타워를 클릭하여 업그레이드, 제거가 가능합니다.
+![Movie_006](https://github.com/user-attachments/assets/e43cdb9f-c921-448d-9229-65f3d6027e38)
 
 ---
 
