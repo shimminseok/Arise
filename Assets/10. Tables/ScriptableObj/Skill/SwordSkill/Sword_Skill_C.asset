@@ -25,7 +25,7 @@ MonoBehaviour:
     Stat:
       StatType: 1
       ModifierType: 0
-      Value: 3000
+      Value: 700
     Duration: 0
     TickInterval: 0
     IsStackable: 0

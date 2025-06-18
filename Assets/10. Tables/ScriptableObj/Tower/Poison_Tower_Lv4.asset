@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Poison_Tower_Lv4
   m_EditorClassIdentifier: 
   ID: 404
+  TowerName: 
+  Description: 
   TowerStats:
   - StatType: 2
     ModifierType: 0
@@ -26,7 +28,7 @@ MonoBehaviour:
   StatusEffects:
   - {fileID: 11400000, guid: fb210a150aaa2b4479aab3af3e866127, type: 2}
   AttackType: {fileID: 11400000, guid: 8ae1a733619eaf14aaeeeededc068552, type: 2}
-  BuildCost: 200
+  BuildCost: 800
   UseMultishot: 1
   ProjectileCount: 4
   UseSplashAttack: 0

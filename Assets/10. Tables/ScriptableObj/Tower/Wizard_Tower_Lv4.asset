@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Wizard_Tower_Lv4
   m_EditorClassIdentifier: 
   ID: 504
+  TowerName: 
+  Description: 
   TowerStats:
   - StatType: 2
     ModifierType: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public enum BGM
 {
+    InGame,
 }
 
 public enum SFX

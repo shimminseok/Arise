@@ -81,7 +81,6 @@ namespace TowerStates
 
         public void OnExit(TowerController entity)
         {
-            Debug.Log("Exit Attack");
             if (attackCoroutine != null)
                 entity.StopCoroutine(attackCoroutine);
         }
