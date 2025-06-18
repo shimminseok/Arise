@@ -240,6 +240,8 @@ public class TutorialManager : MonoBehaviour
     {
         tutorialText.gameObject.SetActive(true);
 
+        Time.timeScale = 0f;
+
         tutorialText.text = "안녕하세요! 우리 게임에 오신걸 환영해요!";
         yield return new WaitForSecondsRealtime(2f);
 

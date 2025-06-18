@@ -49,11 +49,9 @@ public class StageInfoUI : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        string selectedScene = PlayerPrefs.GetString("SelectedScene", "");
+        string currentSceneName = SceneManager.GetActiveScene().name;
 
-        Debug.Log($"[StageInfoUI] 새 씬 로드됨: {scene.name}, 선택된 씬: {selectedScene}");
-
-        if (selectedScene == "Tutorial")
+        if (currentSceneName == "Tutorial" || currentSceneName == "IntroScene")
         {
             waveTextObject?.SetActive(false);
             waveStartTimerObject?.SetActive(false);
