@@ -7162,7 +7162,7 @@ MonoBehaviour:
   GridSize: {x: 75, y: 0, z: 75}
   cellPrefab: {fileID: 1743127878425797509, guid: b664821c577a14a42b79ecf04a631f6f,
     type: 3}
-  cellHeightOffset: -0.5
+  cellHeightOffset: 0.5
 --- !u!4 &212957061
 Transform:
   m_ObjectHideFlags: 0

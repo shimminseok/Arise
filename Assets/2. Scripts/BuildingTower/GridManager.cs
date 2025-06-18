@@ -24,15 +24,7 @@ public class GridManager : MonoBehaviour
                 Vector3Int pos    = new Vector3Int(x, 0, z);
                 GameObject cellGo = Instantiate(cellPrefab, pos, Quaternion.identity, transform);
                 var        cell   = cellGo.GetComponent<GridCell>();
-                if (IsCellOverBuildableGround(pos, out Vector3Int hitPos))
-                {
-                    cell.IsBuildable = true;
-                }
-                else
-                {
-                    cell.IsBuildable = false;
-                }
-
+                cell.IsBuildable = IsCellOverBuildableGround(pos, out Vector3Int hitPos);
                 cellGo.transform.localPosition = hitPos;
                 cell.Initialize(hitPos);
 
@@ -77,13 +69,13 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    public void PlaceDestroying(Vector3 baseCellPos, Vector2Int size)
+    public void PlaceDestroying(BuildingData data)
     {
-        for (int x = 0; x < size.x; x++)
+        for (int x = 0; x < data.Size.x; x++)
         {
-            for (int z = 0; z < size.y; z++)
+            for (int z = 0; z < data.Size.y; z++)
             {
-                Vector3Int pos = Vector3Int.FloorToInt(baseCellPos + new Vector3(x, -cellHeightOffset, z));
+                Vector3Int pos = Vector3Int.FloorToInt(data.PlaceBaseCell + new Vector3Int(x, 0, z));
                 if (_cells.TryGetValue(pos, out GridCell cell))
                     cell.OccupiedObject = null;
             }
@@ -92,14 +84,14 @@ public class GridManager : MonoBehaviour
 
     public bool IsCellOverBuildableGround(Vector3 cellCenter, out Vector3Int hitPos)
     {
-        if (Physics.Raycast(cellCenter + Vector3.up * 50f, Vector3.down, out RaycastHit hit, 60f, LayerMask.GetMask("Ground")))
+        if (Physics.Raycast(cellCenter + Vector3.up * 10f, Vector3.down, out RaycastHit hit, 15f, LayerMask.GetMask("Ground")))
         {
-            hitPos = Vector3Int.RoundToInt(hit.point);
+            hitPos = Vector3Int.FloorToInt(hit.point);
             return true;
         }
 
 
-        hitPos = Vector3Int.RoundToInt(cellCenter);
+        hitPos = Vector3Int.FloorToInt(cellCenter);
         return false;
     }
 

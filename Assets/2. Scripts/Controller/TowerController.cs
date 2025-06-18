@@ -126,7 +126,7 @@ public class TowerController : BaseController<TowerController, TowerState>, IPoo
     {
         Target = null;
         StatusEffectManager.RemoveAllEffects();
-        BuildingPlacer.Instance.GridManager.PlaceDestroying(transform.position, BuildingData.Size);
+        BuildingPlacer.Instance.GridManager.PlaceDestroying(BuildingData);
         ChangeState(TowerState.Build);
     }
 

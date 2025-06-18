@@ -43,14 +43,22 @@ public class BuildingPlacer : SceneOnlySingleton<BuildingPlacer>
 
     public (bool canBuild, Vector3Int cell) GetGhostBuildInfo()
     {
-        var        mousePos = GetMouseWorldPosition();
-        Vector3Int cell     = Vector3Int.FloorToInt(mousePos);
-        bool       canBuild = gridManager.CanPlaceBuilding(cell, _buildingData.Size);
+        Vector3    mousePos   = GetMouseWorldPosition();
+        Vector3Int centerCell = Vector3Int.FloorToInt(mousePos);
+        Vector3 baseCellF = centerCell + new Vector3(
+            -_buildingData.Size.x / 2f + 0.5f,
+            0,
+            -_buildingData.Size.y / 2f + 0.5f
+        );
+        // 중심 셀 → 좌하단 셀로 보정
+        Vector3Int baseCell = Vector3Int.FloorToInt(baseCellF);
+
+        bool canBuild = gridManager.CanPlaceBuilding(baseCell, _buildingData.Size);
 
         _buildingGhost.SetMaterialColor(canBuild);
         _buildingGhost.SetPosition(mousePos);
 
-        return (canBuild, cell);
+        return (canBuild, baseCell);
     }
 
     public void TryBuildingTower(TowerSO tower)
@@ -93,6 +101,7 @@ public class BuildingPlacer : SceneOnlySingleton<BuildingPlacer>
 
         // 골드 차감 성공 후에만 설치
         gridManager.PlaceBuilding(_selectedTower.GameObject, cell, _buildingData.Size);
+        _selectedTower.BuildingData.PlaceBaseCell = cell;
         _selectedTower.OnBuildComplete();
         
         if (TurretInstallTracker.Instance != null)

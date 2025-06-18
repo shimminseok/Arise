@@ -15,24 +15,19 @@ public class UICommandCenterHP : MonoBehaviour
         {
             centerStat = CommandCenter.Instance.StatManager;
 
-            centerStat.OnStatChanged += UpdateHPUI;
-
-            UpdateHPUI();
+            centerStat.GetStat<ResourceStat>(StatType.CurHp).OnValueChanged += UpdateHPWarpper;
+            UpdateHPWarpper(centerStat.GetValue(StatType.CurHp));
         }
     }
 
-    private void OnDestroy()
+    private void UpdateHPWarpper(float cur)
     {
-        if (centerStat != null)
-            centerStat.OnStatChanged -= UpdateHPUI;
+        UpdateHPUI(cur, centerStat.GetValue(StatType.MaxHp));
     }
 
-    private void UpdateHPUI()
+    private void UpdateHPUI(float cur, float max)
     {
-        float curHp = centerStat.GetValue(StatType.CurHp);
-        float maxHp = centerStat.GetValue(StatType.MaxHp);
-
-        hpSlider.value = curHp / maxHp;
-        hpText.text = $"{(int)curHp} / {(int)maxHp}";
+        hpSlider.value = cur / max;
+        hpText.text = $"{(int)cur} / {(int)max}";
     }
 }
