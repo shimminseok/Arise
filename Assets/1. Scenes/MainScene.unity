@@ -37213,7 +37213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1186444919}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268346, y: -0.000000022481217, z: 0.000000009312026, w: 0.92387956}
+  m_LocalRotation: {x: 0.38268346, y: 0.00000002248122, z: -0.000000009312027, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -55140,7 +55140,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738763169}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268346, y: -0.000000022481217, z: 0.000000009312026, w: 0.92387956}
+  m_LocalRotation: {x: 0.38268346, y: 0.00000002248122, z: -0.000000009312027, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -55781,14 +55781,14 @@ MonoBehaviour:
   - {fileID: 3913738513965477629, guid: 3ce6684d2b6619446ae75be0942070de, type: 3}
   - {fileID: 200694866649241029, guid: 2e836ef563d58434aaabce82c63cd191, type: 3}
   - {fileID: 8607717935226603265, guid: f5a667522e571fa4f900f9c24d7e4698, type: 3}
-  - {fileID: 640456147929166247, guid: 0af48a8c78846014ca5cf957e25108ab, type: 3}
-  - {fileID: 515941876779140839, guid: fde9328755dd8a142817f3290f3dc264, type: 3}
-  - {fileID: 3007401005470559389, guid: 628318cba681a5c4cae2fdcdd5e088dc, type: 3}
-  - {fileID: 2111355078768322255, guid: 767625a1ee014d64eb70853a0dd397d8, type: 3}
-  - {fileID: 7036203129003147257, guid: 1a5eb2b2513baff489c563281417aa3b, type: 3}
-  - {fileID: 721683284702499188, guid: 8b664785a8d9dcd49b625193b8db1474, type: 3}
-  - {fileID: 2847873687554210706, guid: f5856f5efb5a73f4f99ffd8f4ce1bac5, type: 3}
-  - {fileID: 2488854151207131200, guid: 9a69b33592aa34e4cbed29fb48096162, type: 3}
+  - {fileID: 2951061329936063240, guid: 0af48a8c78846014ca5cf957e25108ab, type: 3}
+  - {fileID: 7872260628999639454, guid: fde9328755dd8a142817f3290f3dc264, type: 3}
+  - {fileID: 6263469889709321727, guid: 628318cba681a5c4cae2fdcdd5e088dc, type: 3}
+  - {fileID: 6867900664811836424, guid: 767625a1ee014d64eb70853a0dd397d8, type: 3}
+  - {fileID: 1715079442734568034, guid: 1a5eb2b2513baff489c563281417aa3b, type: 3}
+  - {fileID: 6038857216761230912, guid: 8b664785a8d9dcd49b625193b8db1474, type: 3}
+  - {fileID: 6669050927328152904, guid: f5856f5efb5a73f4f99ffd8f4ce1bac5, type: 3}
+  - {fileID: 351433367495758992, guid: 9a69b33592aa34e4cbed29fb48096162, type: 3}
   - {fileID: 7531993055659480014, guid: 85091e28934ab1b45832c9ffaed314dc, type: 3}
 --- !u!4 &1762764027
 Transform:
@@ -67325,7 +67325,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0726a57b3488f584b89eb5c89941ff70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooting: {fileID: 11400000, guid: 33ccc4ab075210f4d9318721d8809630, type: 2}
   weaponController: {fileID: 887103301}
   PlayerAnimation: {fileID: 0}
 --- !u!114 &933290881350881407

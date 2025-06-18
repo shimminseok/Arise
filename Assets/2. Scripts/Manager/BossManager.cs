@@ -18,7 +18,7 @@ public class BossManager : SceneOnlySingleton<BossManager>
     private void Start()
     {
         // SpawnBoss();
-        StartCoroutine(StartBossSpawn());
+        // StartCoroutine(StartBossSpawn());
     }
 
     public void SpawnBoss(BossController Boss = null)

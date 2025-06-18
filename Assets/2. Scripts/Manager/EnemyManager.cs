@@ -13,7 +13,7 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
     [SerializeField] private VoidEventChannelSO onGameClearEvent;
     [SerializeField] private TwoIntegerEvent waveRemainMonsterCountEvent;
     [SerializeField] private IntegerEventChannelSO waveCountDownEvent;
-    public List<EnemyController> Enemies { get; private set; } = new List<EnemyController>();
+    public List<MonsterSO> Enemies { get; private set; } = new List<MonsterSO>();
 
     private int _arrivalOrder = 0;
     private bool isSpawning = false;
@@ -89,7 +89,6 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
 
             while (Enemies.Count > 0 || isSpawning)
             {
-                Debug.Log($"[WaveLoop] 대기 중... Enemies.Count = {Enemies.Count}, isSpawning = {isSpawning}");
                 yield return null;
             }
             StartCoroutine(StartWaveCountDown());
@@ -114,18 +113,38 @@ public class EnemyManager : SceneOnlySingleton<EnemyManager>
     private void SpawnSingleMonster(MonsterSO monsterSo)
     {
         GameObject monsterObj = ObjectPoolManager.Instance.GetObject(monsterSo.name);
-        var monsterCtrl = monsterObj.GetComponent<EnemyController>();
-        monsterCtrl.Initialized(_startPoint.position, _endPoint.position);
-        
-        if (!isTutorialMode)
-            Enemies.Add(monsterCtrl);
+
+        if (monsterSo is BossSO boss)
+        {
+            var bossCtrl = monsterObj.GetComponent<BossController>();
+            bossCtrl.Initialized(_startPoint.position, _endPoint.position);
+            if (!isTutorialMode)
+                Enemies.Add(boss);
+        }
+        else
+        {
+            var monsterCtrl = monsterObj.GetComponent<EnemyController>();
+            monsterCtrl.Initialized(_startPoint.position, _endPoint.position);
+            if (!isTutorialMode)
+                Enemies.Add(monsterSo);
+        }
+
     }
 
     public void MonsterDead(EnemyController monster)
     {
+        GameObject gold = ObjectPoolManager.Instance.GetObject("Gold");
+        gold.transform.localPosition = monster.transform.position + Vector3.up;
+        gold.GetComponent<GoldRooting>().Initialized(10 + currentWaveIndex);
         ObjectPoolManager.Instance.ReturnObject(monster.GameObject, 2f);
-        Enemies.Remove(monster);
-        
+        Enemies.Remove(monster.MonsterSo);
+        waveRemainMonsterCountEvent?.Raise(--waveCurrentMonsterCount, waveTotalMonsterCount);
+    }
+
+    public void MonsterDead(BossController boss)
+    {
+        ObjectPoolManager.Instance.ReturnObject(boss.GameObject, 2f);
+        Enemies.Remove(boss.BossSo);
         waveRemainMonsterCountEvent?.Raise(--waveCurrentMonsterCount, waveTotalMonsterCount);
     }
 

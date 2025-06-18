@@ -22,10 +22,6 @@ public class GoldRooting : MonoBehaviour, IPoolObject
     [SerializeField] private AnimationCurve easeInCurve;
     [SerializeField] private AnimationCurve easeOutCurve;
     
-    [Space(10f)]
-    [Header("Events")]
-    [SerializeField] private TransformEventSO rooting;
-    [SerializeField] private IntegerEventChannelSO rootedGold;
 
     [Space(10f)]
     [Header("ObjectPool")]
@@ -38,18 +34,13 @@ public class GoldRooting : MonoBehaviour, IPoolObject
     public string     PoolID     => poolID;
     public int        PoolSize   => poolSize;
 
-
+    private Transform target;
     
     private void Awake()
     {
         chaseTweener = new(this);
     }
-
-    private void OnEnable()
-    {
-        rooting.RegisterListener(ChasedTarget);
-        StartPopLoop();
-    }
+    
     
     private void StartPopLoop()
     {
@@ -69,6 +60,12 @@ public class GoldRooting : MonoBehaviour, IPoolObject
             }).SetCurve(easeOutCurve);
     }
 
+    public void Initialized(int amount)
+    {
+        goldAmount = amount;
+        OnSpawnFromPool();
+        StartPopLoop();
+    }
     public void OnSpawnFromPool()
     {
         StartCoroutine(DropGold());
@@ -81,12 +78,9 @@ public class GoldRooting : MonoBehaviour, IPoolObject
     private IEnumerator DropGold()
     {
         yield return new WaitForSeconds(3f);
+        ChasedTarget(SkillManager.Instance.Owner.transform);
     }
-    private void OnDisable()
-    {
-        rooting.UnregisterListener(ChasedTarget);
-    }
-
+    
     void ChasedTarget(Transform target)
     {
         Vector3 yoyoStartPos = transform.position;
@@ -104,8 +98,8 @@ public class GoldRooting : MonoBehaviour, IPoolObject
                     chaseTime,
                     () =>
                     {
-                        rootedGold.Raise(goldAmount);
-                        gameObject.SetActive(false);
+                        GoldManager.Instance.AddGold(goldAmount);
+                        ObjectPoolManager.Instance.ReturnObject(gameObject);
                     }).SetCurve(easeInCurve);
                 
             }).SetCurve(easeOutCurve);
