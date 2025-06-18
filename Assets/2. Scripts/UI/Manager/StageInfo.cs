@@ -30,6 +30,7 @@ public class StageInfoUI : MonoBehaviour
         startWaveCountDownEvent.RegisterListener(UpdateStartWaveCountDown);
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+        
     }
 
     private void OnDisable()
@@ -49,6 +50,9 @@ public class StageInfoUI : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        TrySetStageFromSceneName();
+        UpdateText();
+        
         string currentSceneName = SceneManager.GetActiveScene().name;
 
         // if (selectedScene == "Tutorial")
