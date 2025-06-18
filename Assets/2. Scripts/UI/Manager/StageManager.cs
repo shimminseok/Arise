@@ -7,6 +7,8 @@ public class StageManager : MonoBehaviour
     public int CurrentStage { get; private set; } = 1;
     public int CurrentWave { get; private set; } = -1;
 
+    public int MaxStage { get; set; } = 1;
+
     private void Awake()
     {
         if (Instance != null)

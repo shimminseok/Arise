@@ -1,26 +1,17 @@
 using System;
 using UnityEngine;
 
-public class GoldManager : MonoBehaviour
+public class GoldManager : SceneOnlySingleton<GoldManager>
 {
-    public static GoldManager Instance { get; private set; }
 
     [SerializeField] private int startingGold = 500;
     public int CurrentGold { get; private set; }
 
     public event Action<int> OnGoldChanged;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-
+        base.Awake();
         CurrentGold = startingGold;
         OnGoldChanged?.Invoke(CurrentGold); // 초기화 시도
     }
@@ -42,5 +33,10 @@ public class GoldManager : MonoBehaviour
     {
         CurrentGold += amount;
         OnGoldChanged?.Invoke(CurrentGold);
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
     }
 }
